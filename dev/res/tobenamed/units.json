@@ -1,0 +1,7 @@
+{"Infantry": {
+	"Movement": 3,
+	"Ammo": "n/a",
+	"Vision": 2,
+	"Movement Type": "Infantry",
+	"Cost": 1000
+}}
