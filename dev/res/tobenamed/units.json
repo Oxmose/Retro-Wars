@@ -2,6 +2,6 @@
 	"Movement": 3,
 	"Ammo": "n/a",
 	"Vision": 2,
-	"Movement Type": "Infantry",
+	"Movement_Type": "Infantry",
 	"Cost": 1000
 }}

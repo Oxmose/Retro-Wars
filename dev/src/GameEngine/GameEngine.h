@@ -21,15 +21,15 @@
 #include <string>				// std::string
 
 #include "GameEngine.h"			// nsGameEngine::GameEngine
-#include "GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
+#include "../GraphicEngine/GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
 
 namespace nsGameEngine
 {
 	class GameEngine
 	{
 		public:
-			GameEngine() noexcept;
-			~GameEgine();
+			GameEngine(const unsigned int & p_width, const unsigned int & p_height, const std::string & p_title) noexcept;
+			~GameEngine();
 
 			void init() noexcept;
 
@@ -40,11 +40,11 @@ namespace nsGameEngine
 			std::string 	m_windowTitle;
 			
 			// Window object
-			sf::RenderWindow m_window;
+			sf::RenderWindow* m_window;
 			
 			// Graphic engine
-			nsGraphicEnine	m_graphicEngine;
-	}
+			nsGraphicEngine::GraphicEngine	m_graphicEngine;
+	};
 }
 
 #endif /* DEF_GAMEENGINE_H */
