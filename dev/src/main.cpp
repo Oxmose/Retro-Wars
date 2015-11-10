@@ -10,8 +10,8 @@ int main(int argc, char** argv)
 {
 	try
 	{
-		GameEngine gameEngine(800, 600, "Test SFML");
-		gameEngine.init();
+		GameEngine gameEngine(800, 600, "Retro Wars");
+		gameEngine.frame();
 	}
 	catch(exception &e)
 	{

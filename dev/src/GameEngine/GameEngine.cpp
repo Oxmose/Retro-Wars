@@ -16,15 +16,16 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 	m_windowTitle	= p_title;
 
 	m_window = new sf::RenderWindow(m_windowDim, m_windowTitle);
+	m_graphicEngine = new GraphicEngine(m_window);
 } // GameEngine();
 
-void GENGINE::init() noexcept
-{	
+void GENGINE::frame() noexcept
+{
 	// Init the graphic engine
-	m_graphicEngine = GraphicEngine(m_window);
-	m_graphicEngine.loadTest();
+    m_graphicEngine->loadMap("first-map.tmx");	
 	
-	while (m_window->isOpen())
+
+    while (m_window->isOpen())
     {
         sf::Event event;
         while(m_window->pollEvent(event))
@@ -33,10 +34,8 @@ void GENGINE::init() noexcept
                 m_window->close();
         }
 
-
-        m_graphicEngine.reload();
-        m_graphicEngine.drawTest();
-    
+        m_graphicEngine->reload();
+        m_graphicEngine->drawMap(); 
         m_window->display();
     }
 } // init();
@@ -44,4 +43,5 @@ void GENGINE::init() noexcept
 GENGINE::~GameEngine()
 {
     delete m_window;
+    delete m_graphicEngine;
 }

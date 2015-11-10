@@ -31,7 +31,7 @@ namespace nsGameEngine
 			GameEngine(const unsigned int & p_width, const unsigned int & p_height, const std::string & p_title) noexcept;
 			~GameEngine();
 
-			void init() noexcept;
+			void frame() noexcept;
 
 			
 		private:
@@ -43,7 +43,7 @@ namespace nsGameEngine
 			sf::RenderWindow* m_window;
 			
 			// Graphic engine
-			nsGraphicEngine::GraphicEngine	m_graphicEngine;
+			nsGraphicEngine::GraphicEngine*	m_graphicEngine;
 	};
 }
 

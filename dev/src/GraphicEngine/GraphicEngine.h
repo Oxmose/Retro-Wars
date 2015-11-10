@@ -1,7 +1,11 @@
 #ifndef DEF_GRAPHICENGINE_H
 #define DEF_GRAPHICENGINE_H
 
+#include <iostream>
+#include <string>
+
 #include <SFML/Graphics.hpp>
+#include <tmx/MapLoader.h>
 
 namespace nsGraphicEngine
 {
@@ -15,14 +19,13 @@ namespace nsGraphicEngine
 
             void reload() noexcept;
 
-            void loadTest() noexcept;
-            void drawTest() noexcept;
+            void loadMap(std::string mapName) noexcept;
+            void drawMap() noexcept;
 
         private:
 
-            sf::RenderWindow* m_mainWindow;
-            sf::Sprite test;
-            sf::Texture test_texture;        
+            sf::RenderWindow* m_mainWindow;    
+            tmx::MapLoader* m_ml;       
     };
 
 }

@@ -73,6 +73,14 @@ CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/SFM
 CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/SFML/Window/Window.hpp
 CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/SFML/Window/WindowHandle.hpp
 CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/pugixml/pugiconfig.hpp
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/pugixml/pugixml.hpp
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/tmx/DebugShape.h
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/tmx/Helpers.h
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/tmx/MapLayer.h
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/tmx/MapLoader.h
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/tmx/MapObject.h
+CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o: /usr/local/include/tmx/QuadTreeNode.h
 
 CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: src/GraphicEngine/GraphicEngine.cpp
 CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: src/GraphicEngine/GraphicEngine.h
@@ -145,6 +153,14 @@ CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/inclu
 CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/SFML/Window/Window.hpp
 CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/SFML/Window/WindowHandle.hpp
 CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/pugixml/pugiconfig.hpp
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/pugixml/pugixml.hpp
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/tmx/DebugShape.h
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/tmx/Helpers.h
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/tmx/MapLayer.h
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/tmx/MapLoader.h
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/tmx/MapObject.h
+CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o: /usr/local/include/tmx/QuadTreeNode.h
 
 CMakeFiles/bin/RetroWars.dir/src/main.o: src/GameEngine/GameEngine.h
 CMakeFiles/bin/RetroWars.dir/src/main.o: src/GraphicEngine/GraphicEngine.h
@@ -218,4 +234,12 @@ CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/SFML/Window/VideoMod
 CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/SFML/Window/Window.hpp
 CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/SFML/Window/WindowHandle.hpp
 CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/pugixml/pugiconfig.hpp
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/pugixml/pugixml.hpp
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/tmx/DebugShape.h
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/tmx/Helpers.h
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/tmx/MapLayer.h
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/tmx/MapLoader.h
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/tmx/MapObject.h
+CMakeFiles/bin/RetroWars.dir/src/main.o: /usr/local/include/tmx/QuadTreeNode.h
 
