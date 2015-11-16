@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
 	try
 	{
-		GameEngine gameEngine(800, 600, "Retro Wars");
+		GameEngine gameEngine(30*16, 20*16, "Retro Wars", "first-map.tmx", RED);
 		gameEngine.frame();
 	}
 	catch(exception &e)

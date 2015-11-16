@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="30" height="20" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="Players" value="Red,Blue"/>
+ </properties>
  <tileset firstgid="1" source="tilesets/Terrain.tsx"/>
  <tileset firstgid="145" source="tilesets/Property.tsx"/>
  <layer name="Terrain_1" width="30" height="20">

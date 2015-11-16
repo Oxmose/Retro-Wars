@@ -95,7 +95,7 @@ namespace tmx
                 outstring = "INFO: " + message;
                 break;
             case Type::Error:
-                outstring = "TERROR: " + message;
+                outstring = "ERROR: " + message;
                 break;
             case Type::Warning:
                 outstring = "WARNING: " + message;

@@ -14,12 +14,11 @@ namespace nsGraphicEngine
         public:
             
             GraphicEngine() noexcept;
-            GraphicEngine(sf::RenderWindow* p_mainWindow) noexcept;
+            GraphicEngine(sf::RenderWindow* p_mainWindow, tmx::MapLoader *p_ml) noexcept;
             ~GraphicEngine() noexcept;
 
             void reload() noexcept;
 
-            void loadMap(std::string mapName) noexcept;
             void drawMap() noexcept;
 
         private:
