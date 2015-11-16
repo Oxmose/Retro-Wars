@@ -21,7 +21,7 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 
 void GENGINE::frame() noexcept
 {
-	// Init the graphic engine
+    // Init the graphic engine
     m_graphicEngine->loadMap("first-map.tmx");	
 	
 
