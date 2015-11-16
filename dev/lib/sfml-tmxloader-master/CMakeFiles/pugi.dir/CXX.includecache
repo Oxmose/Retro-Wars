@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/src/pugixml/pugixml.cpp
+/home/alexy/Documents/ENSL/PROJET/Projet_C++/Retro-Wars/dev/lib/sfml-tmxloader-master/src/pugixml/pugixml.cpp
 pugixml/pugixml.hpp
 -
 stdlib.h

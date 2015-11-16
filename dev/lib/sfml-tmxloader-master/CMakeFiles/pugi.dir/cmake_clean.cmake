@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/pugi.dir/src/pugixml/pugixml.cpp.o"
   "libpugi.pdb"
-  "libpugi.dylib"
+  "libpugi.so"
 )
 
 # Per-language clean rules from dependency scanning.

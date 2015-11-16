@@ -1,19 +1,27 @@
-#include <exception>
-
-#include "GameEngine/GameEngine.h"
-
+#include <iostream>
+#include "NetEngine/Server.h"
 
 using namespace std;
-using namespace nsGameEngine;
+using namespace nsNetEngine;
 
 int main(int argc, char** argv)
 {
-	try
+	Server server("127.0.0.1", 5000);
+	cout << "Attente" << endl;
+	server.launch();
+	cout << "Entering loop" << endl;
+	int i = 0;	
+	cin >> i;
+	/*if (argv[1] == "-h")
 	{
-		GameEngine gameEngine(800, 600, "Retro Wars");
-		gameEngine.frame();
+		NetEngine netEngine(127.0.0.1, 5000, true);
+		netEngine.launch();
 	}
-	catch(exception &e)
+	else
 	{
+		NetEngine netEngine(127.0.0.1, 5000, false);
+		netEngine.launch();
 	}
-} // main()
+	*/
+	return 0;
+}

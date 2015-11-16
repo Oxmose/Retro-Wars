@@ -1,0 +1,40 @@
+#ifndef DEF_NETENGINE_H
+#define DEF_NETENGINE_H
+
+#include <string>
+#include <thread>
+
+#include <SFML/Network.hpp>
+
+#include "Structures.h"
+#include "../Misc/Misc.h"
+
+namespace nsNetEngine
+{
+	
+	
+    class NetEngine
+    {
+        public:
+           
+            NetEngine(const std::string &p_ipAdress, const unsigned int &p_port, const bool &p_isServer) noexcept;
+            ~NetEngine() noexcept;
+
+            void launch(std::string p_mapName = "NONE", PLAYER_TYPE p_player = NEUTRAL);
+
+			NetPackage reveive();
+			void send(NetPackage package);
+        
+		private:
+			std::string 	m_ipAddress;
+			unsigned int 	m_port;
+			bool 			m_isServer;
+
+			Server* 		m_server;
+                 
+    };
+
+}
+
+
+#endif

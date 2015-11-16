@@ -6,7 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tmx-loader.dir/src/MapObject.cpp.o"
   "CMakeFiles/tmx-loader.dir/src/QuadTreeNode.cpp.o"
   "libtmx-loader.pdb"
-  "libtmx-loader.dylib"
+  "libtmx-loader.so"
 )
 
 # Per-language clean rules from dependency scanning.
