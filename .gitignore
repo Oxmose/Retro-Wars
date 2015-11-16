@@ -27,12 +27,12 @@
 *.i*86
 *.x86_64
 *.hex
-dev/bin/*
+bin/*
 
 # Cmake
-dev/CMakeFiles/*
-dev/CMakeCache.txt
-dev/cmake_install.cmake
+CMakeFiles/*
+CMakeCache.txt
+cmake_install.cmake
 
 
 # Debug files
