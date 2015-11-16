@@ -17,14 +17,8 @@ GameEngine.h
 /Users/tristansterin/Documents/Retro-Wars/dev/src/GraphicEngine/GraphicEngine.h
 
 /Users/tristansterin/Documents/Retro-Wars/dev/src/GameEngine/GameEngine.h
-SFML/Graphics.hpp
--
 string
 -
-GameEngine.h
-/Users/tristansterin/Documents/Retro-Wars/dev/src/GameEngine/GameEngine.h
-../GraphicEngine/GraphicEngine.h
-/Users/tristansterin/Documents/Retro-Wars/dev/src/GraphicEngine/GraphicEngine.h
 
 /Users/tristansterin/Documents/Retro-Wars/dev/src/GraphicEngine/GraphicEngine.cpp
 string
