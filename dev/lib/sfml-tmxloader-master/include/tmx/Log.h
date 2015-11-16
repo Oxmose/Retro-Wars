@@ -41,7 +41,18 @@ source distribution.
 
 //to enable logging define one of these in your preprocessor directives
 
+#define LOG_OUTPUT_ALL
+
+#ifdef LOG_OUTPUT_ALL
+#define LOG(m, t) tmx::Logger::Log(m, t, tmx::Logger::Output::All)
+#elif defined LOG_OUTPUT_CONSOLE
 #define LOG(m, t) tmx::Logger::Log(m, t, tmx::Logger::Output::Console)
+#elif defined LOG_OUTPUT_FILE
+#define LOG(m, t) tmx::Logger::Log(m, t, tmx::Logger::Output::File)
+#else
+#define LOG(m, t)
+#endif //LOG_LEVEL
+
 
 
 #ifdef _MSC_VER
@@ -84,7 +95,7 @@ namespace tmx
                 outstring = "INFO: " + message;
                 break;
             case Type::Error:
-                outstring = "ERROR: " + message;
+                outstring = "TERROR: " + message;
                 break;
             case Type::Warning:
                 outstring = "WARNING: " + message;
