@@ -15,11 +15,14 @@ namespace nsNetEngine
     typedef struct Client Client;
     struct Client
     {
+	    bool		    status;
         std::string     ipAddress;
         unsigned int    port;
+	    unsigned int	id;
+	    sf::TcpSocket	*socket;
+
         std::string     playerName;
         PLAYER_TYPE     playerType;
-	sf::TcpSocket 	socket;
     };
 }
 

@@ -1,42 +1,66 @@
-#ifndef DEF_NETENGINE_H
-#define DEF_NETENGINE_H
+#ifndef DEF_SERVER_H
+#define DEF_SERVER_H
 
 #include <string>
 #include <vector>
 #include <thread>
+#include <iostream>
+#include <atomic>
+#include <map>
+#include <utility>
 
 #include <SFML/Network.hpp>
 
 #include "../Misc/Misc.h"
+#include "NetEngine.h"
 #include "Structures.h"
+#include "NetException.h"
 
 namespace nsNetEngine
 {
+    class NetEngine;
     class Server
     {
         public:
            
-            Server(const std::string &p_ipAddress, const unsigned int &p_port) noexcept;
+            Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const unsigned int &p_maxPlayer) noexcept;
             ~Server() noexcept;
 
-            void launch();
+            void launch() throw (NetException);
+            
+            void disconnectClient(const unsigned int &p_id);
+
 			void send(const NetPackage &p_package, const unsigned int &p_clientId);
+            void sendAll(const NetPackage &p_package);
+
+            unsigned int getClientsNumber();
+            std::vector<Client> getClients();
         
 		private:
             void connectClient();
             void disconnectClients();
-            void listenClients();
+            void listenClients(unsigned int p_id) throw (NetException);
+            void parseMessage(const unsigned int &p_id, const std::string &p_message);
 
-			std::string 	             m_ipAddress;
-			unsigned int 	             m_port;
+			std::string 	                        m_ipAddress;
+			unsigned int 	                        m_port;
 
-            std::vector<sf::TcpSocket*>  m_clients;  
-            sf::TcpListener              m_listener; 
-            std::thread*                 m_connectThread; 
-            std::thread*                 m_listenClientsThread; 
+            std::map<unsigned int, Client>          m_clients;
+            sf::TcpListener                         m_listener; 
 
-            bool                         m_waitForClients;
-            bool                         m_listen;      
+            std::thread*                            m_connectThread; 
+            std::map<unsigned int, std::thread*>    m_listenClientsThreads; 
+
+            std::atomic<bool>                       m_waitForClients;
+            std::atomic<bool>                       m_listen;     
+            
+            unsigned int                            m_lastId;
+            
+            NetEngine*                              m_netEngine;
+            
+            // Game management
+            unsigned int                            m_maxPlayer;
+            std::array<bool, 5>                     m_availablePositions;
     };
 
 }

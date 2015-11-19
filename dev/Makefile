@@ -146,6 +146,21 @@ src/GraphicEngine/GraphicEngine.s:
 .PHONY : src/GraphicEngine/GraphicEngine.s
 
 # target to build an object file
+src/NetEngine/NetEngine.o:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/NetEngine.o
+.PHONY : src/NetEngine/NetEngine.o
+
+# target to preprocess a source file
+src/NetEngine/NetEngine.i:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/NetEngine.i
+.PHONY : src/NetEngine/NetEngine.i
+
+# target to generate assembly for a file
+src/NetEngine/NetEngine.s:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/NetEngine.s
+.PHONY : src/NetEngine/NetEngine.s
+
+# target to build an object file
 src/NetEngine/Server.o:
 	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/Server.o
 .PHONY : src/NetEngine/Server.o
@@ -190,6 +205,9 @@ help:
 	@echo "... src/GraphicEngine/GraphicEngine.o"
 	@echo "... src/GraphicEngine/GraphicEngine.i"
 	@echo "... src/GraphicEngine/GraphicEngine.s"
+	@echo "... src/NetEngine/NetEngine.o"
+	@echo "... src/NetEngine/NetEngine.i"
+	@echo "... src/NetEngine/NetEngine.s"
 	@echo "... src/NetEngine/Server.o"
 	@echo "... src/NetEngine/Server.i"
 	@echo "... src/NetEngine/Server.s"

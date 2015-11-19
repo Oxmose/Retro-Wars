@@ -10,4 +10,5 @@ enum PLAYER_TYPE
 	YELLOW 	= 4,
 	BLACK	= 5 
 };
+
 #endif

@@ -1,27 +1,33 @@
 #include <iostream>
-#include "NetEngine/Server.h"
+#include "NetEngine/NetEngine.h"
 
 using namespace std;
 using namespace nsNetEngine;
 
 int main(int argc, char** argv)
 {
-	Server server("127.0.0.1", 5000);
-	cout << "Attente" << endl;
-	server.launch();
-	cout << "Entering loop" << endl;
-	int i = 0;	
-	cin >> i;
-	/*if (argv[1] == "-h")
-	{
-		NetEngine netEngine(127.0.0.1, 5000, true);
-		netEngine.launch();
+    try
+    {
+        NetEngine netEngine("127.0.0.1", 5000);
+	    if (argc == 2 && string(argv[1]) == "-h")
+	    {
+	        netEngine.setIsServer(true);
+		    netEngine.launch("Oxmose", "mousa", NEUTRAL);
+	    }
+	    else
+	    {
+		    netEngine.setIsServer(false);
+		    netEngine.launch("Oxmose", "NONE", NEUTRAL);
+	    }
+	    while(true);
+	    return 0;
 	}
-	else
+	catch(const NetException &Exc)
 	{
-		NetEngine netEngine(127.0.0.1, 5000, false);
-		netEngine.launch();
+	    cerr << Exc.what() << endl;
 	}
-	*/
-	return 0;
+	catch(...)
+	{
+	    cerr << "Unknown exception" << endl;
+	}
 }
