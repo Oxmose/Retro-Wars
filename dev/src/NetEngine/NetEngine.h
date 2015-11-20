@@ -32,12 +32,11 @@ namespace nsNetEngine
 			void send(const NetPackage &p_package);
 			void listen();
 			
-			void manageError(const std::string &p_error);
-			
 			void setIsServer(const bool &p_isServer);
         
 		private:
 		    void parseMessage(const std::string &p_message);
+		    void manageError(const std::string &p_error);
 		
 			std::string 	m_ipAddress;
 			unsigned int 	m_port;
