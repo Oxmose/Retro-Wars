@@ -13,10 +13,9 @@ GxENGINE::GraphicEngine() noexcept
 {
 }
 
-GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow, tmx::MapLoader *p_ml) noexcept
+GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow) noexcept
 {
     m_mainWindow = p_mainWindow;
-    m_ml = p_ml;
 }
 
 GxENGINE::~GraphicEngine() noexcept
@@ -30,7 +29,6 @@ void GxENGINE::reload() noexcept
 
 void GxENGINE::drawMap() noexcept
 {
-    m_mainWindow->draw(*m_ml);
 }
 
 

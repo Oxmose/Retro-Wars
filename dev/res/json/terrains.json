@@ -1,0 +1,115 @@
+{"Plain": {
+	"Defense": 1,
+	"Movement": {
+		"Foot": 1,
+		"Boots": 1,
+		"Treads": 1,
+		"Tires": 2,
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+{"Mountain": {
+	"Defense": 4,
+	"Movement": {
+		"Foot": 2,
+		"Boots": 1,
+		"Treads": "n/a",
+		"Tires": "n/a",
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+{"Woods": {
+	"Defense": 2,
+	"Movement": {
+		"Foot": 1,
+		"Boots": 1,
+		"Threads": 2,
+		"Tires": 3,
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+{"Roads": {
+	"Defense": 0,
+	"Movement": {
+		"Foot": 1,
+		"Boots": 1,
+		"Threads": 1,
+		"Tires": 1,
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+{"Bridges": {
+	"Defense": 0,
+	"Movement": {
+		"Foot": 1,
+		"Boots": 1,
+		"Threads": 1,
+		"Tires": 1,
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+{"City": {
+	"Defense": 3,
+	"Movement": {
+		"Foot": 1,
+		"Boots": 1,
+		"Threads": 1,
+		"Tires": 1,
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+{"HQ": {
+	"Defense": 4,
+	"Movement": {
+		"Foot": 1,
+		"Boots": 1,
+		"Threads": 1,
+		"Tires": 1,
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+{"Base": {
+	"Defense": 3,
+	"Movement": {
+		"Foot": 1,
+		"Boots": 1,
+		"Threads": 1,
+		"Tires": 1,
+		"Air": 1,
+		"Sea": "n/a",
+		"Lander": "n/a",
+		"Pipe": "n/a"
+	}
+}}
+
+
+	
+        

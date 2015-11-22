@@ -154,6 +154,51 @@ src/GameEngine/Player.s:
 .PHONY : src/GameEngine/Player.s
 
 # target to build an object file
+src/GameEngine/Terrain.o:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Terrain.o
+.PHONY : src/GameEngine/Terrain.o
+
+# target to preprocess a source file
+src/GameEngine/Terrain.i:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Terrain.i
+.PHONY : src/GameEngine/Terrain.i
+
+# target to generate assembly for a file
+src/GameEngine/Terrain.s:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Terrain.s
+.PHONY : src/GameEngine/Terrain.s
+
+# target to build an object file
+src/GameEngine/Unit.o:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Unit.o
+.PHONY : src/GameEngine/Unit.o
+
+# target to preprocess a source file
+src/GameEngine/Unit.i:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Unit.i
+.PHONY : src/GameEngine/Unit.i
+
+# target to generate assembly for a file
+src/GameEngine/Unit.s:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Unit.s
+.PHONY : src/GameEngine/Unit.s
+
+# target to build an object file
+src/GameEngine/World.o:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/World.o
+.PHONY : src/GameEngine/World.o
+
+# target to preprocess a source file
+src/GameEngine/World.i:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/World.i
+.PHONY : src/GameEngine/World.i
+
+# target to generate assembly for a file
+src/GameEngine/World.s:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/World.s
+.PHONY : src/GameEngine/World.s
+
+# target to build an object file
 src/GraphicEngine/GraphicEngine.o:
 	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o
 .PHONY : src/GraphicEngine/GraphicEngine.o
@@ -198,6 +243,15 @@ help:
 	@echo "... src/GameEngine/Player.o"
 	@echo "... src/GameEngine/Player.i"
 	@echo "... src/GameEngine/Player.s"
+	@echo "... src/GameEngine/Terrain.o"
+	@echo "... src/GameEngine/Terrain.i"
+	@echo "... src/GameEngine/Terrain.s"
+	@echo "... src/GameEngine/Unit.o"
+	@echo "... src/GameEngine/Unit.i"
+	@echo "... src/GameEngine/Unit.s"
+	@echo "... src/GameEngine/World.o"
+	@echo "... src/GameEngine/World.i"
+	@echo "... src/GameEngine/World.s"
 	@echo "... src/GraphicEngine/GraphicEngine.o"
 	@echo "... src/GraphicEngine/GraphicEngine.i"
 	@echo "... src/GraphicEngine/GraphicEngine.s"

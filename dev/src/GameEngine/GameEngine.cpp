@@ -22,18 +22,17 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 
     m_mapName = p_mapName;
 
-    m_ml = new tmx::MapLoader("../res/maps/");
-    m_ml->AddSearchPath("../res/maps/tilesets");
 
-	m_graphicEngine = new GraphicEngine(m_window, m_ml);
+	m_graphicEngine = new GraphicEngine(m_window);
 
     m_player = new Player(p_playerType);
+
+    m_world = new World();
 } // GameEngine();
 
 
 void GENGINE::loadMap() noexcept
 {
-    m_ml->Load(m_mapName);
 }
 
 void GENGINE::frame() noexcept
@@ -52,15 +51,14 @@ void GENGINE::frame() noexcept
         }
 
         m_graphicEngine->reload();
-        m_graphicEngine->drawMap(); 
         m_window->display();
     }
 } // init();
 
 GENGINE::~GameEngine()
 {
-    delete m_ml;
     delete m_player;
+    delete m_world;
     delete m_window;
     delete m_graphicEngine;
 }

@@ -5,7 +5,6 @@
 #include <string>
 
 #include <SFML/Graphics.hpp>
-#include <tmx/MapLoader.h>
 
 namespace nsGraphicEngine
 {
@@ -14,7 +13,7 @@ namespace nsGraphicEngine
         public:
             
             GraphicEngine() noexcept;
-            GraphicEngine(sf::RenderWindow* p_mainWindow, tmx::MapLoader *p_ml) noexcept;
+            GraphicEngine(sf::RenderWindow* p_mainWindow) noexcept;
             ~GraphicEngine() noexcept;
 
             void reload() noexcept;
@@ -23,8 +22,7 @@ namespace nsGraphicEngine
 
         private:
 
-            sf::RenderWindow* m_mainWindow;    
-            tmx::MapLoader* m_ml;       
+            sf::RenderWindow* m_mainWindow;        
     };
 
 }

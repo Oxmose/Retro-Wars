@@ -22,6 +22,7 @@
 
 #include "GameEngine.h"			// nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
+#include "World.h"
 #include "Player.h"
 #include "../Misc/Misc.h"
 
@@ -72,11 +73,12 @@ namespace nsGameEngine
 			sf::RenderWindow* m_window;
         
             std::string m_mapName;
-            tmx::MapLoader* m_ml;
 
             /// @brief The pointer to the graphic engine.
 			nsGraphicEngine::GraphicEngine*	m_graphicEngine;
 
+
+            World* m_world;
             Player* m_player;
 	};
 }
