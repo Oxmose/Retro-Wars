@@ -131,6 +131,21 @@ src/GameEngine/GameEngine.s:
 .PHONY : src/GameEngine/GameEngine.s
 
 # target to build an object file
+src/GameEngine/Player.o:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Player.o
+.PHONY : src/GameEngine/Player.o
+
+# target to preprocess a source file
+src/GameEngine/Player.i:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Player.i
+.PHONY : src/GameEngine/Player.i
+
+# target to generate assembly for a file
+src/GameEngine/Player.s:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Player.s
+.PHONY : src/GameEngine/Player.s
+
+# target to build an object file
 src/GraphicEngine/GraphicEngine.o:
 	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o
 .PHONY : src/GraphicEngine/GraphicEngine.o
@@ -217,6 +232,9 @@ help:
 	@echo "... src/GameEngine/GameEngine.o"
 	@echo "... src/GameEngine/GameEngine.i"
 	@echo "... src/GameEngine/GameEngine.s"
+	@echo "... src/GameEngine/Player.o"
+	@echo "... src/GameEngine/Player.i"
+	@echo "... src/GameEngine/Player.s"
 	@echo "... src/GraphicEngine/GraphicEngine.o"
 	@echo "... src/GraphicEngine/GraphicEngine.i"
 	@echo "... src/GraphicEngine/GraphicEngine.s"

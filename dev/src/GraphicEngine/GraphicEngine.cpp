@@ -13,26 +13,19 @@ GxENGINE::GraphicEngine() noexcept
 {
 }
 
-GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow) noexcept
+GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow, tmx::MapLoader *p_ml) noexcept
 {
     m_mainWindow = p_mainWindow;
-    m_ml = new tmx::MapLoader("../res/maps/");
-    m_ml->AddSearchPath("../res/maps/tilesets");
+    m_ml = p_ml;
 }
 
 GxENGINE::~GraphicEngine() noexcept
 {
-	delete m_ml;
 }
 
 void GxENGINE::reload() noexcept
 {
     m_mainWindow->clear();
-}
-
-void GxENGINE::loadMap(string mapName) noexcept
-{
-   	m_ml->Load(mapName);
 }
 
 void GxENGINE::drawMap() noexcept

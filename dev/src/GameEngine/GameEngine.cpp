@@ -3,26 +3,43 @@
 
 #include "GameEngine.h"			// nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
+#include "Player.h"
+#include "../Misc/Misc.h"
 
 #define GENGINE nsGameEngine::GameEngine
 
 using namespace nsGraphicEngine;
 using namespace std;
 
-GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height, const string & p_title) noexcept
+GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height, const string & p_title, 
+                    const std::string & p_mapName, const unsigned int & p_playerType) noexcept
 {
 	// Init basic settings
 	m_windowDim = sf::VideoMode(p_width, p_height);
 	m_windowTitle	= p_title;
 
 	m_window = new sf::RenderWindow(m_windowDim, m_windowTitle);
-	m_graphicEngine = new GraphicEngine(m_window);
+
+    m_mapName = p_mapName;
+
+    m_ml = new tmx::MapLoader("../res/maps/");
+    m_ml->AddSearchPath("../res/maps/tilesets");
+
+	m_graphicEngine = new GraphicEngine(m_window, m_ml);
+
+    m_player = new Player(p_playerType);
 } // GameEngine();
+
+
+void GENGINE::loadMap() noexcept
+{
+    m_ml->Load(m_mapName);
+}
 
 void GENGINE::frame() noexcept
 {
     // Init the graphic engine
-    m_graphicEngine->loadMap("first-map.tmx");	
+    loadMap();	
 	
 
     while (m_window->isOpen())
@@ -42,6 +59,8 @@ void GENGINE::frame() noexcept
 
 GENGINE::~GameEngine()
 {
+    delete m_ml;
+    delete m_player;
     delete m_window;
     delete m_graphicEngine;
 }
