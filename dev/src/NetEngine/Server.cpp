@@ -9,6 +9,7 @@
 #include <SFML/Network.hpp>
 
 #include "../Misc/Misc.h"
+
 #include "Server.h"
 #include "Structures.h"
 #include "NetEngine.h"

@@ -146,6 +146,21 @@ src/GraphicEngine/GraphicEngine.s:
 .PHONY : src/GraphicEngine/GraphicEngine.s
 
 # target to build an object file
+src/MapEngine/MapEngine.o:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/MapEngine/MapEngine.o
+.PHONY : src/MapEngine/MapEngine.o
+
+# target to preprocess a source file
+src/MapEngine/MapEngine.i:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/MapEngine/MapEngine.i
+.PHONY : src/MapEngine/MapEngine.i
+
+# target to generate assembly for a file
+src/MapEngine/MapEngine.s:
+	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/MapEngine/MapEngine.s
+.PHONY : src/MapEngine/MapEngine.s
+
+# target to build an object file
 src/NetEngine/NetEngine.o:
 	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/NetEngine.o
 .PHONY : src/NetEngine/NetEngine.o
@@ -205,6 +220,9 @@ help:
 	@echo "... src/GraphicEngine/GraphicEngine.o"
 	@echo "... src/GraphicEngine/GraphicEngine.i"
 	@echo "... src/GraphicEngine/GraphicEngine.s"
+	@echo "... src/MapEngine/MapEngine.o"
+	@echo "... src/MapEngine/MapEngine.i"
+	@echo "... src/MapEngine/MapEngine.s"
 	@echo "... src/NetEngine/NetEngine.o"
 	@echo "... src/NetEngine/NetEngine.i"
 	@echo "... src/NetEngine/NetEngine.s"

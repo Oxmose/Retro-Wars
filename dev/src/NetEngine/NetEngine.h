@@ -10,8 +10,10 @@
 
 #include "Server.h"
 #include "Structures.h"
-#include "../Misc/Misc.h"
 #include "NetException.h"
+
+#include "../Misc/Misc.h"
+#include "../Misc/Tools.h"
 
 namespace nsNetEngine
 {	

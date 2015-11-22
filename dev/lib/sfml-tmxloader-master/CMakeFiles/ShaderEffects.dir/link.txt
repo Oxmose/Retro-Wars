@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11    CMakeFiles/ShaderEffects.dir/examples/ShaderEffects.cpp.o  -o ShaderEffects -rdynamic libtmx-loader.so libpugi.so -lsfml-graphics -lsfml-window -lsfml-system /usr/local/lib/libz.so -Wl,-rpath,/home/alexy/Documents/ENSL/PROJET/Projet_C++/Retro-Wars/dev/lib/sfml-tmxloader-master:/usr/local/lib: 

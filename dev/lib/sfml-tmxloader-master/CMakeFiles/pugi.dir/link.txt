@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC  -std=c++11   -shared -Wl,-soname,libpugi.so -o libpugi.so CMakeFiles/pugi.dir/src/pugixml/pugixml.cpp.o 

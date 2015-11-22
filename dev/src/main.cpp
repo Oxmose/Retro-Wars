@@ -1,33 +1,19 @@
-#include <iostream>
-#include "NetEngine/NetEngine.h"
+#include <exception>
+
+#include "GameEngine/GameEngine.h"
+
 
 using namespace std;
-using namespace nsNetEngine;
+using namespace nsGameEngine;
 
 int main(int argc, char** argv)
 {
-    try
-    {
-        NetEngine netEngine("127.0.0.1", 5000);
-	    if (argc == 2 && string(argv[1]) == "-h")
-	    {
-	        netEngine.setIsServer(true);
-		    netEngine.launch("Oxmose", "mousa", NEUTRAL);
-	    }
-	    else
-	    {
-		    netEngine.setIsServer(false);
-		    netEngine.launch("Oxmose", "NONE", NEUTRAL);
-	    }
-	    while(true);
-	    return 0;
-	}
-	catch(const NetException &Exc)
+	try
 	{
-	    cerr << Exc.what() << endl;
+		GameEngine gameEngine(30*16, 20*16, "Retro Wars", "first-map.tmx", RED);
+		gameEngine.frame();
 	}
-	catch(...)
+	catch(exception &e)
 	{
-	    cerr << "Unknown exception" << endl;
 	}
-}
+} // main()

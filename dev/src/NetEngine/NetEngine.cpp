@@ -8,14 +8,15 @@
 #include "NetEngine.h"
 #include "Server.h"
 #include "Structures.h"
-#include "../Misc/Misc.h"
-#include "../Misc/Utils.h"
 #include "NetException.h"
+
+#include "../Misc/Misc.h"
+#include "../Misc/Tools.h"
 
 #define NETENGINE nsNetEngine::NetEngine
 
 using namespace std;
-using namespace nsUtils;
+using namespace nsTools;
 
 NETENGINE::NetEngine(const std::string &p_ipAddress, const unsigned int &p_port) noexcept
 {
@@ -138,9 +139,9 @@ void NETENGINE::send(const NetPackage &p_package)
     string toSend = p_package.message + "100";
     NetPackage np;
     np.message = toSend;
-    vector<NetPackage> splitMessages = splitMessage(np);
+    vector<NetPackage> splitMessage = splitMessages(np);
     
-    for (NetPackage NetP : splitMessages)
+    for (NetPackage NetP : splitMessage)
     {
         data = (char*)NetP.message.c_str();
         m_socket.send(data, NetP.message.size());
