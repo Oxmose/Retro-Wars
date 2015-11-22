@@ -1,7 +1,0 @@
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/CMakeFiles/ShaderEffects.dir
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/CMakeFiles/QuadTree.dir
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/CMakeFiles/pugi.dir
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/CMakeFiles/DrawWithDebug.dir
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/CMakeFiles/Isometric.dir
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/CMakeFiles/BenchMark.dir
-/Users/tristansterin/Documents/Retro-Wars/dev/lib/sfml-tmxloader-master/CMakeFiles/tmx-loader.dir
