@@ -12,6 +12,7 @@
 #include <SFML/Network.hpp>
 
 #include "../Misc/Misc.h"
+
 #include "NetEngine.h"
 #include "Structures.h"
 #include "NetException.h"
@@ -23,7 +24,7 @@ namespace nsNetEngine
     {
         public:
            
-            Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const unsigned int &p_maxPlayer) noexcept;
+            Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const std::vector<PLAYER_TYPE> &p_allowedPlayers) noexcept;
             ~Server() noexcept;
 
             void launch() throw (NetException);

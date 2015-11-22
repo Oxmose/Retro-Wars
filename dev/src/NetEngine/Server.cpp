@@ -19,17 +19,20 @@
 
 using namespace std;
 
-NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const unsigned int &p_maxPlayer) noexcept
+NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const vector<PLAYER_TYPE> &p_allowedPlayers) noexcept
 {
     m_ipAddress = p_ipAddress;
     m_port      = p_port;
     m_netEngine = p_netEngine; 
-    m_maxPlayer = p_maxPlayer;
+    m_maxPlayer = p_allowedPlayers.size();
     m_lastId    = 0;
     
-    // TODO Put to false according to the map size
-    for (unsigned int i = 0; i < m_availablePositions.size(); ++i)
-        m_availablePositions[i] = true;
+    for (unsigned int i = 0 ; i < 5; ++i)
+    {
+        m_availablePositions[i] = false;
+    }
+    for (PLAYER_TYPE type : p_allowedPlayers)
+        m_availablePositions[type] = true;
 }
 
 NETSERVER::~Server() noexcept

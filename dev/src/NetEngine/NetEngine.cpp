@@ -10,6 +10,7 @@
 #include "Structures.h"
 #include "NetException.h"
 
+#include "../MapEngine/MapEngine.h"
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
 
@@ -33,15 +34,13 @@ NETENGINE::~NetEngine() noexcept
 	disconnect();
 }
 
-void NETENGINE::launch(const std::string &p_playerName, const std::string &p_mapName /* = "NONE" */, const PLAYER_TYPE &p_player /*= NEUTRAL*/) throw (NetException)
+void NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_player /*= NEUTRAL*/, const nsMapEngine::MapEngine *p_map /* = nullptr */) throw (NetException)
 {  
     // The game instance is a player that hosts a game
     if (m_isServer)
     {
-        if (p_mapName == "NONE")
-            throw new string("Error, no map but is server");
-            
-        m_server = new Server(m_ipAddress, m_port, this, 5);
+        m_map = p_map;
+        m_server = new Server(m_ipAddress, m_port, this, m_map->getPlayers());
 	    m_server->launch();
     }  
     

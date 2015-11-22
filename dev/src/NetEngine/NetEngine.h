@@ -12,6 +12,7 @@
 #include "Structures.h"
 #include "NetException.h"
 
+#include "../MapEngine/MapEngine.h"
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
 
@@ -25,7 +26,7 @@ namespace nsNetEngine
             NetEngine(const std::string &p_ipAddress, const unsigned int &p_port) noexcept;
             ~NetEngine() noexcept;
 
-            void launch(const std::string &p_playerName, const std::string &p_mapName = "NONE", const PLAYER_TYPE &p_player = NEUTRAL) throw (NetException);
+            void launch(const std::string &p_playerName, const PLAYER_TYPE &p_player = NEUTRAL, const nsMapEngine::MapEngine *p_map = nullptr) throw (NetException);
             void joinServer() throw (NetException);
             void disconnect();
             
@@ -43,17 +44,19 @@ namespace nsNetEngine
 			std::string 	m_ipAddress;
 			unsigned int 	m_port;
 			bool 			m_isServer;
-			
+		
 			PLAYER_TYPE     m_playerType;
 			std::string     m_playerName;
-			
+		
 			std::atomic<bool> m_listenServer;
 
 			Server* 		m_server;
-			
+		
 			sf::TcpSocket   m_socket;
-			
+		
 			std::thread*     m_listenerThread;
+            
+            const nsMapEngine::MapEngine *m_map;
     };
 
 }
