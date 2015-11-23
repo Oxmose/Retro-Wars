@@ -166,11 +166,12 @@ void NETSERVER::disconnectClients()
 {
     for (pair<unsigned int, Client>  client : m_clients)
     {
-        disconnectClient(client.first);
+        disconnectClient(client.first, false);
     }
+    m_clients.clear();
 }
 
-void NETSERVER::disconnectClient(const unsigned int &p_id)
+void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /* = true */)
 {
     if (m_clients[p_id].status) 
     { 
@@ -187,8 +188,9 @@ void NETSERVER::disconnectClient(const unsigned int &p_id)
     delete m_clients[p_id].socket;
     
     m_listenClientsThreads.erase(p_id);
-    m_clients.erase(p_id);
 
+    if (p_erase)
+    	m_clients.erase(p_id);
 }
 
 unsigned int NETSERVER::getClientsNumber()

@@ -30,7 +30,7 @@ namespace nsNetEngine
 
             void launch() throw (NetException);
             
-            void disconnectClient(const unsigned int &p_id);
+            void disconnectClient(const unsigned int &p_id, const bool &p_notErase = true);
 
 			void send(const NetPackage &p_package, const unsigned int &p_clientId);
             void sendAll(const NetPackage &p_package);

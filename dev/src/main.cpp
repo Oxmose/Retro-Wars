@@ -16,7 +16,7 @@ int main(int argc, char** argv)
        
 		MapEngine mapEngine("first-map.tmx");
         cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
-        NetEngine netEngine("127.0.0.1", 5003);
+        NetEngine netEngine("127.0.0.1", 5000);
         netEngine.setIsServer(true);
         netEngine.launch("Alexy", RED, &mapEngine);
        	cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << RED << endl;
