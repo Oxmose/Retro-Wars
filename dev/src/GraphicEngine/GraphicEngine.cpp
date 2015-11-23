@@ -26,9 +26,9 @@ GxENGINE::~GraphicEngine() noexcept
 {
 }
 
-void GxENGINE::loadMap()
+void GxENGINE::loadMap() noexcept
 {
-	cout << "hello" << endl;	
+	m_tileset_terrain.loadFromFile("maps/tilesets/")	
 
 }
 
