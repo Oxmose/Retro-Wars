@@ -61,12 +61,6 @@ if (NOT USE_MINIZ)
     include_directories(${ZLIB_INCLUDE_DIRS})
 endif (NOT USE_MINIZ)
 
-add_executable(test test/test.cpp)
-set_target_properties(test PROPERTIES
-  COMPILE_FLAGS ${EXAMPLE_CFLAGS})
-target_link_libraries(test tmxparser ${TINYXML2_LIBRARIES})
-include_directories("${PROJECT_BINARY_DIR}")
-include_directories("${PROJECT_SOURCE_DIR}/src")
 
 install(FILES ${HEADERS} DESTINATION include/tmxparser)
 install(TARGETS tmxparser tmxparser_static DESTINATION lib)

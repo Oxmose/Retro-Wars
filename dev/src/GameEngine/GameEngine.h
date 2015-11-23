@@ -22,6 +22,7 @@
 
 #include "GameEngine.h"			// nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
+#include "../MapEngine/MapEngine.h"
 #include "World.h"
 #include "Player.h"
 #include "../Misc/Misc.h"
@@ -47,14 +48,12 @@ namespace nsGameEngine
             /// @details It creates a new instance of the game, load some basics parameters and initialize the window context.
             /// It will also initialize the graphic engine.
 			GameEngine(const unsigned int & p_width, const unsigned int & p_height, const std::string & p_title, 
-                       const std::string & p_mapName, const unsigned int & p_playerType) noexcept;
+                       nsMapEngine::MapEngine* p_mapEngine, const unsigned int & p_playerType) noexcept;
 
             /// @fn ~GameEngine();
             /// @brief The destructor.
             /// @details It will get rid of the window context pointer and the other module's pointers.
 			~GameEngine();
-
-            void loadMap() noexcept;
 
             /// @fn void frame();
             /// @brief The main loop.
@@ -74,6 +73,7 @@ namespace nsGameEngine
         
             std::string m_mapName;
 
+            nsMapEngine::MapEngine* m_mapEngine;
             /// @brief The pointer to the graphic engine.
 			nsGraphicEngine::GraphicEngine*	m_graphicEngine;
 

@@ -19,7 +19,7 @@ MAPENGINE::MapEngine(const string &p_mapName)
 {
 	m_map = new Tmx::Map();
 	m_map->ParseFile(MAP_FOLDER + p_mapName);
-
+	cout << MAP_FOLDER + p_mapName << endl;
 	m_properties = m_map->GetProperties();
 } // MapEngine()
 

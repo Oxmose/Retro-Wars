@@ -8,11 +8,12 @@
 
 #define GENGINE nsGameEngine::GameEngine
 
+using namespace nsMapEngine;
 using namespace nsGraphicEngine;
 using namespace std;
 
 GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height, const string & p_title, 
-                    const std::string & p_mapName, const unsigned int & p_playerType) noexcept
+                    MapEngine* p_mapEngine, const unsigned int & p_playerType) noexcept
 {
 	// Init basic settings
 	m_windowDim = sf::VideoMode(p_width, p_height);
@@ -20,25 +21,17 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 
 	m_window = new sf::RenderWindow(m_windowDim, m_windowTitle);
 
-    m_mapName = p_mapName;
+    m_mapEngine = p_mapEngine;
 
-
-	m_graphicEngine = new GraphicEngine(m_window);
+	m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
 
     m_player = new Player(p_playerType);
 
     m_world = new World();
 } // GameEngine();
 
-
-void GENGINE::loadMap() noexcept
-{
-}
-
 void GENGINE::frame() noexcept
 {
-    // Init the graphic engine
-    loadMap();	
 	
 
     while (m_window->isOpen())

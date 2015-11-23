@@ -7,6 +7,7 @@
 #include <iostream>
 #include <atomic>
 #include <map>
+#include <array>
 #include <utility>
 
 #include <SFML/Network.hpp>

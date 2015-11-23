@@ -4,10 +4,32 @@
   <property name="Players" value="Red,Blue"/>
  </properties>
  <tileset firstgid="1" source="tilesets/Terrain.tsx"/>
- <tileset firstgid="145" source="tilesets/Property.tsx"/>
+ <tileset firstgid="145" name="Property" tilewidth="16" tileheight="16" tilecount="84">
+  <image source="tilesets/property.bmp" trans="000000" width="112" height="192"/>
+  <terraintypes>
+   <terrain name="HQRed" tile="7"/>
+   <terrain name="HQBlue" tile="21"/>
+   <terrain name="HQGreen" tile="35"/>
+   <terrain name="HQYellow" tile="49"/>
+   <terrain name="HQBlack" tile="63"/>
+   <terrain name="CityRed" tile="8"/>
+   <terrain name="CityBlue" tile="22"/>
+   <terrain name="CityGreen" tile="36"/>
+   <terrain name="CityYellow" tile="50"/>
+   <terrain name="CityBlack" tile="64"/>
+   <terrain name="CityNeutral" tile="78"/>
+   <terrain name="FactoryRed" tile="9"/>
+   <terrain name="FactoryBlue" tile="23"/>
+   <terrain name="FactoryGreen" tile="37"/>
+   <terrain name="FactoryYellow" tile="51"/>
+   <terrain name="FactoryBlack" tile="65"/>
+   <terrain name="FactoryNeutral" tile="79"/>
+  </terraintypes>
+ </tileset>
+ <tileset firstgid="229" source="tilesets/Unit.tsx"/>
  <layer name="Terrain_1" width="30" height="20">
   <data encoding="csv">
-91,1,1,1,1,1,1,1,55,55,55,171,171,1,1,1,1,55,55,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,55,55,55,1,1,1,1,1,1,55,55,1,1,1,1,1,1,1,1,1,1,1,
 127,55,55,1,1,1,1,1,55,55,55,55,1,171,55,55,55,55,55,55,1,1,1,1,1,1,1,1,1,1,
 127,91,1,1,1,1,1,1,1,55,55,55,55,55,171,171,55,1,1,1,1,1,1,1,1,1,1,1,1,1,
 127,55,55,1,1,1,1,1,1,1,55,1,55,1,55,1,171,171,91,91,1,1,1,1,1,22,1,1,1,1,
@@ -31,7 +53,7 @@
  </layer>
  <layer name="Terrain_2" width="30" height="20">
   <data encoding="csv">
-109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,
 109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,0,0,0,0,
 109,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,3,0,0,20,0,
 109,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,20,0,
