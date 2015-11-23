@@ -28,7 +28,8 @@ GxENGINE::~GraphicEngine() noexcept
 
 void GxENGINE::loadMap() noexcept
 {
-	m_tileset_terrain.loadFromFile("maps/tilesets/")	
+	m_tileset_terrain.loadFromFile("maps/tilesets/terrain.bmp");
+		
 
 }
 
