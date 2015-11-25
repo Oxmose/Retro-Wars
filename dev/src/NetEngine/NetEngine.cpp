@@ -29,10 +29,11 @@ NETENGINE::NetEngine(const std::string &p_ipAddress, const unsigned int &p_port)
 
 NETENGINE::~NetEngine() noexcept
 {
+    disconnect();
 	if (m_isServer)
 	    delete m_server;
 	    
-	disconnect();
+	
 }
 
 void NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_player /*= NEUTRAL*/, const nsMapEngine::MapEngine *p_map /* = nullptr */) throw (NetException)
@@ -66,17 +67,16 @@ void NETENGINE::joinServer() throw (NetException)
         return;
 
     }
-    cout << "CONECT" << endl;
    // Waiting for the welcome message (200)
 
     char data[256];
     size_t received;
     m_socket.receive(data, 256, received);
-    if (string(data, 3) != "200")
+    if (cleanMessage(string(data)) != "200")
     {
-        manageError(string(data, 3));
+        manageError(cleanMessage(string(data, 3)));
     }
-    cout << "RECEIVED" << endl;
+
     // Sending player information to be accepted
     NetPackage package;
     char typeStr[2];
@@ -86,18 +86,16 @@ void NETENGINE::joinServer() throw (NetException)
     send(package);
 
     // Waiting for acceptance
-    cout << "WAIT RECEIVE from : " << package.message << endl;
     char data2[256];
     m_socket.receive(data2, 256, received);
-    cout << "Received " << string(data2) << endl;
-    if (string(data2, 3) != "200")
+
+    if (cleanMessage(string(data2)) != "200")
     {
         manageError(string(data, 3));
         return;
     }  
         
     // Start listener thread
-    cout << "Connected" << endl;
     m_listenerThread = new thread(&NetEngine::listen, this);   
 }
 
@@ -112,12 +110,10 @@ void NETENGINE::listen()
         sf::Socket::Status status;
         if ((status = m_socket.receive(data, 256, received)) != sf::Socket::Done)
         {
-            cerr << "Error receiving message for server " << status << endl;
-            disconnect();             
+            cout << "Error receiving message for server " << status << endl;         
             return;  
         }
         string strData = cleanMessage(string(data));
-
         string strCode = strData.substr(strData.size() - 3);
         if (strCode == "100")
         {
@@ -135,9 +131,14 @@ void NETENGINE::listen()
 
 void NETENGINE::disconnect()
 {
-    m_socket.disconnect();
-    m_listenerThread->detach();
-    delete m_listenerThread;
+    if (m_listenerThread != nullptr)
+    {
+        m_listenServer = false;
+        m_socket.setBlocking(false);
+        m_socket.disconnect();
+        m_listenerThread->join();
+        delete m_listenerThread;
+    }
 }
 
 void NETENGINE::send(const NetPackage &p_package)

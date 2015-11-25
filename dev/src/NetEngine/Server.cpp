@@ -87,7 +87,7 @@ void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId
         char* data;
         string toSend = to_string(p_package.message.size()) + "/" + p_package.message;
         data = (char*)toSend.c_str();
-        m_clients[p_clientId].socket->send(data, p_package.message.size());
+        m_clients[p_clientId].socket->send(data, toSend.size());
     }
 }
 
@@ -158,7 +158,12 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
             {
                 if (sf::Socket::Disconnected == status)
                 {
-                    disconnectClient(p_id, false);               
+                    if (m_clients[p_id].status != false)
+                    {
+                        m_clients[p_id].status = false;
+                        disconnectClient(p_id, false); 
+                    }
+                                  
                 }
             } 
 	        cerr << "Can't receive from client with IP " << m_clients[p_id].ipAddress << " ID : " << p_id << endl;
@@ -260,7 +265,7 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
         string tmpMessage = p_message.substr(p_message.find("#") + 1);
         unsigned int playerType = stoi(tmpMessage);
         
-        if (playerType > 5 || playerType < 0 || m_availablePositions[playerType] == false)
+        if (playerType > 5 || m_availablePositions[playerType] == false)
         {
             np.message = "203";
             send(np, p_id, false);
@@ -269,9 +274,17 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
          else
          {
              m_availablePositions[playerType] = false;
+             m_clients[p_id].playerType = static_cast<PLAYER_TYPE>(playerType);
+             m_clients[p_id].playerName = p_message.substr(0, p_message.find("#"));
              np.message = "200";
-             cout << "ACCEPTED sending 200" << endl;
+             cout << "ACCEPTED " << m_clients[p_id].playerName << " sending 200" << endl;
              send(np, p_id, false);
          }
+    }
+    else
+    {
+        NetPackage np;
+        np.message = m_clients[p_id].playerName + "#" + p_message;
+        sendAll(np);
     }
 }

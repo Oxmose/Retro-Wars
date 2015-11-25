@@ -54,10 +54,8 @@ namespace nsTools
 	{
 		// Message should be size/msg[100]
 		std::vector<std::string> splited = splitString(p_message, "/");
-		std::cout << "## SPLIT : " << splited.size() << " ##" << std::endl;
-		std::cout << splited[0] << std::endl;
-		std::cout << splited[1] << std::endl;
-		return splited[1];
+		std::cout << stoi(splited[0]) << " IS " << splited[1].substr(0, stoi(splited[0]));
+		return splited[1].substr(0, stoi(splited[0]));
 	}
 }
 
