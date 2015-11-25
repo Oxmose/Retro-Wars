@@ -124,6 +124,8 @@ void NETSERVER::connectClient()
                 
                 m_clients[m_lastId] = clientStruct;
 
+
+
                 thread *m_listenClientsThread  = new thread(&Server::listenClients, this, m_lastId);
                 m_listenClientsThreads[m_lastId] = m_listenClientsThread;
 
@@ -145,8 +147,9 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
 
     while(m_listen)
     {
-        sf::Socket::Status status;
 
+        sf::Socket::Status status;
+        cout << " SERVER : WAIT FOR MESSAGE" << endl;
         if ((status = client->receive(data, 256, received)) != sf::Socket::Done)
         {
             if (m_clients.find(p_id) != m_clients.end())
@@ -161,10 +164,11 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
         }
 
         string strData = string(data);
-
+        cout << "STRDATA : " << strData.size() << endl;
         if (strData.substr(strData.size() - 3) == "100")
         {
             message += strData.substr(0, strData.size() - 3);
+            cout << " SERVER : received : " << strData << endl;
             parseMessage(p_id, message);
         }
         else if (received == 3 && strData == "201")
@@ -174,6 +178,7 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
         }
         else
             message += string(data);
+        cout << " SERVER " << message.size() << ": " << message << endl;
     }
 }
 
@@ -263,6 +268,7 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
          {
              m_availablePositions[playerType] = false;
              np.message = "200";
+             cout << "ACCEPTED sending 200" << endl;
              send(np, p_id, false);
          }
     }

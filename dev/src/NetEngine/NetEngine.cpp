@@ -86,7 +86,7 @@ void NETENGINE::joinServer() throw (NetException)
     send(package);
 
     // Waiting for acceptance
-    cout << "WAIT RECEIVE" << endl;
+    cout << "WAIT RECEIVE from : " << package.message << endl;
     char data2[256];
     m_socket.receive(data2, 256, received);
     cout << "Received " << string(data2) << endl;
@@ -149,6 +149,7 @@ void NETENGINE::send(const NetPackage &p_package)
     
     for (NetPackage NetP : splitMessage)
     {
+        cout << " TO SEND " << NetP.message.size() << ": " << NetP.message << endl;
         data = (char*)NetP.message.c_str();
         m_socket.send(data, NetP.message.size());
     }
