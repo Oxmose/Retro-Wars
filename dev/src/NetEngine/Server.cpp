@@ -38,8 +38,7 @@ NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, Ne
 NETSERVER::~Server() noexcept
 {
     disconnectClients();  
-    
-    m_listen = false;        
+           
     m_waitForClients = false;
     
     m_listener.close();
@@ -54,49 +53,11 @@ void NETSERVER::launch() throw (NetException)
     {
         throw NetException("Can't bind the socket", __LINE__);
     }
+
     m_waitForClients = true;
     m_listen = true;
-    m_connectThread = new thread(&Server::connectClient, this);
-    
-}
 
-void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
-{
-    sf::TcpSocket *client = m_clients[p_id].socket;
-    
-    char data[256];
-    size_t received = 0;
-    string message("");
-    while(m_listen)
-    {
-        sf::Socket::Status status;
-        if ((status = client->receive(data, 256, received)) != sf::Socket::Done)
-        {
-            if (m_clients.find(p_id) != m_clients.end())
-            {
-                if (sf::Socket::Disconnected == status)
-                {
-                    m_clients[p_id].status = false;
-                    disconnectClient(p_id);               
-                }
-            } 
-            throw NetException(string("Can't receive from client with IP " + m_clients[p_id].ipAddress).c_str(), __LINE__);  
-        }
-        string strData = string(data);
-        if (strData.substr(strData.size() - 3) == "100")
-        {
-            message += strData.substr(0, strData.size() - 3);
-            parseMessage(p_id, message);
-        }
-        else if (received == 3 && strData == "201")
-        {
-            m_clients[p_id].status = false;
-            disconnectClient(p_id);
-            return;
-        }
-        else
-            message += string(data);
-    }
+    m_connectThread = new thread(&Server::connectClient, this);
 }
 
 void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId)
@@ -109,7 +70,7 @@ void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId
 void NETSERVER::connectClient()
 {
     NetPackage package;
-    package.message = "202";
+    package.message = "200";
     
     while(m_waitForClients)
     {
@@ -129,9 +90,7 @@ void NETSERVER::connectClient()
                 delete client;
             }
             else
-            {            
-                sendAll(package);
-
+            {           
                 thread *m_listenClientsThread  = new thread(&Server::listenClients, this, m_lastId);
                 m_listenClientsThreads[m_lastId] = m_listenClientsThread;
 
@@ -143,14 +102,51 @@ void NETSERVER::connectClient()
                 clientStruct.socket = client;
                 
                 m_clients[m_lastId] = clientStruct;
-                
-                package.message = "200";
                 send(package, m_lastId);
-                package.message = "202";
                 
                 m_lastId++;
             }
         }
+    }
+}
+
+void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
+{
+    sf::TcpSocket *client = m_clients[p_id].socket;
+    
+    char data[256];
+    size_t received = 0;
+    string message("");
+
+    while(m_listen)
+    {
+        sf::Socket::Status status;
+        if ((status = client->receive(data, 256, received)) != sf::Socket::Done)
+        {
+            if (m_clients.find(p_id) != m_clients.end())
+            {
+                if (sf::Socket::Disconnected == status)
+                {
+                    disconnectClient(p_id, false);               
+                }
+            } 
+	        cerr << "Can't receive from client with IP " << m_clients[p_id].ipAddress << " ID : " << p_id << endl;
+            return;
+        }
+        string strData = string(data);
+	cout << strData << endl;
+        if (strData.substr(strData.size() - 3) == "100")
+        {
+            message += strData.substr(0, strData.size() - 3);
+            parseMessage(p_id, message);
+        }
+        else if (received == 3 && strData == "201")
+        {
+            disconnectClient(p_id, false);
+            return;
+        }
+        else
+            message += string(data);
     }
 }
 
@@ -173,29 +169,39 @@ void NETSERVER::disconnectClients()
 
 void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /* = true */)
 {
-    if (m_clients[p_id].status) 
-    { 
-        NetPackage package;
-        package.message = "201";
-        
-        send(package, p_id);
+    if (m_clients[p_id].socket != nullptr)
+    {
+	    if (m_clients[p_id].status) 
+	    { 
+		    NetPackage package;
+		    package.message = "201";
+		
+		    send(package, p_id);
+	    }
+	    
+	    m_clients[p_id].status = false;
+	    m_clients[p_id].socket->disconnect();    
+	    m_listenClientsThreads[p_id]->detach();
+	    
+	    delete m_listenClientsThreads[p_id];
+	    delete m_clients[p_id].socket;
     }
-    
-    m_clients[p_id].socket->disconnect();    
-    m_listenClientsThreads[p_id]->detach();
-    
-    delete m_listenClientsThreads[p_id];
-    delete m_clients[p_id].socket;
-    
-    m_listenClientsThreads.erase(p_id);
 
     if (p_erase)
-    	m_clients.erase(p_id);
+    {        
+        m_listenClientsThreads.erase(p_id);
+    }
 }
 
 unsigned int NETSERVER::getClientsNumber()
 {
-    return m_clients.size();
+    unsigned int counter = 0;
+    for (pair<unsigned int, Client> client : m_clients)
+    {
+        if (client.second.status)
+            ++ counter;
+    }
+    return counter;
 }
 
 vector<nsNetEngine::Client> NETSERVER::getClients()
@@ -203,7 +209,8 @@ vector<nsNetEngine::Client> NETSERVER::getClients()
     vector<Client> result;     
     for (pair<unsigned int, Client> client : m_clients)
     {
-        result.push_back(client.second);
+        if (client.second.status)
+            result.push_back(client.second);
     }  
     return result;
 }
