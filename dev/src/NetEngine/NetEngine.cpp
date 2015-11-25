@@ -48,7 +48,6 @@ void NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_pla
     
     m_playerName = p_playerName;    
     m_playerType = p_player;
-    
     joinServer(); 
 }
 
@@ -59,14 +58,17 @@ void NETENGINE::setIsServer(const bool &p_isServer)
 
 void NETENGINE::joinServer() throw (NetException)
 {
+    printf("oo");
     sf::Time timeout = sf::seconds(10.0);
-
+    cout << m_socket.getRemoteAddress() << "ADDR" << endl;
     if (m_socket.connect(m_ipAddress, m_port, timeout) != sf::Socket::Done)
     {
-        // TODO ERROR
+        cout << "Failed to connect to server" << endl;
+        return;
 
     }
-    // Waiting for the welcome message (200)
+    cout << "CONECT" << endl;
+   // Waiting for the welcome message (200)
     char data[256];
     size_t received;
     m_socket.receive(data, 256, received);
@@ -74,6 +76,7 @@ void NETENGINE::joinServer() throw (NetException)
     {
         manageError(string(data, 3));
     }
+    cout << "RECEIVED" << endl;
     // Sending player information to be accepted
     NetPackage package;
     char typeStr[2];
@@ -83,14 +86,18 @@ void NETENGINE::joinServer() throw (NetException)
     send(package);
 
     // Waiting for acceptance
-    m_socket.receive(data, 256, received);
-    if (string(data, 3) != "200")
+    cout << "WAIT RECEIVE" << endl;
+    char data2[256];
+    m_socket.receive(data2, 256, received);
+    cout << "Received " << string(data2) << endl;
+    if (string(data2, 3) != "200")
     {
         manageError(string(data, 3));
         return;
     }  
         
     // Start listener thread
+    cout << "Connected" << endl;
     m_listenerThread = new thread(&NetEngine::listen, this);   
 }
 

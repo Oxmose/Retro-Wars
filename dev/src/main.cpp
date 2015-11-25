@@ -13,16 +13,20 @@ int main(int argc, char** argv)
 {
 	try
 	{
+		/*vector<PLAYER_TYPE> vect = {RED, BLUE};
+		NetEngine *net;
+		Server server("127.0.0.1", 5000, net, vect);
+		server.launch();
+		int i;
+		cin >> i;*/
        
 		MapEngine mapEngine("first-map.tmx");
 		cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
-		NetEngine netEngine("127.0.0.1", 5003);
+		NetEngine netEngine("127.0.0.1", 5004);
 		netEngine.setIsServer(true);
 		netEngine.launch("Alexy", RED, &mapEngine);
-	       	cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << RED << endl;
+	    cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << RED << endl;
 
-		int i;
-		cin >> i;
 		GameEngine gameEngine(30*16, 20*16, "Retro Wars", &mapEngine, RED);
 		cout << "Loaded game engine" << endl;
 		gameEngine.frame();
