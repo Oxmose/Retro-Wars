@@ -136,7 +136,7 @@ void NETENGINE::disconnect()
         m_listenServer = false;
         m_socket.setBlocking(false);
         m_socket.disconnect();
-        m_listenerThread->join();
+        m_listenerThread->detach();
         delete m_listenerThread;
     }
 }

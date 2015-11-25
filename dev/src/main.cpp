@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 		NetEngine netEngine("127.0.0.1", 5004);
 		netEngine.setIsServer(true);
 		netEngine.launch("Alexy", RED, &mapEngine);
-	    cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << RED << endl;
+	    	cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << RED << endl;
 	    
 		GameEngine gameEngine(30*16, 20*16, "Retro Wars", &mapEngine, RED);
 		cout << "Loaded game engine" << endl;
