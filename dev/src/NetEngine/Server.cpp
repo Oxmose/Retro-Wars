@@ -31,6 +31,7 @@ NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, Ne
     {
         m_availablePositions[i] = false;
     }
+
     for (PLAYER_TYPE type : p_allowedPlayers)
         m_availablePositions[type] = true;
 }
@@ -91,17 +92,17 @@ void NETSERVER::connectClient()
             }
             else
             {           
-                thread *m_listenClientsThread  = new thread(&Server::listenClients, this, m_lastId);
-                m_listenClientsThreads[m_lastId] = m_listenClientsThread;
-
                 Client clientStruct;
                 clientStruct.status = false; 
                 clientStruct.ipAddress = client->getRemoteAddress().toString();
                 clientStruct.port = client->getRemotePort();
                 clientStruct.id = m_lastId;
                 clientStruct.socket = client;
+                cout << " JUST CREATED " << client << endl;
                 
                 m_clients[m_lastId] = clientStruct;
+                thread *m_listenClientsThread  = new thread(&Server::listenClients, this, m_lastId);
+                m_listenClientsThreads[m_lastId] = m_listenClientsThread;
                 send(package, m_lastId);
                 
                 m_lastId++;
@@ -121,6 +122,7 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
     while(m_listen)
     {
         sf::Socket::Status status;
+        cout << "LISTEN " << client << endl;
         if ((status = client->receive(data, 256, received)) != sf::Socket::Done)
         {
             if (m_clients.find(p_id) != m_clients.end())
