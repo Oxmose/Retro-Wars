@@ -77,6 +77,7 @@ void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId
         
         for (NetPackage NetP : splitMessage)
         {
+            NetP.message = to_string(NetP.message.size()) + "/" + NetP.message;
             data = (char*)NetP.message.c_str();
             m_clients[p_clientId].socket->send(data, NetP.message.size());
         }
@@ -84,7 +85,8 @@ void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId
     else
     {
         char* data;
-        data = (char*)p_package.message.c_str();
+        string toSend = to_string(p_package.message.size()) + "/" + p_package.message;
+        data = (char*)toSend.c_str();
         m_clients[p_clientId].socket->send(data, p_package.message.size());
     }
 }
@@ -163,7 +165,7 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
             return;
         }
 
-        string strData = string(data);
+        string strData = cleanMessage(string(data));
         cout << "STRDATA : " << strData.size() << endl;
         if (strData.substr(strData.size() - 3) == "100")
         {
@@ -177,7 +179,7 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
             return;
         }
         else
-            message += string(data);
+            message += strData;
         cout << " SERVER " << message.size() << ": " << message << endl;
     }
 }

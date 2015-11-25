@@ -58,9 +58,8 @@ void NETENGINE::setIsServer(const bool &p_isServer)
 
 void NETENGINE::joinServer() throw (NetException)
 {
-    printf("oo");
     sf::Time timeout = sf::seconds(10.0);
-    cout << m_socket.getRemoteAddress() << "ADDR" << endl;
+
     if (m_socket.connect(m_ipAddress, m_port, timeout) != sf::Socket::Done)
     {
         cout << "Failed to connect to server" << endl;
@@ -69,6 +68,7 @@ void NETENGINE::joinServer() throw (NetException)
     }
     cout << "CONECT" << endl;
    // Waiting for the welcome message (200)
+
     char data[256];
     size_t received;
     m_socket.receive(data, 256, received);
@@ -116,7 +116,8 @@ void NETENGINE::listen()
             disconnect();             
             return;  
         }
-        string strData = string(data);
+        string strData = cleanMessage(string(data));
+
         string strCode = strData.substr(strData.size() - 3);
         if (strCode == "100")
         {
@@ -128,7 +129,7 @@ void NETENGINE::listen()
             parseMessage(message);
         }
         else
-            message += string(data);
+            message += strData;
     }
 }
 
@@ -149,7 +150,9 @@ void NETENGINE::send(const NetPackage &p_package)
     
     for (NetPackage NetP : splitMessage)
     {
-        cout << " TO SEND " << NetP.message.size() << ": " << NetP.message << endl;
+        
+	NetP.message = to_string(NetP.message.size()) + "/" + NetP.message;
+	cout << " TO SEND " << NetP.message.size() << ": " << NetP.message << endl;
         data = (char*)NetP.message.c_str();
         m_socket.send(data, NetP.message.size());
     }

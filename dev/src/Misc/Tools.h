@@ -20,16 +20,16 @@ namespace nsTools
 
 		while (i < stringSize)
 		{
-			if ((256 * (i + 1) > stringSize))
+			if ((252 * (i + 1) > stringSize))
 				end = stringSize;
 			else
-				end = 256 * (i + 1);
+				end = 252 * (i + 1);
 
 			nsNetEngine::NetPackage np;
-			np.message = p_package.message.substr(256 * i, end);
+			np.message = p_package.message.substr(252 * i, end);
 		
 			resultMsg.push_back(np);
-			i += 256;
+			i += 252;
 		}
 		
 		return resultMsg;
@@ -48,6 +48,16 @@ namespace nsTools
 		}
 		result.push_back(s);
 		return result;
+	}
+
+	inline std::string cleanMessage(const std::string &p_message)
+	{
+		// Message should be size/msg[100]
+		std::vector<std::string> splited = splitString(p_message, "/");
+		std::cout << "## SPLIT : " << splited.size() << " ##" << std::endl;
+		std::cout << splited[0] << std::endl;
+		std::cout << splited[1] << std::endl;
+		return splited[1];
 	}
 }
 
