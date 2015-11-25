@@ -151,6 +151,7 @@ void NETENGINE::send(const NetPackage &p_package)
     {
         cout << " TO SEND " << NetP.message.size() << ": " << NetP.message << endl;
         data = (char*)NetP.message.c_str();
+        cout << " REALLY : " << string(data) << " - size : " << string(data).size() << endl;
         m_socket.send(data, NetP.message.size());
     }
 }
