@@ -9,6 +9,7 @@
 #include <SFML/Network.hpp>
 
 #include "../Misc/Misc.h"
+#include "../Misc/Tools.h"
 
 #include "Server.h"
 #include "Structures.h"
@@ -18,9 +19,11 @@
 #define NETSERVER nsNetEngine::Server
 
 using namespace std;
+using namespace nsTools;
 
 NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const vector<PLAYER_TYPE> &p_allowedPlayers) noexcept
 {
+    // Init
     m_ipAddress = p_ipAddress;
     m_port      = p_port;
     m_netEngine = p_netEngine; 
@@ -41,10 +44,11 @@ NETSERVER::~Server() noexcept
     disconnectClients();  
            
     m_waitForClients = false;
-    
+    m_listen         = false; 
+   
     m_listener.close();
-    m_connectThread->detach();  
-    
+
+    m_connectThread->detach();   
     delete m_connectThread;
 }
 
@@ -61,11 +65,28 @@ void NETSERVER::launch() throw (NetException)
     m_connectThread = new thread(&Server::connectClient, this);
 }
 
-void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId)
+void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId, const bool &p_split)
 {
-    char* data;
-    data = (char*)p_package.message.c_str();
-    m_clients[p_clientId].socket->send(data, p_package.message.size());
+    if (p_split)
+    {
+        char* data;
+        string toSend = p_package.message + "100";
+        NetPackage np;
+        np.message = toSend;
+        vector<NetPackage> splitMessage = splitMessages(np);
+        
+        for (NetPackage NetP : splitMessage)
+        {
+            data = (char*)NetP.message.c_str();
+            m_clients[p_clientId].socket->send(data, NetP.message.size());
+        }
+    }
+    else
+    {
+        char* data;
+        data = (char*)p_package.message.c_str();
+        m_clients[p_clientId].socket->send(data, p_package.message.size());
+    }
 }
 
 void NETSERVER::connectClient()
@@ -93,17 +114,20 @@ void NETSERVER::connectClient()
             else
             {           
                 Client clientStruct;
-                clientStruct.status = false; 
+
                 clientStruct.ipAddress = client->getRemoteAddress().toString();
                 clientStruct.port = client->getRemotePort();
-                clientStruct.id = m_lastId;
                 clientStruct.socket = client;
-                cout << " JUST CREATED " << client << endl;
+
+                clientStruct.id = m_lastId;
+                clientStruct.status = false; 
                 
                 m_clients[m_lastId] = clientStruct;
+
                 thread *m_listenClientsThread  = new thread(&Server::listenClients, this, m_lastId);
                 m_listenClientsThreads[m_lastId] = m_listenClientsThread;
-                send(package, m_lastId);
+
+                send(package, m_lastId, false);
                 
                 m_lastId++;
             }
@@ -122,7 +146,7 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
     while(m_listen)
     {
         sf::Socket::Status status;
-        cout << "LISTEN " << client << endl;
+
         if ((status = client->receive(data, 256, received)) != sf::Socket::Done)
         {
             if (m_clients.find(p_id) != m_clients.end())
@@ -135,8 +159,9 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
 	        cerr << "Can't receive from client with IP " << m_clients[p_id].ipAddress << " ID : " << p_id << endl;
             return;
         }
+
         string strData = string(data);
-	cout << strData << endl;
+
         if (strData.substr(strData.size() - 3) == "100")
         {
             message += strData.substr(0, strData.size() - 3);
@@ -156,7 +181,7 @@ void NETSERVER::sendAll(const NetPackage &p_package)
 {        
     for (pair<unsigned int, Client> client : m_clients)
     {
-        send(p_package, client.first);
+        send(p_package, client.first, true);
     }
 }
 
@@ -178,7 +203,7 @@ void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /
 		    NetPackage package;
 		    package.message = "201";
 		
-		    send(package, p_id);
+		    send(package, p_id, false);
 	    }
 	    
 	    m_clients[p_id].status = false;
@@ -231,14 +256,14 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
         if (playerType > 5 || playerType < 0 || m_availablePositions[playerType] == false)
         {
             np.message = "203";
-            send(np, p_id);
+            send(np, p_id, false);
             disconnectClient(p_id);
          }
          else
          {
              m_availablePositions[playerType] = false;
              np.message = "200";
-             send(np, p_id);
+             send(np, p_id, false);
          }
     }
 }
