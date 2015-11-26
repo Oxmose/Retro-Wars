@@ -14,10 +14,15 @@ namespace nsGameEngine
 			World();
 			~World();
 
+
+			void addTerrain(Terrain p_terrain);
+			Terrain& getTerrain(int p_x, int p_y);
+
 		private:
 
-			std::vector<Terrain> terrains;
-			std::vector<Unit> units;
+			Terrain m_noneTerrain;
+			std::vector<Terrain> m_terrain;
+			std::vector<Unit> m_unit;
 	};
 }
 

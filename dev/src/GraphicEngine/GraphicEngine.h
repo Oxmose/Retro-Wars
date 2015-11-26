@@ -7,6 +7,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "../MapEngine/MapEngine.h"
+#include "../GameEngine/Terrain.h"
+#include "../GameEngine/World.h"
 
 namespace nsGraphicEngine
 {
@@ -23,6 +25,8 @@ namespace nsGraphicEngine
             void loadMap() noexcept;
             void drawMap() noexcept;
 
+            void checkProperties(nsGameEngine::World* p_world);
+
         private:
 
             sf::RenderWindow* m_mainWindow; 
@@ -30,7 +34,13 @@ namespace nsGraphicEngine
 
             sf::Texture m_tileset_terrain;
             sf::Texture m_tileset_property;
-            sf::Texture m_tileset_unit;     
+            sf::Texture m_tileset_unit;
+
+            sf::IntRect terrain_gidToRect(int p_gid) noexcept;
+            sf::IntRect property_gidToRect(int p_gid) noexcept;
+            sf::IntRect propertyToRect(nsGameEngine::Terrain p_property);
+
+            std::vector<sf::Sprite> m_map[4];   
     };
 
 }

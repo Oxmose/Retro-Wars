@@ -3,13 +3,13 @@
 #define GENGINE_TER nsGameEngine::Terrain 
 
 using namespace std;
-
+using namespace nsGameEngine;
 
 GENGINE_TER::Terrain()
 {
 }
 
-GENGINE_TER::Terrain(TerrainType p_type, int p_x, int p_y, int p_owner)
+GENGINE_TER::Terrain(TerrainType p_type, int p_x, int p_y, PLAYER_TYPE p_owner)
 {
 	m_type = p_type;
 
@@ -24,6 +24,11 @@ GENGINE_TER::Terrain(TerrainType p_type, int p_x, int p_y, int p_owner)
 	m_mvt[5] = 0;//sea
 	m_mvt[6] = 0;//lander
 	m_mvt[7] = 0;//pipe
+
+	m_property = false;
+	m_defense = 0;
+	m_owner = p_owner;
+	m_hp = 0;
 
 	if(p_type == PLAIN)
 	{
@@ -81,6 +86,36 @@ GENGINE_TER::Terrain(TerrainType p_type, int p_x, int p_y, int p_owner)
 		m_hp = 20;
 
 }
+
+pair<int,int> GENGINE_TER::getCoord()
+{
+	return make_pair(m_x,m_y);
+}
+
+TerrainType GENGINE_TER::getType()
+{
+	return m_type;
+}
+
+bool GENGINE_TER::isProperty()
+{
+	return m_property;
+}
+
+bool GENGINE_TER::isNoneTerrain()
+{
+	return m_type == OTHER && m_x == -1 && m_y == -1;
+}
+
+int GENGINE_TER::getOwner() 
+{
+	return m_owner;
+}
+void GENGINE_TER::setOwner(PLAYER_TYPE p_owner) 
+{
+	m_owner = p_owner;
+}
+
 
 GENGINE_TER::~Terrain()
 {

@@ -2,6 +2,7 @@
 #define DEF_PLAYER_H
 
 #include <vector>
+#include "../Misc/Misc.h"
 
 namespace nsGameEngine
 {
@@ -9,11 +10,11 @@ namespace nsGameEngine
 	{
 		public:
 
-			Player(const unsigned int & p_playerType) noexcept;
+			Player(PLAYER_TYPE p_playerType) noexcept;
 
 		private:
 
-			const unsigned int m_playerType;
+			PLAYER_TYPE m_playerType;
 
 	};
 }

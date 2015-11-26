@@ -48,12 +48,16 @@ namespace nsGameEngine
             /// @details It creates a new instance of the game, load some basics parameters and initialize the window context.
             /// It will also initialize the graphic engine.
 			GameEngine(const unsigned int & p_width, const unsigned int & p_height, const std::string & p_title, 
-                       nsMapEngine::MapEngine* p_mapEngine, const unsigned int & p_playerType) noexcept;
+                       nsMapEngine::MapEngine* p_mapEngine, PLAYER_TYPE p_playerType) noexcept;
 
             /// @fn ~GameEngine();
             /// @brief The destructor.
             /// @details It will get rid of the window context pointer and the other module's pointers.
 			~GameEngine();
+
+            void loadWorld();
+
+            Terrain gidToTerrain(int p_gid, int p_x, int p_y);
 
             /// @fn void frame();
             /// @brief The main loop.

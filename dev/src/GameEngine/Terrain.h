@@ -7,6 +7,8 @@
 
 #include <array>
 
+#include "../Misc/Misc.h"
+
 namespace nsGameEngine
 {
 	enum TerrainType
@@ -30,8 +32,16 @@ namespace nsGameEngine
 	{
 		public:
 			Terrain();
-			Terrain(TerrainType p_type, int p_x, int p_y, int p_owner = 0);
+			Terrain(TerrainType p_type, int p_x, int p_y, PLAYER_TYPE p_owner = NEUTRAL);
 			~Terrain();
+
+			std::pair<int,int> getCoord();
+			bool isProperty();
+			TerrainType getType();
+			int getOwner();
+			void setOwner(PLAYER_TYPE p_owner);
+
+			bool isNoneTerrain();
 
 		private:
 			TerrainType m_type;
@@ -43,7 +53,7 @@ namespace nsGameEngine
 			int m_y;
 
 			bool m_property;
-			int m_owner;
+			PLAYER_TYPE m_owner;
 			int m_hp;
 	};
 }
