@@ -11,6 +11,7 @@
 #include "NetException.h"
 
 #include "../MapEngine/MapEngine.h"
+#include "../GameEngine/GameEngine.h"
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
 
@@ -36,6 +37,11 @@ NETENGINE::~NetEngine() noexcept
 	
 }
 
+void NETENGINE::setNotifier(nsGameEngine::GameEngine *p_gameEngine)
+{
+    m_gameEngine = p_gameEngine;
+}
+
 void NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_player /*= NEUTRAL*/, const nsMapEngine::MapEngine *p_map /* = nullptr */) throw (NetException)
 {  
     // The game instance is a player that hosts a game
@@ -44,7 +50,7 @@ void NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_pla
         m_map = p_map;
         m_server = new Server(m_ipAddress, m_port, this, m_map->getPlayers());
 
-	m_server->launch();
+	    m_server->launch();
     }  
     
     m_playerName = p_playerName;    
@@ -83,7 +89,7 @@ void NETENGINE::joinServer() throw (NetException)
     sprintf(typeStr, "%d", m_playerType);
     
     package.message = m_playerName + "#" + typeStr;
-    send(package);
+    send(package, true);
 
     // Waiting for acceptance
     char data2[256];
@@ -107,25 +113,31 @@ void NETENGINE::listen()
     
     while(m_listenServer)
     {
+
         sf::Socket::Status status;
         if ((status = m_socket.receive(data, 256, received)) != sf::Socket::Done)
         {
             cout << "Error receiving message for server " << status << endl;         
-            return;  
+            
+            if (status == sf::Socket::Disconnected)
+                return;  
         }
         string strData = cleanMessage(string(data));
         string strCode = strData.substr(strData.size() - 3);
-        if (strCode == "100")
+        if (strCode == "|||")
         {
             message += strData.substr(0, strData.size() - 3);
             parseMessage(message);
+            message = "";
         }
         else if (strData.size() == 3)
         {
             parseMessage(message);
         }
         else
+        {
             message += strData;
+        }
     }
 }
 
@@ -141,21 +153,21 @@ void NETENGINE::disconnect()
     }
 }
 
-void NETENGINE::send(const NetPackage &p_package)
+void NETENGINE::send(const NetPackage &p_package, const bool &p_connect /* = false */)
 {
     char* data;
-    string toSend = p_package.message + "100";
+    string toSend = p_package.message + "|||";
     NetPackage np;
-    np.message = toSend;
+    if (!p_connect)
+    	np.message = to_string(m_playerType) + string("#") + toSend;
+    else
+	    np.message = toSend;
     vector<NetPackage> splitMessage = splitMessages(np);
     
     for (NetPackage NetP : splitMessage)
-    {
-        
-	NetP.message = to_string(NetP.message.size()) + "/" + NetP.message;
-	cout << " TO SEND " << NetP.message.size() << ": " << NetP.message << endl;
+    { 
+	    NetP.message = to_string(NetP.message.size()) + "/" + NetP.message;	
         data = (char*)NetP.message.c_str();
-        cout << " REALLY : " << string(data) << " - size : " << string(data).size() << endl;
         m_socket.send(data, NetP.message.size());
     }
 }
@@ -181,5 +193,6 @@ void NETENGINE::manageError(const std::string &p_error)
 
 void NETENGINE::parseMessage(const std::string &p_message)
 {
-    cout << p_message << endl;
+    
+    m_gameEngine->notify(p_message);
 }

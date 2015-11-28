@@ -52,9 +52,8 @@ namespace nsTools
 
 	inline std::string cleanMessage(const std::string &p_message)
 	{
-		// Message should be size/msg[100]
+		// Message should be size/msg[|||]
 		std::vector<std::string> splited = splitString(p_message, "/");
-		std::cout << stoi(splited[0]) << " IS " << splited[1].substr(0, stoi(splited[0]));
 		return splited[1].substr(0, stoi(splited[0]));
 	}
 }

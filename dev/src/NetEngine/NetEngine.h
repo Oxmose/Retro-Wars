@@ -13,9 +13,14 @@
 #include "NetException.h"
 
 #include "../MapEngine/MapEngine.h"
+#include "../GameEngine/GameEngine.h"
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
 
+namespace nsGameEngine
+{
+    class GameEngine;
+}
 namespace nsNetEngine
 {	
 	class Server;
@@ -27,15 +32,15 @@ namespace nsNetEngine
             ~NetEngine() noexcept;
 
             void launch(const std::string &p_playerName, const PLAYER_TYPE &p_player = NEUTRAL, const nsMapEngine::MapEngine *p_map = nullptr) throw (NetException);
+
             void joinServer() throw (NetException);
             void disconnect();
-            
-			void notify(const unsigned int &p_clientId, const NetPackage &p_package);
 			
-			void send(const NetPackage &p_package);
+			void send(const NetPackage &p_package, const bool &p_connect = false);
 			void listen();
 			
 			void setIsServer(const bool &p_isServer);
+            void setNotifier(nsGameEngine::GameEngine *p_gameEngine);
         
 		private:
 		    void parseMessage(const std::string &p_message);
@@ -48,15 +53,14 @@ namespace nsNetEngine
 			PLAYER_TYPE     m_playerType;
 			std::string     m_playerName;
 		
-			std::atomic<bool> m_listenServer;
-
-			Server* 		m_server;
-		
-			sf::TcpSocket   m_socket;
-		
-			std::thread*     m_listenerThread;
+			std::atomic<bool>               m_listenServer;
+			Server* 		                m_server;		
+			sf::TcpSocket                   m_socket;		
+			std::thread*                    m_listenerThread;
             
-            const nsMapEngine::MapEngine *m_map;
+            const nsMapEngine::MapEngine    *m_map;
+
+            nsGameEngine::GameEngine  *m_gameEngine;
     };
 
 }

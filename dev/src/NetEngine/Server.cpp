@@ -70,7 +70,7 @@ void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId
     if (p_split)
     {
         char* data;
-        string toSend = p_package.message + "100";
+        string toSend = p_package.message + "|||";
         NetPackage np;
         np.message = toSend;
         vector<NetPackage> splitMessage = splitMessages(np);
@@ -151,7 +151,7 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
     {
 
         sf::Socket::Status status;
-        cout << " SERVER : WAIT FOR MESSAGE" << endl;
+        cout << "WAITING" << endl;
         if ((status = client->receive(data, 256, received)) != sf::Socket::Done)
         {
             if (m_clients.find(p_id) != m_clients.end())
@@ -165,18 +165,19 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
                     }
                                   
                 }
-            } 
-	        cerr << "Can't receive from client with IP " << m_clients[p_id].ipAddress << " ID : " << p_id << endl;
-            return;
+                return;
+            }            
         }
-
+	
         string strData = cleanMessage(string(data));
-        cout << "STRDATA : " << strData.size() << endl;
-        if (strData.substr(strData.size() - 3) == "100")
+	    cout << endl << "RECEIVED " << strData << endl;
+
+        if (strData.substr(strData.size() - 3) == "|||")
         {
             message += strData.substr(0, strData.size() - 3);
-            cout << " SERVER : received : " << strData << endl;
+	        cout << "SEND TO PARSE " << message << endl;
             parseMessage(p_id, message);
+            message = "";
         }
         else if (received == 3 && strData == "201")
         {
@@ -185,15 +186,15 @@ void NETSERVER::listenClients(unsigned int p_id) throw (NetException)
         }
         else
             message += strData;
-        cout << " SERVER " << message.size() << ": " << message << endl;
     }
 }
 
-void NETSERVER::sendAll(const NetPackage &p_package)
+void NETSERVER::sendAll(const NetPackage &p_package, const int &p_except /* = -1 */)
 {        
     for (pair<unsigned int, Client> client : m_clients)
     {
-        send(p_package, client.first, true);
+	if (client.first != p_except)
+        	send(p_package, client.first, true);
     }
 }
 
@@ -276,15 +277,18 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
              m_availablePositions[playerType] = false;
              m_clients[p_id].playerType = static_cast<PLAYER_TYPE>(playerType);
              m_clients[p_id].playerName = p_message.substr(0, p_message.find("#"));
+             m_clients[p_id].status = true;
              np.message = "200";
-             cout << "ACCEPTED " << m_clients[p_id].playerName << " sending 200" << endl;
              send(np, p_id, false);
+             np.message = string("SERVER#202#") + to_string(playerType) + m_clients[p_id].playerName;
+             sendAll(np, p_id);
          }
     }
     else
     {
+	    cout << endl << "RECEIVED (parse) " << p_message << endl;
         NetPackage np;
-        np.message = m_clients[p_id].playerName + "#" + p_message;
-        sendAll(np);
+        np.message = to_string(m_clients[p_id].playerType) + string("#") + p_message;
+        sendAll(np, p_id);
     }
 }

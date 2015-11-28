@@ -3,6 +3,9 @@
 
 #include "GameEngine.h"			// nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
+#include "../MapEngine/MapEngine.h"
+#include "../NetEngine/NetEngine.h"
+#include "World.h"
 #include "Player.h"
 #include "../Misc/Misc.h"
 
@@ -11,10 +14,11 @@
 using namespace nsMapEngine;
 using namespace nsGameEngine;
 using namespace nsGraphicEngine;
+using namespace nsNetEngine;
 using namespace std;
 
 GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height, const string & p_title, 
-                    MapEngine* p_mapEngine, PLAYER_TYPE p_playerType) noexcept
+                    MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, NetEngine *p_netEngine) noexcept
 {
 	// Init basic settings
 	m_windowDim = sf::VideoMode(p_width, p_height);
@@ -23,7 +27,7 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 	m_window = new sf::RenderWindow(m_windowDim, m_windowTitle);
 
     m_mapEngine = p_mapEngine;
-
+	m_netEngine = p_netEngine;
 	m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
 
     m_player = new Player(p_playerType);
@@ -181,4 +185,16 @@ GENGINE::~GameEngine()
     delete m_world;
     delete m_window;
     delete m_graphicEngine;
+}
+
+void GENGINE::notify(const std::string &p_message)
+{
+    cout << "SERVER SENT ME : " << p_message;
+}
+
+void GENGINE::test()
+{
+    NetPackage np;
+    np.message = "test";
+    m_netEngine->send(np);
 }

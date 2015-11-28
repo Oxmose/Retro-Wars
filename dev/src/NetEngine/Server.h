@@ -33,7 +33,7 @@ namespace nsNetEngine
             void disconnectClient(const unsigned int &p_id, const bool &p_notErase = true);
 
 			void send(const NetPackage &p_package, const unsigned int &p_clientId, const bool &p_split);
-            void sendAll(const NetPackage &p_package);
+            void sendAll(const NetPackage &p_package, const int &p_except);
 
             unsigned int getClientsNumber();
             std::vector<Client> getClients();

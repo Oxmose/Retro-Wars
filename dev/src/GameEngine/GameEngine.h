@@ -23,9 +23,15 @@
 #include "GameEngine.h"			// nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
 #include "../MapEngine/MapEngine.h"
+#include "../NetEngine/NetEngine.h"
 #include "World.h"
 #include "Player.h"
 #include "../Misc/Misc.h"
+
+namespace nsNetEngine
+{
+    class NetEngine;
+}
 
 /// @namespace nsGameEngine
 /// @brief The GameEngine namespace.
@@ -48,7 +54,7 @@ namespace nsGameEngine
             /// @details It creates a new instance of the game, load some basics parameters and initialize the window context.
             /// It will also initialize the graphic engine.
 			GameEngine(const unsigned int & p_width, const unsigned int & p_height, const std::string & p_title, 
-                       nsMapEngine::MapEngine* p_mapEngine, PLAYER_TYPE p_playerType) noexcept;
+                       nsMapEngine::MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, nsNetEngine::NetEngine* p_netEngine) noexcept;
 
             /// @fn ~GameEngine();
             /// @brief The destructor.
@@ -63,6 +69,10 @@ namespace nsGameEngine
             /// @brief The main loop.
             /// @details The frame function is the main loop of the game, where all the game management will take place.
 			void frame() noexcept;
+
+            void notify(const std::string &p_message);
+
+            void test();
 
 			
 		private:
@@ -84,6 +94,7 @@ namespace nsGameEngine
 
             World* m_world;
             Player* m_player;
+		    nsNetEngine::NetEngine *m_netEngine;
 	};
 }
 
