@@ -30,8 +30,6 @@ int main(int argc, char** argv)
 		GameEngine gameEngine(30*16, 20*16, "Retro Wars", &mapEngine, RED, &netEngine);
         netEngine.setNotifier(&gameEngine);
 		cout << "Loaded game engine" << endl;
-
-		netEngine2.send(np);
 		gameEngine.frame();
 		
 	}
