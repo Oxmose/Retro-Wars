@@ -193,6 +193,16 @@ void GENGINE::loadWorld()
     int x = 0, y = 0;
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
+<<<<<<< HEAD
+        if(gid != 0)
+            m_world->addTerrain(gidToTerrain(gid,x,y));      
+        x += 1;
+        if(x >= m_mapEngine->getWidth())
+        {
+            x = 0;
+            y += 1;
+        }
+=======
         //if (gid != 0)
         //{
             m_world->addTerrain(gidToTerrain(gid,x,y));
@@ -203,13 +213,24 @@ void GENGINE::loadWorld()
                 y += 1;
             }
         //}
+>>>>>>> f58c5ed4b18bb0e7186e29e046f8ddbc964edfb2
     }
+
 
     x=0,y=0;
     for(int gid: m_mapEngine->getLayerTiles(0))
     {
-        if(!m_world->getTerrain(x,y).isProperty())
+        if(gid != 0)
+            if(m_world->getTerrain(x,y).isNoneTerrain())
+                m_world->addTerrain(gidToTerrain(gid,x,y));
+        
+        x += 1;
+        if(x >= m_mapEngine->getWidth())
         {
+<<<<<<< HEAD
+            x = 0;
+            y += 1;
+=======
             if (x == 0 && y == 0)
             {
                 cout << gidToTerrain(gid, x , y).getType() << endl;
@@ -221,11 +242,13 @@ void GENGINE::loadWorld()
                 x = 0;
                 y += 1;
             }
+>>>>>>> f58c5ed4b18bb0e7186e29e046f8ddbc964edfb2
         }
     }
 
+
     x=0,y=0;
-    for(int gid: m_mapEngine->getLayerTiles(3))
+    for(int gid: m_mapEngine->getLayerTiles(4))
     {
         m_world->addUnit(gidToUnit(gid,x,y));
         x += 1;
