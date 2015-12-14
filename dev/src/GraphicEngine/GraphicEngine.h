@@ -23,7 +23,8 @@ namespace nsGraphicEngine
             void reload() noexcept;
 
             void loadMap() noexcept;
-            void drawMap() noexcept;
+            void drawMap(nsGameEngine::World* p_world) noexcept;
+            void drawUnits(nsGameEngine::World* p_world) noexcept;
 
             void checkProperties(nsGameEngine::World* p_world);
 
@@ -38,6 +39,7 @@ namespace nsGraphicEngine
 
             sf::IntRect terrain_gidToRect(int p_gid) noexcept;
             sf::IntRect property_gidToRect(int p_gid) noexcept;
+            sf::IntRect unit_gidToRect(int p_gid) noexcept;
             sf::IntRect propertyToRect(nsGameEngine::Terrain p_property);
 
             std::vector<sf::Sprite> m_map[4];   

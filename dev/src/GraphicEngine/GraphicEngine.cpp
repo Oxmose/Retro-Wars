@@ -37,6 +37,11 @@ sf::IntRect GxENGINE::terrain_gidToRect(int p_gid) noexcept
 	return sf::IntRect(((p_gid-1)%18)*16,((p_gid-1)/18)*16,16,16);
 }
 
+sf::IntRect GxENGINE::unit_gidToRect(int p_gid) noexcept
+{
+	return sf::IntRect(((p_gid-229)%13)*16,((p_gid-229)/13)*16,16,16);
+}
+
 sf::IntRect GxENGINE::propertyToRect(Terrain p_property)
 {
 	int gid = 0;
@@ -141,7 +146,10 @@ void GxENGINE::loadMap() noexcept
 	m_tileset_property.loadFromImage(image_tileset_property);
 	
 
-	m_tileset_unit.loadFromFile("maps/tilesets/unit.bmp");
+	sf::Image image_tileset_unit;
+	image_tileset_unit.loadFromFile("maps/tilesets/unit.bmp");
+	image_tileset_unit.createMaskFromColor(sf::Color(0,0,0));
+	m_tileset_unit.loadFromImage(image_tileset_unit);
 	
 	printf("%d %d\n", m_mapEngine->getWidth(), m_mapEngine->getHeight());
 	printf("%d %d\n", m_mapEngine->getLayerTiles(0).size(), 30*20);
@@ -182,11 +190,35 @@ void GxENGINE::reload() noexcept
     m_mainWindow->clear();
 }
 
-void GxENGINE::drawMap() noexcept
+void GxENGINE::drawMap(nsGameEngine::World* p_world) noexcept
 {
 	for(int iLayer = 0 ; iLayer < 3 ; iLayer++)
 		for(sf::Sprite spt : m_map[iLayer])
 			m_mainWindow->draw(spt);
+
+	for(int x = 0 ; x < m_mapEngine->getWidth() ; x++)
+		for(int y = 0 ; y < m_mapEngine->getHeight() ; y++)
+		{
+			if(!p_world->isVisible(x,y))
+			{
+				sf::RectangleShape rectangle(sf::Vector2f(16, 16));
+				rectangle.setPosition(sf::Vector2f(x*16,y*16));
+				rectangle.setFillColor(sf::Color(0,0,0,100));
+				m_mainWindow->draw(rectangle);
+			}
+		}
+}
+
+void GxENGINE::drawUnits(nsGameEngine::World* p_world) noexcept
+{
+	for(auto unit: p_world->getUnits())
+	{
+		sf::Sprite spt;
+		spt.setTexture(m_tileset_unit);
+		spt.setTextureRect(unit_gidToRect(unit.getGid()));
+		spt.setPosition(unit.getCoord().first*16,unit.getCoord().second*16);
+		m_mainWindow->draw(spt);
+	}
 }
 
 
