@@ -9,6 +9,7 @@
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/Terrain.h"
 #include "../GameEngine/World.h"
+#include "../GameEngine/Player.h"
 
 namespace nsGraphicEngine
 {
@@ -24,7 +25,7 @@ namespace nsGraphicEngine
 
             void loadMap() noexcept;
             void drawMap() noexcept;
-
+			void refreshUserInterface(nsGameEngine::Player *p_player) noexcept;
             void checkProperties(nsGameEngine::World* p_world);
 
         private:

@@ -189,5 +189,22 @@ void GxENGINE::drawMap() noexcept
 			m_mainWindow->draw(spt);
 }
 
+void GxENGINE::refreshUserInterface(Player *p_player) noexcept
+{
+	sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
+	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
+	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
+	m_mainWindow->draw(downBar);
 
-
+	sf::Font font;
+	if (!font.loadFromFile("./res/neuropol.ttf"))
+	{
+		cerr << "Can't load display font!" << endl;
+	}	
+	sf::Text playerName("General " + p_player->getPlayerName(), font, 12);
+	sf::Text playerMoney("Resources : " + p_player->getMoney(), font, 10);
+	playerName.setPosition(5, m_mapEngine->getHeight() * 16 + 5);
+	playerMoney.setPosition(10, m_mapEngine->getHeight() * 16 + 20);
+	m_mainWindow->draw(playerName);
+	m_mainWindow->draw(playerMoney);
+}

@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 		netEngine.launch("Alexy", RED, &mapEngine);
 	    	cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << RED << endl;
 	    
-		GameEngine gameEngine(30*16, 20*16, "Retro Wars", &mapEngine, RED, &netEngine);
+		GameEngine gameEngine(30*16, 20*16 + 75, "Retro Wars", &mapEngine, RED, &netEngine);
         netEngine.setNotifier(&gameEngine);
 		cout << "Loaded game engine" << endl;
 		gameEngine.frame();

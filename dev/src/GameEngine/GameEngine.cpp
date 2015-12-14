@@ -171,10 +171,10 @@ void GENGINE::frame() noexcept
             if(event.type == sf::Event::Closed)
                 m_window->close();
         }
-
         m_graphicEngine->reload();
         m_graphicEngine->checkProperties(m_world);
         m_graphicEngine->drawMap();
+	m_graphicEngine->refreshUserInterface(m_player);
         m_window->display();
     }
 } // init();
