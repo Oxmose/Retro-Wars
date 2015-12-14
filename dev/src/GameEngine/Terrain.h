@@ -42,6 +42,8 @@ namespace nsGameEngine
 			void setOwner(PLAYER_TYPE p_owner);
 
 			bool isNoneTerrain();
+			int getHp();
+			int getDefense();
 
 		private:
 			TerrainType m_type;

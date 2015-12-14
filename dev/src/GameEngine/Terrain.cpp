@@ -121,3 +121,12 @@ GENGINE_TER::~Terrain()
 {
 
 }
+
+int GENGINE_TER::getHp()
+{
+	return m_hp;
+}
+int GENGINE_TER::getDefense()
+{
+    return m_defense;
+}

@@ -247,8 +247,14 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
 	terrainName.setPosition(140, m_mapEngine->getHeight() * 16 + 5);
     sf::Text terrainOwner("Owner : " + getPlayerName(ter.getOwner()), font, 15);
     terrainOwner.setPosition(140, m_mapEngine->getHeight() * 16 + 30);
-    sf::Text info("Press  enter  to  use  the  " + getName(ter.getType()) , font, 15);
-    info.setPosition(140, m_mapEngine->getHeight() * 16 + 50);
+    
+    sf::Text info("Health : " + to_string(ter.getHp()) + "\nDefense : " + to_string(ter.getDefense()), font, 15);
+    info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
+
+    if (ter.getType() != CITY)
+    {
+        info.setString(info.getString() + "\nPress  enter  to  use  the  " + getName(ter.getType()));
+    }
 
 	m_mainWindow->draw(terrainName);
     m_mainWindow->draw(terrainOwner);
@@ -304,45 +310,6 @@ void GxENGINE::displayHqInfo(Player *p_player, Terrain p_terrain) noexcept
     m_mainWindow->draw(title);
 
     sf::Text info("This  is  your  headquarter", font, 16);
-    info.setPosition(5, 50);
-    info.setColor(sf::Color(0, 0, 0, 255));
-    m_mainWindow->draw(info);
-}
-
-void GxENGINE::displayCityInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept
-{
-    sf::RectangleShape back(sf::Vector2f(m_mapEngine->getWidth() * 16, m_mapEngine->getHeight() * 16));
-	back.setFillColor(sf::Color(sf::Uint8(225), sf::Uint8(225), sf::Uint8(225), sf::Uint8(200)));
-	back.setPosition(0, 0);
-    m_mainWindow->draw(back);
-
-    sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
-	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
-	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
-	m_mainWindow->draw(downBar);
-
-	sf::Font font;
-	if (!font.loadFromFile("./res/font.ttf"))
-	{
-		cerr << "Can't load display font!" << endl;
-	}	
-
-	displayBar(font, p_player);
-    sf::Text quit("Press  escape  to  quit" , font, 15);
-    quit.setPosition(140, m_mapEngine->getHeight() * 16 + 50);
-
-	m_mainWindow->draw(quit);
-
-    sf::Text title("City", font, 25);
-    title.setPosition(m_mapEngine->getWidth() * 16 / 2 - title.getGlobalBounds().width / 2, 2);
-
-    sf::RectangleShape titleRect(sf::Vector2f(200, 40));
-	titleRect.setFillColor(sf::Color(sf::Uint8(100), sf::Uint8(100), sf::Uint8(100), sf::Uint8(255)));
-	titleRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 100, 0);
-    m_mainWindow->draw(titleRect);
-    m_mainWindow->draw(title);
-
-    sf::Text info("This  is  your  city", font, 16);
     info.setPosition(5, 50);
     info.setColor(sf::Color(0, 0, 0, 255));
     m_mainWindow->draw(info);

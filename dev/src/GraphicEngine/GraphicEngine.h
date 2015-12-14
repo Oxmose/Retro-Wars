@@ -28,8 +28,7 @@ namespace nsGraphicEngine
             void drawMap(nsGameEngine::World* p_world) noexcept;
             void drawUnits(nsGameEngine::World* p_world) noexcept;
 	        void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world, bool p_turn) noexcept;
-            void displayHqInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;
-            void displayCityInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;            
+            void displayHqInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;       
             void displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;
       
             void checkProperties(nsGameEngine::World* p_world);

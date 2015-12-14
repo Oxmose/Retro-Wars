@@ -301,14 +301,11 @@ void GENGINE::frame()
                         selectedTerrain = ter;
                         switch(ter.getType())
                         {
-                            case 5:
-                                view = 2;
-                                break;
                             case 6:                                
                                 view = 1;
                                 break;
                             case 7:
-                                view = 3;
+                                view = 2;
                                 break;
                             
                         }
@@ -339,10 +336,6 @@ void GENGINE::frame()
             m_graphicEngine->displayHqInfo(m_player, selectedTerrain);
         }
         else if (view == 2)
-        {
-            m_graphicEngine->displayCityInfo(m_player, selectedTerrain);
-        }
-        else if (view == 3)
         {
             m_graphicEngine->displayBaseInfo(m_player, selectedTerrain);
         }
