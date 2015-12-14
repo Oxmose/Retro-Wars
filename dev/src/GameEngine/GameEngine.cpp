@@ -155,8 +155,8 @@ void GENGINE::loadWorld()
         }
     }
 
-    printf("%d %d\n", m_world->getTerrain(1,18).getType(), m_world->getTerrain(1,18).getOwner());
-    m_world->getTerrain(8,16).setOwner(BLUE);
+    //printf("%d %d\n", m_world->getTerrain(1,18).getType(), m_world->getTerrain(1,18).getOwner());
+    //m_world->getTerrain(8,16).setOwner(BLUE);
     //printf("%d %d\n", m_world->getTerrain(8,0).getType(), m_world->getTerrain(8,0).getOwner());
 }
 
@@ -173,7 +173,7 @@ void GENGINE::frame() noexcept
         }
 
         m_graphicEngine->reload();
-        m_graphicEngine->checkProperties(m_world);
+        m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
         m_graphicEngine->drawMap();
         m_window->display();
     }

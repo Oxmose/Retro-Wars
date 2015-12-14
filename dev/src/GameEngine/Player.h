@@ -14,10 +14,16 @@ namespace nsGameEngine
 
 			void setMoney(int p_money);
 			int getMoney();
+
+			void setCoord(int p_x, int p_y);
+			std::pair<int,int> getCoord();
+			
 		private:
 
 			PLAYER_TYPE m_playerType;
 			int m_money;
+			int m_x;
+			int m_y;
 
 	};
 }

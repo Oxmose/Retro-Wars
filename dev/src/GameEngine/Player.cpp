@@ -15,3 +15,14 @@ int GENGINE_PLAYER::getMoney()
 {
 	return m_money;
 }
+
+void GENGINE_PLAYER::setCoord(int p_x, int p_y)
+{
+	m_x = p_x;
+	m_y = p_y;
+}
+
+std::pair<int,int> GENGINE_PLAYER::getCoord()
+{
+	return std::make_pair(m_x,m_y);
+}
