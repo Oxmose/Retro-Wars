@@ -180,7 +180,8 @@ void GENGINE::loadWorld()
     int x = 0, y = 0;
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
-        m_world->addTerrain(gidToTerrain(gid,x,y));
+        if(gid != 0)
+            m_world->addTerrain(gidToTerrain(gid,x,y));      
         x += 1;
         if(x >= m_mapEngine->getWidth())
         {
@@ -193,14 +194,12 @@ void GENGINE::loadWorld()
     for(int gid: m_mapEngine->getLayerTiles(0))
     {
         if(!m_world->getTerrain(x,y).isProperty())
-        {
             m_world->addTerrain(gidToTerrain(gid,x,y));
-            x += 1;
-            if(x >= m_mapEngine->getWidth())
-            {
-                x = 0;
-                y += 1;
-            }
+        x += 1;
+        if(x >= m_mapEngine->getWidth())
+        {
+            x = 0;
+            y += 1;
         }
     }
 
