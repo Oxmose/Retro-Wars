@@ -5,3 +5,13 @@
 GENGINE_PLAYER::Player(PLAYER_TYPE p_playerType) noexcept : m_playerType(p_playerType)
 {
 }
+
+void GENGINE_PLAYER::setMoney(int p_money)
+{
+	m_money = p_money;
+}
+
+int GENGINE_PLAYER::getMoney()
+{
+	return m_money;
+}
