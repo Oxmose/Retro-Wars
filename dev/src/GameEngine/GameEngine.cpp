@@ -190,11 +190,14 @@ void GENGINE::loadWorld()
         }
     }
 
+
     x=0,y=0;
     for(int gid: m_mapEngine->getLayerTiles(0))
     {
-        if(!m_world->getTerrain(x,y).isProperty())
-            m_world->addTerrain(gidToTerrain(gid,x,y));
+        if(gid != 0)
+            if(m_world->getTerrain(x,y).isNoneTerrain())
+                m_world->addTerrain(gidToTerrain(gid,x,y));
+        
         x += 1;
         if(x >= m_mapEngine->getWidth())
         {
@@ -203,8 +206,9 @@ void GENGINE::loadWorld()
         }
     }
 
+
     x=0,y=0;
-    for(int gid: m_mapEngine->getLayerTiles(3))
+    for(int gid: m_mapEngine->getLayerTiles(4))
     {
         m_world->addUnit(gidToUnit(gid,x,y));
         x += 1;

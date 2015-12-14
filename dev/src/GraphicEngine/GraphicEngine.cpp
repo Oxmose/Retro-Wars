@@ -153,7 +153,7 @@ void GxENGINE::loadMap() noexcept
 	
 	printf("%d %d\n", m_mapEngine->getWidth(), m_mapEngine->getHeight());
 	printf("%d %d\n", m_mapEngine->getLayerTiles(0).size(), 30*20);
-	for(int iLayerTerrain = 0 ; iLayerTerrain < 3 ; iLayerTerrain++)
+	for(int iLayerTerrain = 0 ; iLayerTerrain < 4 ; iLayerTerrain++)
 	{
 		sf::Vector2f curr_position(0,0);
 		for(int gid : m_mapEngine->getLayerTiles(iLayerTerrain))
@@ -166,7 +166,7 @@ void GxENGINE::loadMap() noexcept
 					curr_tile.setTexture(m_tileset_terrain);
 					curr_tile.setTextureRect(terrain_gidToRect(gid));
 				}
-				if(iLayerTerrain == 2)
+				if(iLayerTerrain == 2 || iLayerTerrain == 3)
 				{
 					curr_tile.setTexture(m_tileset_property);
 					curr_tile.setTextureRect(property_gidToRect(gid));
@@ -192,7 +192,7 @@ void GxENGINE::reload() noexcept
 
 void GxENGINE::drawMap(nsGameEngine::World* p_world) noexcept
 {
-	for(int iLayer = 0 ; iLayer < 3 ; iLayer++)
+	for(int iLayer = 0 ; iLayer < 4 ; iLayer++)
 		for(sf::Sprite spt : m_map[iLayer])
 			m_mainWindow->draw(spt);
 

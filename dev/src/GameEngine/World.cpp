@@ -38,6 +38,8 @@ bool GENGINE_W::isVisible(int p_x, int p_y)
 {
 	if(getTerrain(p_x,p_y).isProperty() && getTerrain(p_x,p_y).getOwner() == m_player)
 		return true;
+	if(getTerrain(p_x,p_y).getType() == MOUNTAIN)
+		return true;
 	return false;
 
 }
