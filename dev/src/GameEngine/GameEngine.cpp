@@ -193,8 +193,8 @@ void GENGINE::loadWorld()
     int x = 0, y = 0;
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
-        if (gid != 0)
-        {
+        //if (gid != 0)
+        //{
             m_world->addTerrain(gidToTerrain(gid,x,y));
             x += 1;
             if(x >= m_mapEngine->getWidth())
@@ -202,7 +202,7 @@ void GENGINE::loadWorld()
                 x = 0;
                 y += 1;
             }
-        }
+        //}
     }
 
     x=0,y=0;
@@ -243,6 +243,11 @@ void GENGINE::loadWorld()
 
 void GENGINE::frame()
 {
+    bool turn = true;
+    int view = 0;
+
+    Terrain selectedTerrain;
+
     unsigned int fps = 25;
     sf::Time framerate = sf::milliseconds(1000 / fps);
 
@@ -292,6 +297,34 @@ void GENGINE::frame()
     
                     m_player->setCoord(newX, m_player->getCoord().second);
                 }
+                else if (event.key.code == sf::Keyboard::Return && turn)
+                {
+                    Terrain ter = m_world->getTerrain(m_player->getCoord().first, m_player->getCoord().second);
+                    if (ter.getOwner() == m_player->getType())
+                    {
+                        selectedTerrain = ter;
+                        switch(ter.getType())
+                        {
+                            case 5:
+                                view = 2;
+                                break;
+                            case 6:                                
+                                view = 1;
+                                break;
+                            case 7:
+                                view = 3;
+                                break;
+                            
+                        }
+                    }
+                }
+                else if (event.key.code == sf::Keyboard::Escape)
+                {
+                    if (view != 0)
+                    {
+                        view = 0;
+                    }
+                }
             }
             if(event.type == sf::Event::Closed)
                 m_window->close();
@@ -299,10 +332,24 @@ void GENGINE::frame()
         m_graphicEngine->reload();
         m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
 
-	    
-        m_graphicEngine->drawMap(m_world);
-        m_graphicEngine->drawUnits(m_world);
-        m_graphicEngine->refreshUserInterface(m_player, m_world);
+	    if (view == 0)
+        {
+            m_graphicEngine->drawMap(m_world);
+            m_graphicEngine->drawUnits(m_world);
+            m_graphicEngine->refreshUserInterface(m_player, m_world, turn);
+        }
+        else if (view == 1)
+        {
+            m_graphicEngine->displayHqInfo(m_player, selectedTerrain);
+        }
+        else if (view == 2)
+        {
+            m_graphicEngine->displayCityInfo(m_player, selectedTerrain);
+        }
+        else if (view == 3)
+        {
+            m_graphicEngine->displayBaseInfo(m_player, selectedTerrain);
+        }
         m_window->display();
 	
         sf::Time elapsed = clock.getElapsedTime();
