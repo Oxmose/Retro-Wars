@@ -31,10 +31,21 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 	m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
 
     m_player = new Player(p_playerType);
-
     m_world = new World();
 
     loadWorld();
+    for (int i = 0; i < m_mapEngine->getWidth(); ++i)
+    {
+        for (int j = 0; j < m_mapEngine->getHeight(); ++j)
+        {
+            Terrain tmp_ter = m_world->getTerrain(i, j);
+            if (tmp_ter.getType() == HQ && tmp_ter.getOwner() == p_playerType)
+            {
+                m_player->setCoord(i, j);
+            }
+        }
+    }
+
 } // GameEngine();
 
 Terrain GENGINE::gidToTerrain(int gid, int p_x, int p_y)
@@ -131,19 +142,7 @@ void GENGINE::loadWorld()
     int x = 0, y = 0;
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
-        m_world->addTerrain(gidToTerrain(gid,x,y));
-        x += 1;
-        if(x >= m_mapEngine->getWidth())
-        {
-            x = 0;
-            y += 1;
-        }
-    }
-
-    x=0,y=0;
-    for(int gid: m_mapEngine->getLayerTiles(0))
-    {
-        if(!m_world->getTerrain(x,y).isProperty())
+        if (gid != 0)
         {
             m_world->addTerrain(gidToTerrain(gid,x,y));
             x += 1;
@@ -155,27 +154,96 @@ void GENGINE::loadWorld()
         }
     }
 
-    printf("%d %d\n", m_world->getTerrain(1,18).getType(), m_world->getTerrain(1,18).getOwner());
-    m_world->getTerrain(8,16).setOwner(BLUE);
+    x=0,y=0;
+    for(int gid: m_mapEngine->getLayerTiles(0))
+    {
+        if(!m_world->getTerrain(x,y).isProperty())
+        {
+            if (x == 0 && y == 0)
+            {
+                cout << gidToTerrain(gid, x , y).getType() << endl;
+            }
+            m_world->addTerrain(gidToTerrain(gid,x,y));
+            x += 1;
+            if(x >= m_mapEngine->getWidth())
+            {
+                x = 0;
+                y += 1;
+            }
+        }
+    }
+
+    //printf("%d %d\n", m_world->getTerrain(1,18).getType(), m_world->getTerrain(1,18).getOwner());
+    //m_world->getTerrain(8,16).setOwner(BLUE);
     //printf("%d %d\n", m_world->getTerrain(8,0).getType(), m_world->getTerrain(8,0).getOwner());
 }
 
-void GENGINE::frame() noexcept
+void GENGINE::frame()
 {
-	
+    unsigned int fps = 25;
+    sf::Time framerate = sf::milliseconds(1000 / fps);
+
+	sf::Clock clock;
     while (m_window->isOpen())
-    {
+    {	
+       
         sf::Event event;
         while(m_window->pollEvent(event))
         {
+            // Key event
+            if(event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Up)
+                {
+                    int newY = m_player->getCoord().second - 1;
+
+                    if (newY < 0)
+                        newY = 0;
+    
+                    m_player->setCoord(m_player->getCoord().first, newY);
+                }
+                else if (event.key.code == sf::Keyboard::Down)
+                {
+                    int newY = m_player->getCoord().second + 1;
+
+                    if (newY > m_mapEngine->getHeight() - 1)
+                        newY = m_mapEngine->getHeight() - 1;
+    
+                    m_player->setCoord(m_player->getCoord().first, newY);
+                }
+                else if (event.key.code == sf::Keyboard::Left)
+                {
+                    int newX = m_player->getCoord().first - 1;
+
+                    if (newX < 0)
+                        newX = 0;
+                   
+                    m_player->setCoord(newX, m_player->getCoord().second);
+                }
+                else if (event.key.code == sf::Keyboard::Right)
+                {
+                    int newX = m_player->getCoord().first + 1;
+
+                    if (newX > m_mapEngine->getWidth() - 1)
+                        newX = m_mapEngine->getWidth() - 1;
+    
+                    m_player->setCoord(newX, m_player->getCoord().second);
+                }
+            }
             if(event.type == sf::Event::Closed)
                 m_window->close();
         }
         m_graphicEngine->reload();
-        m_graphicEngine->checkProperties(m_world);
+        m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
         m_graphicEngine->drawMap();
-	m_graphicEngine->refreshUserInterface(m_player);
+	    m_graphicEngine->refreshUserInterface(m_player, m_world);
         m_window->display();
+	
+        sf::Time elapsed = clock.getElapsedTime();
+        if (elapsed < framerate)
+            sf::sleep(framerate - elapsed);
+
+        clock.restart();
     }
 } // init();
 

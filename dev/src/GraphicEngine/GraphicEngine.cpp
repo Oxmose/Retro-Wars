@@ -189,7 +189,7 @@ void GxENGINE::drawMap() noexcept
 			m_mainWindow->draw(spt);
 }
 
-void GxENGINE::refreshUserInterface(Player *p_player) noexcept
+void GxENGINE::refreshUserInterface(Player *p_player, World *p_world) noexcept
 {
 	sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
 	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
@@ -197,14 +197,26 @@ void GxENGINE::refreshUserInterface(Player *p_player) noexcept
 	m_mainWindow->draw(downBar);
 
 	sf::Font font;
-	if (!font.loadFromFile("./res/neuropol.ttf"))
+	if (!font.loadFromFile("./res/font.ttf"))
 	{
 		cerr << "Can't load display font!" << endl;
 	}	
-	sf::Text playerName("General " + p_player->getPlayerName(), font, 12);
-	sf::Text playerMoney("Resources : " + p_player->getMoney(), font, 10);
+
+	sf::Text playerName("General " + p_player->getPlayerName(), font, 20);
+	sf::Text playerMoney("Resources : " + std::to_string(p_player->getMoney()), font, 16);
+	p_player->setMoney(p_player->getMoney() - 1);
 	playerName.setPosition(5, m_mapEngine->getHeight() * 16 + 5);
-	playerMoney.setPosition(10, m_mapEngine->getHeight() * 16 + 20);
+	playerMoney.setPosition(5, m_mapEngine->getHeight() * 16 + 25);
 	m_mainWindow->draw(playerName);
 	m_mainWindow->draw(playerMoney);
+
+	sf::RectangleShape cursor(sf::Vector2f(16, 16));
+	cursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(255), sf::Uint8(150)));
+	cursor.setPosition(p_player->getCoord().first * 16, p_player->getCoord().second * 16);
+	m_mainWindow->draw(cursor);
+	cout << p_world->getTerrain(0, 0).getType() << endl;
+	Terrain ter = p_world->getTerrain(p_player->getCoord().first, p_player->getCoord().second);
+	sf::Text terrainName("Terrain : " + std::to_string(ter.getType()), font, 20);
+	terrainName.setPosition(60, m_mapEngine->getHeight() * 16 + 5);
+	m_mainWindow->draw(terrainName);
 }

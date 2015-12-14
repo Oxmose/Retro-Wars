@@ -107,7 +107,7 @@ bool GENGINE_TER::isNoneTerrain()
 	return m_type == OTHER && m_x == -1 && m_y == -1;
 }
 
-int GENGINE_TER::getOwner() 
+PLAYER_TYPE GENGINE_TER::getOwner() 
 {
 	return m_owner;
 }

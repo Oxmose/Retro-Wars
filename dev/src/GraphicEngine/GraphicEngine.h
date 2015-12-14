@@ -25,7 +25,7 @@ namespace nsGraphicEngine
 
             void loadMap() noexcept;
             void drawMap() noexcept;
-			void refreshUserInterface(nsGameEngine::Player *p_player) noexcept;
+			void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world) noexcept;
             void checkProperties(nsGameEngine::World* p_world);
 
         private:
