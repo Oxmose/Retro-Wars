@@ -9,6 +9,7 @@
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/Terrain.h"
 #include "../GameEngine/World.h"
+#include "../GameEngine/Player.h"
 
 namespace nsGraphicEngine
 {
@@ -23,12 +24,20 @@ namespace nsGraphicEngine
             void reload() noexcept;
 
             void loadMap() noexcept;
+
             void drawMap(nsGameEngine::World* p_world) noexcept;
             void drawUnits(nsGameEngine::World* p_world) noexcept;
-
+	        void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world, bool p_turn) noexcept;
+            void displayHqInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;
+            void displayCityInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;            
+            void displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;
+      
             void checkProperties(nsGameEngine::World* p_world);
 
         private:
+
+            std::string getName(nsGameEngine::TerrainType terrain) noexcept;
+            void displayBar(sf::Font font, nsGameEngine::Player *p_player);
 
             sf::RenderWindow* m_mainWindow; 
             nsMapEngine::MapEngine* m_mapEngine; 

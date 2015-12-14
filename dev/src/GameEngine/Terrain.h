@@ -38,7 +38,7 @@ namespace nsGameEngine
 			std::pair<int,int> getCoord();
 			bool isProperty();
 			TerrainType getType();
-			int getOwner();
+			PLAYER_TYPE getOwner();
 			void setOwner(PLAYER_TYPE p_owner);
 
 			bool isNoneTerrain();

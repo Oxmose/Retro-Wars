@@ -4,6 +4,8 @@
 
 GENGINE_PLAYER::Player(PLAYER_TYPE p_playerType) noexcept : m_playerType(p_playerType)
 {
+	// TEST
+	m_money = 5000;
 }
 
 void GENGINE_PLAYER::setMoney(int p_money)
@@ -25,4 +27,28 @@ void GENGINE_PLAYER::setCoord(int p_x, int p_y)
 std::pair<int,int> GENGINE_PLAYER::getCoord()
 {
 	return std::make_pair(m_x,m_y);
+}
+
+PLAYER_TYPE GENGINE_PLAYER::getType()
+{
+	return m_playerType;
+}
+
+std::string GENGINE_PLAYER::getPlayerName()
+{
+	switch(m_playerType)
+	{
+		case 0:
+			return "Neutral";
+		case 1:
+			return "Red";
+		case 2:
+			return "Blue";
+		case 3:
+			return "Green";
+		case 4:
+			return "Yellow";
+		case 5:
+			return "Black";
+	}
 }

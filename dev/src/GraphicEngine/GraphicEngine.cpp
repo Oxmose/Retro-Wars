@@ -221,5 +221,205 @@ void GxENGINE::drawUnits(nsGameEngine::World* p_world) noexcept
 	}
 }
 
+void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_turn) noexcept
+{
+	sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
+	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
+	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
+	m_mainWindow->draw(downBar);
+
+	sf::Font font;
+	if (!font.loadFromFile("./res/font.ttf"))
+	{
+		cerr << "Can't load display font!" << endl;
+	}	
+
+	displayBar(font, p_player);
+    
+    sf::RectangleShape cursor(sf::Vector2f(16, 16));
+	cursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(255), sf::Uint8(150)));
+	cursor.setPosition(p_player->getCoord().first * 16, p_player->getCoord().second * 16);
+	m_mainWindow->draw(cursor);
+
+	Terrain ter = p_world->getTerrain(p_player->getCoord().first, p_player->getCoord().second);
+
+	sf::Text terrainName(getName(ter.getType()), font, 20);
+	terrainName.setPosition(140, m_mapEngine->getHeight() * 16 + 5);
+    sf::Text terrainOwner("Owner : " + getPlayerName(ter.getOwner()), font, 15);
+    terrainOwner.setPosition(140, m_mapEngine->getHeight() * 16 + 30);
+    sf::Text info("Press  enter  to  use  the  " + getName(ter.getType()) , font, 15);
+    info.setPosition(140, m_mapEngine->getHeight() * 16 + 50);
+
+	m_mainWindow->draw(terrainName);
+    m_mainWindow->draw(terrainOwner);
+    if (ter.getOwner() == p_player->getType())
+        m_mainWindow->draw(info);
+
+    // Turn info
+    sf::Text infoTurn("Your turn" , font, 20);
+    if (!p_turn)
+    {
+        infoTurn.setString("Not your turn");
+    }
+    infoTurn.setPosition(m_mapEngine->getWidth() * 16 / 2 - infoTurn.getGlobalBounds().width / 2, 2);
+
+    sf::RectangleShape turnRect(sf::Vector2f(150, 30));
+	turnRect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(33), sf::Uint8(33), sf::Uint8(200)));
+	turnRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 75, 0);
+    m_mainWindow->draw(turnRect);
+    m_mainWindow->draw(infoTurn);
+}
+
+void GxENGINE::displayHqInfo(Player *p_player, Terrain p_terrain) noexcept
+{
+    sf::RectangleShape back(sf::Vector2f(m_mapEngine->getWidth() * 16, m_mapEngine->getHeight() * 16));
+	back.setFillColor(sf::Color(sf::Uint8(225), sf::Uint8(225), sf::Uint8(225), sf::Uint8(200)));
+	back.setPosition(0, 0);
+    m_mainWindow->draw(back);
+
+    sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
+	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
+	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
+	m_mainWindow->draw(downBar);
+
+	sf::Font font;
+	if (!font.loadFromFile("./res/font.ttf"))
+	{
+		cerr << "Can't load display font!" << endl;
+	}	
+
+	displayBar(font, p_player);
+    sf::Text quit("Press  escape  to  quit" , font, 15);
+    quit.setPosition(140, m_mapEngine->getHeight() * 16 + 50);
+
+	m_mainWindow->draw(quit);
+
+    sf::Text title("Headquarter", font, 25);
+    title.setPosition(m_mapEngine->getWidth() * 16 / 2 - title.getGlobalBounds().width / 2, 2);
+
+    sf::RectangleShape titleRect(sf::Vector2f(200, 40));
+	titleRect.setFillColor(sf::Color(sf::Uint8(100), sf::Uint8(100), sf::Uint8(100), sf::Uint8(255)));
+	titleRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 100, 0);
+    m_mainWindow->draw(titleRect);
+    m_mainWindow->draw(title);
+
+    sf::Text info("This  is  your  headquarter", font, 16);
+    info.setPosition(5, 50);
+    info.setColor(sf::Color(0, 0, 0, 255));
+    m_mainWindow->draw(info);
+}
+
+void GxENGINE::displayCityInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept
+{
+    sf::RectangleShape back(sf::Vector2f(m_mapEngine->getWidth() * 16, m_mapEngine->getHeight() * 16));
+	back.setFillColor(sf::Color(sf::Uint8(225), sf::Uint8(225), sf::Uint8(225), sf::Uint8(200)));
+	back.setPosition(0, 0);
+    m_mainWindow->draw(back);
+
+    sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
+	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
+	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
+	m_mainWindow->draw(downBar);
+
+	sf::Font font;
+	if (!font.loadFromFile("./res/font.ttf"))
+	{
+		cerr << "Can't load display font!" << endl;
+	}	
+
+	displayBar(font, p_player);
+    sf::Text quit("Press  escape  to  quit" , font, 15);
+    quit.setPosition(140, m_mapEngine->getHeight() * 16 + 50);
+
+	m_mainWindow->draw(quit);
+
+    sf::Text title("City", font, 25);
+    title.setPosition(m_mapEngine->getWidth() * 16 / 2 - title.getGlobalBounds().width / 2, 2);
+
+    sf::RectangleShape titleRect(sf::Vector2f(200, 40));
+	titleRect.setFillColor(sf::Color(sf::Uint8(100), sf::Uint8(100), sf::Uint8(100), sf::Uint8(255)));
+	titleRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 100, 0);
+    m_mainWindow->draw(titleRect);
+    m_mainWindow->draw(title);
+
+    sf::Text info("This  is  your  city", font, 16);
+    info.setPosition(5, 50);
+    info.setColor(sf::Color(0, 0, 0, 255));
+    m_mainWindow->draw(info);
+}
+
+void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept
+{
+    sf::RectangleShape back(sf::Vector2f(m_mapEngine->getWidth() * 16, m_mapEngine->getHeight() * 16));
+	back.setFillColor(sf::Color(sf::Uint8(225), sf::Uint8(225), sf::Uint8(225), sf::Uint8(200)));
+	back.setPosition(0, 0);
+    m_mainWindow->draw(back);
+
+    sf::Font font;
+	if (!font.loadFromFile("./res/font.ttf"))
+	{
+		cerr << "Can't load display font!" << endl;
+	}
+
+    displayBar(font, p_player);
+    sf::Text quit("Press  escape  to  quit" , font, 15);
+    quit.setPosition(140, m_mapEngine->getHeight() * 16 + 50);
+
+	m_mainWindow->draw(quit);
+
+    sf::Text title("Base", font, 25);
+    title.setPosition(m_mapEngine->getWidth() * 16 / 2 - title.getGlobalBounds().width / 2, 2);
+
+    sf::RectangleShape titleRect(sf::Vector2f(200, 40));
+	titleRect.setFillColor(sf::Color(sf::Uint8(100), sf::Uint8(100), sf::Uint8(100), sf::Uint8(255)));
+	titleRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 100, 0);
+    m_mainWindow->draw(titleRect);
+    m_mainWindow->draw(title);
+
+    sf::Text info("This  is  your  base", font, 16);
+    info.setPosition(5, 50);
+    info.setColor(sf::Color(0, 0, 0, 255));
+    m_mainWindow->draw(info);
+}
 
 
+string GxENGINE::getName(TerrainType terrain) noexcept
+{
+	switch(terrain)
+    {
+        case 0:
+            return "Plain";
+        case 1:
+            return "Mountain";
+        case 2:
+            return "Woods";
+        case 3:
+            return "Roads";
+        case 4:
+            return "Bridges";
+        case 5:
+            return "City";
+        case 6:
+            return "Headquarter";
+        case 7:
+            return "Base";
+        case 8:
+            return "Other";
+    }
+}
+
+void GxENGINE::displayBar(sf::Font font, Player *p_player)
+{
+    sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
+	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
+	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
+	m_mainWindow->draw(downBar);
+
+	sf::Text playerName("General " + p_player->getPlayerName(), font, 20);
+	sf::Text playerMoney("Resources : " + std::to_string(p_player->getMoney()) + "$", font, 16);
+
+	playerName.setPosition(5, m_mapEngine->getHeight() * 16 + 5);
+	playerMoney.setPosition(5, m_mapEngine->getHeight() * 16 + 30);
+	m_mainWindow->draw(playerName);
+	m_mainWindow->draw(playerMoney);
+}

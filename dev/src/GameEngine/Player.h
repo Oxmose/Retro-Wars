@@ -2,6 +2,7 @@
 #define DEF_PLAYER_H
 
 #include <vector>
+#include <string>
 #include "../Misc/Misc.h"
 
 namespace nsGameEngine
@@ -17,6 +18,8 @@ namespace nsGameEngine
 
 			void setCoord(int p_x, int p_y);
 			std::pair<int,int> getCoord();
+			std::string getPlayerName();
+			PLAYER_TYPE getType();
 			
 		private:
 
