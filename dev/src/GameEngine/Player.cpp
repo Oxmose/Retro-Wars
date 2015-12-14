@@ -29,6 +29,11 @@ std::pair<int,int> GENGINE_PLAYER::getCoord()
 	return std::make_pair(m_x,m_y);
 }
 
+PLAYER_TYPE GENGINE_PLAYER::getType()
+{
+	return m_playerType;
+}
+
 std::string GENGINE_PLAYER::getPlayerName()
 {
 	switch(m_playerType)

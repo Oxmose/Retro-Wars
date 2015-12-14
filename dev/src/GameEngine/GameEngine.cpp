@@ -31,7 +31,9 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 	m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
 
     m_player = new Player(p_playerType);
-    m_world = new World();
+
+    m_world = new World(p_playerType);
+
 
     loadWorld();
     for (int i = 0; i < m_mapEngine->getWidth(); ++i)
@@ -137,6 +139,55 @@ Terrain GENGINE::gidToTerrain(int gid, int p_x, int p_y)
     }
 }
 
+Unit GENGINE::gidToUnit(int gid, int p_x, int p_y)
+{
+
+    switch(gid)
+    {
+        case 229+0:
+            return Unit(INFANTRY,p_x,p_y,RED,229);
+        case 229+1:
+            return Unit(MDTANK,p_x,p_y,RED,229+1);
+        case 229+2:
+            return Unit(RECON,p_x,p_y,RED,229+2);
+        case 229+3:
+            return Unit(ARTILLERY,p_x,p_y,RED,229+3);
+        case 229+9:
+            return Unit(NEOTANK,p_x,p_y,RED,229+9);
+        case 229+10:
+            return Unit(MEGATANK,p_x,p_y,RED,229+10);
+        case 229+13:
+            return Unit(MECH,p_x,p_y,RED,229+13);
+        case 229+14:
+            return Unit(TANK,p_x,p_y,RED,229+14);
+        case 229+16:
+            return Unit(ROCKET,p_x,p_y,RED,229+16);
+
+
+        case 255:
+            return Unit(INFANTRY,p_x,p_y,BLUE,255);
+        case 256:
+            return Unit(MDTANK,p_x,p_y,BLUE,256);
+        case 257:
+            return Unit(RECON,p_x,p_y,BLUE,257);
+        case 258:
+            return Unit(ARTILLERY,p_x,p_y,BLUE,258);
+        case 264:
+            return Unit(NEOTANK,p_x,p_y,BLUE,264);
+        case 265:
+            return Unit(MEGATANK,p_x,p_y,BLUE,265);
+        case 268:
+            return Unit(MECH,p_x,p_y,BLUE,268);
+        case 269:
+            return Unit(TANK,p_x,p_y,BLUE,269);
+        case 271:
+            return Unit(ROCKET,p_x,p_y,BLUE,271);
+
+        default:
+            return Unit(INFANTRY,-1,-1,NEUTRAL,0);
+    }
+}
+
 void GENGINE::loadWorld()
 {
     int x = 0, y = 0;
@@ -170,6 +221,18 @@ void GENGINE::loadWorld()
                 x = 0;
                 y += 1;
             }
+        }
+    }
+
+    x=0,y=0;
+    for(int gid: m_mapEngine->getLayerTiles(3))
+    {
+        m_world->addUnit(gidToUnit(gid,x,y));
+        x += 1;
+        if(x >= m_mapEngine->getWidth())
+        {
+            x = 0;
+            y += 1;
         }
     }
 
@@ -235,8 +298,11 @@ void GENGINE::frame()
         }
         m_graphicEngine->reload();
         m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
-        m_graphicEngine->drawMap();
-	    m_graphicEngine->refreshUserInterface(m_player, m_world);
+
+	    
+        m_graphicEngine->drawMap(m_world);
+        m_graphicEngine->drawUnits(m_world);
+        m_graphicEngine->refreshUserInterface(m_player, m_world);
         m_window->display();
 	
         sf::Time elapsed = clock.getElapsedTime();

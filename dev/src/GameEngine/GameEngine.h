@@ -64,6 +64,7 @@ namespace nsGameEngine
             void loadWorld();
 
             Terrain gidToTerrain(int p_gid, int p_x, int p_y);
+            Unit gidToUnit(int p_gid, int p_x, int p_y);
 
             /// @fn void frame();
             /// @brief The main loop.

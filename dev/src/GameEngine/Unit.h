@@ -1,6 +1,9 @@
 #ifndef DEF_UNIT_H
 #define DEF_UNIT_H
 
+#include <vector>
+#include "../Misc/Misc.h"
+
 namespace nsGameEngine
 {
 	enum UnitType
@@ -32,14 +35,17 @@ namespace nsGameEngine
 	{
 		public:
 			Unit();
-			Unit(UnitType p_type, int p_x, int p_y, int p_owner);
+			Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid);
 			~Unit();
 
+			int getGid();
+			std::pair<int,int> getCoord();
 		private:
 			UnitType m_type;
 			int m_x;
 			int m_y;
-			int m_owner;
+			PLAYER_TYPE m_owner;
+			int m_gid;
 
 			int m_hp;
 

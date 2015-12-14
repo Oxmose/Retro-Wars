@@ -6,12 +6,12 @@ GENGINE_UN::Unit()
 {
 }
 
-GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, int p_owner)
+GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid)
 {
 	m_type = p_type;
 	m_x = p_x;
 	m_y = p_y;
-
+	m_gid = p_gid;
 	m_hp = 10;
 
 	m_owner = p_owner;
@@ -114,6 +114,16 @@ GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, int p_owner)
 		m_mvtType = TIRES;
 		m_cost = 15000;
 	}
+}
+
+int GENGINE_UN::getGid()
+{
+	return m_gid;
+}
+
+std::pair<int,int> GENGINE_UN::getCoord()
+{
+	return std::make_pair(m_x,m_y);
 }
 
 GENGINE_UN::~Unit()

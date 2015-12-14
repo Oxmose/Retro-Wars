@@ -24,11 +24,16 @@ namespace nsGraphicEngine
             void reload() noexcept;
 
             void loadMap() noexcept;
-            void drawMap() noexcept;
-			void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world) noexcept;
+
+            void drawMap(nsGameEngine::World* p_world) noexcept;
+            void drawUnits(nsGameEngine::World* p_world) noexcept;
+	        void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world) noexcept;
+
             void checkProperties(nsGameEngine::World* p_world);
 
         private:
+
+            std::string getName(nsGameEngine::TerrainType terrain) noexcept;
 
             sf::RenderWindow* m_mainWindow; 
             nsMapEngine::MapEngine* m_mapEngine; 
@@ -39,6 +44,7 @@ namespace nsGraphicEngine
 
             sf::IntRect terrain_gidToRect(int p_gid) noexcept;
             sf::IntRect property_gidToRect(int p_gid) noexcept;
+            sf::IntRect unit_gidToRect(int p_gid) noexcept;
             sf::IntRect propertyToRect(nsGameEngine::Terrain p_property);
 
             std::vector<sf::Sprite> m_map[4];   

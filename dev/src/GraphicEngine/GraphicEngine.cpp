@@ -37,6 +37,11 @@ sf::IntRect GxENGINE::terrain_gidToRect(int p_gid) noexcept
 	return sf::IntRect(((p_gid-1)%18)*16,((p_gid-1)/18)*16,16,16);
 }
 
+sf::IntRect GxENGINE::unit_gidToRect(int p_gid) noexcept
+{
+	return sf::IntRect(((p_gid-229)%13)*16,((p_gid-229)/13)*16,16,16);
+}
+
 sf::IntRect GxENGINE::propertyToRect(Terrain p_property)
 {
 	int gid = 0;
@@ -141,7 +146,10 @@ void GxENGINE::loadMap() noexcept
 	m_tileset_property.loadFromImage(image_tileset_property);
 	
 
-	m_tileset_unit.loadFromFile("maps/tilesets/unit.bmp");
+	sf::Image image_tileset_unit;
+	image_tileset_unit.loadFromFile("maps/tilesets/unit.bmp");
+	image_tileset_unit.createMaskFromColor(sf::Color(0,0,0));
+	m_tileset_unit.loadFromImage(image_tileset_unit);
 	
 	printf("%d %d\n", m_mapEngine->getWidth(), m_mapEngine->getHeight());
 	printf("%d %d\n", m_mapEngine->getLayerTiles(0).size(), 30*20);
@@ -182,11 +190,35 @@ void GxENGINE::reload() noexcept
     m_mainWindow->clear();
 }
 
-void GxENGINE::drawMap() noexcept
+void GxENGINE::drawMap(nsGameEngine::World* p_world) noexcept
 {
 	for(int iLayer = 0 ; iLayer < 3 ; iLayer++)
 		for(sf::Sprite spt : m_map[iLayer])
 			m_mainWindow->draw(spt);
+
+	for(int x = 0 ; x < m_mapEngine->getWidth() ; x++)
+		for(int y = 0 ; y < m_mapEngine->getHeight() ; y++)
+		{
+			if(!p_world->isVisible(x,y))
+			{
+				sf::RectangleShape rectangle(sf::Vector2f(16, 16));
+				rectangle.setPosition(sf::Vector2f(x*16,y*16));
+				rectangle.setFillColor(sf::Color(0,0,0,100));
+				m_mainWindow->draw(rectangle);
+			}
+		}
+}
+
+void GxENGINE::drawUnits(nsGameEngine::World* p_world) noexcept
+{
+	for(auto unit: p_world->getUnits())
+	{
+		sf::Sprite spt;
+		spt.setTexture(m_tileset_unit);
+		spt.setTextureRect(unit_gidToRect(unit.getGid()));
+		spt.setPosition(unit.getCoord().first*16,unit.getCoord().second*16);
+		m_mainWindow->draw(spt);
+	}
 }
 
 void GxENGINE::refreshUserInterface(Player *p_player, World *p_world) noexcept
@@ -204,7 +236,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world) noexcept
 
 	sf::Text playerName("General " + p_player->getPlayerName(), font, 20);
 	sf::Text playerMoney("Resources : " + std::to_string(p_player->getMoney()), font, 16);
-	p_player->setMoney(p_player->getMoney() - 1);
+
 	playerName.setPosition(5, m_mapEngine->getHeight() * 16 + 5);
 	playerMoney.setPosition(5, m_mapEngine->getHeight() * 16 + 25);
 	m_mainWindow->draw(playerName);
@@ -214,9 +246,43 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world) noexcept
 	cursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(255), sf::Uint8(150)));
 	cursor.setPosition(p_player->getCoord().first * 16, p_player->getCoord().second * 16);
 	m_mainWindow->draw(cursor);
-	cout << p_world->getTerrain(0, 0).getType() << endl;
+
 	Terrain ter = p_world->getTerrain(p_player->getCoord().first, p_player->getCoord().second);
-	sf::Text terrainName("Terrain : " + std::to_string(ter.getType()), font, 20);
-	terrainName.setPosition(60, m_mapEngine->getHeight() * 16 + 5);
+
+	sf::Text terrainName(getName(ter.getType()), font, 20);
+	terrainName.setPosition(140, m_mapEngine->getHeight() * 16 + 5);
+    sf::Text terrainOwner("Owner : " + getPlayerName(ter.getOwner()), font, 15);
+    terrainOwner.setPosition(140, m_mapEngine->getHeight() * 16 + 25);
+    sf::Text info("Press  enter  to  use  the  " + getName(ter.getType()) , font, 15);
+    info.setPosition(160, m_mapEngine->getHeight() * 16 + 50);
+
 	m_mainWindow->draw(terrainName);
+    m_mainWindow->draw(terrainOwner);
+    if (ter.getOwner() == p_player->getType())
+        m_mainWindow->draw(info);
+}
+
+string GxENGINE::getName(TerrainType terrain) noexcept
+{
+	switch(terrain)
+    {
+        case 0:
+            return "Plain";
+        case 1:
+            return "Mountain";
+        case 2:
+            return "Woods";
+        case 3:
+            return "Roads";
+        case 4:
+            return "Bridges";
+        case 5:
+            return "City";
+        case 6:
+            return "Headquarter";
+        case 7:
+            return "Base";
+        case 8:
+            return "Other";
+    }
 }

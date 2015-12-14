@@ -19,6 +19,7 @@ namespace nsGameEngine
 			void setCoord(int p_x, int p_y);
 			std::pair<int,int> getCoord();
 			std::string getPlayerName();
+			PLAYER_TYPE getType();
 			
 		private:
 
