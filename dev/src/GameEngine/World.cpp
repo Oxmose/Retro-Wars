@@ -114,9 +114,19 @@ Terrain& GENGINE_W::getTerrain(int p_x, int p_y)
 	return m_noneTerrain;
 }
 
+
 Terrain& GENGINE_W::getTerrain(std::pair<int,int> p_coord)
 {
 	return getTerrain(p_coord.first, p_coord.second);
+}
+
+Unit GENGINE_W::getUnit(int p_x, int p_y)
+{
+	bool found = false;
+	for(Unit unit : m_unit)
+		if(unit.getCoord().first == p_x && unit.getCoord().second == p_y)
+			return unit;
+	return m_noneUnit;	
 }
 
 bool GENGINE_W::isVisible(int p_x, int p_y)

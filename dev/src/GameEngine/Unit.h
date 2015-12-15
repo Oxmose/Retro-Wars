@@ -2,6 +2,7 @@
 #define DEF_UNIT_H
 
 #include <vector>
+#include <string>
 #include "../Misc/Misc.h"
 
 namespace nsGameEngine
@@ -42,6 +43,13 @@ namespace nsGameEngine
 			std::pair<int,int> getCoord();
 			PLAYER_TYPE getOwner();
 			int getVision();
+			int getHp();
+			std::string getName();
+			int getMvt();
+			int getAmmo();
+			int getFuel();
+			UnitType getType();
+			
 
 		private:
 			UnitType m_type;

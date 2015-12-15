@@ -226,11 +226,6 @@ void GxENGINE::drawUnits(nsGameEngine::World* p_world) noexcept
 
 void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_turn) noexcept
 {
-	sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
-	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
-	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
-	m_mainWindow->draw(downBar);
-
 	sf::Font font;
 	if (!font.loadFromFile("./res/font.ttf"))
 	{
@@ -244,77 +239,147 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
 	cursor.setPosition(p_player->getCoord().first * 16, p_player->getCoord().second * 16);
 	m_mainWindow->draw(cursor);
 
-	Terrain ter = p_world->getTerrain(p_player->getCoord().first, p_player->getCoord().second);
-
-	sf::Text terrainName(getName(ter.getType()), font, 20);
-	terrainName.setPosition(140, m_mapEngine->getHeight() * 16 + 5);
-    sf::Text terrainOwner("Owner : " + getPlayerName(ter.getOwner()), font, 15);
-    terrainOwner.setPosition(140, m_mapEngine->getHeight() * 16 + 30);
-    
-    sf::Text info("Health : " + to_string(ter.getHp()) + "\nDefense : " + to_string(ter.getDefense()), font, 15);
-    info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
-
-    if (ter.getType() != CITY)
+    // Get unit
+    Unit unit = p_world->getUnit(p_player->getCoord().first, p_player->getCoord().second);
+    if (unit.getOwner() != NEUTRAL)
     {
-        info.setString(info.getString() + "\nPress  enter  to  use  the  " + getName(ter.getType()));
-    }
+        sf::Text unitName(unit.getName(), font, 20);
+        unitName.setPosition(140, m_mapEngine->getHeight() * 16 + 5);
+        
 
-	m_mainWindow->draw(terrainName);
-    m_mainWindow->draw(terrainOwner);
-    if (ter.getOwner() == p_player->getType())
+        sf::Text unitOwner("Owner : " + getPlayerName(unit.getOwner()), font, 15);
+        unitOwner.setPosition(140, m_mapEngine->getHeight() * 16 + 30);
+        
+        sf::Text info("Health : " + to_string(unit.getHp()), font, 15);
+        info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
+
+        if (unit.getOwner() == p_player->getType())
+        {
+            sf::Text ammoInfo("Ammo : " + to_string(unit.getAmmo()), font, 15);
+            ammoInfo.setPosition(250, m_mapEngine->getHeight() * 16 + 30);
+            m_mainWindow->draw(ammoInfo);
+            
+            if (unit.getType() != INFANTRY)
+            {
+                sf::Text fuelInfo("Fuel : " + to_string(unit.getFuel()), font, 15);
+                fuelInfo.setPosition(250, m_mapEngine->getHeight() * 16 + 50);
+                m_mainWindow->draw(fuelInfo);
+            }
+            
+            sf::Text help("Press  enter  to  select", font, 15);
+            help.setPosition(330, m_mapEngine->getHeight() * 16 + 30);
+            m_mainWindow->draw(help);
+        }
+
+        m_mainWindow->draw(unitName);
+        m_mainWindow->draw(unitOwner);
         m_mainWindow->draw(info);
+    }
+    else
+    {
+	    Terrain ter = p_world->getTerrain(p_player->getCoord().first, p_player->getCoord().second);
+        TerrainType terType = ter.getType();
+	    sf::Text terrainName(getName(terType), font, 20);
+	    terrainName.setPosition(140, m_mapEngine->getHeight() * 16 + 5);
+        sf::Text terrainOwner("Owner : " + getPlayerName(ter.getOwner()), font, 15);
+        terrainOwner.setPosition(140, m_mapEngine->getHeight() * 16 + 30);
+        
+        sf::Text info("Health : " + to_string(ter.getHp()) + "\nDefense : " + to_string(ter.getDefense()), font, 15);
+        info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
+
+        if (terType == BASE)
+        {
+            info.setString(info.getString() + "\nPress  enter  to  use  the  " + getName(ter.getType()));
+        }
+
+	    m_mainWindow->draw(terrainName);
+        m_mainWindow->draw(terrainOwner);
+        if (ter.getOwner() == p_player->getType())
+            m_mainWindow->draw(info);
+    }
 
     // Turn info
-    sf::Text infoTurn("Your turn" , font, 20);
+    
     if (!p_turn)
     {
-        infoTurn.setString("Not your turn");
+        sf::Text infoTurn("Not your turn" , font, 15);
+        infoTurn.setPosition(m_mapEngine->getWidth() * 16 / 2 - infoTurn.getGlobalBounds().width / 2, 2);
+        sf::RectangleShape turnRect(sf::Vector2f(100, 30));
+	    turnRect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(33), sf::Uint8(33), sf::Uint8(100)));
+	    turnRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 50, 0);
+        m_mainWindow->draw(turnRect);
+        m_mainWindow->draw(infoTurn);
     }
-    infoTurn.setPosition(m_mapEngine->getWidth() * 16 / 2 - infoTurn.getGlobalBounds().width / 2, 2);
+    
 
-    sf::RectangleShape turnRect(sf::Vector2f(150, 30));
-	turnRect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(33), sf::Uint8(33), sf::Uint8(200)));
-	turnRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 75, 0);
-    m_mainWindow->draw(turnRect);
-    m_mainWindow->draw(infoTurn);
+    
 }
 
-void GxENGINE::displayHqInfo(Player *p_player, Terrain p_terrain) noexcept
+void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit)
 {
-    sf::RectangleShape back(sf::Vector2f(m_mapEngine->getWidth() * 16, m_mapEngine->getHeight() * 16));
-	back.setFillColor(sf::Color(sf::Uint8(225), sf::Uint8(225), sf::Uint8(225), sf::Uint8(200)));
-	back.setPosition(0, 0);
-    m_mainWindow->draw(back);
-
     sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
 	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
 	downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
 	m_mainWindow->draw(downBar);
 
-	sf::Font font;
+    sf::Font font;
 	if (!font.loadFromFile("./res/font.ttf"))
 	{
 		cerr << "Can't load display font!" << endl;
 	}	
 
-	displayBar(font, p_player);
-    sf::Text quit("Press  escape  to  quit" , font, 15);
-    quit.setPosition(140, m_mapEngine->getHeight() * 16 + 50);
+	sf::Text unitName("Selected : " + p_unit.getName(), font, 20);
+	unitName.setPosition(5, m_mapEngine->getHeight() * 16 + 5);	
+	m_mainWindow->draw(unitName);
 
-	m_mainWindow->draw(quit);
+	
+    
+    sf::RectangleShape cursor(sf::Vector2f(16, 16));
+	cursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(255), sf::Uint8(150)));
+	cursor.setPosition(p_player->getCoord().first * 16, p_player->getCoord().second * 16);
+	m_mainWindow->draw(cursor);
 
-    sf::Text title("Headquarter", font, 25);
-    title.setPosition(m_mapEngine->getWidth() * 16 / 2 - title.getGlobalBounds().width / 2, 2);
+    // Display possible movments
+    sf::RectangleShape possibleMov(sf::Vector2f(16, 16));
+    possibleMov.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(150), sf::Uint8(100)));
+    
+    possibleMov.setPosition((p_player->getCoord().first + 1) * 16, p_player->getCoord().second * 16);
+	m_mainWindow->draw(possibleMov);
 
-    sf::RectangleShape titleRect(sf::Vector2f(200, 40));
-	titleRect.setFillColor(sf::Color(sf::Uint8(100), sf::Uint8(100), sf::Uint8(100), sf::Uint8(255)));
-	titleRect.setPosition(m_mapEngine->getWidth() * 16 / 2 - 100, 0);
-    m_mainWindow->draw(titleRect);
-    m_mainWindow->draw(title);
+    possibleMov.setPosition((p_player->getCoord().first + 1) * 16, (p_player->getCoord().second + 1) * 16);
+	m_mainWindow->draw(possibleMov);
 
-    sf::Text info("This  is  your  headquarter", font, 16);
-    info.setPosition(5, 50);
-    info.setColor(sf::Color(0, 0, 0, 255));
+    possibleMov.setPosition(p_player->getCoord().first * 16, (p_player->getCoord().second + 1) * 16);
+	m_mainWindow->draw(possibleMov);
+    
+    possibleMov.setPosition((p_player->getCoord().first + 1) * 16, (p_player->getCoord().second - 1) * 16);
+	m_mainWindow->draw(possibleMov);
+
+    possibleMov.setPosition((p_player->getCoord().first - 1) * 16, p_player->getCoord().second * 16);
+	m_mainWindow->draw(possibleMov);
+
+    possibleMov.setPosition((p_player->getCoord().first - 1) * 16, (p_player->getCoord().second - 1) * 16);
+	m_mainWindow->draw(possibleMov);
+
+    possibleMov.setPosition(p_player->getCoord().first * 16, (p_player->getCoord().second - 1) * 16);
+	m_mainWindow->draw(possibleMov);
+    
+    possibleMov.setPosition((p_player->getCoord().first - 1) * 16, (p_player->getCoord().second + 1) * 16);
+	m_mainWindow->draw(possibleMov);
+    
+
+    sf::Text info("Health : " + to_string(p_unit.getHp()), font, 15);
+    info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
+    sf::Text ammoInfo("Ammo : " + to_string(p_unit.getAmmo()), font, 15);
+    ammoInfo.setPosition(250, m_mapEngine->getHeight() * 16 + 30);
+    m_mainWindow->draw(ammoInfo);
+    
+    if (p_unit.getType() != INFANTRY)
+    {
+        sf::Text fuelInfo("Fuel : " + to_string(p_unit.getFuel()), font, 15);
+        fuelInfo.setPosition(250, m_mapEngine->getHeight() * 16 + 50);
+        m_mainWindow->draw(fuelInfo);
+    }
     m_mainWindow->draw(info);
 }
 

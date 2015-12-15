@@ -4,6 +4,7 @@
 
 GENGINE_UN::Unit()
 {
+	m_owner = NEUTRAL;
 }
 
 GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid)
@@ -136,6 +137,51 @@ std::pair<int,int> GENGINE_UN::getCoord()
 	return std::make_pair(m_x,m_y);
 }
 
+int GENGINE_UN::getHp()
+{
+	return m_hp;
+}
+std::string GENGINE_UN::getName()
+{
+	switch(m_type)
+	{
+		case INFANTRY:
+			return "Infantry";
+		case MDTANK:
+			return "MdTank";
+		case RECON:
+			return "Recon";
+		case ARTILLERY:
+			return "Artillery";
+		case NEOTANK:
+			return "Neotank";
+		case MEGATANK:
+			return "Megatank";
+		case MECH:
+			return "Mech";
+		case TANK:
+			return "Tank";
+		case ROCKET:
+			return "Rocket";
+	}
+}
+int GENGINE_UN::getMvt()
+{
+	return m_mvt;
+}
+int GENGINE_UN::getAmmo()
+{
+	return m_ammo;
+}
+int GENGINE_UN::getFuel()
+{
+	return m_fuel;
+}
+
+nsGameEngine::UnitType GENGINE_UN::getType()
+{
+	return m_type;
+}
 GENGINE_UN::~Unit()
 {
 

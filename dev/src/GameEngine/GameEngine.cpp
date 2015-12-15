@@ -245,6 +245,8 @@ void GENGINE::frame()
     int view = 0;
 
     Terrain selectedTerrain;
+    Unit selectedUnit;
+    bool selectedUnitBool = false;
 
     unsigned int fps = 25;
     sf::Time framerate = sf::milliseconds(1000 / fps);
@@ -297,19 +299,30 @@ void GENGINE::frame()
                 }
                 else if (event.key.code == sf::Keyboard::Return && turn)
                 {
-                    Terrain ter = m_world->getTerrain(m_player->getCoord().first, m_player->getCoord().second);
-                    if (ter.getOwner() == m_player->getType())
+                    Unit unit = m_world->getUnit(m_player->getCoord().first, m_player->getCoord().second);
+                    
+                    if (unit.getOwner() != NEUTRAL)
                     {
-                        selectedTerrain = ter;
-                        switch(ter.getType())
+                        if (unit.getOwner() == m_player->getType())
                         {
-                            case 6:                                
-                                view = 1;
-                                break;
-                            case 7:
-                                view = 2;
-                                break;
-                            
+                            selectedUnitBool = true;
+                            selectedUnit = unit;
+                            view = 2;
+                        }
+                    }
+                    else
+                    {    
+                        Terrain ter = m_world->getTerrain(m_player->getCoord().first, m_player->getCoord().second);
+                        if (ter.getOwner() == m_player->getType())
+                        {
+                            selectedTerrain = ter;
+                            switch(ter.getType())
+                            {
+                                case 7:
+                                    view = 1;
+                                    break;
+                                
+                            }
                         }
                     }
                 }
@@ -319,6 +332,7 @@ void GENGINE::frame()
                     {
                         view = 0;
                     }
+                    selectedUnitBool = false;
                 }
             }
             if(event.type == sf::Event::Closed)
@@ -335,11 +349,13 @@ void GENGINE::frame()
         }
         else if (view == 1)
         {
-            m_graphicEngine->displayHqInfo(m_player, selectedTerrain);
+            m_graphicEngine->displayBaseInfo(m_player, selectedTerrain);
         }
         else if (view == 2)
         {
-            m_graphicEngine->displayBaseInfo(m_player, selectedTerrain);
+            m_graphicEngine->drawMap(m_world);
+            m_graphicEngine->drawUnits(m_world);
+            m_graphicEngine->displayUnitInfo(m_player, selectedUnit);
         }
         m_window->display();
 	
