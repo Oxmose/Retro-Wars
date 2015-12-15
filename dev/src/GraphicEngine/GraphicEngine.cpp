@@ -213,11 +213,14 @@ void GxENGINE::drawUnits(nsGameEngine::World* p_world) noexcept
 {
 	for(auto unit: p_world->getUnits())
 	{
-		sf::Sprite spt;
-		spt.setTexture(m_tileset_unit);
-		spt.setTextureRect(unit_gidToRect(unit.getGid()));
-		spt.setPosition(unit.getCoord().first*16,unit.getCoord().second*16);
-		m_mainWindow->draw(spt);
+		if(p_world->isVisible(unit.getCoord().first,unit.getCoord().second))
+		{
+			sf::Sprite spt;
+			spt.setTexture(m_tileset_unit);
+			spt.setTextureRect(unit_gidToRect(unit.getGid()));
+			spt.setPosition(unit.getCoord().first*16,unit.getCoord().second*16);
+			m_mainWindow->draw(spt);
+		}
 	}
 }
 

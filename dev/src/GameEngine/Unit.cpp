@@ -121,6 +121,16 @@ int GENGINE_UN::getGid()
 	return m_gid;
 }
 
+PLAYER_TYPE GENGINE_UN::getOwner()
+{
+	return m_owner;
+}
+			
+int GENGINE_UN::getVision()
+{
+	return m_vision;
+}
+
 std::pair<int,int> GENGINE_UN::getCoord()
 {
 	return std::make_pair(m_x,m_y);

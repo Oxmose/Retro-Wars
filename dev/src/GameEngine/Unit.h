@@ -40,6 +40,9 @@ namespace nsGameEngine
 
 			int getGid();
 			std::pair<int,int> getCoord();
+			PLAYER_TYPE getOwner();
+			int getVision();
+
 		private:
 			UnitType m_type;
 			int m_x;

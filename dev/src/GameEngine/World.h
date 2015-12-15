@@ -2,6 +2,7 @@
 #define DEF_WORLD_H
 
 #include <vector>
+#include <list>
 
 #include "Terrain.h"
 #include "Unit.h"
@@ -20,7 +21,7 @@ namespace nsGameEngine
 
 			void addUnit(Unit p_unit);
 
-			std::vector<Unit>& getUnits();
+			std::list<Unit>& getUnits();
 
 			bool isVisible(int p_x, int p_y);
 
@@ -28,7 +29,7 @@ namespace nsGameEngine
 
 			Terrain m_noneTerrain;
 			std::vector<Terrain> m_terrain;
-			std::vector<Unit> m_unit;
+			std::list<Unit> m_unit;
 
 			PLAYER_TYPE m_player;
 	};
