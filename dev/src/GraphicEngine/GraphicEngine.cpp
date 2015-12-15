@@ -321,7 +321,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     
 }
 
-void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p_mvtCursor)
+void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world)
 {
     sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
 	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
@@ -349,40 +349,41 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
     sf::RectangleShape possibleMov(sf::Vector2f(16, 16));
     possibleMov.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(150), sf::Uint8(100)));
     
-    possibleMov.setPosition((p_player->getCoord().first + 1) * 16, p_player->getCoord().second * 16);
-	m_mainWindow->draw(possibleMov);
+    vector<pair<int, int>> accessible = p_world->getAccessible(p_unit);
+    vector<pair<int, int>> enemies = p_world->getPortee(p_unit);
 
-    possibleMov.setPosition((p_player->getCoord().first + 1) * 16, (p_player->getCoord().second + 1) * 16);
-	m_mainWindow->draw(possibleMov);
-
-    possibleMov.setPosition(p_player->getCoord().first * 16, (p_player->getCoord().second + 1) * 16);
-	m_mainWindow->draw(possibleMov);
-    
-    possibleMov.setPosition((p_player->getCoord().first + 1) * 16, (p_player->getCoord().second - 1) * 16);
-	m_mainWindow->draw(possibleMov);
-
-    possibleMov.setPosition((p_player->getCoord().first - 1) * 16, p_player->getCoord().second * 16);
-	m_mainWindow->draw(possibleMov);
-
-    possibleMov.setPosition((p_player->getCoord().first - 1) * 16, (p_player->getCoord().second - 1) * 16);
-	m_mainWindow->draw(possibleMov);
-
-    possibleMov.setPosition(p_player->getCoord().first * 16, (p_player->getCoord().second - 1) * 16);
-	m_mainWindow->draw(possibleMov);
-    
-    possibleMov.setPosition((p_player->getCoord().first - 1) * 16, (p_player->getCoord().second + 1) * 16);
-	m_mainWindow->draw(possibleMov);
+    for (pair<int, int> Coord : accessible)
+    {
+        possibleMove.setPosition(Coord.first * 16, Coord.second * 16);
+        m_mainWindow->draw(possibleMove);
+    }
     
 
     // Movment cursor management
     sf::RectangleShape mvtCursor(sf::Vector2f(16, 16));
-	mvtCursor.setFillColor(sf::Color(sf::Uint8(50), sf::Uint8(150), sf::Uint8(255), sf::Uint8(150)));
-	mvtCursor.setPosition(p_mvtCursor.first * 16, p_mvtCursor.second * 16);
+
+    bool colored = false;
+    
+    for (pair<int, int> Coord : enemies)
+    {
+        if (p_mvtCursor.first = Coord.first && p_mvtCursor.second == Coord.second)
+        {
+            mvtCursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(50), sf::Uint8(50), sf::Uint8(150)));
+            colored = true;
+            break;
+        }
+    }
+    
+    if (!colored)
+	    mvtCursor.setFillColor(sf::Color(sf::Uint8(50), sf::Uint8(150), sf::Uint8(255), sf::Uint8(150)));
+	
+    mvtCursor.setPosition(p_mvtCursor.first * 16, p_mvtCursor.second * 16);
 	m_mainWindow->draw(mvtCursor);
 
     sf::Text info("Health : " + to_string(p_unit.getHp()), font, 15);
     info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
     string ammo;
+
     if (p_unit.getAmmo() == -1)
         ammo = "Infinite";
     else

@@ -397,7 +397,7 @@ void GENGINE::frame()
         {
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
-            m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor);
+            m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world);
         }
         m_window->display();
 	
