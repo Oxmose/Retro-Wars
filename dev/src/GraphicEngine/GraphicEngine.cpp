@@ -255,7 +255,13 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
 
         if (unit.getOwner() == p_player->getType())
         {
-            sf::Text ammoInfo("Ammo : " + to_string(unit.getAmmo()), font, 15);
+            string ammo;
+            if (unit.getAmmo() == -1)
+                ammo = "Infinite";
+            else
+                ammo = to_string(unit.getAmmo());
+
+            sf::Text ammoInfo("Ammo : " + ammo, font, 15);
             ammoInfo.setPosition(250, m_mapEngine->getHeight() * 16 + 30);
             m_mainWindow->draw(ammoInfo);
             
@@ -267,7 +273,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
             }
             
             sf::Text help("Press  enter  to  select", font, 15);
-            help.setPosition(330, m_mapEngine->getHeight() * 16 + 30);
+            help.setPosition(330, m_mapEngine->getHeight() * 16 + 50);
             m_mainWindow->draw(help);
         }
 
@@ -315,7 +321,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     
 }
 
-void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit)
+void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p_mvtCursor)
 {
     sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
 	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
@@ -368,9 +374,21 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit)
 	m_mainWindow->draw(possibleMov);
     
 
+    // Movment cursor management
+    sf::RectangleShape mvtCursor(sf::Vector2f(16, 16));
+	mvtCursor.setFillColor(sf::Color(sf::Uint8(50), sf::Uint8(150), sf::Uint8(255), sf::Uint8(150)));
+	mvtCursor.setPosition(p_mvtCursor.first * 16, p_mvtCursor.second * 16);
+	m_mainWindow->draw(mvtCursor);
+
     sf::Text info("Health : " + to_string(p_unit.getHp()), font, 15);
     info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
-    sf::Text ammoInfo("Ammo : " + to_string(p_unit.getAmmo()), font, 15);
+    string ammo;
+    if (p_unit.getAmmo() == -1)
+        ammo = "Infinite";
+    else
+        ammo = to_string(p_unit.getAmmo());
+
+    sf::Text ammoInfo("Ammo : " + ammo, font, 15);
     ammoInfo.setPosition(250, m_mapEngine->getHeight() * 16 + 30);
     m_mainWindow->draw(ammoInfo);
     

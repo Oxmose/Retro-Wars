@@ -250,6 +250,8 @@ void GENGINE::frame()
 
     unsigned int fps = 25;
     sf::Time framerate = sf::milliseconds(1000 / fps);
+    
+    pair<int, int> mvtCursor = make_pair(0, 0);
 
 	sf::Clock clock;
     while (m_window->isOpen())
@@ -263,39 +265,79 @@ void GENGINE::frame()
             {
                 if (event.key.code == sf::Keyboard::Up)
                 {
-                    int newY = m_player->getCoord().second - 1;
+                    if (selectedUnitBool)
+                    {
+                        mvtCursor.second--;
+                        if (mvtCursor.second < 0)
+                            mvtCursor.second = 0;
+                    }
+                    else
+                    {
+                        int newY = m_player->getCoord().second - 1;
 
-                    if (newY < 0)
-                        newY = 0;
-    
-                    m_player->setCoord(m_player->getCoord().first, newY);
+                        if (newY < 0)
+                            newY = 0;
+        
+                        m_player->setCoord(m_player->getCoord().first, newY);
+                        mvtCursor = m_player->getCoord();
+                    }
                 }
                 else if (event.key.code == sf::Keyboard::Down)
                 {
-                    int newY = m_player->getCoord().second + 1;
+                    if (selectedUnitBool)
+                    {
+                        mvtCursor.second++;
+                        if (mvtCursor.second > m_mapEngine->getHeight() - 1)
+                            mvtCursor.second = m_mapEngine->getHeight() - 1;
+                    }
+                    else
+                    {
+                        int newY = m_player->getCoord().second + 1;
 
-                    if (newY > m_mapEngine->getHeight() - 1)
-                        newY = m_mapEngine->getHeight() - 1;
-    
-                    m_player->setCoord(m_player->getCoord().first, newY);
+                        if (newY > m_mapEngine->getHeight() - 1)
+                            newY = m_mapEngine->getHeight() - 1;
+        
+                        m_player->setCoord(m_player->getCoord().first, newY);
+                        mvtCursor = m_player->getCoord();
+                    }
                 }
                 else if (event.key.code == sf::Keyboard::Left)
                 {
-                    int newX = m_player->getCoord().first - 1;
+                    if (selectedUnitBool)
+                    {
+                        mvtCursor.first--;
+                        if (mvtCursor.first < 0)
+                            mvtCursor.first = 0;
+                    }
+                    else
+                    {
+                        int newX = m_player->getCoord().first - 1;
 
-                    if (newX < 0)
-                        newX = 0;
-                   
-                    m_player->setCoord(newX, m_player->getCoord().second);
+                        if (newX < 0)
+                            newX = 0;
+                       
+                        m_player->setCoord(newX, m_player->getCoord().second);
+                        mvtCursor = m_player->getCoord();
+                    }
                 }
                 else if (event.key.code == sf::Keyboard::Right)
                 {
-                    int newX = m_player->getCoord().first + 1;
+                    if (selectedUnitBool)
+                    {
+                        mvtCursor.first++;
+                        if (mvtCursor.first > m_mapEngine->getWidth() - 1)
+                            mvtCursor.first = m_mapEngine->getWidth() - 1;
+                    }
+                    else
+                    {
+                        int newX = m_player->getCoord().first + 1;
 
-                    if (newX > m_mapEngine->getWidth() - 1)
-                        newX = m_mapEngine->getWidth() - 1;
-    
-                    m_player->setCoord(newX, m_player->getCoord().second);
+                        if (newX > m_mapEngine->getWidth() - 1)
+                            newX = m_mapEngine->getWidth() - 1;
+        
+                        m_player->setCoord(newX, m_player->getCoord().second);
+                        mvtCursor = m_player->getCoord();
+                    }
                 }
                 else if (event.key.code == sf::Keyboard::Return && turn)
                 {
@@ -355,7 +397,7 @@ void GENGINE::frame()
         {
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
-            m_graphicEngine->displayUnitInfo(m_player, selectedUnit);
+            m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor);
         }
         m_window->display();
 	
