@@ -87,6 +87,12 @@ GENGINE_TER::Terrain(TerrainType p_type, int p_x, int p_y, PLAYER_TYPE p_owner)
 
 }
 
+
+std::array<int,8> GENGINE_TER::getMvt()
+{
+	return m_mvt;
+}
+
 pair<int,int> GENGINE_TER::getCoord()
 {
 	return make_pair(m_x,m_y);

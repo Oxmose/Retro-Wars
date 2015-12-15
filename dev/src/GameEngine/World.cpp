@@ -87,7 +87,6 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 
 }
 
-
 void GENGINE_W::addTerrain(Terrain p_terrain)
 {
 	m_terrain.push_back(p_terrain);
@@ -138,6 +137,51 @@ bool GENGINE_W::isVisible(std::pair<int,int> p_coord)
 {
 	return isVisible(p_coord.first, p_coord.second);
 }
+
+std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
+{
+	/*std::vector<std::pair<int,int>> toReturn;
+	
+	std::queue<std::pair<int,int>> toVisit;
+	toVisit.push(p_unit.getCoord());
+	
+	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
+	bool vu[m_height][m_width];
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
+			vu[i][j] = false;
+
+	while(!toVisit.empty())
+	{
+		auto coord = toVisit.front();
+		toVisit.pop();
+		vu[coord.second][coord.first] = true;
+
+		if(man(coord,p_unit.getCoord()) <= p_unit.getVision()+bonus)
+		{
+			for(int iDir = 0 ; iDir < 4 ; iDir++)
+			{
+				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
+				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
+					if(!vu[voisin.second][voisin.first])
+						toVisit.push(voisin);
+			}
+		}
+
+	}*/
+
+	std::vector<std::pair<int,int>> toReturn;
+	toReturn.push_back(std::make_pair(0,0));
+	return toReturn;
+}
+
+std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
+{
+	std::vector<std::pair<int,int>> toReturn;
+	toReturn.push_back(std::make_pair(0,0));
+	return toReturn;
+}
+
 
 GENGINE_W::~World()
 {

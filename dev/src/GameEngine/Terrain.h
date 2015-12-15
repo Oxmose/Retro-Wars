@@ -41,6 +41,8 @@ namespace nsGameEngine
 			PLAYER_TYPE getOwner();
 			void setOwner(PLAYER_TYPE p_owner);
 
+			std::array<int,8> getMvt();
+
 			bool isNoneTerrain();
 			int getHp();
 			int getDefense();
