@@ -43,6 +43,9 @@ int GENGINE_W::man(std::pair<int,int> a, std::pair<int,int> b)
 //p_reinit permet de supprimer les cases vu, utilise lors des deplacements
 void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 {
+	if(p_unit.getOwner() != m_player)
+		return;
+
 	std::queue<std::pair<int,int>> toVisit;
 	toVisit.push(p_unit.getCoord());
 	
