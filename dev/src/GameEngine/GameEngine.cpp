@@ -32,7 +32,7 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 
     m_player = new Player(p_playerType);
 
-    m_world = new World(p_playerType);
+    m_world = new World(p_playerType, m_mapEngine->getWidth(), m_mapEngine->getHeight());
 
 
     loadWorld();
@@ -191,10 +191,11 @@ Unit GENGINE::gidToUnit(int gid, int p_x, int p_y)
 void GENGINE::loadWorld()
 {
     int x = 0, y = 0;
+    
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
         if(gid != 0)
-            m_world->addTerrain(gidToTerrain(gid,x,y));      
+            m_world->addTerrain(gidToTerrain(gid,x,y));
         x += 1;
         if(x >= m_mapEngine->getWidth())
         {
@@ -223,7 +224,8 @@ void GENGINE::loadWorld()
     x=0,y=0;
     for(int gid: m_mapEngine->getLayerTiles(4))
     {
-        m_world->addUnit(gidToUnit(gid,x,y));
+        if(gid != 0)
+            m_world->addUnit(gidToUnit(gid,x,y));
         x += 1;
         if(x >= m_mapEngine->getWidth())
         {

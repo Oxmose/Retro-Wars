@@ -4,20 +4,97 @@
 
 using namespace nsGameEngine;
 
-GENGINE_W::World(PLAYER_TYPE p_player)
+GENGINE_W::World(PLAYER_TYPE p_player, int p_width, int p_height)
 {
 	m_noneTerrain = Terrain(OTHER,-1,-1);
 	m_player = p_player;
+
+	m_width = p_width;
+	m_height = p_height;
+
+	for(int y = 0 ; y < m_height ; y++)
+		for(int x =  0 ; x < m_width ; x++)
+			m_visible.push_back(0);
 }
+
+int GENGINE_W::getI(int p_x, int p_y)
+{
+	return p_y*m_width+p_x%m_width;
+}
+
+int GENGINE_W::getI(std::pair<int,int> p_coord)
+{
+	return getI(p_coord.first, p_coord.second);
+}
+
+void GENGINE_W::refreshVisibleMyProperty(Terrain p_terrain)
+{
+	
+	if(p_terrain.isProperty() && p_terrain.getOwner() == m_player)
+		m_visible[getI(p_terrain.getCoord())] = 1;
+
+}
+
+int GENGINE_W::man(std::pair<int,int> a, std::pair<int,int> b)
+{
+	return abs(a.first-b.first)+abs(a.second-b.second);
+}
+
+//p_reinit permet de supprimer les cases vu, utilise lors des deplacements
+void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
+{
+	std::queue<std::pair<int,int>> toVisit;
+	toVisit.push(p_unit.getCoord());
+	
+	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
+	bool vu[m_height][m_width];
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
+			vu[i][j] = false;
+
+	int bonus = 0;
+	if(getTerrain(p_unit.getCoord().first, p_unit.getCoord().second).getType() == MOUNTAIN)
+		bonus = 2;
+	if(getTerrain(p_unit.getCoord().first, p_unit.getCoord().second).getType() == WOODS)
+		bonus = -1;
+
+	while(!toVisit.empty())
+	{
+
+		auto coord = toVisit.front();
+		vu[coord.second][coord.first] = true;
+		toVisit.pop();
+		
+		if(man(coord,p_unit.getCoord()) <= p_unit.getVision()+bonus)
+		{
+
+			bool unitVoit = 
+				(getTerrain(coord).getType() == WOODS) ? (man(coord,p_unit.getCoord()) <= 1) : true;
+			if(unitVoit)
+				m_visible[getI(coord)] += p_reinit;
+			for(int iDir = 0 ; iDir < 4 ; iDir++)
+			{
+				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
+				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
+					if(!vu[voisin.second][voisin.first])
+						toVisit.push(voisin);
+			}
+		}
+	}
+
+}
+
 
 void GENGINE_W::addTerrain(Terrain p_terrain)
 {
 	m_terrain.push_back(p_terrain);
+	refreshVisibleMyProperty(p_terrain);
 }
 
 void GENGINE_W::addUnit(Unit p_unit)
 {
 	m_unit.push_back(p_unit);
+	refreshVisibleUnit(p_unit);
 }
 
 std::list<Unit>& GENGINE_W::getUnits()
@@ -34,34 +111,19 @@ Terrain& GENGINE_W::getTerrain(int p_x, int p_y)
 	return m_noneTerrain;
 }
 
+Terrain& GENGINE_W::getTerrain(std::pair<int,int> p_coord)
+{
+	return getTerrain(p_coord.first, p_coord.second);
+}
+
 bool GENGINE_W::isVisible(int p_x, int p_y)
 {
-	if(getTerrain(p_x,p_y).isProperty() && getTerrain(p_x,p_y).getOwner() == m_player)
-		return true;
+	return m_visible[getI(p_x,p_y)] != 0;
+}
 
-	bool woods = false;
-
-	for(auto unit: m_unit)
-		if(unit.getOwner() == m_player)
-		{
-			int bonus = 0;
-			if(getTerrain(unit.getCoord().first, unit.getCoord().second).getType() == WOODS)
-				bonus -= 1;
-			if(getTerrain(unit.getCoord().first, unit.getCoord().second).getType() == MOUNTAIN)
-				bonus += 2;
-
-			if(abs(unit.getCoord().first-p_x)+abs(unit.getCoord().second-p_y) <= unit.getVision()+bonus &&
-				getTerrain(p_x,p_y).getType() != WOODS)
-				return true;
-			woods = woods || abs(unit.getCoord().first-p_x)+abs(unit.getCoord().second-p_y) <= 1;
-		}
-
-	if(getTerrain(p_x,p_y).getType() == WOODS)
-		return woods;
-
-
-	return false;
-
+bool GENGINE_W::isVisible(std::pair<int,int> p_coord)
+{
+	return isVisible(p_coord.first, p_coord.second);
 }
 
 GENGINE_W::~World()
