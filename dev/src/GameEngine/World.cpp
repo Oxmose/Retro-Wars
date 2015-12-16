@@ -171,6 +171,7 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 
 	}
 
+	printf("COUCOU %d\n", toReturn.size());
 	
 	return toReturn;
 }
