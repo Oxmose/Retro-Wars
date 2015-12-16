@@ -140,10 +140,10 @@ bool GENGINE_W::isVisible(std::pair<int,int> p_coord)
 
 std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 {
-	/*std::vector<std::pair<int,int>> toReturn;
+	std::vector<std::pair<int,int>> toReturn;
 	
-	std::queue<std::pair<int,int>> toVisit;
-	toVisit.push(p_unit.getCoord());
+	std::queue<std::pair<int,std::pair<int,int>>> toVisit;
+	toVisit.push(make_pair(p_unit.getMvt(),p_unit.getCoord()));
 	
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
 	bool vu[m_height][m_width];
@@ -153,25 +153,25 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 
 	while(!toVisit.empty())
 	{
-		auto coord = toVisit.front();
+		int mp = toVisit.front().first;
+		auto coord = toVisit.front().second;
 		toVisit.pop();
 		vu[coord.second][coord.first] = true;
-
-		if(man(coord,p_unit.getCoord()) <= p_unit.getVision()+bonus)
+		toReturn.push_back(coord);
+		if(mp > 0)
 		{
 			for(int iDir = 0 ; iDir < 4 ; iDir++)
 			{
 				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
 				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
-					if(!vu[voisin.second][voisin.first])
-						toVisit.push(voisin);
+					if(!vu[voisin.second][voisin.first] && getTerrain(voisin).getMvt()[p_unit.getMvtType()] != 0)
+						toVisit.push(make_pair(mp-getTerrain(voisin).getMvt()[p_unit.getMvtType()],voisin));
 			}
 		}
 
-	}*/
+	}
 
-	std::vector<std::pair<int,int>> toReturn;
-	toReturn.push_back(std::make_pair(0,0));
+	
 	return toReturn;
 }
 

@@ -122,6 +122,11 @@ int GENGINE_UN::getGid()
 	return m_gid;
 }
 
+nsGameEngine::MvtType GENGINE_UN::getMvtType()
+{
+	return m_mvtType;
+}
+
 PLAYER_TYPE GENGINE_UN::getOwner()
 {
 	return m_owner;
