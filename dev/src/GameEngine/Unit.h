@@ -48,8 +48,11 @@ namespace nsGameEngine
 			int getMvt();
 			int getAmmo();
 			int getFuel();
+			int getRange();
 			MvtType getMvtType();
 			UnitType getType();
+
+			bool isNoneUnit();
 			
 
 		private:
@@ -68,6 +71,8 @@ namespace nsGameEngine
 			int m_range;
 			MvtType m_mvtType;
 			int m_cost;
+
+
 	};
 
 }

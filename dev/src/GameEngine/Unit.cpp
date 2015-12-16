@@ -178,9 +178,19 @@ int GENGINE_UN::getAmmo()
 {
 	return m_ammo;
 }
+
+int GENGINE_UN::getRange()
+{
+	return m_range;
+}
 int GENGINE_UN::getFuel()
 {
 	return m_fuel;
+}
+
+bool GENGINE_UN::isNoneUnit()
+{
+	return m_type == INFANTRY && m_x == -1 && m_y == -1 && m_owner == NEUTRAL && m_gid == 0;
 }
 
 nsGameEngine::UnitType GENGINE_UN::getType()

@@ -7,6 +7,7 @@ using namespace nsGameEngine;
 GENGINE_W::World(PLAYER_TYPE p_player, int p_width, int p_height)
 {
 	m_noneTerrain = Terrain(OTHER,-1,-1);
+	m_noneUnit = Unit(INFANTRY,-1,-1,NEUTRAL,0);
 	m_player = p_player;
 
 	m_width = p_width;
@@ -49,11 +50,14 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 	std::queue<std::pair<int,int>> toVisit;
 	toVisit.push(p_unit.getCoord());
 	
+
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
 	bool vu[m_height][m_width];
 	for(int i = 0 ; i < m_height ; i++)
 		for(int j = 0 ; j < m_width ; j++)
 			vu[i][j] = false;
+
+	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
 
 	int bonus = 0;
 	if(getTerrain(p_unit.getCoord().first, p_unit.getCoord().second).getType() == MOUNTAIN)
@@ -65,7 +69,7 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 	{
 
 		auto coord = toVisit.front();
-		vu[coord.second][coord.first] = true;
+		
 		toVisit.pop();
 		
 		if(man(coord,p_unit.getCoord()) <= p_unit.getVision()+bonus)
@@ -80,7 +84,10 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
 				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
 					if(!vu[voisin.second][voisin.first])
+					{
+						vu[voisin.second][voisin.first] = true;
 						toVisit.push(voisin);
+					}
 			}
 		}
 	}
@@ -128,6 +135,11 @@ Unit GENGINE_W::getUnit(int p_x, int p_y)
 	return m_noneUnit;	
 }
 
+Unit GENGINE_W::getUnit(std::pair<int,int> p_coord)
+{
+	return getUnit(p_coord.first, p_coord.second);	
+}
+
 bool GENGINE_W::isVisible(int p_x, int p_y)
 {
 	return m_visible[getI(p_x,p_y)] != 0;
@@ -145,19 +157,24 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 	std::queue<std::pair<int,std::pair<int,int>>> toVisit;
 	toVisit.push(make_pair(p_unit.getMvt(),p_unit.getCoord()));
 	
+
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
 	bool vu[m_height][m_width];
 	for(int i = 0 ; i < m_height ; i++)
 		for(int j = 0 ; j < m_width ; j++)
 			vu[i][j] = false;
 
+	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
+
 	while(!toVisit.empty())
 	{
 		int mp = toVisit.front().first;
 		auto coord = toVisit.front().second;
 		toVisit.pop();
-		vu[coord.second][coord.first] = true;
-		toReturn.push_back(coord);
+		
+		if(coord.first != p_unit.getCoord().first || coord.second != p_unit.getCoord().second)
+			toReturn.push_back(coord);
+		
 		if(mp > 0)
 		{
 			for(int iDir = 0 ; iDir < 4 ; iDir++)
@@ -165,13 +182,14 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
 				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
 					if(!vu[voisin.second][voisin.first] && getTerrain(voisin).getMvt()[p_unit.getMvtType()] != 0)
+					{
+						vu[voisin.second][voisin.first] = true;
 						toVisit.push(make_pair(mp-getTerrain(voisin).getMvt()[p_unit.getMvtType()],voisin));
+					}
 			}
 		}
 
 	}
-
-	printf("COUCOU %d\n", toReturn.size());
 	
 	return toReturn;
 }
@@ -179,7 +197,43 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 {
 	std::vector<std::pair<int,int>> toReturn;
-	toReturn.push_back(std::make_pair(0,0));
+	
+	/*std::queue<std::pair<int,int>> toVisit;
+	toVisit.push(p_unit.getCoord());
+
+	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
+	bool vu[m_height][m_width];
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
+			vu[i][j] = false;
+
+	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
+
+
+	while(!toVisit.empty())
+	{
+
+		auto coord = toVisit.front();
+		
+		toVisit.pop();
+		
+		if(man(coord,p_unit.getCoord()) <= p_unit.getRange())
+		{
+			toReturn.push_back(coord);
+			for(int iDir = 0 ; iDir < 4 ; iDir++)
+			{
+				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
+				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
+					if(!vu[voisin.second][voisin.first] && !getUnit(voisin).isNoneUnit() && getUnit(voisin).getOwner() != m_player)
+					{
+						vu[voisin.second][voisin.first] = true;
+						toVisit.push(voisin);
+					}
+			}
+		}
+	}
+*/
+
 	return toReturn;
 }
 
