@@ -383,12 +383,12 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
     // Display enemies that can be reached
     if (p_displayPorte)
     {
-        sf::RectangleShape enemies(sf::Vector2f(16, 16);
-        enemies.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(50), sf::Uint8(50), sf::Uint8(150)));
+        sf::RectangleShape s_enemies(sf::Vector2f(16, 16));
+        s_enemies.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(50), sf::Uint8(50), sf::Uint8(150)));
         for (pair<int, int> Coord : enemies)
         {
-            enemies.setPosition(Coord.first * 16, Coord.second * 16);
-            m_mainWindow->draw(enemies);
+            s_enemies.setPosition(Coord.first * 16, Coord.second * 16);
+            m_mainWindow->draw(s_enemies);
         }
     }
 
