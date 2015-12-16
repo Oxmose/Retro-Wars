@@ -172,7 +172,7 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 		auto coord = toVisit.front().second;
 		toVisit.pop();
 		
-		if(coord.first != p_unit.getCoord().first || coord.second != p_unit.getCoord().second)
+		if(getUnit(coord).isNoneUnit() && (coord.first != p_unit.getCoord().first || coord.second != p_unit.getCoord().second))
 			toReturn.push_back(coord);
 		
 		if(mp > 0)
