@@ -258,18 +258,33 @@ void GENGINE::frame()
     pair<int, int> mvtCursor = make_pair(0, 0);
     vector<int> movedUnits;
 
+    // Timer for 5s
+    int messageTimer = fps * 5;
+    bool displayMessage = false;
+    string message;
+
 	sf::Clock clock;
     while (m_window->isOpen())
     {	
+        if(displayMessage)
+        {
+            --messageTimer;
+            if(messageTimer == 0)
+            {
+                messageTimer = fps * 5;
+                displayMessage = false;
+            }
+        }
+        // Reset vars
+        if (!turn)
+        {
+            movedUnits.clear();
+        }
        
         sf::Event event;
         while(m_window->pollEvent(event))
         {
-            // Reset vars
-            if (!turn)
-            {
-                movedUnits.clear();
-            }
+           
 
             // Key event
             if(event.type == sf::Event::KeyPressed)
@@ -366,8 +381,9 @@ void GENGINE::frame()
                             }
                             if(moved)
                             {
-                                // TODO DISPLAY ERROR
-                                cerr << "Already moved this turn" << endl;
+                                displayMessage = true;
+                                messageTimer = fps * 5;
+                                message = "Unit already moved this unit this turn!";
                             }
                             else
                             {
@@ -416,9 +432,9 @@ void GENGINE::frame()
                                     }
                                     else
                                     {
-                                        // User selected a wrong coordinate
-                                        // TODO DIPSLAY                                    
-                                        cout << "Can't move here !" << endl;
+                                        displayMessage = true;
+                                        messageTimer = fps * 5;
+                                        message = "You cannot move here!";
                                     }
                                 }
                             }
@@ -440,8 +456,9 @@ void GENGINE::frame()
                                 } 
                                 if(moved)
                                 {
-                                    // TODO DISPLAY 
-                                    cout << "Can't use unit" << endl;
+                                    displayMessage = true;
+                                    messageTimer = fps * 5;
+                                    message = "Unit already moved this unit this turn!";
                                 }
                                 else
                                 {
@@ -470,6 +487,9 @@ void GENGINE::frame()
                 }
                 else if (event.key.code == sf::Keyboard::Escape)
                 {
+                    displayMessage = false;
+                    messageTimer = fps * 5;
+
                     if (view != 0)
                     {
                         view = 0;
@@ -507,6 +527,9 @@ void GENGINE::frame()
             m_graphicEngine->drawUnits(m_world);
             m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world, displayPorte);
         }
+        if(displayMessage)
+            m_graphicEngine->displayMessage(message);
+
         m_window->display();
 	
         sf::Time elapsed = clock.getElapsedTime();

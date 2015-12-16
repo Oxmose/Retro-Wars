@@ -42,6 +42,9 @@ namespace nsGraphicEngine
             void displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain);
             void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, std::pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
 
+            // Display message
+            void displayMessage(const std::string &p_message);
+
             void checkProperties(nsGameEngine::World* p_world);
 
         private:

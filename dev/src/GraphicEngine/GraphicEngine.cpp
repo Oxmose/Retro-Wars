@@ -517,3 +517,22 @@ void GxENGINE::displayBar(sf::Font font, Player *p_player)
     m_mainWindow->draw(playerName);
     m_mainWindow->draw(playerMoney);
 }
+
+void GxENGINE::displayMessage(const std::string &p_message)
+{
+    sf::Font font;
+    if (!font.loadFromFile("./res/font.ttf"))
+    {
+        cerr << "Can't load display font!" << endl;
+    }
+
+    sf::RectangleShape back(sf::Vector2f(300, 50));
+    back.setPosition(m_mapEngine->getWidth() * 8 - 150, m_mapEngine->getHeight() * 8 - 25);
+    back.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(225)));
+    m_mainWindow->draw(back);
+
+    sf::Text message(p_message, font, 16);
+    message.setPosition(m_mapEngine->getWidth() * 8 - message.getGlobalBounds().width / 2, m_mapEngine->getHeight() * 8 - message.getGlobalBounds().height / 2 - 5);
+
+    m_mainWindow->draw(message);
+} // displayMessage()
