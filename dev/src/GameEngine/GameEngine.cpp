@@ -384,7 +384,7 @@ void GENGINE::frame()
                                 }
                                 if(move)
                                 {
-                                    m_world->moveUnit(seletedUnit, mvt_Cursor);
+                                    m_world->moveUnit(selectedUnit, mvtCursor);
                                     movedUnits.push_back(selectedUnit.getId());
                                     selectedUnitBool = false;
                                     displayPorte = false;
@@ -405,7 +405,7 @@ void GENGINE::frame()
                                     }
                                     if(attack)
                                     {
-                                        m_world->combatUnit(seletedUnit, m_world->getUnit(mvt_Cursor));
+                                        m_world->combatUnit(selectedUnit, m_world->getUnit(mvtCursor));
                                         movedUnits.push_back(selectedUnit.getId());
                                         selectedUnitBool = false;
                                         displayPorte = false;

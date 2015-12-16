@@ -9,6 +9,8 @@ using namespace nsGameEngine;
 using namespace nsMapEngine;
 using namespace nsNetEngine;
 
+int Unit::m_lastId = 0;
+
 int main(int argc, char** argv)
 {
     try
