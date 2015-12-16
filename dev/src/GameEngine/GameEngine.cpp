@@ -342,29 +342,85 @@ void GENGINE::frame()
                 }
                 else if (event.key.code == sf::Keyboard::Return && turn)
                 {
-                    Unit unit = m_world->getUnit(m_player->getCoord().first, m_player->getCoord().second);
-                    
-                    if (unit.getOwner() != NEUTRAL)
+
+		            if(selectedUnitBool && view == 2)
                     {
-                        if (unit.getOwner() == m_player->getType())
+                        // Player wants to move the unit
+                        if(mvtCursor.first != m_player.getCord().first && mvtCursor.second != m_player->getCoord().second)
                         {
-                            selectedUnitBool = true;
-                            selectedUnit = unit;
-                            view = 2;
+                            vector<pair<int, int>> accessible = m_world->getAccessible(p_unit);
+                            // Check if user can move there
+                            bool move = false;
+                            for(pair<int, int> Coord : accessible)
+                            {
+                                if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.first)
+                                {
+                                    move = true;
+                                    break;
+                                }
+                            }
+                            if(move)
+                            {
+                                m_world->moveUnit(seletedUnit, mvt_Cursor);
+                                selectedUnitBool = false;
+                                displayPort = false;
+                                view = 0;
+                            }
+                            else
+                            {
+                                // Check if user wanted to attack a unit
+                                vector<pair<int, int>> enemies = m_world->getPortee(p_unit);
+                                bool attack = false;
+                                for(pair<int, int> Coord : enemies)
+                                {
+                                    if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
+                                    {
+                                        attack = true;
+                                        break;
+                                    }
+                                }
+                                if(attack)
+                                {
+                                    m_world->combatUnit(seletedUnit, m_world->getUnit(mvt_Cursor));
+                                    selectedUnitBool = false;
+                                    displayPort = false;
+                                    view = 0;
+                                }
+                                else
+                                {
+                                    // User selected a wrong coordinate
+                                    // TODO DIPSLAY                                    
+                                    cout << "Can't move here !" << endl;
+                                }
+                            }
                         }
                     }
                     else
-                    {    
-                        Terrain ter = m_world->getTerrain(m_player->getCoord().first, m_player->getCoord().second);
-                        if (ter.getOwner() == m_player->getType())
+                    {
+                        Unit unit = m_world->getUnit(m_player->getCoord().first, m_player->getCoord().second);
+                    
+                        if(unit.getOwner() != NEUTRAL)
                         {
-                            selectedTerrain = ter;
-                            switch(ter.getType())
+                            if (unit.getOwner() == m_player->getType())
                             {
-                                case 7:
-                                    view = 1;
-                                    break;
-                                
+                                selectedUnitBool = true;
+                                selectedUnit = unit;
+                                view = 2;
+                            }
+                        }
+                        else
+                        {    
+                            Terrain ter = m_world->getTerrain(m_player->getCoord().first, m_player->getCoord().second);
+                            if (ter.getOwner() == m_player->getType())
+                            {
+                                selectedTerrain = ter;
+                                switch(ter.getType())
+                                {
+                                    case 7:
+                                        view = 1;
+                                        break;
+                                    
+                                }
                             }
                         }
                     }

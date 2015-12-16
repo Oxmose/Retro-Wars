@@ -375,6 +375,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
 
     bool colored = false;
     
+    // If cursor is over an enemy
     for (pair<int, int> Coord : enemies)
     {
         if (p_mvtCursor.first == Coord.first && p_mvtCursor.second == Coord.second)
@@ -397,8 +398,11 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
                 break;
             }
         }  
-        if (!acces)
-            mvtCursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(100), sf::Uint8(100), sf::Uint8(200)));
+        if (!acces && p_mvtCursor.first == p_player->getCoord().first && p_mvtCursor.second == p_player->getCoord().second)
+            mvtCursor.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(0), sf::Uint8(0), sf::Uint8(50)));
+        else if (!acces)
+            mvtCursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(100), sf::Uint8(100), sf::Uint8(200)));            
+        
     }
     
     mvtCursor.setPosition(p_mvtCursor.first * 16, p_mvtCursor.second * 16);
@@ -408,7 +412,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
     if (p_displayPorte)
     {
         sf::RectangleShape enemiesRect(sf::Vector2f(16, 16));
-        enemiesRect.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(200), sf::Uint8(100), sf::Uint8(150)));
+        enemiesRect.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(50), sf::Uint8(200)));
         for (pair<int, int> Coord : enemies)
         {
             enemiesRect.setPosition(Coord.first * 16, Coord.second * 16);
