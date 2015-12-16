@@ -368,14 +368,27 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
     {
         if (p_mvtCursor.first == Coord.first && p_mvtCursor.second == Coord.second)
         {
-            mvtCursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(50), sf::Uint8(50), sf::Uint8(150)));
+            mvtCursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(50), sf::Uint8(150)));
             colored = true;
             break;
         }
     }
     
     if (!colored)
-	    mvtCursor.setFillColor(sf::Color(sf::Uint8(50), sf::Uint8(150), sf::Uint8(255), sf::Uint8(150)));
+    {
+        bool acces = false;	  
+        for (pair<int, int> Coord : accessible)
+        {
+            if (p_mvtCursor.first == Coord.first && p_mvtCursor.second == Coord.second)
+            {
+                mvtCursor.setFillColor(sf::Color(sf::Uint8(50), sf::Uint8(150), sf::Uint8(255), sf::Uint8(150)));
+                acces = true;
+                break;
+            }
+        }  
+        if (!acces)
+            mvtCursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(100), sf::Uint8(100), sf::Uint8(150)));
+    }
 	
     mvtCursor.setPosition(p_mvtCursor.first * 16, p_mvtCursor.second * 16);
 	m_mainWindow->draw(mvtCursor);
@@ -383,12 +396,12 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
     // Display enemies that can be reached
     if (p_displayPorte)
     {
-        sf::RectangleShape enemies(sf::Vector2f(16, 16);
-        enemies.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(50), sf::Uint8(50), sf::Uint8(150)));
+        sf::RectangleShape enemiesRect(sf::Vector2f(16, 16));
+        enemiesRect.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(200), sf::Uint8(100), sf::Uint8(150)));
         for (pair<int, int> Coord : enemies)
         {
-            enemies.setPosition(Coord.first * 16, Coord.second * 16);
-            m_mainWindow->draw(enemies);
+            enemiesRect.setPosition(Coord.first * 16, Coord.second * 16);
+            m_mainWindow->draw(enemiesRect);
         }
     }
 

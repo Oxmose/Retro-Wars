@@ -4,68 +4,89 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <mutex>
 #include <iostream>
 #include <atomic>
 #include <map>
-#include <array>
 #include <utility>
 
 #include <SFML/Network.hpp>
 
 #include "../Misc/Misc.h"
+#include "../Misc/Tools.h"
 
-#include "NetEngine.h"
 #include "Structures.h"
-#include "NetException.h"
+#include "NetEngine.h"
 
 namespace nsNetEngine
 {
+    // Forward declaration
     class NetEngine;
+    
+    // Server class (runs threads)
     class Server
     {
         public:
            
-            Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const std::vector<PLAYER_TYPE> &p_allowedPlayers) noexcept;
-            ~Server() noexcept;
+            // Constructor / Destructor
+            Server(const std::string &p_ipAddress, const unsigned int &p_port, NetEngine* p_netEngine, const std::vector<PLAYER_TYPE> &p_allowedPlayers);
+            ~Server();
 
-            void launch() throw (NetException);
+            // Launch server
+            bool launch();
             
+            // Disconect client
             void disconnectClient(const unsigned int &p_id, const bool &p_notErase = true);
 
-			void send(const NetPackage &p_package, const unsigned int &p_clientId, const bool &p_split);
+            // Send messages functions
+            void send(const NetPackage &p_package, const unsigned int &p_clientId, const bool &p_split);
             void sendAll(const NetPackage &p_package, const int &p_except);
 
+            // Getters
             unsigned int getClientsNumber();
             std::vector<Client> getClients();
         
-		private:
+        private:
+            // Add client to connected clients
             void connectClient();
+            
+            // Disconnect all clients
             void disconnectClients();
-            void listenClients(unsigned int p_id) throw (NetException);
+
+            // Thread listening to clients
+            void listenClients(unsigned int p_id);
+
+            // Parse net messages
             void parseMessage(const unsigned int &p_id, const std::string &p_message);
 
-			std::string 	                        m_ipAddress;
-			unsigned int 	                        m_port;
-
-            std::map<unsigned int, Client>          m_clients;
-            sf::TcpListener                         m_listener; 
-
-            std::thread*                            m_connectThread; 
-            std::map<unsigned int, std::thread*>    m_listenClientsThreads; 
-
-            std::atomic<bool>                       m_waitForClients;
-            std::atomic<bool>                       m_listen;     
-            
-            unsigned int                            m_lastId;
-            
-            NetEngine*                              m_netEngine;
-            
-            // Game management
+            // Basic settings
+            std::string                             m_ipAddress;
+            unsigned int                            m_port;
             unsigned int                            m_maxPlayer;
             std::array<bool, 5>                     m_availablePositions;
-    };
 
-}
+            // Clients management
+            std::map<unsigned int, Client>          m_clients;
+            std::map<unsigned int, std::thread*>    m_listenClientsThreads;
+
+            // Listen management
+            sf::TcpListener                         m_listener; 
+            std::thread*                            m_connectThread;
+
+            // Atomic / Mutex
+            std::atomic<bool>                       m_waitForClients;
+            std::atomic<bool>                       m_listen;
+            std::mutex                              m_clientListMutex;   
+            std::mutex                              m_clientSocketListMutex;  
+            
+            // Last user id
+            unsigned int                            m_lastId;    
+
+            // NetEngine pointer        
+            NetEngine*                              m_netEngine;
+    }; // Server
+
+} // nsNetEngine
 
 
 #endif

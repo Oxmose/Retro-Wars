@@ -376,6 +376,7 @@ void GENGINE::frame()
                         view = 0;
                     }
                     selectedUnitBool = false;
+                    displayPorte = false;
                 }
                 else if (event.key.code == sf::Keyboard::W)
                 {

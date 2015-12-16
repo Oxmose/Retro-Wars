@@ -10,7 +10,6 @@
 
 #include "Server.h"
 #include "Structures.h"
-#include "NetException.h"
 
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/GameEngine.h"
@@ -19,51 +18,70 @@
 
 namespace nsGameEngine
 {
+    // Forward declaration
     class GameEngine;
-}
+} // nsGameEngine
+
 namespace nsNetEngine
-{	
-	class Server;
+{    
+    // Forward declaration
+    class Server;
+
+    // NetEngine class (runs threads)
     class NetEngine
     {
         public:
            
-            NetEngine(const std::string &p_ipAddress, const unsigned int &p_port) noexcept;
-            ~NetEngine() noexcept;
+            // Constructor  Destructor
+            NetEngine(const std::string &p_ipAddress, const unsigned int &p_port);
+            ~NetEngine();
 
-            void launch(const std::string &p_playerName, const PLAYER_TYPE &p_player = NEUTRAL, const nsMapEngine::MapEngine *p_map = nullptr) throw (NetException);
+            // Launch NetEngine
+            bool launch(const std::string &p_playerName, const PLAYER_TYPE &p_player = NEUTRAL, const nsMapEngine::MapEngine *p_map = nullptr);
 
-            void joinServer() throw (NetException);
+            // Connection management
+            void joinServer();
             void disconnect();
-			
-			void send(const NetPackage &p_package, const bool &p_connect = false);
-			void listen();
-			
-			void setIsServer(const bool &p_isServer);
+            
+            // Send / receive management
+            void send(const NetPackage &p_package, const bool &p_connect = false);
+            void listen();
+            
+            // Basics settings
+            void setIsServer(const bool &p_isServer);
             void setNotifier(nsGameEngine::GameEngine *p_gameEngine);
         
-		private:
-		    void parseMessage(const std::string &p_message);
-		    void manageError(const std::string &p_error);
-		
-			std::string 	m_ipAddress;
-			unsigned int 	m_port;
-			bool 			m_isServer;
-		
-			PLAYER_TYPE     m_playerType;
-			std::string     m_playerName;
-		
-			std::atomic<bool>               m_listenServer;
-			Server* 		                m_server;		
-			sf::TcpSocket                   m_socket;		
-			std::thread*                    m_listenerThread;
+        private:
+
+            // Parse network message
+            void parseMessage(const std::string &p_message);
+
+            // Manage error codes
+            void manageError(const std::string &p_error);
             
+            // Basic settings
+            std::string     m_ipAddress;
+            unsigned int    m_port;
+            bool            m_isServer;
+        
+            // Player settings
+            PLAYER_TYPE     m_playerType;
+            std::string     m_playerName;
+        
+            // Listener management
+            std::atomic<bool>               m_listenServer;
+            sf::TcpSocket                   m_socket;        
+            std::thread                     *m_listenerThread;
+
+            // Server management
+            Server                          *m_server;        
+            
+            // Game mechanics management
             const nsMapEngine::MapEngine    *m_map;
+            nsGameEngine::GameEngine        *m_gameEngine;
+    }; // NetEngine
 
-            nsGameEngine::GameEngine  *m_gameEngine;
-    };
-
-}
+} // nsNetEngine
 
 
 #endif

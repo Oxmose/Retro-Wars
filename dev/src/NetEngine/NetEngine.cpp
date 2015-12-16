@@ -8,7 +8,6 @@
 #include "NetEngine.h"
 #include "Server.h"
 #include "Structures.h"
-#include "NetException.h"
 
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/GameEngine.h"
@@ -20,61 +19,70 @@
 using namespace std;
 using namespace nsTools;
 
-NETENGINE::NetEngine(const std::string &p_ipAddress, const unsigned int &p_port) noexcept
+NETENGINE::NetEngine(const std::string &p_ipAddress, const unsigned int &p_port)
 {
+    // Setting basic configuration
     m_ipAddress = p_ipAddress;
     m_port = p_port;
     m_listenServer = true;
     m_isServer = false;
-}
+} // NetEngine()
 
-NETENGINE::~NetEngine() noexcept
+NETENGINE::~NetEngine()
 {
+    // Disconnecting from server
     disconnect();
-	if (m_isServer)
-	    delete m_server;
-	    
-	
-}
+
+    // If is host, disconnect server
+    if(m_isServer)
+        delete m_server;   
+} // ~NetEngine()
 
 void NETENGINE::setNotifier(nsGameEngine::GameEngine *p_gameEngine)
 {
+    // Set the game engine to notify
     m_gameEngine = p_gameEngine;
-}
+} // setNotifier()
 
-void NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_player /*= NEUTRAL*/, const nsMapEngine::MapEngine *p_map /* = nullptr */) throw (NetException)
+bool NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_player /*= NEUTRAL*/, const nsMapEngine::MapEngine *p_map /* = nullptr */) 
 {  
+    bool launched = true;
     // The game instance is a player that hosts a game
-    if (m_isServer)
+    if(m_isServer)
     {
         m_map = p_map;
         m_server = new Server(m_ipAddress, m_port, this, m_map->getPlayers());
-
-	    m_server->launch();
+        launched = m_server->launch();
     }  
     
+    // Basic settings
     m_playerName = p_playerName;    
     m_playerType = p_player;
+
+    // Join the server
     joinServer(); 
-}
+
+    return launched;
+} // launch()
 
 void NETENGINE::setIsServer(const bool &p_isServer)
 {
+    // Set if the game instance is the host
     m_isServer = p_isServer;
-}
+} // setIsServer()
 
-void NETENGINE::joinServer() throw (NetException)
+void NETENGINE::joinServer()
 {
     sf::Time timeout = sf::seconds(10.0);
 
-    if (m_socket.connect(m_ipAddress, m_port, timeout) != sf::Socket::Done)
+    if(m_socket.connect(m_ipAddress, m_port, timeout) != sf::Socket::Done)
     {
-        cout << "Failed to connect to server" << endl;
+        cout << "[ERROR]Failed to connect to server" << endl;
         return;
 
     }
-   // Waiting for the welcome message (200)
-
+    
+    // Waiting for the welcome message (200)
     char data[256];
     size_t received;
     m_socket.receive(data, 256, received);
@@ -95,7 +103,7 @@ void NETENGINE::joinServer() throw (NetException)
     char data2[256];
     m_socket.receive(data2, 256, received);
 
-    if (cleanMessage(string(data2)) != "200")
+    if(cleanMessage(string(data2)) != "200")
     {
         manageError(string(data, 3));
         return;
@@ -103,7 +111,7 @@ void NETENGINE::joinServer() throw (NetException)
         
     // Start listener thread
     m_listenerThread = new thread(&NetEngine::listen, this);   
-}
+} // joinServer()
 
 void NETENGINE::listen()
 {
@@ -111,26 +119,29 @@ void NETENGINE::listen()
     size_t received = 0;
     string message("");
     
+    // While we have tolisten the server
     while(m_listenServer)
     {
-
         sf::Socket::Status status;
-        if ((status = m_socket.receive(data, 256, received)) != sf::Socket::Done)
+        if((status = m_socket.receive(data, 256, received)) != sf::Socket::Done)
         {
             cout << "Error receiving message for server " << status << endl;         
             
-            if (status == sf::Socket::Disconnected)
+            if(status == sf::Socket::Disconnected)
                 return;  
         }
+
+        // Clean the message and get code if exists
         string strData = cleanMessage(string(data));
         string strCode = strData.substr(strData.size() - 3);
-        if (strCode == "|||")
+        // If end of message
+        if(strCode == "|||")
         {
             message += strData.substr(0, strData.size() - 3);
             parseMessage(message);
             message = "";
         }
-        else if (strData.size() == 3)
+        else if(strData.size() == 3)
         {
             parseMessage(message);
         }
@@ -139,11 +150,11 @@ void NETENGINE::listen()
             message += strData;
         }
     }
-}
+} // listen();
 
 void NETENGINE::disconnect()
 {
-    if (m_listenerThread != nullptr)
+    if(m_listenerThread != nullptr)
     {
         m_listenServer = false;
         m_socket.setBlocking(false);
@@ -151,48 +162,47 @@ void NETENGINE::disconnect()
         m_listenerThread->detach();
         delete m_listenerThread;
     }
-}
+} // disconnect();
 
 void NETENGINE::send(const NetPackage &p_package, const bool &p_connect /* = false */)
 {
     char* data;
     string toSend = p_package.message + "|||";
     NetPackage np;
-    if (!p_connect)
-    	np.message = to_string(m_playerType) + string("#") + toSend;
+    if(!p_connect)
+        np.message = to_string(m_playerType) + string("#") + toSend;
     else
-	    np.message = toSend;
+        np.message = toSend;
     vector<NetPackage> splitMessage = splitMessages(np);
     
-    for (NetPackage NetP : splitMessage)
+    for(NetPackage NetP : splitMessage)
     { 
-	    NetP.message = to_string(NetP.message.size()) + "/" + NetP.message;	
+        NetP.message = to_string(NetP.message.size()) + "/" + NetP.message;    
         data = (char*)NetP.message.c_str();
         m_socket.send(data, NetP.message.size());
     }
-}
+} // send();
 
 void NETENGINE::manageError(const std::string &p_error)
 {
-    if (p_error == "204")
+    if(p_error == "204")
     {
-        throw new string("Too many players");
+        cerr << "Too many players" << endl;
         disconnect();
     }
-    if (p_error == "203")
+    if(p_error == "203")
     {
-        throw new string("Player color already taken");
+        cerr << "Player color already taken" << endl;
         disconnect();
     }
-    if (p_error == "201")
+    if(p_error == "201")
     {
-        throw new string("Connection closed by server");
+        cerr << "Connection closed by server" << endl;
         disconnect();
     }
-}
+} // manageError()
 
 void NETENGINE::parseMessage(const std::string &p_message)
-{
-    
+{    
     m_gameEngine->notify(p_message);
-}
+} // parseMessage()
