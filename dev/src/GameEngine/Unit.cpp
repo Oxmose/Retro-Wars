@@ -204,6 +204,13 @@ int GENGINE_UN::getId()
 {
 	return m_id;
 }
+
+void GENGINE_UN::setCoord(int p_x, int p_y)
+{
+	m_x = p_x;
+	m_y = p_y;
+}
+
 GENGINE_UN::~Unit()
 {
 

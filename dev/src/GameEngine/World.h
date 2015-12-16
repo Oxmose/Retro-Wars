@@ -24,8 +24,8 @@ namespace nsGameEngine
 			void addUnit(Unit p_unit);
 			void refreshVisibleMyProperty(Terrain p_terrain);
 			void refreshVisibleUnit(Unit p_unit, int p_reinit);
-			Unit getUnit(int p_x, int p_y);
-			Unit getUnit(std::pair<int,int> p_coord);
+			Unit& getUnit(int p_x, int p_y);
+			Unit& getUnit(std::pair<int,int> p_coord);
 
 			std::list<Unit>& getUnits();
 

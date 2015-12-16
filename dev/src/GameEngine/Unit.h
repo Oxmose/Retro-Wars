@@ -41,6 +41,7 @@ namespace nsGameEngine
 
 			int getGid();
 			std::pair<int,int> getCoord();
+			void setCoord(int p_x, int p_y);
 			PLAYER_TYPE getOwner();
 			int getVision();
 			int getHp();

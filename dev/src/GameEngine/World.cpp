@@ -126,16 +126,16 @@ Terrain& GENGINE_W::getTerrain(std::pair<int,int> p_coord)
 	return getTerrain(p_coord.first, p_coord.second);
 }
 
-Unit GENGINE_W::getUnit(int p_x, int p_y)
+Unit& GENGINE_W::getUnit(int p_x, int p_y)
 {
 	bool found = false;
-	for(Unit unit : m_unit)
+	for(Unit& unit : m_unit)
 		if(unit.getCoord().first == p_x && unit.getCoord().second == p_y)
 			return unit;
 	return m_noneUnit;	
 }
 
-Unit GENGINE_W::getUnit(std::pair<int,int> p_coord)
+Unit& GENGINE_W::getUnit(std::pair<int,int> p_coord)
 {
 	return getUnit(p_coord.first, p_coord.second);	
 }
@@ -240,13 +240,16 @@ std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 
 void GENGINE_W::moveUnit(Unit p_unit, std::pair<int,int> p_whereTo)
 {
-
+	refreshVisibleUnit(p_unit,-1);
+	getUnit(p_unit.getCoord()).setCoord(p_whereTo.first,p_whereTo.second);
+	p_unit.setCoord(p_whereTo.first, p_whereTo.second);
+	refreshVisibleUnit(p_unit);
 
 }
 
 void GENGINE_W::combatUnit(Unit p_unitA, Unit p_unitB)
 {
-	
+
 }
 
 GENGINE_W::~World()
