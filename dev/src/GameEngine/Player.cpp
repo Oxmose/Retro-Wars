@@ -34,6 +34,11 @@ PLAYER_TYPE GENGINE_PLAYER::getType()
 	return m_playerType;
 }
 
+void GENGINE_PLAYER::setCoord(const std::pair<int, int> &p_coord)
+{
+	setCoord(p_coord.first, p_coord.second);
+}
+
 std::string GENGINE_PLAYER::getPlayerName()
 {
 	switch(m_playerType)

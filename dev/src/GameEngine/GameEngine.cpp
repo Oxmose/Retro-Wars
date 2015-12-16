@@ -355,11 +355,9 @@ void GENGINE::frame()
 
 		            if(selectedUnitBool && view == 2)
                     {
-                        cout << "WANNA MOVE! " << endl;
                         // Player wants to move the unit
                         if(mvtCursor.first != m_player->getCoord().first || mvtCursor.second != m_player->getCoord().second)
                         {
-                            cout << "CAN MOOVE" << endl;
                             bool moved = false;
                             for(int id : movedUnits)
                             {
@@ -386,8 +384,8 @@ void GENGINE::frame()
                                 }
                                 if(move)
                                 {
-                                    cout << "MOVE" << endl;
                                     m_world->moveUnit(selectedUnit, mvtCursor);
+                                    m_player->setCoord(mvtCursor);
                                     movedUnits.push_back(selectedUnit.getId());
                                     selectedUnitBool = false;
                                     displayPorte = false;
@@ -410,6 +408,7 @@ void GENGINE::frame()
                                     {
                                         cout << "ATACK" << endl;
                                         m_world->combatUnit(selectedUnit, m_world->getUnit(mvtCursor));
+                                        m_player->setCoord(mvtCursor);
                                         movedUnits.push_back(selectedUnit.getId());
                                         selectedUnitBool = false;
                                         displayPorte = false;
@@ -433,9 +432,23 @@ void GENGINE::frame()
                         {
                             if (unit.getOwner() == m_player->getType())
                             {
-                                selectedUnitBool = true;
-                                selectedUnit = unit;
-                                view = 2;
+                                bool moved = false;
+                                for(int id : movedUnits)
+                                {
+                                    if(unit.getId() == id)
+                                        moved = true;
+                                } 
+                                if(moved)
+                                {
+                                    // TODO DISPLAY 
+                                    cout << "Can't use unit" << endl;
+                                }
+                                else
+                                {
+                                    selectedUnitBool = true;
+                                    selectedUnit = unit;
+                                    view = 2;
+                                }
                             }
                         }
                         else
