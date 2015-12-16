@@ -41,7 +41,7 @@ NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, Ne
 
 NETSERVER::~Server()
 {
-    m_clientListMutex.unlock();
+    //m_clientListMutex.unlock();
     // Disconnect all clients
     disconnectClients();  
          
@@ -102,12 +102,12 @@ void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId
             NetP.message = to_string(NetP.message.size()) + "/" + NetP.message;
             data = (char*)NetP.message.c_str();
             // send
-            m_clientListMutex.lock();
+            //m_clientListMutex.lock();
             if(m_clients[p_clientId].socket->send(data, NetP.message.size()) != sf::Socket::Done)
             {
                 cerr << "[SERVER][ERROR] Message not sent." << endl;
             }
-            m_clientListMutex.unlock();
+            //m_clientListMutex.unlock();
         }
     }
     else
@@ -117,12 +117,12 @@ void NETSERVER::send(const NetPackage &p_package, const unsigned int &p_clientId
         data = (char*)toSend.c_str();
 
         // Send message
-        m_clientListMutex.lock();
+        //m_clientListMutex.lock();
         if(m_clients[p_clientId].socket->send(data, toSend.size()) != sf::Socket::Done)
         {
             cerr << "[SERVER][ERROR] Message not sent." << endl;
         }
-        m_clientListMutex.unlock();
+        //m_clientListMutex.unlock();
     }
 } // send()
 
@@ -171,9 +171,9 @@ void NETSERVER::connectClient()
                 clientStruct.status = false; 
 
                 // Add client
-                m_clientListMutex.lock();
+                //m_clientListMutex.lock();
                 m_clients[m_lastId] = clientStruct;
-                m_clientListMutex.unlock();
+                //m_clientListMutex.unlock();
 
                 // Create a new client listener thread
                 thread *m_listenClientsThread  = new thread(&Server::listenClients, this, m_lastId);
@@ -194,9 +194,9 @@ void NETSERVER::connectClient()
 void NETSERVER::listenClients(unsigned int p_id)
 {
     // Get the client to listen
-    m_clientListMutex.lock();
+    //m_clientListMutex.lock();
     sf::TcpSocket *client = m_clients[p_id].socket;
-    m_clientListMutex.unlock();
+    //m_clientListMutex.unlock();
     
     char data[256];
     size_t received = 0;
@@ -207,7 +207,7 @@ void NETSERVER::listenClients(unsigned int p_id)
     {
         // Manage client disconnection
         sf::Socket::Status status;
-        m_clientListMutex.lock();
+        //m_clientListMutex.lock();
         if((status = client->receive(data, 256, received)) != sf::Socket::Done)
         {
             if(m_clients.find(p_id) != m_clients.end())
@@ -217,7 +217,7 @@ void NETSERVER::listenClients(unsigned int p_id)
                     if(m_clients[p_id].status != false)
                     {
                         m_clients[p_id].status = false;
-                        m_clientListMutex.unlock();
+                        //m_clientListMutex.unlock();
                         disconnectClient(p_id, false); 
                     }                                  
                 }
@@ -225,7 +225,7 @@ void NETSERVER::listenClients(unsigned int p_id)
                 return;
             }            
         }
-        m_clientListMutex.unlock();
+        //m_clientListMutex.unlock();
 
         // Clean received message
         string strData = cleanMessage(string(data));
@@ -250,37 +250,37 @@ void NETSERVER::listenClients(unsigned int p_id)
 
 void NETSERVER::sendAll(const NetPackage &p_package, const int &p_except /* = -1 */)
 {        
-    m_clientListMutex.lock();
+    //m_clientListMutex.lock();
     // For all client, send the message
     for(pair<unsigned int, Client> client : m_clients)
     {
         // if a clients should not get a message he will be rejected
         if(client.first != p_except)
         {
-            m_clientListMutex.unlock();
+            //m_clientListMutex.unlock();
             send(p_package, client.first, true);
-            m_clientListMutex.lock();
+            //m_clientListMutex.lock();
         }
     }
-    m_clientListMutex.unlock();
+    //m_clientListMutex.unlock();
 } // sendAll()
 
 void NETSERVER::disconnectClients()
 {
-    m_clientListMutex.lock();
+    //m_clientListMutex.lock();
     for(pair<unsigned int, Client>  client : m_clients)
     {
-        m_clientListMutex.unlock();
+        //m_clientListMutex.unlock();
         disconnectClient(client.first, false);
-        m_clientListMutex.lock();
+        //m_clientListMutex.lock();
     }
     m_clients.clear();
-    m_clientListMutex.unlock();
+    //m_clientListMutex.unlock();
 } // disconnectClients()
 
 void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /* = true */)
 {
-    m_clientListMutex.lock();
+    //m_clientListMutex.lock();
     //m_clientSocketListMutex.lock();
     
     // If client is not null
@@ -292,9 +292,9 @@ void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /
             NetPackage package;
             package.message = "201";
 
-            m_clientListMutex.unlock();
+            //m_clientListMutex.unlock();
             send(package, p_id, false);
-            m_clientListMutex.lock();
+            //m_clientListMutex.lock();
         }
         
         // Disconnect client
@@ -314,39 +314,39 @@ void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /
     }
 
     //m_clientSocketListMutex.unlock();
-    m_clientListMutex.unlock();
+    //m_clientListMutex.unlock();
 } // disconnectClient()
 
 unsigned int NETSERVER::getClientsNumber()
 {
     unsigned int counter = 0;
-    m_clientListMutex.lock();
+    //m_clientListMutex.lock();
     for(pair<unsigned int, Client> client : m_clients)
     {
         if(client.second.status)
             ++counter;
     }
-    m_clientListMutex.unlock();
+    //m_clientListMutex.unlock();
     return counter;
 } // getClientNumber()
 
 vector<nsNetEngine::Client> NETSERVER::getClients()
 {   
     vector<Client> result;   
-    m_clientListMutex.lock();  
+    //m_clientListMutex.lock();  
     for(pair<unsigned int, Client> client : m_clients)
     {
         if(client.second.status)
             result.push_back(client.second);
     }  
-    m_clientListMutex.unlock();
+    //m_clientListMutex.unlock();
     return result;
 } // getClients();
 
 void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_message)
 {
     // Accect the client
-    m_clientListMutex.lock();
+    //m_clientListMutex.lock();
     if(m_clients[p_id].status == false)
     {
         NetPackage np;
@@ -358,7 +358,7 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
         if(playerType > 5 || m_availablePositions[playerType] == false)
         {
             np.message = "203";
-            m_clientListMutex.unlock();
+            //m_clientListMutex.unlock();
             send(np, p_id, false);
             disconnectClient(p_id);
          }
@@ -370,7 +370,7 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
              m_clients[p_id].playerName = p_message.substr(0, p_message.find("#"));
              m_clients[p_id].status = true;
              np.message = "200";
-             m_clientListMutex.unlock();
+             //m_clientListMutex.unlock();
              send(np, p_id, false);
              np.message = string("SERVER#202#") + to_string(playerType) + m_clients[p_id].playerName;
              sendAll(np, p_id);
@@ -378,7 +378,7 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
     }
     else
     {
-        m_clientListMutex.unlock();
+        //m_clientListMutex.unlock();
         NetPackage np;
         np.message = to_string(m_clients[p_id].playerType) + string("#") + p_message;
         sendAll(np, p_id);

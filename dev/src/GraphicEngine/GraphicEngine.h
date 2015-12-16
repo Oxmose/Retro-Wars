@@ -6,6 +6,7 @@
 #include <utility>
 
 #include <SFML/Graphics.hpp>
+#include <tmx/MapLoader.h>
 
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/Terrain.h"
@@ -19,25 +20,28 @@ namespace nsGraphicEngine
     {
         public:
             
-            GraphicEngine() noexcept;
-            GraphicEngine(sf::RenderWindow* p_mainWindow, nsMapEngine::MapEngine* p_mapEngine) noexcept;
-            ~GraphicEngine() noexcept;
+            // Contructor / Destructor
+            GraphicEngine();
+            GraphicEngine(sf::RenderWindow* p_mainWindow, nsMapEngine::MapEngine* p_mapEngine);
+            ~GraphicEngine();
 
-            void reload() noexcept;
+            void reload();
 
-            void loadMap() noexcept;
+            void loadMap();
 
-            void drawMap(nsGameEngine::World* p_world) noexcept;
-            void drawUnits(nsGameEngine::World* p_world) noexcept;
-	        void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world, bool p_turn) noexcept;
+            void drawMap(nsGameEngine::World* p_world);
+            void drawUnits(nsGameEngine::World* p_world);
+
+            void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world, bool p_turn);
                  
-            void displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept;
-     		void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, std::pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
+            void displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain);
+            void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, std::pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
+
             void checkProperties(nsGameEngine::World* p_world);
 
         private:
 
-            std::string getName(nsGameEngine::TerrainType terrain) noexcept;
+            std::string getName(nsGameEngine::TerrainType terrain);
             void displayBar(sf::Font font, nsGameEngine::Player *p_player);
 
             sf::RenderWindow* m_mainWindow; 
@@ -47,15 +51,15 @@ namespace nsGraphicEngine
             sf::Texture m_tileset_property;
             sf::Texture m_tileset_unit;
 
-            sf::IntRect terrain_gidToRect(int p_gid) noexcept;
-            sf::IntRect property_gidToRect(int p_gid) noexcept;
-            sf::IntRect unit_gidToRect(int p_gid) noexcept;
+            sf::IntRect terrain_gidToRect(int p_gid);
+            sf::IntRect property_gidToRect(int p_gid);
+            sf::IntRect unit_gidToRect(int p_gid);
             sf::IntRect propertyToRect(nsGameEngine::Terrain p_property);
 
             std::vector<sf::Sprite> m_map[4];   
-    };
+    }; // GraphicEngine
 
-}
+} // nsGraphicEngine
 
 
 #endif

@@ -1,9 +1,18 @@
+#include <iostream>
 #include <string>
+#include <utility>
 
 #include <SFML/Graphics.hpp>
 #include <tmx/MapLoader.h>
 
+#include "../MapEngine/MapEngine.h"
+#include "../GameEngine/Terrain.h"
+#include "../GameEngine/World.h"
+#include "../GameEngine/Player.h"
+#include "../GameEngine/Unit.h"
+
 #include "GraphicEngine.h"
+
 #define GxENGINE nsGraphicEngine::GraphicEngine
 
 
@@ -11,11 +20,11 @@ using namespace std;
 using namespace nsMapEngine;
 using namespace nsGameEngine;
 
-GxENGINE::GraphicEngine() noexcept
+GxENGINE::GraphicEngine() 
 {
 }
 
-GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow, nsMapEngine::MapEngine* p_mapEngine) noexcept
+GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow, nsMapEngine::MapEngine* p_mapEngine) 
 {
     m_mainWindow = p_mainWindow;
     m_mapEngine = p_mapEngine;
@@ -23,21 +32,21 @@ GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow, nsMapEngine::MapEngine* 
     loadMap();
 }
 
-GxENGINE::~GraphicEngine() noexcept
+GxENGINE::~GraphicEngine() 
 {
 }
 
-sf::IntRect GxENGINE::property_gidToRect(int p_gid) noexcept
+sf::IntRect GxENGINE::property_gidToRect(int p_gid) 
 {
     return sf::IntRect(((p_gid-145)%7)*16,((p_gid-145)/7)*16,16,16);
 }
 
-sf::IntRect GxENGINE::terrain_gidToRect(int p_gid) noexcept
+sf::IntRect GxENGINE::terrain_gidToRect(int p_gid) 
 {
     return sf::IntRect(((p_gid-1)%18)*16,((p_gid-1)/18)*16,16,16);
 }
 
-sf::IntRect GxENGINE::unit_gidToRect(int p_gid) noexcept
+sf::IntRect GxENGINE::unit_gidToRect(int p_gid) 
 {
     return sf::IntRect(((p_gid-229)%13)*16,((p_gid-229)/13)*16,16,16);
 }
@@ -133,7 +142,7 @@ void GxENGINE::checkProperties(World* p_world)
     }
 }
 
-void GxENGINE::loadMap() noexcept
+void GxENGINE::loadMap() 
 {
     sf::Image image_tileset_terrain;//For transparency settings, sf:Image needed
     image_tileset_terrain.loadFromFile("maps/tilesets/terrain.bmp");
@@ -185,12 +194,12 @@ void GxENGINE::loadMap() noexcept
 }
 
 
-void GxENGINE::reload() noexcept
+void GxENGINE::reload() 
 {
     m_mainWindow->clear();
 }
 
-void GxENGINE::drawMap(nsGameEngine::World* p_world) noexcept
+void GxENGINE::drawMap(nsGameEngine::World* p_world) 
 {
     for(int iLayer = 0 ; iLayer < 4 ; iLayer++)
         for(sf::Sprite spt : m_map[iLayer])
@@ -209,7 +218,7 @@ void GxENGINE::drawMap(nsGameEngine::World* p_world) noexcept
         }
 }
 
-void GxENGINE::drawUnits(nsGameEngine::World* p_world) noexcept
+void GxENGINE::drawUnits(nsGameEngine::World* p_world) 
 {
     for(auto unit: p_world->getUnits())
     {
@@ -224,7 +233,7 @@ void GxENGINE::drawUnits(nsGameEngine::World* p_world) noexcept
     }
 }
 
-void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_turn) noexcept
+void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_turn) 
 {
     sf::Font font;
     if (!font.loadFromFile("./res/font.ttf"))
@@ -429,7 +438,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
     m_mainWindow->draw(info);
 }
 
-void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) noexcept
+void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain) 
 {
     sf::RectangleShape back(sf::Vector2f(m_mapEngine->getWidth() * 16, m_mapEngine->getHeight() * 16));
     back.setFillColor(sf::Color(sf::Uint8(225), sf::Uint8(225), sf::Uint8(225), sf::Uint8(200)));
@@ -464,7 +473,7 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Ter
 }
 
 
-string GxENGINE::getName(TerrainType terrain) noexcept
+string GxENGINE::getName(TerrainType terrain) 
 {
     switch(terrain)
     {
