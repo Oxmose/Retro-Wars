@@ -355,9 +355,11 @@ void GENGINE::frame()
 
 		            if(selectedUnitBool && view == 2)
                     {
+                        cout << "WANNA MOVE! " << endl;
                         // Player wants to move the unit
-                        if(mvtCursor.first != m_player->getCoord().first && mvtCursor.second != m_player->getCoord().second)
+                        if(mvtCursor.first != m_player->getCoord().first || mvtCursor.second != m_player->getCoord().second)
                         {
+                            cout << "CAN MOOVE" << endl;
                             bool moved = false;
                             for(int id : movedUnits)
                             {
@@ -376,7 +378,7 @@ void GENGINE::frame()
                                 bool move = false;
                                 for(pair<int, int> Coord : accessible)
                                 {
-                                    if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.first)
+                                    if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
                                     {
                                         move = true;
                                         break;
@@ -384,6 +386,7 @@ void GENGINE::frame()
                                 }
                                 if(move)
                                 {
+                                    cout << "MOVE" << endl;
                                     m_world->moveUnit(selectedUnit, mvtCursor);
                                     movedUnits.push_back(selectedUnit.getId());
                                     selectedUnitBool = false;
@@ -405,6 +408,7 @@ void GENGINE::frame()
                                     }
                                     if(attack)
                                     {
+                                        cout << "ATACK" << endl;
                                         m_world->combatUnit(selectedUnit, m_world->getUnit(mvtCursor));
                                         movedUnits.push_back(selectedUnit.getId());
                                         selectedUnitBool = false;
