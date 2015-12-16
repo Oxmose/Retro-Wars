@@ -238,6 +238,16 @@ std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 	return toReturn;
 }
 
+void GENGINE_W::moveUnit(Unit p_unit, std::pair<int,int> p_whereTo)
+{
+
+
+}
+
+void GENGINE_W::combatUnit(Unit p_unitA, Unit p_unitB)
+{
+	
+}
 
 GENGINE_W::~World()
 {

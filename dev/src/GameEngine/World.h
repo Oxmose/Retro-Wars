@@ -35,6 +35,10 @@ namespace nsGameEngine
 			std::vector<std::pair<int,int>> getAccessible(Unit p_unit);
 			std::vector<std::pair<int,int>> getPortee(Unit p_unit);
 
+			void moveUnit(Unit p_unit, std::pair<int,int> p_whereTo);
+			void combatUnit(Unit p_unitA, Unit p_unitB);
+
+
 		private:
 
 			Terrain m_noneTerrain;
