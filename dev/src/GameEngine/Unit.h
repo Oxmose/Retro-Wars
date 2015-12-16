@@ -48,6 +48,7 @@ namespace nsGameEngine
 			int getMvt();
 			int getAmmo();
 			int getFuel();
+			MvtType getMvtType();
 			UnitType getType();
 			
 
