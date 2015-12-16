@@ -198,7 +198,7 @@ std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 {
 	std::vector<std::pair<int,int>> toReturn;
 	
-	/*std::queue<std::pair<int,int>> toVisit;
+	std::queue<std::pair<int,int>> toVisit;
 	toVisit.push(p_unit.getCoord());
 
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
@@ -219,12 +219,13 @@ std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 		
 		if(man(coord,p_unit.getCoord()) <= p_unit.getRange())
 		{
-			toReturn.push_back(coord);
+			if(!getUnit(coord).isNoneUnit() && getUnit(coord).getOwner() != m_player && isVisible(coord))
+				toReturn.push_back(coord);
 			for(int iDir = 0 ; iDir < 4 ; iDir++)
 			{
 				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
 				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
-					if(!vu[voisin.second][voisin.first] && !getUnit(voisin).isNoneUnit() && getUnit(voisin).getOwner() != m_player)
+					if(!vu[voisin.second][voisin.first])
 					{
 						vu[voisin.second][voisin.first] = true;
 						toVisit.push(voisin);
@@ -232,7 +233,7 @@ std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 			}
 		}
 	}
-*/
+
 
 	return toReturn;
 }
