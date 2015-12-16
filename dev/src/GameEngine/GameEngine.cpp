@@ -247,6 +247,7 @@ void GENGINE::frame()
     Terrain selectedTerrain;
     Unit selectedUnit;
     bool selectedUnitBool = false;
+    bool displayPorte = false;
 
     unsigned int fps = 25;
     sf::Time framerate = sf::milliseconds(1000 / fps);
@@ -376,6 +377,13 @@ void GENGINE::frame()
                     }
                     selectedUnitBool = false;
                 }
+                else if (event.key.code == sf::Keyboard::W)
+                {
+                    if (selectedUnitBool && view == 2)
+                    {
+                        displayPorte = !displayPorte;
+                    }
+                }
             }
             if(event.type == sf::Event::Closed)
                 m_window->close();
@@ -397,7 +405,7 @@ void GENGINE::frame()
         {
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
-            m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world);
+            m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world, displayPorte);
         }
         m_window->display();
 	

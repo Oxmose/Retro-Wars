@@ -321,7 +321,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     
 }
 
-void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world)
+void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
 {
     sf::RectangleShape downBar(sf::Vector2f(m_mapEngine->getWidth() * 16, 75));
 	downBar.setPosition(0, m_mapEngine->getHeight() * 16);
@@ -379,6 +379,18 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
 	
     mvtCursor.setPosition(p_mvtCursor.first * 16, p_mvtCursor.second * 16);
 	m_mainWindow->draw(mvtCursor);
+
+    // Display enemies that can be reached
+    if (p_displayPorte)
+    {
+        sf::RectangleShape enemies(sf::Vector2f(16, 16);
+        enemies.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(50), sf::Uint8(50), sf::Uint8(150)));
+        for (pair<int, int> Coord : enemies)
+        {
+            enemies.setPosition(Coord.first * 16, Coord.second * 16);
+            m_mainWindow->draw(enemies);
+        }
+    }
 
     sf::Text info("Health : " + to_string(p_unit.getHp()), font, 15);
     info.setPosition(250, m_mapEngine->getHeight() * 16 + 10);
