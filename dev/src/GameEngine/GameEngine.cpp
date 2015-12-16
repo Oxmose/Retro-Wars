@@ -32,6 +32,9 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 
     m_player = new Player(p_playerType);
 
+    // INIT UNIT ID
+    Unit::m_lastId = 0;
+
     m_world = new World(p_playerType, m_mapEngine->getWidth(), m_mapEngine->getHeight());
 
 
@@ -253,6 +256,7 @@ void GENGINE::frame()
     sf::Time framerate = sf::milliseconds(1000 / fps);
     
     pair<int, int> mvtCursor = make_pair(0, 0);
+    vector<int> movedUnits;
 
 	sf::Clock clock;
     while (m_window->isOpen())
@@ -261,6 +265,12 @@ void GENGINE::frame()
         sf::Event event;
         while(m_window->pollEvent(event))
         {
+            // Reset vars
+            if (!turn)
+            {
+                movedUnits.clear();
+            }
+
             // Key event
             if(event.type == sf::Event::KeyPressed)
             {
@@ -348,49 +358,65 @@ void GENGINE::frame()
                         // Player wants to move the unit
                         if(mvtCursor.first != m_player.getCord().first && mvtCursor.second != m_player->getCoord().second)
                         {
-                            vector<pair<int, int>> accessible = m_world->getAccessible(p_unit);
-                            // Check if user can move there
-                            bool move = false;
-                            for(pair<int, int> Coord : accessible)
+                            bool moved = false;
+                            for(int id : movedUnits)
                             {
-                                if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.first)
-                                {
-                                    move = true;
-                                    break;
-                                }
+                                if(selectedUnit.getId() == id)
+                                    moved = true;
                             }
-                            if(move)
+                            if(moved)
                             {
-                                m_world->moveUnit(seletedUnit, mvt_Cursor);
-                                selectedUnitBool = false;
-                                displayPort = false;
-                                view = 0;
+                                // TODO DISPLAY ERROR
+                                cerr << "Already moved this turn" << endl;
                             }
                             else
                             {
-                                // Check if user wanted to attack a unit
-                                vector<pair<int, int>> enemies = m_world->getPortee(p_unit);
-                                bool attack = false;
-                                for(pair<int, int> Coord : enemies)
+                                vector<pair<int, int>> accessible = m_world->getAccessible(p_unit);
+                                // Check if user can move there
+                                bool move = false;
+                                for(pair<int, int> Coord : accessible)
                                 {
-                                    if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
+                                    if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.first)
                                     {
-                                        attack = true;
+                                        move = true;
                                         break;
                                     }
                                 }
-                                if(attack)
+                                if(move)
                                 {
-                                    m_world->combatUnit(seletedUnit, m_world->getUnit(mvt_Cursor));
+                                    m_world->moveUnit(seletedUnit, mvt_Cursor);
+                                    movedUnits.push_back(selectedUnit.getId());
                                     selectedUnitBool = false;
                                     displayPort = false;
                                     view = 0;
                                 }
                                 else
                                 {
-                                    // User selected a wrong coordinate
-                                    // TODO DIPSLAY                                    
-                                    cout << "Can't move here !" << endl;
+                                    // Check if user wanted to attack a unit
+                                    vector<pair<int, int>> enemies = m_world->getPortee(p_unit);
+                                    bool attack = false;
+                                    for(pair<int, int> Coord : enemies)
+                                    {
+                                        if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
+                                        {
+                                            attack = true;
+                                            break;
+                                        }
+                                    }
+                                    if(attack)
+                                    {
+                                        m_world->combatUnit(seletedUnit, m_world->getUnit(mvt_Cursor));
+                                        movedUnits.push_back(selectedUnit.getId());
+                                        selectedUnitBool = false;
+                                        displayPort = false;
+                                        view = 0;
+                                    }
+                                    else
+                                    {
+                                        // User selected a wrong coordinate
+                                        // TODO DIPSLAY                                    
+                                        cout << "Can't move here !" << endl;
+                                    }
                                 }
                             }
                         }

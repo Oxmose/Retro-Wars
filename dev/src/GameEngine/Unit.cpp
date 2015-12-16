@@ -5,6 +5,7 @@
 GENGINE_UN::Unit()
 {
 	m_owner = NEUTRAL;
+	m_id = m_lastId++;
 }
 
 GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid)
@@ -14,6 +15,7 @@ GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_g
 	m_y = p_y;
 	m_gid = p_gid;
 	m_hp = 10;
+	m_id = m_lastId++;
 
 	m_owner = p_owner;
 
@@ -196,6 +198,11 @@ bool GENGINE_UN::isNoneUnit()
 nsGameEngine::UnitType GENGINE_UN::getType()
 {
 	return m_type;
+}
+
+int GENGINE_UN::getId()
+{
+	return m_id;
 }
 GENGINE_UN::~Unit()
 {

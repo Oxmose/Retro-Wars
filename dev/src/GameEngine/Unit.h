@@ -53,6 +53,7 @@ namespace nsGameEngine
 			UnitType getType();
 
 			bool isNoneUnit();
+			int getId();
 			
 
 		private:
@@ -71,6 +72,9 @@ namespace nsGameEngine
 			int m_range;
 			MvtType m_mvtType;
 			int m_cost;
+            // Uniq id management
+            static int m_lastId;
+			int m_id;
 
 
 	};
