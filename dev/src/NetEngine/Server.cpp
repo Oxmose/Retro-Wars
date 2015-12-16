@@ -281,7 +281,7 @@ void NETSERVER::disconnectClients()
 void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /* = true */)
 {
     //m_clientListMutex.lock();
-    m_clientSocketListMutex.lock();
+    //m_clientSocketListMutex.lock();
     
     // If client is not null
     if(m_clients[p_id].socket != nullptr)
@@ -313,7 +313,7 @@ void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /
         m_listenClientsThreads.erase(p_id);
     }
 
-    m_clientSocketListMutex.unlock();
+    //m_clientSocketListMutex.unlock();
     //m_clientListMutex.unlock();
 } // disconnectClient()
 
