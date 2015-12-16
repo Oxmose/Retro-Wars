@@ -356,7 +356,7 @@ void GENGINE::frame()
 		            if(selectedUnitBool && view == 2)
                     {
                         // Player wants to move the unit
-                        if(mvtCursor.first != m_player.getCord().first && mvtCursor.second != m_player->getCoord().second)
+                        if(mvtCursor.first != m_player->getCoord().first && mvtCursor.second != m_player->getCoord().second)
                         {
                             bool moved = false;
                             for(int id : movedUnits)
@@ -371,7 +371,7 @@ void GENGINE::frame()
                             }
                             else
                             {
-                                vector<pair<int, int>> accessible = m_world->getAccessible(p_unit);
+                                vector<pair<int, int>> accessible = m_world->getAccessible(selectedUnit);
                                 // Check if user can move there
                                 bool move = false;
                                 for(pair<int, int> Coord : accessible)
@@ -387,13 +387,13 @@ void GENGINE::frame()
                                     m_world->moveUnit(seletedUnit, mvt_Cursor);
                                     movedUnits.push_back(selectedUnit.getId());
                                     selectedUnitBool = false;
-                                    displayPort = false;
+                                    displayPorte = false;
                                     view = 0;
                                 }
                                 else
                                 {
                                     // Check if user wanted to attack a unit
-                                    vector<pair<int, int>> enemies = m_world->getPortee(p_unit);
+                                    vector<pair<int, int>> enemies = m_world->getPortee(selectedUnit);
                                     bool attack = false;
                                     for(pair<int, int> Coord : enemies)
                                     {
@@ -408,7 +408,7 @@ void GENGINE::frame()
                                         m_world->combatUnit(seletedUnit, m_world->getUnit(mvt_Cursor));
                                         movedUnits.push_back(selectedUnit.getId());
                                         selectedUnitBool = false;
-                                        displayPort = false;
+                                        displayPorte = false;
                                         view = 0;
                                     }
                                     else
