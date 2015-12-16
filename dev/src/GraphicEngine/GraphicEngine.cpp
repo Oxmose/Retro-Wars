@@ -347,7 +347,9 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, pair<int, int> &p
 
     // Display possible movments
     sf::RectangleShape possibleMove(sf::Vector2f(16, 16));
-    possibleMove.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(150), sf::Uint8(100)));
+    possibleMove.setOutlineColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(100), sf::Uint8(255)));
+    possibleMove.setOutlineThickness(0.5);
+    possibleMove.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(100), sf::Uint8(100)));
     
     vector<pair<int, int>> accessible = p_world->getAccessible(p_unit);
     vector<pair<int, int>> enemies = p_world->getPortee(p_unit);
