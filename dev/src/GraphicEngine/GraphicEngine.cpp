@@ -359,7 +359,11 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
 
 void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
 {
-    displayBar(p_player);
+    // Display black back
+    sf::RectangleShape downBar(sf::Vector2f(m_relativeMapWidth, 75));
+    downBar.setPosition(0, m_relativeMapHeight);
+    downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
+    m_mainWindow->draw(downBar);
 
     // Display select unit info
     sf::Text unitName("Selected : " + p_unit.getName(), m_font, 20);
