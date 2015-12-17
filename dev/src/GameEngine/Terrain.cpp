@@ -98,7 +98,7 @@ pair<int,int> GENGINE_TER::getCoord()
 	return make_pair(m_x,m_y);
 }
 
-TerrainType GENGINE_TER::getType()
+TerrainType GENGINE_TER::getType() const
 {
 	return m_type;
 }
@@ -113,7 +113,7 @@ bool GENGINE_TER::isNoneTerrain()
 	return m_type == OTHER && m_x == -1 && m_y == -1;
 }
 
-PLAYER_TYPE GENGINE_TER::getOwner() 
+PLAYER_TYPE GENGINE_TER::getOwner() const
 {
 	return m_owner;
 }

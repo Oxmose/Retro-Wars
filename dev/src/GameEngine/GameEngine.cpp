@@ -28,7 +28,7 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 
     m_mapEngine = p_mapEngine;
 	m_netEngine = p_netEngine;
-	m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
+	
 
     m_player = new Player(p_playerType);
 
@@ -50,6 +50,7 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
             }
         }
     }
+	m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
 
 } // GameEngine();
 
@@ -263,7 +264,7 @@ void GENGINE::frame()
     bool displayMessage = false;
     string message;
 
-	sf::Clock clock;
+    sf::Clock clock;
     while (m_window->isOpen())
     {	
         if(displayMessage)
@@ -284,8 +285,6 @@ void GENGINE::frame()
         sf::Event event;
         while(m_window->pollEvent(event))
         {
-           
-
             // Key event
             if(event.type == sf::Event::KeyPressed)
             {

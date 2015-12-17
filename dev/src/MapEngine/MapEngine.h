@@ -15,31 +15,36 @@
 
 namespace nsMapEngine
 {
-	class MapEngine
-	{
-		public:
-			MapEngine(const std::string &p_mapName);
-			~MapEngine();
+    class MapEngine
+    {
+        public:
 
-			std::vector<PLAYER_TYPE> 	getPlayers() 	  const;
+            // Constructor / Destructor
+            MapEngine(const std::string &p_mapName);
+            ~MapEngine();
 
-			Tmx::MapOrientation			getOrientation()  const;
-			Tmx::MapRenderOrder			getRenderOrder()  const;
-			unsigned int				getWidth()		  const;
-			unsigned int 				getHeight() 	  const;
-			unsigned int 				getTileWidth()	  const;
-			unsigned int				getTileHeight()	  const;
-			unsigned int				getNextObjectId() const;
+            // Map properties getters
+            std::vector<PLAYER_TYPE>    getPlayers()        const;
+            Tmx::MapOrientation         getOrientation()    const;
+            Tmx::MapRenderOrder         getRenderOrder()    const;
+            unsigned int                getWidth()          const;
+            unsigned int                getHeight()         const;
+            unsigned int                getTileWidth()      const;
+            unsigned int                getTileHeight()     const;
+            unsigned int                getNextObjectId()   const;
 
-			unsigned int				getLayerWidth(const unsigned int &p_layerId)  const;
-			unsigned int				getLayerHeight(const unsigned int &p_layerId) const;
-			const Tmx::Layer*		    getLayer(const unsigned int &p_layerId)       const;
-			std::vector<int>			getLayerTiles(const unsigned int &p_layerId)  const;
-		private:
-			Tmx::Map 			*m_map;
-			Tmx::PropertySet 	m_properties;
+            // Layers getters
+            unsigned int                getLayerWidth(const unsigned int &p_layerId)  const;
+            unsigned int                getLayerHeight(const unsigned int &p_layerId) const;
+            const Tmx::Layer*           getLayer(const unsigned int &p_layerId)       const;
+            std::vector<int>            getLayerTiles(const unsigned int &p_layerId)  const;
 
-	};
-}
+        private:
+
+            Tmx::Map             *m_map;
+            Tmx::PropertySet     m_properties;
+
+    }; // MapEngine
+} // nsMapEngine
 
 #endif

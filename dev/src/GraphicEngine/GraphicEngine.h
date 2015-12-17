@@ -39,8 +39,8 @@ namespace nsGraphicEngine
             void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world, bool p_turn);
             
             // Display info about base (also manage base menu) and units information (also manage unit movment display part)                 
-            void displayBaseInfo(nsGameEngine::Player *p_player, nsGameEngine::Terrain p_terrain);
-            void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, std::pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
+            void displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngine::Terrain &p_terrain);
+            void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, const std::pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
 
             // Display message
             void displayMessage(const std::string &p_message);
@@ -53,10 +53,10 @@ namespace nsGraphicEngine
             std::string getName(nsGameEngine::TerrainType terrain);
             
             // Display GUI bar            
-            void displayBar(sf::Font font, nsGameEngine::Player *p_player);
+            void displayBar(nsGameEngine::Player *p_player);
 
             // Main window
-            sf::RenderWindow* m_mainWindow; 
+            sf::RenderWindow *m_mainWindow; 
             
             // Map engine            
             nsMapEngine::MapEngine* m_mapEngine; 
@@ -72,7 +72,16 @@ namespace nsGraphicEngine
             sf::IntRect unit_gidToRect(int p_gid);
             sf::IntRect propertyToRect(nsGameEngine::Terrain p_property);
 
-            std::vector<sf::Sprite> m_map[4];   
+            std::vector<sf::Sprite> m_map[4]; 
+
+            // Map dimenssions for display settings
+            int m_mapWidth;
+            int m_mapHeight;
+            int m_relativeMapWidth;
+            int m_relativeMapHeight;
+
+            // Font used for display
+            sf::Font m_font;  
     }; // GraphicEngine
 
 } // nsGraphicEngine
