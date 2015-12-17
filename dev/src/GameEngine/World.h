@@ -32,6 +32,7 @@ namespace nsGameEngine
 			bool isVisible(int p_x, int p_y);
 			bool isVisible(std::pair<int,int> p_coord);
 
+
 			std::vector<std::pair<int,int>> getAccessible(Unit p_unit);
 			std::vector<std::pair<int,int>> getPortee(Unit p_unit);
 

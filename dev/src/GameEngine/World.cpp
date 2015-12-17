@@ -41,6 +41,7 @@ int GENGINE_W::man(std::pair<int,int> a, std::pair<int,int> b)
 	return abs(a.first-b.first)+abs(a.second-b.second);
 }
 
+//Unit dans bois voit pas à cote
 //p_reinit permet de supprimer les cases vu, utilise lors des deplacements
 void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 {
@@ -150,12 +151,20 @@ bool GENGINE_W::isVisible(std::pair<int,int> p_coord)
 	return isVisible(p_coord.first, p_coord.second);
 }
 
+typedef std::pair<std::pair<int,int>,std::pair<int,int>> forAcc;
+
+static bool comp(const forAcc& A, const forAcc& B)
+{
+	return A.first.first > B.first.first;
+}
+
+//TODO : bizarre que rocket puisse pas aller au dessus factory
 std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 {
 	std::vector<std::pair<int,int>> toReturn;
 	
-	std::queue<std::pair<int,std::pair<int,int>>> toVisit;
-	toVisit.push(make_pair(p_unit.getMvt(),p_unit.getCoord()));
+	std::priority_queue<forAcc,std::vector<forAcc>,decltype(&comp)> toVisit(&comp); //dist,mp,coord
+	toVisit.push(std::make_pair(std::make_pair(0,p_unit.getMvt()),p_unit.getCoord()));
 	
 
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
@@ -166,13 +175,14 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 
 	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
 
+
 	while(!toVisit.empty())
 	{
-		int mp = toVisit.front().first;
-		auto coord = toVisit.front().second;
+		int dist = toVisit.top().first.first;
+		int mp = toVisit.top().first.second;
+		auto coord = toVisit.top().second;
 		toVisit.pop();
-		
-		if(getUnit(coord).isNoneUnit() && (coord.first != p_unit.getCoord().first || coord.second != p_unit.getCoord().second))
+		if(getUnit(coord).isNoneUnit() && (coord.first != p_unit.getCoord().first || coord.second != p_unit.getCoord().second) && mp >= 0)
 			toReturn.push_back(coord);
 		
 		if(mp > 0)
@@ -184,13 +194,13 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 					if(!vu[voisin.second][voisin.first] && getTerrain(voisin).getMvt()[p_unit.getMvtType()] != 0)
 					{
 						vu[voisin.second][voisin.first] = true;
-						toVisit.push(make_pair(mp-getTerrain(voisin).getMvt()[p_unit.getMvtType()],voisin));
+						toVisit.push(std::make_pair(std::make_pair(getTerrain(voisin).getMvt()[p_unit.getMvtType()],mp-getTerrain(voisin).getMvt()[p_unit.getMvtType()]),voisin));
 					}
 			}
 		}
 
 	}
-	
+
 	return toReturn;
 }
 
