@@ -286,11 +286,13 @@ void GENGINE_W::moveUnit(Unit p_unit, std::pair<int,int> p_whereTo)
 
 }
 
-float GENGINE_W::getDamage(Unit p_attack, Unit p_defend)
+float GENGINE_W::getDamage(Unit p_attack, Unit p_defend, bool p_moy)
 {
 	float B = float(p_attack.getBaseDamage(p_defend));
 	float ACO = 1.0;
 	float R = float(rand_interval(0,9));
+	if(p_moy)
+		R = float(5.0);
 	float AHP = float(p_attack.getHp());
 	float DCO = 1.0;
 	float DTR = float(getTerrain(p_defend.getCoord()).getDefense());
