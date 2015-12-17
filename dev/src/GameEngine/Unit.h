@@ -39,12 +39,16 @@ namespace nsGameEngine
 			Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid);
 			~Unit();
 
+			void fillBaseDamage();
+			int getBaseDamage(Unit p_b);
+
 			int getGid();
 			std::pair<int,int> getCoord();
 			void setCoord(int p_x, int p_y);
 			PLAYER_TYPE getOwner();
 			int getVision();
 			int getHp();
+			void setHp(int p_hp);
 			std::string getName();
 			int getMvt();
 			int getAmmo();
@@ -58,6 +62,11 @@ namespace nsGameEngine
 
             // Uniq id management
             static int m_lastId;
+
+            bool operator == (Unit p_a) const
+            {
+            	return m_x == p_a.getCoord().first && m_y == p_a.getCoord().second;
+            }
 			
 
 		private:
@@ -78,6 +87,8 @@ namespace nsGameEngine
 			int m_cost;
             
 			int m_id;
+
+			int m_baseDamage[9][9];
 
 
 	};

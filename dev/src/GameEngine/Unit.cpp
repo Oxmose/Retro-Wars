@@ -117,6 +117,106 @@ GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_g
 		m_mvtType = TIRES;
 		m_cost = 15000;
 	}
+
+	fillBaseDamage();
+}
+
+void GENGINE_UN::fillBaseDamage()
+{
+	m_baseDamage[INFANTRY][INFANTRY] = 55;
+	m_baseDamage[INFANTRY][MDTANK] = 1;
+	m_baseDamage[INFANTRY][RECON] = 12;
+	m_baseDamage[INFANTRY][ARTILLERY] = 15;
+	m_baseDamage[INFANTRY][NEOTANK] = 1;
+	m_baseDamage[INFANTRY][MEGATANK] = 1;
+	m_baseDamage[INFANTRY][MECH] = 45;
+	m_baseDamage[INFANTRY][TANK] = 5;
+	m_baseDamage[INFANTRY][ROCKET] = 25;
+
+	m_baseDamage[MDTANK][INFANTRY] = 105;
+	m_baseDamage[MDTANK][MDTANK] = 55;
+	m_baseDamage[MDTANK][RECON] = 105;
+	m_baseDamage[MDTANK][ARTILLERY] = 105;
+	m_baseDamage[MDTANK][NEOTANK] = 45;
+	m_baseDamage[MDTANK][MEGATANK] = 25;
+	m_baseDamage[MDTANK][MECH] = 95;
+	m_baseDamage[MDTANK][TANK] = 85;
+	m_baseDamage[MDTANK][ROCKET] = 105;	
+
+	m_baseDamage[RECON][INFANTRY] = 70;
+	m_baseDamage[RECON][MDTANK] = 1;
+	m_baseDamage[RECON][RECON] = 35;
+	m_baseDamage[RECON][ARTILLERY] = 45;
+	m_baseDamage[RECON][NEOTANK] = 1;
+	m_baseDamage[RECON][MEGATANK] = 1;
+	m_baseDamage[RECON][MECH] = 65;
+	m_baseDamage[RECON][TANK] = 6;
+	m_baseDamage[RECON][ROCKET] = 55;
+
+	m_baseDamage[ARTILLERY][INFANTRY] = 90;
+	m_baseDamage[ARTILLERY][MDTANK] = 45;
+	m_baseDamage[ARTILLERY][RECON] = 80;
+	m_baseDamage[ARTILLERY][ARTILLERY] = 75;
+	m_baseDamage[ARTILLERY][NEOTANK] = 40;
+	m_baseDamage[ARTILLERY][MEGATANK] = 15;
+	m_baseDamage[ARTILLERY][MECH] = 85;
+	m_baseDamage[ARTILLERY][TANK] = 70;
+	m_baseDamage[ARTILLERY][ROCKET] = 80;
+
+	m_baseDamage[NEOTANK][INFANTRY] = 125;
+	m_baseDamage[NEOTANK][MDTANK] = 75;
+	m_baseDamage[NEOTANK][RECON] = 125;
+	m_baseDamage[NEOTANK][ARTILLERY] = 115;
+	m_baseDamage[NEOTANK][NEOTANK] = 55;
+	m_baseDamage[NEOTANK][MEGATANK] = 35;
+	m_baseDamage[NEOTANK][MECH] = 115;
+	m_baseDamage[NEOTANK][TANK] = 105;
+	m_baseDamage[NEOTANK][ROCKET] = 125;
+
+	m_baseDamage[MEGATANK][INFANTRY] = 135;
+	m_baseDamage[MEGATANK][MDTANK] = 125;
+	m_baseDamage[MEGATANK][RECON] = 195;
+	m_baseDamage[MEGATANK][ARTILLERY] = 195;
+	m_baseDamage[MEGATANK][NEOTANK] = 115;
+	m_baseDamage[MEGATANK][MEGATANK] = 65;
+	m_baseDamage[MEGATANK][MECH] = 125;
+	m_baseDamage[MEGATANK][TANK] = 180;
+	m_baseDamage[MEGATANK][ROCKET] = 195;
+
+	m_baseDamage[MECH][INFANTRY] = 65;
+	m_baseDamage[MECH][MDTANK] = 15;
+	m_baseDamage[MECH][RECON] = 85;
+	m_baseDamage[MECH][ARTILLERY] = 70;
+	m_baseDamage[MECH][NEOTANK] = 15;
+	m_baseDamage[MECH][MEGATANK] = 5;
+	m_baseDamage[MECH][MECH] = 55;
+	m_baseDamage[MECH][TANK] = 55;
+	m_baseDamage[MECH][ROCKET] = 85;
+
+	m_baseDamage[TANK][INFANTRY] = 75;
+	m_baseDamage[TANK][MDTANK] = 15;
+	m_baseDamage[TANK][RECON] = 85;
+	m_baseDamage[TANK][ARTILLERY] = 70;
+	m_baseDamage[TANK][NEOTANK] = 15;
+	m_baseDamage[TANK][MEGATANK] = 10;
+	m_baseDamage[TANK][MECH] = 70;
+	m_baseDamage[TANK][TANK] = 55;
+	m_baseDamage[TANK][ROCKET] = 85;
+
+	m_baseDamage[ROCKET][INFANTRY] = 95;
+	m_baseDamage[ROCKET][MDTANK] = 55;
+	m_baseDamage[ROCKET][RECON] = 90;
+	m_baseDamage[ROCKET][ARTILLERY] = 80;
+	m_baseDamage[ROCKET][NEOTANK] = 50;
+	m_baseDamage[ROCKET][MEGATANK] = 25;
+	m_baseDamage[ROCKET][MECH] = 90;
+	m_baseDamage[ROCKET][TANK] = 75;
+	m_baseDamage[ROCKET][ROCKET] = 85;
+}
+
+int GENGINE_UN::getBaseDamage(Unit p_b)
+{
+	return m_baseDamage[m_type][p_b.getType()];
 }
 
 int GENGINE_UN::getGid()
@@ -209,6 +309,11 @@ void GENGINE_UN::setCoord(int p_x, int p_y)
 {
 	m_x = p_x;
 	m_y = p_y;
+}
+
+void GENGINE_UN::setHp(int p_hp)
+{
+	m_hp = p_hp;
 }
 
 GENGINE_UN::~Unit()

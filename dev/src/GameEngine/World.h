@@ -16,12 +16,12 @@ namespace nsGameEngine
 			World(PLAYER_TYPE p_player, int p_width, int p_height);
 			~World();
 
-
 			void addTerrain(Terrain p_terrain);
 			Terrain& getTerrain(int p_x, int p_y);
 			Terrain& getTerrain(std::pair<int,int> p_coord);
 
 			void addUnit(Unit p_unit);
+			void removeUnit(Unit p_unit);
 			void refreshVisibleMyProperty(Terrain p_terrain);
 			void refreshVisibleUnit(Unit p_unit, int p_reinit);
 			Unit& getUnit(int p_x, int p_y);
@@ -32,12 +32,13 @@ namespace nsGameEngine
 			bool isVisible(int p_x, int p_y);
 			bool isVisible(std::pair<int,int> p_coord);
 
-
 			std::vector<std::pair<int,int>> getAccessible(Unit p_unit);
 			std::vector<std::pair<int,int>> getPortee(Unit p_unit);
 
 			void moveUnit(Unit p_unit, std::pair<int,int> p_whereTo);
-			void combatUnit(Unit p_unitA, Unit p_unitB);
+			void combatUnit(Unit p_attack, Unit p_defend);
+			float getDamage(Unit p_attack, Unit p_defend);
+			unsigned int rand_interval(unsigned int min, unsigned int max);
 
 
 		private:

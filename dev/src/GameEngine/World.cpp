@@ -16,6 +16,8 @@ GENGINE_W::World(PLAYER_TYPE p_player, int p_width, int p_height)
 	for(int y = 0 ; y < m_height ; y++)
 		for(int x =  0 ; x < m_width ; x++)
 			m_visible.push_back(0);
+
+	srand(time(NULL));
 }
 
 int GENGINE_W::getI(int p_x, int p_y)
@@ -105,6 +107,13 @@ void GENGINE_W::addUnit(Unit p_unit)
 {
 	m_unit.push_back(p_unit);
 	refreshVisibleUnit(p_unit);
+}
+
+void GENGINE_W::removeUnit(Unit p_unit)
+{
+	if(p_unit.getOwner() == m_player)
+		refreshVisibleUnit(p_unit,-1);
+	m_unit.remove(p_unit);
 }
 
 std::list<Unit>& GENGINE_W::getUnits()
@@ -248,6 +257,26 @@ std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 	return toReturn;
 }
 
+
+unsigned int GENGINE_W::rand_interval(unsigned int min, unsigned int max)
+{
+    int r;
+    const unsigned int range = 1 + max - min;
+    const unsigned int buckets = RAND_MAX / range;
+    const unsigned int limit = buckets * range;
+
+    /* Create equal size buckets all in a row, then fire randomly towards
+     * the buckets until you land in one of them. All buckets are equally
+     * likely. If you land off the end of the line of buckets, try again. */
+    do
+    {
+        r = rand();
+    } while (r >= limit);
+
+    return min + (r / buckets);
+}
+
+
 void GENGINE_W::moveUnit(Unit p_unit, std::pair<int,int> p_whereTo)
 {
 	refreshVisibleUnit(p_unit,-1);
@@ -257,8 +286,36 @@ void GENGINE_W::moveUnit(Unit p_unit, std::pair<int,int> p_whereTo)
 
 }
 
-void GENGINE_W::combatUnit(Unit p_unitA, Unit p_unitB)
+float GENGINE_W::getDamage(Unit p_attack, Unit p_defend)
 {
+	float B = float(p_attack.getBaseDamage(p_defend));
+	float ACO = 1.0;
+	float R = float(rand_interval(0,9));
+	float AHP = float(p_attack.getHp());
+	float DCO = 1.0;
+	float DTR = float(getTerrain(p_defend.getCoord()).getDefense());
+	float DHP = p_defend.getHp();
+	return  (B*ACO/DCO)*(AHP/10)-R*((200-(DCO+DTR*DHP))/100);
+}
+
+void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
+{
+	float damage1 = std::max(getDamage(p_attack, p_defend)/100,float(0));
+	int newHealth1 = std::max(p_defend.getHp()-int(damage1*p_defend.getHp()),0);
+	p_defend.setHp(newHealth1);
+	getUnit(p_defend.getCoord()).setHp(newHealth1);
+
+	if(newHealth1 == 0)
+		removeUnit(p_defend);
+	else
+	{
+		float damage2 = std::max(getDamage(p_defend, p_attack)/100,float(0));
+		int newHealth2 = std::max(p_attack.getHp()-int(damage2*p_attack.getHp()),0);
+		p_attack.setHp(newHealth2);
+		getUnit(p_attack.getCoord()).setHp(newHealth2);
+		if(newHealth2 == 0)
+			removeUnit(p_attack);
+	}
 
 }
 
