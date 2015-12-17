@@ -383,7 +383,7 @@ void GENGINE::frame()
                             {
                                 displayMessage = true;
                                 messageTimer = fps * 5;
-                                message = "Unit already moved this turn!";
+                                message = "Unit already used this turn!";
                             }
                             else
                             {
@@ -458,7 +458,7 @@ void GENGINE::frame()
                                 {
                                     displayMessage = true;
                                     messageTimer = fps * 5;
-                                    message = "Unit already moved this turn!";
+                                    message = "Unit already used this turn!";
                                 }
                                 else
                                 {
