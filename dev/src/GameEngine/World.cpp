@@ -311,12 +311,15 @@ void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 		removeUnit(p_defend);
 	else
 	{
-		float damage2 = std::max(getDamage(p_defend, p_attack)/100,float(0));
-		int newHealth2 = std::max(p_attack.getHp()-int(damage2*p_attack.getHp()),0);
-		p_attack.setHp(newHealth2);
-		getUnit(p_attack.getCoord()).setHp(newHealth2);
-		if(newHealth2 == 0)
-			removeUnit(p_attack);
+		if(man(p_attack.getCoord(),p_defend.getCoord()) <= p_defend.getRange())
+		{
+			float damage2 = std::max(getDamage(p_defend, p_attack)/100,float(0));
+			int newHealth2 = std::max(p_attack.getHp()-int(damage2*p_attack.getHp()),0);
+			p_attack.setHp(newHealth2);
+			getUnit(p_attack.getCoord()).setHp(newHealth2);
+			if(newHealth2 == 0)
+				removeUnit(p_attack);
+		}
 	}
 
 }
