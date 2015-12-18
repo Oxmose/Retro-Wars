@@ -23,8 +23,7 @@ int main(int argc, char** argv)
 	netEngine.setIsServer(true);
 	if (argc > 1)
 	{
-		address = "192.168.2.7"; 
-		PLAYER_TYPE type = BLUE;
+		type = BLUE;
 		netEngine.setIsServer(false);
 	}
 	

@@ -204,12 +204,17 @@ void NETENGINE::manageError(const std::string &p_error)
 
 void NETENGINE::parseMessage(const std::string &p_message)
 {   
-	Action action;
-	action.type = 0;
-	vector<pair<int, int>> coord;
-	coord.push_back(make_pair(0, 0));
-	coord.push_back(make_pair(1, 0));
-	action.coord = coord;
+	if (p_message[0] != 'S')
+	{
+		cout << p_message << endl;
+		Action action;
+		action.type = 0;
+		vector<pair<int, int>> coord;
+		coord.push_back(make_pair(0, 0));
+		coord.push_back(make_pair(1, 0));
+		action.coord = coord;
+		m_gameEngine->notify(action);
+	}
 
-    m_gameEngine->notify(action);
+    	
 } // parseMessage()
