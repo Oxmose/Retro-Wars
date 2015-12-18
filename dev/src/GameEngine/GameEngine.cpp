@@ -556,7 +556,7 @@ void GENGINE::notify(const Action &p_action)
     cout << "SERVER SENT ME : " << p_action.type;
     if(p_action.type == MOVE)
     {
-        m_world->moveUnit(p_action.coord[0], p_action.coord[1]);
+        m_world->moveUnit(m_world->getUnit(p_action.coord[0]), p_action.coord[1]);
     }
 }
 
