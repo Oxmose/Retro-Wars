@@ -203,6 +203,13 @@ void NETENGINE::manageError(const std::string &p_error)
 } // manageError()
 
 void NETENGINE::parseMessage(const std::string &p_message)
-{    
-    m_gameEngine->notify(p_message);
+{   
+	Action action;
+	action.type = 0;
+	vector<pair<int, int>> coord;
+	coord.push_back(make_pair(0, 0));
+	coord.push_back(make_pair(1, 0));
+	action.coord = coord;
+
+    m_gameEngine->notify(action);
 } // parseMessage()

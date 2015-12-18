@@ -503,6 +503,10 @@ void GENGINE::frame()
                         displayPorte = !displayPorte;
                     }
                 }
+				else if(event.key.code == sf::Keyboard::T)
+				{
+					view = 3;
+				}
             }
             if(event.type == sf::Event::Closed)
                 m_window->close();

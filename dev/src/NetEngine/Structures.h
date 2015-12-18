@@ -2,6 +2,7 @@
 #define DEF_STRUCTURES_H
 
 #include <SFML/Network.hpp>
+#include <vector>
 
 #include "../Misc/Misc.h"
 
@@ -31,6 +32,19 @@ namespace nsNetEngine
         // Network socket
         sf::TcpSocket   *socket;        
     }; // Client
+
+	
+    enum ACTION_TYPE
+    {
+        MOVE = 0
+    };
+
+    typedef struct Action Action;
+    struct Action
+    {
+        int type;
+        std::vector<std::pair<int, int>> coord;
+    };
 } // nsNetEngine
 
 #endif
