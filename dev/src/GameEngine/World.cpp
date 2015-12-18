@@ -297,13 +297,13 @@ float GENGINE_W::getDamage(Unit p_attack, Unit p_defend, bool p_moy)
 	float DCO = 1.0;
 	float DTR = float(getTerrain(p_defend.getCoord()).getDefense());
 	float DHP = p_defend.getHp();
-	return  (B*ACO/DCO)*(AHP/10)-R*((200-(DCO+DTR*DHP))/100);
+	return  std::min(std::max((B*ACO/DCO)*(AHP/10)-R*((200-(DCO+DTR*DHP))/100),float(0)),float(100));
 }
 
 void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 {
-	float damage1 = std::max(getDamage(p_attack, p_defend)/100,float(0));
-	int newHealth1 = std::max(p_defend.getHp()-int(damage1*p_defend.getHp()),0);
+	float damage1 = getDamage(p_attack, p_defend)/100;
+	int newHealth1 = p_defend.getHp()-int(damage1*p_defend.getHp());
 	p_defend.setHp(newHealth1);
 	getUnit(p_defend.getCoord()).setHp(newHealth1);
 
@@ -313,7 +313,7 @@ void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 	{
 		if(man(p_attack.getCoord(),p_defend.getCoord()) <= p_defend.getRange())
 		{
-			float damage2 = std::max(getDamage(p_defend, p_attack)/100,float(0));
+			float damage2 = getDamage(p_defend, p_attack)/100;
 			int newHealth2 = std::max(p_attack.getHp()-int(damage2*p_attack.getHp()),0);
 			p_attack.setHp(newHealth2);
 			getUnit(p_attack.getCoord()).setHp(newHealth2);

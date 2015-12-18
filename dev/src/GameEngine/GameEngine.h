@@ -71,7 +71,7 @@ namespace nsGameEngine
             /// @details The frame function is the main loop of the game, where all the game management will take place.
             void frame() ;
 
-            void notify(const std::string &p_message);
+            void notify(const nsNetEngine::Action &p_action);
 
             void test();
 

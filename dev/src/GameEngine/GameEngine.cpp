@@ -547,9 +547,13 @@ GENGINE::~GameEngine()
     delete m_graphicEngine;
 }
 
-void GENGINE::notify(const std::string &p_message)
+void GENGINE::notify(const Action &p_action)
 {
-    cout << "SERVER SENT ME : " << p_message;
+    cout << "SERVER SENT ME : " << p_action.type;
+    if(p_action.type == MOVE)
+    {
+        m_world->moveUnit(p_action.coord[0], p_action.coord[1]);
+    }
 }
 
 void GENGINE::test()
