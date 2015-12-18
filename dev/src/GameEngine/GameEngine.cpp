@@ -400,7 +400,9 @@ void GENGINE::frame()
                                 if(move)
                                 {
                                     m_world->moveUnit(selectedUnit, mvtCursor);
-									m_netEngine->send("ACTION::COORD::COORD");
+									NetPackage np;
+									np.message = "ACTION::COORD::COORD";
+									m_netEngine->send(np);
                                     m_player->setCoord(mvtCursor);
                                     movedUnits.push_back(selectedUnit.getId());
                                     selectedUnitBool = false;
