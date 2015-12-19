@@ -202,19 +202,32 @@ void NETENGINE::manageError(const std::string &p_error)
     }
 } // manageError()
 
+std::pair<int,int> NETENGINE::stringToCooord(const std::string &p_s)
+{
+    int i = p_s.find(",");
+    return make_pair(std::stoi(p_s.substr(1,i-1)),std::stoi(p_s.substr(i+1, p_s.size()-i-2)));
+}
+
 void NETENGINE::parseMessage(const std::string &p_message)
 {   
-	if (p_message[0] != 'S')
-	{
-		cout << p_message << endl;
-		Action action;
-		action.type = 0;
-		vector<pair<int, int>> coord;
-		coord.push_back(make_pair(0, 0));
-		coord.push_back(make_pair(1, 0));
-		action.coord = coord;
-		m_gameEngine->notify(action);
-	}
-
+    cout << "recu : " << p_message << endl;
+    auto split = splitString(p_message, "::");
+    for(auto a : splitString(p_message, "::"))
+        cout << "parse : " << a << endl;
+    switch(split[0][split[0].size()-1])
+    {
+        case '0':
+            Action action;
+            action.type = 0;
+            vector<pair<int, int>> coord;
+            int i = split[1].find(",");
+            stringToCooord(split[1]);
+            stringToCooord(split[2]);
+            coord.push_back(stringToCooord(split[1]));
+            coord.push_back(stringToCooord(split[2]));
+            action.coord = coord;
+            m_gameEngine->notify(action);
+            break;
+    }
     	
 } // parseMessage()

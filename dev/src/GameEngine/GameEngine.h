@@ -75,6 +75,8 @@ namespace nsGameEngine
 
             void test();
 
+            std::string coordToString(std::pair<int,int> p_coord);
+
             
         private:
             /// @brief The window dimension variable.

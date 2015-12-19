@@ -243,6 +243,11 @@ void GENGINE::loadWorld()
     //printf("%d %d\n", m_world->getTerrain(8,0).getType(), m_world->getTerrain(8,0).getOwner());
 }
 
+std::string GENGINE::coordToString(std::pair<int,int> p_coord)
+{
+    return string("("+std::to_string(p_coord.first)+","+std::to_string(p_coord.second)+")");
+}
+
 void GENGINE::frame()
 {
     bool turn = true;
@@ -399,9 +404,10 @@ void GENGINE::frame()
                                 }
                                 if(move)
                                 {
+                                    NetPackage np;
+                                    np.message = "0::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
                                     m_world->moveUnit(selectedUnit, mvtCursor);
-									NetPackage np;
-									np.message = "ACTION::COORD::COORD";
+									
 									m_netEngine->send(np);
                                     m_player->setCoord(mvtCursor);
                                     movedUnits.push_back(selectedUnit.getId());
