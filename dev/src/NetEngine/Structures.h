@@ -36,7 +36,8 @@ namespace nsNetEngine
 	
     enum ACTION_TYPE
     {
-        MOVE = 0
+        MOVE = 0,
+        ATTACK
     };
 
     typedef struct Action Action;
@@ -44,6 +45,7 @@ namespace nsNetEngine
     {
         int type;
         std::vector<std::pair<int, int>> coord;
+        std::vector<int> data;
     };
 } // nsNetEngine
 

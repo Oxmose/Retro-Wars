@@ -214,18 +214,26 @@ void NETENGINE::parseMessage(const std::string &p_message)
     auto split = splitString(p_message, "::");
     for(auto a : splitString(p_message, "::"))
         cout << "parse : " << a << endl;
+    Action action;
     switch(split[0][split[0].size()-1])
     {
         case '0':
-            Action action;
-            action.type = 0;
-            vector<pair<int, int>> coord;
-            int i = split[1].find(",");
+            
+            action.type = MOVE;
             stringToCooord(split[1]);
             stringToCooord(split[2]);
-            coord.push_back(stringToCooord(split[1]));
-            coord.push_back(stringToCooord(split[2]));
-            action.coord = coord;
+            action.coord.push_back(stringToCooord(split[1]));
+            action.coord.push_back(stringToCooord(split[2]));
+            m_gameEngine->notify(action);
+            break;
+        case '1':
+            action.type = ATTACK;
+            stringToCooord(split[1]);
+            stringToCooord(split[2]);
+            action.coord.push_back(stringToCooord(split[1]));
+            action.coord.push_back(stringToCooord(split[2]));
+            action.data.push_back(stoi(split[3]));
+            action.data.push_back(stoi(split[4]));
             m_gameEngine->notify(action);
             break;
     }

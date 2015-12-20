@@ -431,7 +431,12 @@ void GENGINE::frame()
                                     if(attack)
                                     {
                                         cout << "ATACK" << endl;
+                                        NetPackage np;
+                                        np.message = "1::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
+                                        
                                         m_world->combatUnit(selectedUnit, m_world->getUnit(mvtCursor));
+                                        np.message += "::"+std::to_string(m_world->getUnit(selectedUnit.getCoord()).getHp())+"::"+std::to_string(m_world->getUnit(mvtCursor).getHp());
+                                        m_netEngine->send(np);
                                         m_player->setCoord(mvtCursor);
                                         movedUnits.push_back(selectedUnit.getId());
                                         selectedUnitBool = false;
@@ -566,6 +571,16 @@ void GENGINE::notify(const Action &p_action)
     if(p_action.type == MOVE)
     {
         m_world->moveUnit(m_world->getUnit(p_action.coord[0]), p_action.coord[1]);
+    }
+    if(p_action.type == ATTACK)
+    {
+        for(int i = 0 ; i < 2 ; i++)
+        {
+            if(p_action.data[i] == -1)
+                m_world->removeUnit(m_world->getUnit(p_action.coord[i]));
+            else
+                m_world->getUnit(p_action.coord[i]).setHp(p_action.data[i]);
+        }
     }
 }
 

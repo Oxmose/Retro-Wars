@@ -8,6 +8,7 @@ GENGINE_W::World(PLAYER_TYPE p_player, int p_width, int p_height)
 {
 	m_noneTerrain = Terrain(OTHER,-1,-1);
 	m_noneUnit = Unit(INFANTRY,-1,-1,NEUTRAL,0);
+	m_noneUnit.setHp(-1);
 	m_player = p_player;
 
 	m_width = p_width;
@@ -111,6 +112,7 @@ void GENGINE_W::addUnit(Unit p_unit)
 
 void GENGINE_W::removeUnit(Unit p_unit)
 {
+
 	if(p_unit.getOwner() == m_player)
 		refreshVisibleUnit(p_unit,-1);
 	m_unit.remove(p_unit);
