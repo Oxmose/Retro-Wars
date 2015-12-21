@@ -19,6 +19,8 @@
 
 #include <SFML/Graphics.hpp>    // sf::RenderWindow, sf::VideoMode
 #include <string>                // std::string
+#include <utility>
+#include <atomic>
 
 #include "GameEngine.h"            // nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"        // nsGraphicEngine::GraphicEngine
@@ -81,6 +83,7 @@ namespace nsGameEngine
         private:
             /// @brief The window dimension variable.
             sf::VideoMode     m_windowDim;
+            unsigned int m_fps;
 
             /// @brief The window title.
             std::string     m_windowTitle;
@@ -94,10 +97,14 @@ namespace nsGameEngine
             /// @brief The pointer to the graphic engine.
             nsGraphicEngine::GraphicEngine*    m_graphicEngine;
 
-
             World* m_world;
             Player* m_player;
             nsNetEngine::NetEngine *m_netEngine;
+
+            // Timer for 1.5s
+            std::atomic<bool> m_attackNotify;
+            std::atomic<int> m_attackNotifyStep;
+            std::pair<int, int> m_attackPos;
     };
 }
 

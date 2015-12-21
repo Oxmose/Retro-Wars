@@ -16,6 +16,8 @@
 
 namespace nsGraphicEngine
 {
+    #define GRAPHIC_RES_IMG "./res/images/"
+
     class GraphicEngine
     {
         public:
@@ -27,9 +29,6 @@ namespace nsGraphicEngine
 
             // Reload display
             void reload();
-
-            // Load game map
-            void loadMap();
 
             // Draw map tiles and units
             void drawMap(nsGameEngine::World* p_world);
@@ -45,9 +44,18 @@ namespace nsGraphicEngine
             // Display message
             void displayMessage(const std::string &p_message);
 
+            // Display attack notification
+            void notifyAttack(int p_attackStep, const std::pair<int, int> &p_where);
+
             void checkProperties(nsGameEngine::World* p_world);
 
         private:
+
+            // Load game map
+            void loadMap();
+
+            // Load other resources
+            void loadResources();
 
             // Util, get name of a terrain (string)
             std::string getName(nsGameEngine::TerrainType terrain);
@@ -73,6 +81,10 @@ namespace nsGraphicEngine
             sf::IntRect propertyToRect(nsGameEngine::Terrain p_property);
 
             std::vector<sf::Sprite> m_map[4]; 
+
+            // Other graphicResources
+            sf::Texture m_explosionTexture;
+            sf::Sprite  m_explosionSprite;
 
             // Map dimenssions for display settings
             int m_mapWidth;

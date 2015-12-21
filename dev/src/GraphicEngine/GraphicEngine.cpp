@@ -29,7 +29,11 @@ GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow, nsMapEngine::MapEngine* 
     m_mainWindow = p_mainWindow;
     m_mapEngine = p_mapEngine;
 
+    // Load map graphics
     loadMap();
+
+    // Load other graphic resources
+    loadResources();
 
     // Load properties
     m_mapWidth = m_mapEngine->getWidth();
@@ -210,6 +214,17 @@ void GxENGINE::loadMap()
     }
 } // loadMap()
 
+void GxENGINE::loadResources()
+{
+    // Explosion texture
+    if (!m_explosionTexture.loadFromFile(string(GRAPHIC_RES_IMG) + "explosion.png"))
+    {
+        cerr << "Can't load explosion texture!" << endl;
+    }
+    m_explosionTexture.setSmooth(true);
+
+    m_explosionSprite.setTexture(m_explosionTexture);
+} // loadResources()
 
 void GxENGINE::reload() 
 {
@@ -563,3 +578,18 @@ void GxENGINE::displayMessage(const std::string &p_message)
 
     m_mainWindow->draw(message);
 } // displayMessage()
+
+void GxENGINE::notifyAttack(int p_attackStep, const pair<int, int> &p_where)
+{
+    p_attackStep = 72 - p_attackStep;
+    int column = p_attackStep % 8;
+    int line = p_attackStep / 8;
+    while(line >= 9)
+    {
+        line = line - 9;
+    }
+    cout << "LOAD : " << column << "x; " << line << "y" << endl;
+    m_explosionSprite.setTextureRect(sf::IntRect(column * 16, line * 16, 16, 16));
+    m_explosionSprite.setPosition(p_where.first * 16, p_where.second * 16);
+    m_mainWindow->draw(m_explosionSprite);
+} // notifyAttack()

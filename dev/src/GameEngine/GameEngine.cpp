@@ -23,6 +23,7 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 	// Init basic settings
 	m_windowDim = sf::VideoMode(p_width, p_height);
 	m_windowTitle	= p_title;
+    m_fps = 25;
 
 	m_window = new sf::RenderWindow(m_windowDim, m_windowTitle);
 
@@ -258,27 +259,39 @@ void GENGINE::frame()
     bool selectedUnitBool = false;
     bool displayPorte = false;
 
-    unsigned int fps = 25;
-    sf::Time framerate = sf::milliseconds(1000 / fps);
+    sf::Time framerate = sf::milliseconds(1000 / m_fps);
     
     pair<int, int> mvtCursor = make_pair(0, 0);
     vector<int> movedUnits;
 
     // Timer for 5s
-    int messageTimer = fps * 5;
+    int messageTimer = m_fps * 5;
     bool displayMessage = false;
-    string message;
+    string message; 
+    
+    m_attackNotifyStep = m_fps * 2.88;
+    m_attackNotify = false;
 
     sf::Clock clock;
-    while (m_window->isOpen())
+    while(m_window->isOpen())
     {	
         if(displayMessage)
         {
             --messageTimer;
             if(messageTimer == 0)
             {
-                messageTimer = fps * 5;
+                messageTimer = m_fps * 5;
                 displayMessage = false;
+            }
+        }
+
+        if(m_attackNotify)
+        {
+            --m_attackNotifyStep;
+            if(m_attackNotifyStep == 0)
+            {
+                m_attackNotify = false;
+                m_attackNotifyStep = m_fps * 2.88;
             }
         }
         // Reset vars
@@ -386,7 +399,7 @@ void GENGINE::frame()
                             if(moved)
                             {
                                 displayMessage = true;
-                                messageTimer = fps * 5;
+                                messageTimer = m_fps * 5;
                                 message = "Unit already used this turn!";
                             }
                             else
@@ -430,7 +443,6 @@ void GENGINE::frame()
                                     }
                                     if(attack)
                                     {
-                                        cout << "ATACK" << endl;
                                         NetPackage np;
                                         np.message = "1::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
                                         
@@ -441,12 +453,16 @@ void GENGINE::frame()
                                         movedUnits.push_back(selectedUnit.getId());
                                         selectedUnitBool = false;
                                         displayPorte = false;
+                                        
+                                        m_attackNotify = true;
+                                        m_attackPos = mvtCursor;
+
                                         view = 0;
                                     }
                                     else
                                     {
                                         displayMessage = true;
-                                        messageTimer = fps * 5;
+                                        messageTimer = m_fps * 5;
                                         message = "You cannot move here!";
                                     }
                                 }
@@ -470,7 +486,7 @@ void GENGINE::frame()
                                 if(moved)
                                 {
                                     displayMessage = true;
-                                    messageTimer = fps * 5;
+                                    messageTimer = m_fps * 5;
                                     message = "Unit already used this turn!";
                                 }
                                 else
@@ -501,7 +517,7 @@ void GENGINE::frame()
                 else if (event.key.code == sf::Keyboard::Escape)
                 {
                     displayMessage = false;
-                    messageTimer = fps * 5;
+                    messageTimer = m_fps * 5;
 
                     if (view != 0)
                     {
@@ -547,6 +563,11 @@ void GENGINE::frame()
         if(displayMessage)
             m_graphicEngine->displayMessage(message);
 
+        if(m_attackNotify)
+        {
+            cout << "NOTIFY " << m_attackNotifyStep << endl;
+            m_graphicEngine->notifyAttack(m_attackNotifyStep, m_attackPos);
+        }
         m_window->display();
 	
         sf::Time elapsed = clock.getElapsedTime();
@@ -574,6 +595,10 @@ void GENGINE::notify(const Action &p_action)
     }
     if(p_action.type == ATTACK)
     {
+        m_attackPos = p_action.coord[1];
+        m_attackNotifyStep = m_fps * 2.88;
+        m_attackNotify = true;
+
         for(int i = 0 ; i < 2 ; i++)
         {
             if(p_action.data[i] == -1)
