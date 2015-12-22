@@ -357,33 +357,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
         }
     }
 
-    // Turn info    
-    if (p_turn)
-    {
-        sf::Text infoTurn("Your turn" , m_font, 18);
-        infoTurn.setPosition(m_relativeMapWidth / 2 - infoTurn.getGlobalBounds().width / 2, m_relativeMapHeight + 71);
-        infoTurn.setColor(sf::Color(0, 0, 0, 255));
-
-        sf::RectangleShape turnRect(sf::Vector2f(m_relativeMapWidth, 15));
-        turnRect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(255), sf::Uint8(150), sf::Uint8(200)));
-        turnRect.setPosition(0, m_relativeMapHeight + 75);
-
-        m_mainWindow->draw(turnRect);
-        m_mainWindow->draw(infoTurn);
-    }
-    else
-    {
-        sf::Text infoTurn("Not your turn" , m_font, 18);
-        infoTurn.setPosition(m_relativeMapWidth / 2 - infoTurn.getGlobalBounds().width / 2, m_relativeMapHeight + 71);
-        infoTurn.setColor(sf::Color(255, 255, 255, 255));
-
-        sf::RectangleShape turnRect(sf::Vector2f(m_relativeMapWidth, 15));
-        turnRect.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(33), sf::Uint8(33), sf::Uint8(200)));
-        turnRect.setPosition(0, m_relativeMapHeight + 75);
-
-        m_mainWindow->draw(turnRect);
-        m_mainWindow->draw(infoTurn);
-    }
+    manageTurn(p_turn);
 } // refreshUserInterface()
 
 void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
@@ -504,7 +478,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
     */
 } // displayUnitInfo()
 
-void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngine::Terrain &p_terrain) 
+void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngine::Terrain &p_terrain, const int &p_select) 
 {
     // Background
     sf::RectangleShape back(sf::Vector2f(m_relativeMapWidth, m_relativeMapHeight));
@@ -514,7 +488,7 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
 
     displayBar(p_player);
     sf::Text quit("Press  escape  to  quit" , m_font, 15);
-    quit.setPosition(140, m_relativeMapHeight + 50);
+    quit.setPosition(5, m_relativeMapHeight + 50);
 
     m_mainWindow->draw(quit);
 
@@ -534,34 +508,366 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     info.setColor(sf::Color(0, 0, 0, 255));
     m_mainWindow->draw(info);
 
-    // Units menu
-    sf::RectangleShape infoBg(sf::Vector2f(100, 75));
-    infoBg.setFillColor(sf::Color(75, 75, 75, 150));
+    // ###########################################  Units menu
+    int colorSelector;
+    if(p_player->getType() == RED)
+    {
+        colorSelector = 0;
+    }
+    else if(p_player->getType() == BLUE)
+    {
+        colorSelector = 2;
+    }
+    
+    sf::RectangleShape cursor(sf::Vector2f(80, 75));
+    cursor.setFillColor(sf::Color(255, 255, 255, 50));
+    cursor.setOutlineColor(sf::Color(75, 75, 75, 50));
+    cursor.setOutlineThickness(2);
 
-    // Infantry button
+    sf::RectangleShape separator (sf::Vector2f(2, 65));
+    separator.setPosition(140, m_relativeMapHeight + 5);
+
+    // Retrive informations
+    UnitInfo infInfo = Unit::getUnitInfo(INFANTRY);
+    UnitInfo mdtInfo = Unit::getUnitInfo(MDTANK);
+    UnitInfo recInfo = Unit::getUnitInfo(RECON);
+    UnitInfo artInfo = Unit::getUnitInfo(ARTILLERY);
+    UnitInfo netInfo = Unit::getUnitInfo(NEOTANK);
+    UnitInfo mgtInfo = Unit::getUnitInfo(MEGATANK);
+    UnitInfo mecInfo = Unit::getUnitInfo(MECH);
+    UnitInfo takInfo = Unit::getUnitInfo(TANK);
+    UnitInfo rocInfo = Unit::getUnitInfo(ROCKET);
+
+    // ############### Infantry button
     sf::Sprite infantryBtn;
     infantryBtn.setTexture(m_tileset_unit);
-    infantryBtn.setTextureRect(sf::IntRect(0, 0, 16, 16));
-    infantryBtn.setPosition(10, 80);
-    infantryBtn.setScale(4, 4);
+    infantryBtn.setTextureRect(sf::IntRect(0, colorSelector * 16, 16, 16));
+    infantryBtn.setPosition(27, 80);
+    infantryBtn.setScale(3, 3); 
+  
+    sf::Text infantryCost("Cost: " + to_string(infInfo.cost), m_font, 15);
+    infantryCost.setPosition(16, 130);
+    
+
+    // ############### MdTank button
+    sf::Sprite mdTankBtn;
+    mdTankBtn.setTexture(m_tileset_unit);
+    mdTankBtn.setTextureRect(sf::IntRect(16, colorSelector * 16, 16, 16));
+    mdTankBtn.setPosition(116, 80);
+    mdTankBtn.setScale(3, 3);
+     
+  
+    sf::Text mdTankCost("Cost: " + to_string(mdtInfo.cost), m_font, 15);
+    mdTankCost.setPosition(103, 130);
+
+    // ############### Recon button
+    sf::Sprite recBtn;
+    recBtn.setTexture(m_tileset_unit);
+    recBtn.setTextureRect(sf::IntRect(32, colorSelector * 16, 16, 16));
+    recBtn.setPosition(211, 80);
+    recBtn.setScale(3, 3);
+     
+  
+    sf::Text recCost("Cost: " + to_string(recInfo.cost), m_font, 15);
+    recCost.setPosition(196, 130);
+
+    // ############### Artillery button
+    sf::Sprite artBtn;
+    artBtn.setTexture(m_tileset_unit);
+    artBtn.setTextureRect(sf::IntRect(48, colorSelector * 16, 16, 16));
+    artBtn.setPosition(306, 80);
+    artBtn.setScale(3, 3);
+     
+  
+    sf::Text artCost("Cost: " + to_string(artInfo.cost), m_font, 15);
+    artCost.setPosition(289, 130);
+
+    // ############### NeoTank button
+    sf::Sprite neoTankBtn;
+    neoTankBtn.setTexture(m_tileset_unit);
+    neoTankBtn.setTextureRect(sf::IntRect(16, (colorSelector + 1) * 16, 16, 16));
+    neoTankBtn.setPosition(409, 80);
+    neoTankBtn.setScale(3, 3);
+     
+  
+    sf::Text neoTankCost("Cost: " + to_string(netInfo.cost), m_font, 15);
+    neoTankCost.setPosition(390, 130);
+
+    // ############### MegaTank button
+    sf::Sprite mgTankBtn;
+    mgTankBtn.setTexture(m_tileset_unit);
+    mgTankBtn.setTextureRect(sf::IntRect(160, colorSelector * 16, 16, 16));
+    mgTankBtn.setPosition(25, 180);
+    mgTankBtn.setScale(3, 3);
+     
+  
+    sf::Text mgTankCost("Cost: " + to_string(mgtInfo.cost), m_font, 15);
+    mgTankCost.setPosition(8, 230); 
+
+    // ############### Mech button
+    sf::Sprite mechBtn;
+    mechBtn.setTexture(m_tileset_unit);
+    mechBtn.setTextureRect(sf::IntRect(0, (colorSelector + 1) * 16, 16, 16));
+    mechBtn.setPosition(113, 180);
+    mechBtn.setScale(3, 3);
+     
+  
+    sf::Text mechCost("Cost: " + to_string(mecInfo.cost), m_font, 15);
+    mechCost.setPosition(105, 230); 
+
+    // ############### Tank button
+    sf::Sprite tankBtn;
+    tankBtn.setTexture(m_tileset_unit);
+    tankBtn.setTextureRect(sf::IntRect(32, (colorSelector + 1) * 16, 16, 16));
+    tankBtn.setPosition(205, 180);
+    tankBtn.setScale(3, 3);
+     
+  
+    sf::Text tankCost("Cost: " + to_string(takInfo.cost), m_font, 15);
+    tankCost.setPosition(196, 230); 
+
+    // ############### Rocket button
+    sf::Sprite rocketBtn;
+    rocketBtn.setTexture(m_tileset_unit);
+    rocketBtn.setTextureRect(sf::IntRect(48, (colorSelector + 1) * 16, 16, 16));
+    rocketBtn.setPosition(300, 180);
+    rocketBtn.setScale(3, 3);
+     
+  
+    sf::Text rocketCost("Cost: " + to_string(rocInfo.cost), m_font, 15);
+    rocketCost.setPosition(289, 230);    
+
+    // ################ UNIT INFO    
+    sf::Text unitName("Unit", m_font, 16);
+    unitName.setPosition(150, m_relativeMapHeight);
+    sf::Text unitInfo1("Unit", m_font, 15);
+    unitInfo1.setPosition(150, m_relativeMapHeight + 20);
+    sf::Text unitInfo2("Unit", m_font, 15);
+    unitInfo2.setPosition(275, m_relativeMapHeight + 20);
+
+    if(p_select == 0)
+    {
+        cursor.setPosition(8, 75);
+        // Infantry info
+        string ammo;
+        if(infInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(infInfo.ammo);
+
+        unitName.setString("Infantry");
+
+        unitInfo1.setString("Movment:  " + to_string(infInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(infInfo.range));
+        unitInfo2.setString("Vision: " + to_string(infInfo.vision)); 
+
+        if(p_player->getMoney() < infInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+    else if(p_select == 1)
+    {
+        cursor.setPosition(98, 75);
+
+        string ammo;
+        if(mdtInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(mdtInfo.ammo);
+
+        unitName.setString("MDTank");
+
+        unitInfo1.setString("Movment:  " + to_string(mdtInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(mdtInfo.range));
+        unitInfo2.setString("Vision: " + to_string(mdtInfo.vision) +
+                            "\nFuel: " + to_string(mdtInfo.fuel));  
+
+        if(p_player->getMoney() < mdtInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));      
+    }
+    else if(p_select == 2)
+    {
+        cursor.setPosition(190, 75);
+
+        string ammo;
+        if(recInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(recInfo.ammo);
+
+        unitName.setString("Recon");
+
+        unitInfo1.setString("Movment:  " + to_string(recInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(recInfo.range));
+        unitInfo2.setString("Vision: " + to_string(recInfo.vision) +
+                            "\nFuel: " + to_string(recInfo.fuel)); 
+
+        if(p_player->getMoney() < recInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+    else if(p_select == 3)
+    {
+        cursor.setPosition(283, 75);
+
+        string ammo;
+        if(artInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(artInfo.ammo);
+
+        unitName.setString("Artillery");
+
+        unitInfo1.setString("Movment:  " + to_string(artInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(artInfo.range));
+        unitInfo2.setString("Vision: " + to_string(artInfo.vision) +
+                            "\nFuel: " + to_string(artInfo.fuel)); 
+
+        if(p_player->getMoney() < artInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+    else if(p_select == 4)
+    {
+        cursor.setPosition(391, 75);
+
+        string ammo;
+        if(netInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(netInfo.ammo);
+
+        unitName.setString("NeoTank");
+
+        unitInfo1.setString("Movment:  " + to_string(netInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(netInfo.range));
+        unitInfo2.setString("Vision: " + to_string(netInfo.vision) +
+                            "\nFuel: " + to_string(netInfo.fuel)); 
+
+        if(p_player->getMoney() < netInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+    else if(p_select == 5)
+    {
+        cursor.setPosition(8, 175);
+
+        string ammo;
+        if(mgtInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(mgtInfo.ammo);
+
+        unitName.setString("MegaTank");
+
+        unitInfo1.setString("Movment:  " + to_string(mgtInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(mgtInfo.range));
+        unitInfo2.setString("Vision: " + to_string(mgtInfo.vision) +
+                            "\nFuel: " + to_string(mgtInfo.fuel)); 
+
+        if(p_player->getMoney() < mgtInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+    else if(p_select == 6)
+    {
+        cursor.setPosition(98, 175);
+
+        string ammo;
+        if(mecInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(mecInfo.ammo);
+
+        unitName.setString("Mech");
+
+        unitInfo1.setString("Movment:  " + to_string(mecInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(mecInfo.range));
+        unitInfo2.setString("Vision: " + to_string(mecInfo.vision) +
+                            "\nFuel: " + to_string(mecInfo.fuel)); 
+
+        if(p_player->getMoney() < mecInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+    else if(p_select == 7)
+    {
+        cursor.setPosition(190, 175);
+
+        string ammo;
+        if(takInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(takInfo.ammo);
+
+        unitName.setString("Tank");
+
+        unitInfo1.setString("Movment:  " + to_string(takInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(takInfo.range));
+        unitInfo2.setString("Vision: " + to_string(takInfo.vision) +
+                            "\nFuel: " + to_string(takInfo.fuel)); 
+
+        if(p_player->getMoney() < takInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+    else if(p_select == 8)
+    {
+        cursor.setPosition(283, 175);
+
+        string ammo;
+        if(rocInfo.ammo == -1)
+            ammo = "Infinite";
+        else
+            ammo = to_string(rocInfo.ammo);
+
+        unitName.setString("Rocket");
+
+        unitInfo1.setString("Movment:  " + to_string(rocInfo.mvt) + 
+                           "\nAmmo:  " + ammo + 
+                           "\nRange:  " + to_string(rocInfo.range));
+        unitInfo2.setString("Vision: " + to_string(rocInfo.vision) +
+                            "\nFuel: " + to_string(rocInfo.fuel)); 
+
+        if(p_player->getMoney() < rocInfo.cost)
+            cursor.setFillColor(sf::Color(255, 50, 50, 50));        
+    }
+
+
+    // Manage the order drawables are displayed
+
+    // Display cursor behind the units and separator
+    m_mainWindow->draw(cursor);
+    m_mainWindow->draw(separator);
+
+    // Display buttons and costs
     m_mainWindow->draw(infantryBtn);
-
-    // Infantry info
-    UnitInfo infInfo = Unit::getUnitInfo(INFANTRY);
-
-    sf::Text infantryCost("Cost : " + to_string(infInfo.cost), m_font, 15);
-    infantryCost.setPosition(11, 150);
     m_mainWindow->draw(infantryCost);
+    m_mainWindow->draw(mdTankBtn);
+    m_mainWindow->draw(mdTankCost);
+    m_mainWindow->draw(recBtn);
+    m_mainWindow->draw(recCost);
+    m_mainWindow->draw(artBtn);
+    m_mainWindow->draw(artCost);
+    m_mainWindow->draw(neoTankBtn);
+    m_mainWindow->draw(neoTankCost);
+    m_mainWindow->draw(mgTankBtn);
+    m_mainWindow->draw(mgTankCost);
+    m_mainWindow->draw(mechBtn);
+    m_mainWindow->draw(mechCost);
+    m_mainWindow->draw(tankBtn);
+    m_mainWindow->draw(tankCost);
+    m_mainWindow->draw(rocketBtn);
+    m_mainWindow->draw(rocketCost);
 
-    sf::Text infantryInfo("Movment:  " + to_string(infInfo.mvt) + 
-                          "\nAmmo:  " + to_string(infInfo.ammo) + 
-                          "\nRange:  " + to_string(infInfo.range) + 
-                          "\nVision: " + to_string(infInfo.vision), m_font, 15);
+    // Display selected unit info
+    m_mainWindow->draw(unitName);
+    m_mainWindow->draw(unitInfo1);
+    m_mainWindow->draw(unitInfo2);
 
-    infantryInfo.setPosition(85, 85);
-    infoBg.setPosition(80, 80);
-    m_mainWindow->draw(infoBg);
-    m_mainWindow->draw(infantryInfo);
+    manageTurn(true);
+
 } // displayBaseInfo()
 
 
@@ -621,6 +927,37 @@ void GxENGINE::displayMessage(const std::string &p_message)
 
     m_mainWindow->draw(message);
 } // displayMessage()
+
+void GxENGINE::manageTurn(bool p_turn)
+{
+    // Turn info    
+    if (p_turn)
+    {
+        sf::Text infoTurn("Your  turn  (press  t  to  end  turn)" , m_font, 16);
+        infoTurn.setPosition(m_relativeMapWidth / 2 - infoTurn.getGlobalBounds().width / 2, m_relativeMapHeight + 72);
+        infoTurn.setColor(sf::Color(0, 0, 0, 255));
+
+        sf::RectangleShape turnRect(sf::Vector2f(m_relativeMapWidth, 15));
+        turnRect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(255), sf::Uint8(150), sf::Uint8(200)));
+        turnRect.setPosition(0, m_relativeMapHeight + 75);
+
+        m_mainWindow->draw(turnRect);
+        m_mainWindow->draw(infoTurn);
+    }
+    else
+    {
+        sf::Text infoTurn("Not  your  turn" , m_font, 16);
+        infoTurn.setPosition(m_relativeMapWidth / 2 - infoTurn.getGlobalBounds().width / 2, m_relativeMapHeight + 72);
+        infoTurn.setColor(sf::Color(255, 255, 255, 255));
+
+        sf::RectangleShape turnRect(sf::Vector2f(m_relativeMapWidth, 15));
+        turnRect.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(33), sf::Uint8(33), sf::Uint8(200)));
+        turnRect.setPosition(0, m_relativeMapHeight + 75);
+
+        m_mainWindow->draw(turnRect);
+        m_mainWindow->draw(infoTurn);
+    }
+}
 
 void GxENGINE::notifyAttack(int p_attackStep, const pair<int, int> &p_where)
 {

@@ -38,11 +38,12 @@ namespace nsGraphicEngine
             void refreshUserInterface(nsGameEngine::Player *p_player, nsGameEngine::World *p_world, bool p_turn);
             
             // Display info about base (also manage base menu) and units information (also manage unit movment display part)                 
-            void displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngine::Terrain &p_terrain);
+            void displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngine::Terrain &p_terrain, const int &p_select);
             void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, const std::pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
 
             // Display message
             void displayMessage(const std::string &p_message);
+	    void manageTurn(bool p_turn);
 
             // Display attack notification
             void notifyAttack(int p_attackStep, const std::pair<int, int> &p_where);

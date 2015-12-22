@@ -265,11 +265,15 @@ void GENGINE::frame()
     bool selectedUnitBool = false;
     bool displayPorte = false;
 
+    bool validateEndTurn = false;
+
     sf::Time framerate = sf::milliseconds(1000 / m_fps);
     
     pair<int, int> mvtCursor = make_pair(0, 0);
     vector<int> movedUnits;
     bool cleared;
+
+    int selectedUnitBase = 0;
 
     // Timer for 5s
     int messageTimer = m_fps * 5;
@@ -322,7 +326,7 @@ void GENGINE::frame()
             {
                 if (event.key.code == sf::Keyboard::Up)
                 {
-                    if (selectedUnitBool)
+                    if(selectedUnitBool)
                     {
                         mvtCursor.second--;
                         if (mvtCursor.second < 0)
@@ -360,7 +364,13 @@ void GENGINE::frame()
                 }
                 else if (event.key.code == sf::Keyboard::Left)
                 {
-                    if (selectedUnitBool)
+                    if(view == 1)
+                    {
+                        selectedUnitBase--;
+                        if(selectedUnitBase < 0)
+                            selectedUnitBase = 0;
+                    }
+                    else if (selectedUnitBool)
                     {
                         mvtCursor.first--;
                         if (mvtCursor.first < 0)
@@ -379,7 +389,13 @@ void GENGINE::frame()
                 }
                 else if (event.key.code == sf::Keyboard::Right)
                 {
-                    if (selectedUnitBool)
+                    if(view == 1)
+                    {
+                        selectedUnitBase++;
+                        if(selectedUnitBase > 8)
+                            selectedUnitBase = 8;
+                    }
+                    else if (selectedUnitBool)
                     {
                         mvtCursor.first++;
                         if (mvtCursor.first > m_mapEngine->getWidth() - 1)
@@ -399,7 +415,7 @@ void GENGINE::frame()
                 else if (event.key.code == sf::Keyboard::Return && m_turn)
                 {
 
-		    if(selectedUnitBool && view == 2)
+		            if(selectedUnitBool && view == 2)
                     {
                         // Player wants to move the unit
                         if(mvtCursor.first != m_player->getCoord().first || mvtCursor.second != m_player->getCoord().second)
@@ -542,6 +558,8 @@ void GENGINE::frame()
                     }
                     selectedUnitBool = false;
                     displayPorte = false;
+                    validateEndTurn = false;
+                    selectedUnitBase = 0;
                 }
                 else if (event.key.code == sf::Keyboard::W)
                 {
@@ -550,24 +568,38 @@ void GENGINE::frame()
                         displayPorte = !displayPorte;
                     }
                 }
-				else if(event.key.code == sf::Keyboard::T && m_turn)
-				{
-                    m_turn = false;
-                    vector<PLAYER_TYPE> players = m_mapEngine->getPlayers();
-                    unsigned int index;
-                    for(unsigned int i = 0; i < players.size(); ++i)
+		        else if(event.key.code == sf::Keyboard::T && m_turn)
+		        {
+
+		            if(validateEndTurn)
+		            {
+		                    m_turn = false;
+		                    vector<PLAYER_TYPE> players = m_mapEngine->getPlayers();
+		                    unsigned int index;
+		                    for(unsigned int i = 0; i < players.size(); ++i)
+		                    {
+		                        if(players[i] == m_player->getType())
+		                        {
+		                            index = i;
+		                            break;
+		                        }
+		                    }		
+		                    unsigned int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
+		                    NetPackage np;
+		                    np.message = "2::" + to_string(nextPlayer);
+		                    m_netEngine->send(np);
+                            displayMessage = false;
+                            messageTimer = m_fps * 5;
+                            validateEndTurn = false;
+                            view = 0;
+		            }
+                    else
                     {
-                        if(players[i] == m_player->getType())
-                        {
-                            index = i;
-                            break;
-                        }
-                    }		
-                    unsigned int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
-                    NetPackage np;
-                    np.message = "2::" + to_string(nextPlayer);
-                    m_netEngine->send(np);
-				}
+                        validateEndTurn = true;
+                        message = "Are  you  sure  to  end  the  turn?\n(t to validate / escape to cancel)";
+                        displayMessage = true;
+                    }
+                }
             }
             else if(event.type == sf::Event::Closed)
                 m_window->close();
@@ -576,7 +608,7 @@ void GENGINE::frame()
         m_graphicEngine->reload();
         m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
 
-	if (view == 0)
+	    if (view == 0)
         {
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
@@ -584,7 +616,7 @@ void GENGINE::frame()
         }
         else if (view == 1)
         {
-            m_graphicEngine->displayBaseInfo(m_player, selectedTerrain);
+            m_graphicEngine->displayBaseInfo(m_player, selectedTerrain, selectedUnitBase);
         }
         else if (view == 2)
         {
