@@ -75,8 +75,6 @@ namespace nsGameEngine
 
             void notify(const nsNetEngine::Action &p_action);
 
-            void test();
-
             std::string coordToString(std::pair<int,int> p_coord);
 
             
@@ -91,20 +89,25 @@ namespace nsGameEngine
             /// @brief The pointer to the window object.
             sf::RenderWindow* m_window;
         
-            std::string m_mapName;
-
-            nsMapEngine::MapEngine* m_mapEngine;
             /// @brief The pointer to the graphic engine.
             nsGraphicEngine::GraphicEngine*    m_graphicEngine;
 
+            // Game objects
             World* m_world;
             Player* m_player;
+
+            std::string m_mapName;
+            nsMapEngine::MapEngine *m_mapEngine;
             nsNetEngine::NetEngine *m_netEngine;
 
-            // Timer for 1.5s
+            // Attack notification
             std::atomic<bool> m_attackNotify;
             std::atomic<int> m_attackNotifyStep;
             std::pair<int, int> m_attackPos;
+            std::pair<int, int> m_attackFrom;
+
+            // Turn management
+            std::atomic<bool> m_turn;
     };
 }
 

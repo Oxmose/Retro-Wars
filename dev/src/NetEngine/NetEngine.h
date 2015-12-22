@@ -50,6 +50,7 @@ namespace nsNetEngine
             // Basics settings
             void setIsServer(const bool &p_isServer);
             void setNotifier(nsGameEngine::GameEngine *p_gameEngine);
+            bool isServer();
 
             std::pair<int,int> stringToCooord(const std::string &p_s);
         

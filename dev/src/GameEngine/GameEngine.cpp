@@ -53,6 +53,11 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
     }
 	m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
 
+    if(m_netEngine->isServer())
+        m_turn = true;
+    else
+        m_turn = false;
+
 } // GameEngine();
 
 Terrain GENGINE::gidToTerrain(int gid, int p_x, int p_y)
@@ -251,7 +256,6 @@ std::string GENGINE::coordToString(std::pair<int,int> p_coord)
 
 void GENGINE::frame()
 {
-    bool turn = true;
     int view = 0;
 
     Terrain selectedTerrain;
@@ -263,6 +267,7 @@ void GENGINE::frame()
     
     pair<int, int> mvtCursor = make_pair(0, 0);
     vector<int> movedUnits;
+    bool cleared;
 
     // Timer for 5s
     int messageTimer = m_fps * 5;
@@ -294,10 +299,12 @@ void GENGINE::frame()
                 m_attackNotifyStep = m_fps * 2.88;
             }
         }
+
         // Reset vars
-        if (!turn)
+        if (!m_turn  && !cleared)
         {
             movedUnits.clear();
+            cleared = true;
         }
        
         sf::Event event;
@@ -382,7 +389,7 @@ void GENGINE::frame()
                         mvtCursor = m_player->getCoord();
                     }
                 }
-                else if (event.key.code == sf::Keyboard::Return && turn)
+                else if (event.key.code == sf::Keyboard::Return && m_turn)
                 {
 
 		            if(selectedUnitBool && view == 2)
@@ -424,6 +431,7 @@ void GENGINE::frame()
 									m_netEngine->send(np);
                                     m_player->setCoord(mvtCursor);
                                     movedUnits.push_back(selectedUnit.getId());
+                                    cleared = false;
                                     selectedUnitBool = false;
                                     displayPorte = false;
                                     view = 0;
@@ -451,11 +459,13 @@ void GENGINE::frame()
                                         m_netEngine->send(np);
                                         m_player->setCoord(mvtCursor);
                                         movedUnits.push_back(selectedUnit.getId());
+                                        cleared = false;
                                         selectedUnitBool = false;
                                         displayPorte = false;
                                         
                                         m_attackNotify = true;
                                         m_attackPos = mvtCursor;
+                                        m_attackFrom = selectedUnit.getCoord();
 
                                         view = 0;
                                     }
@@ -533,9 +543,24 @@ void GENGINE::frame()
                         displayPorte = !displayPorte;
                     }
                 }
-				else if(event.key.code == sf::Keyboard::T)
+				else if(event.key.code == sf::Keyboard::T && m_turn)
 				{
-					view = 3;
+                    m_turn = false;
+                    vector<PLAYER_TYPE> players = m_mapEngine->getPlayers();
+                    unsigned int index;
+                    for(unsigned int i = 0; i < players.size(); ++i)
+                    {
+                        if(players[i] == m_player->getType())
+                        {
+                            index = i;
+                            break;
+                        }
+                    }		
+                    unsigned int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
+                    NetPackage np;
+                    np.message = "2::" + to_string(nextPlayer);
+                    cout << "NEXT : " << nextPlayer << endl;
+                    m_netEngine->send(np);
 				}
             }
             if(event.type == sf::Event::Closed)
@@ -548,7 +573,7 @@ void GENGINE::frame()
         {
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
-            m_graphicEngine->refreshUserInterface(m_player, m_world, turn);
+            m_graphicEngine->refreshUserInterface(m_player, m_world, m_turn);
         }
         else if (view == 1)
         {
@@ -565,8 +590,8 @@ void GENGINE::frame()
 
         if(m_attackNotify)
         {
-            cout << "NOTIFY " << m_attackNotifyStep << endl;
             m_graphicEngine->notifyAttack(m_attackNotifyStep, m_attackPos);
+            m_graphicEngine->notifyAttack(m_attackNotifyStep, m_attackFrom);
         }
         m_window->display();
 	
@@ -576,7 +601,7 @@ void GENGINE::frame()
 
         clock.restart();
     }
-} // init();
+} // frame();
 
 GENGINE::~GameEngine()
 {
@@ -584,7 +609,7 @@ GENGINE::~GameEngine()
     delete m_world;
     delete m_window;
     delete m_graphicEngine;
-}
+} // ~GameEngine()
 
 void GENGINE::notify(const Action &p_action)
 {
@@ -593,9 +618,10 @@ void GENGINE::notify(const Action &p_action)
     {
         m_world->moveUnit(m_world->getUnit(p_action.coord[0]), p_action.coord[1]);
     }
-    if(p_action.type == ATTACK)
+    else if(p_action.type == ATTACK)
     {
         m_attackPos = p_action.coord[1];
+        m_attackFrom = p_action.coord[0];
         m_attackNotifyStep = m_fps * 2.88;
         m_attackNotify = true;
 
@@ -607,11 +633,11 @@ void GENGINE::notify(const Action &p_action)
                 m_world->getUnit(p_action.coord[i]).setHp(p_action.data[i]);
         }
     }
-}
-
-void GENGINE::test()
-{
-    NetPackage np;
-    np.message = "test";
-    m_netEngine->send(np);
-}
+    else if(p_action.type == CH_TURN)
+    {
+        if(p_action.data[0] == m_player->getType())
+            m_turn = true;
+        else
+            m_turn = false;
+    }
+} // notify()

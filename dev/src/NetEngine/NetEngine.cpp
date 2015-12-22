@@ -71,6 +71,11 @@ void NETENGINE::setIsServer(const bool &p_isServer)
     m_isServer = p_isServer;
 } // setIsServer()
 
+bool NETENGINE::isServer()
+{
+    return m_isServer;
+} // isServer()
+
 void NETENGINE::joinServer()
 {
     sf::Time timeout = sf::seconds(10.0);
@@ -234,6 +239,11 @@ void NETENGINE::parseMessage(const std::string &p_message)
             action.coord.push_back(stringToCooord(split[2]));
             action.data.push_back(stoi(split[3]));
             action.data.push_back(stoi(split[4]));
+            m_gameEngine->notify(action);
+            break;
+	case '2':
+            action.type = CH_TURN;
+            action.data.push_back(stoi(split[1]));
             m_gameEngine->notify(action);
             break;
     }

@@ -37,13 +37,14 @@ namespace nsNetEngine
     enum ACTION_TYPE
     {
         MOVE = 0,
-        ATTACK
+        ATTACK,
+	CH_TURN
     };
 
     typedef struct Action Action;
     struct Action
     {
-        int type;
+        ACTION_TYPE type;
         std::vector<std::pair<int, int>> coord;
         std::vector<int> data;
     };
