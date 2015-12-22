@@ -40,14 +40,17 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
 
 
     loadWorld();
-    for (int i = 0; i < m_mapEngine->getWidth(); ++i)
+
+    bool found = false;
+    for (int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
     {
-        for (int j = 0; j < m_mapEngine->getHeight(); ++j)
+        for (int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
         {
             Terrain tmp_ter = m_world->getTerrain(i, j);
             if (tmp_ter.getType() == HQ && tmp_ter.getOwner() == p_playerType)
             {
                 m_player->setCoord(i, j);
+                found = true;
             }
         }
     }
@@ -245,10 +248,6 @@ void GENGINE::loadWorld()
             y += 1;
         }
     }
-
-    //printf("%d %d\n", m_world->getTerrain(1,18).getType(), m_world->getTerrain(1,18).getOwner());
-    //m_world->getTerrain(8,16).setOwner(BLUE);
-    //printf("%d %d\n", m_world->getTerrain(8,0).getType(), m_world->getTerrain(8,0).getOwner());
 }
 
 std::string GENGINE::coordToString(std::pair<int,int> p_coord)
@@ -275,8 +274,10 @@ void GENGINE::frame()
 
     int selectedUnitBase = 0;
 
+    bool validateBuy = true;
+
     // Timer for 5s
-    int messageTimer = m_fps * 5;
+    int messageTimer = m_fps * 4;
     bool displayMessage = false;
     string message; 
     
@@ -296,7 +297,7 @@ void GENGINE::frame()
             --messageTimer;
             if(messageTimer == 0)
             {
-                messageTimer = m_fps * 5;
+                messageTimer = m_fps * 4;
                 displayMessage = false;
             }
         }
@@ -369,6 +370,7 @@ void GENGINE::frame()
                         selectedUnitBase--;
                         if(selectedUnitBase < 0)
                             selectedUnitBase = 0;
+                        validateBuy = true; 
                     }
                     else if (selectedUnitBool)
                     {
@@ -394,6 +396,7 @@ void GENGINE::frame()
                         selectedUnitBase++;
                         if(selectedUnitBase > 8)
                             selectedUnitBase = 8;
+                        validateBuy = true; 
                     }
                     else if (selectedUnitBool)
                     {
@@ -414,8 +417,38 @@ void GENGINE::frame()
                 }
                 else if (event.key.code == sf::Keyboard::Return && m_turn)
                 {
-
-		            if(selectedUnitBool && view == 2)
+                    if(view == 1)
+                    {
+                        // BASE VIEW
+                        int cost = Unit::getUnitInfo((UnitType)selectedUnitBase).cost;
+                        if(m_player->getMoney() >= cost)
+                        {
+                            if(validateBuy)
+                            {
+                                messageTimer = m_fps * 100;
+                                message = "Are you sure you want to buy this?\n(enter to validate / escape to cancel)";
+                                displayMessage = true;
+                                validateBuy = false;
+                            }
+                            else
+                            {
+                                m_player->setMoney(m_player->getMoney() - cost);
+                                validateBuy = true;
+                                messageTimer = m_fps * 4;
+                                displayMessage = false;
+                                pair<int, int> availableCoord = getAvailableSpawnCoord();
+                                Unit unit ((UnitType)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), 229);
+                                m_world->addUnit(unit);
+                            }
+                        }
+                        else
+                        {
+                            messageTimer = m_fps * 4;
+                            message = "You need more resources to buy this.";
+                            displayMessage = true;
+                        }
+                    }
+		            else if(selectedUnitBool && view == 2)
                     {
                         // Player wants to move the unit
                         if(mvtCursor.first != m_player->getCoord().first || mvtCursor.second != m_player->getCoord().second)
@@ -429,7 +462,7 @@ void GENGINE::frame()
                             if(moved)
                             {
                                 displayMessage = true;
-                                messageTimer = m_fps * 5;
+                                messageTimer = m_fps * 4;
                                 message = "Unit already used this turn!";
                             }
                             else
@@ -495,7 +528,7 @@ void GENGINE::frame()
                                     else
                                     {
                                         displayMessage = true;
-                                        messageTimer = m_fps * 5;
+                                        messageTimer = m_fps * 4;
                                         message = "You cannot move here!";
                                     }
                                 }
@@ -519,7 +552,7 @@ void GENGINE::frame()
                                 if(moved)
                                 {
                                     displayMessage = true;
-                                    messageTimer = m_fps * 5;
+                                    messageTimer = m_fps * 4;
                                     message = "Unit already used this turn!";
                                 }
                                 else
@@ -549,17 +582,27 @@ void GENGINE::frame()
                 }
                 else if (event.key.code == sf::Keyboard::Escape)
                 {
-                    displayMessage = false;
-                    messageTimer = m_fps * 5;
-
-                    if (view != 0)
+                    if((view == 1 && displayMessage) || !validateBuy )
                     {
-                        view = 0;
+                        validateBuy = true; 
+                        displayMessage = false;
+                        messageTimer = m_fps * 4;
                     }
-                    selectedUnitBool = false;
-                    displayPorte = false;
-                    validateEndTurn = false;
-                    selectedUnitBase = 0;
+                    else
+                    {
+                        displayMessage = false;
+                        messageTimer = m_fps * 4;
+
+                        if (view != 0)
+                        {
+                            view = 0;
+                        }
+                        selectedUnitBool = false;
+                        displayPorte = false;
+                        validateEndTurn = false;
+                        selectedUnitBase = 0;
+                    }
+                    
                 }
                 else if (event.key.code == sf::Keyboard::W)
                 {
@@ -589,7 +632,7 @@ void GENGINE::frame()
 		                    np.message = "2::" + to_string(nextPlayer);
 		                    m_netEngine->send(np);
                             displayMessage = false;
-                            messageTimer = m_fps * 5;
+                            messageTimer = m_fps * 4;
                             validateEndTurn = false;
                             view = 0;
 		            }
@@ -686,6 +729,8 @@ void GENGINE::notify(const Action &p_action)
             m_turn = true;
         else
             m_turn = false;
+
+        m_player->setMoney(m_player->getMoney() + 1000);
     }
     else if(p_action.type == NEW_PLAYER)
     {
@@ -699,3 +744,39 @@ void GENGINE::notify(const Action &p_action)
         }
     }
 } // notify()
+
+pair<int, int> GENGINE::getAvailableSpawnCoord()
+{
+    PLAYER_TYPE playerType = m_player->getType();
+    bool found = false;
+    pair<int, int> base;
+    for (int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
+    {
+        for (int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
+        {
+            Terrain tmp_ter = m_world->getTerrain(i, j);
+            if (tmp_ter.getType() == BASE && tmp_ter.getOwner() == playerType)
+            {
+                base = make_pair(i, j);
+                found = true;
+            }
+        }
+    }
+    cout << "BASE : " << base.first << "x, " << base.second << "y" <<endl;
+    for(int i = -1; i < 2; ++i)
+    {
+        for(int j = -1; j < 2; ++j)
+        {
+            TerrainType type = m_world->getTerrain(base.first + i, base.second + j).getType();
+            cout << "UNIT : " << m_world->getUnit(base.first + i, base.second + j).getOwner() << endl;
+            cout << "TERRAIN : " << type;
+            if((type == PLAIN || type == ROADS) && m_world->getUnit(base.first + i, base.second + j).getOwner() == NEUTRAL)                
+            {
+                cout <<" FOUDN" << endl;
+                return make_pair(base.first + i, base.second + j);
+            }
+        }
+        
+        return base;
+    }
+} // getAvailableSpawnCoord()

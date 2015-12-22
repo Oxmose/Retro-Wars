@@ -75,6 +75,8 @@ namespace nsGameEngine
 
             void notify(const nsNetEngine::Action &p_action);
 
+	        std::pair<int, int> getAvailableSpawnCoord();
+
             std::string coordToString(std::pair<int,int> p_coord);
 
             
