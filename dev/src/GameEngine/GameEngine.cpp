@@ -58,6 +58,8 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
     else
         m_turn = false;
 
+    m_waitingForPlayers = true;
+
 } // GameEngine();
 
 Terrain GENGINE::gidToTerrain(int gid, int p_x, int p_y)
@@ -277,6 +279,11 @@ void GENGINE::frame()
     m_attackNotifyStep = m_fps * 2.88;
     m_attackNotify = false;
 
+    // Ask for player already connected 
+    NetPackage np;
+    np.message = "205";
+    m_netEngine->send(np);
+
     sf::Clock clock;
     while(m_window->isOpen())
     {	
@@ -311,7 +318,7 @@ void GENGINE::frame()
         while(m_window->pollEvent(event))
         {
             // Key event
-            if(event.type == sf::Event::KeyPressed)
+            if(event.type == sf::Event::KeyPressed && !m_waitingForPlayers)
             {
                 if (event.key.code == sf::Keyboard::Up)
                 {
@@ -392,7 +399,7 @@ void GENGINE::frame()
                 else if (event.key.code == sf::Keyboard::Return && m_turn)
                 {
 
-		            if(selectedUnitBool && view == 2)
+		    if(selectedUnitBool && view == 2)
                     {
                         // Player wants to move the unit
                         if(mvtCursor.first != m_player->getCoord().first || mvtCursor.second != m_player->getCoord().second)
@@ -559,17 +566,17 @@ void GENGINE::frame()
                     unsigned int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
                     NetPackage np;
                     np.message = "2::" + to_string(nextPlayer);
-                    cout << "NEXT : " << nextPlayer << endl;
                     m_netEngine->send(np);
 				}
             }
-            if(event.type == sf::Event::Closed)
+            else if(event.type == sf::Event::Closed)
                 m_window->close();
         }
+
         m_graphicEngine->reload();
         m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
 
-	    if (view == 0)
+	if (view == 0)
         {
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
@@ -585,6 +592,15 @@ void GENGINE::frame()
             m_graphicEngine->drawUnits(m_world);
             m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world, displayPorte);
         }
+
+        if(m_waitingForPlayers)
+        {
+            displayMessage = true;
+            messageTimer = m_fps / 25;
+            message = "Waiting  for  " + to_string(m_playerLeft) + "  more  player.";
+        }
+
+
         if(displayMessage)
             m_graphicEngine->displayMessage(message);
 
@@ -613,7 +629,6 @@ GENGINE::~GameEngine()
 
 void GENGINE::notify(const Action &p_action)
 {
-    cout << "SERVER SENT ME : " << p_action.type;
     if(p_action.type == MOVE)
     {
         m_world->moveUnit(m_world->getUnit(p_action.coord[0]), p_action.coord[1]);
@@ -639,5 +654,16 @@ void GENGINE::notify(const Action &p_action)
             m_turn = true;
         else
             m_turn = false;
+    }
+    else if(p_action.type == NEW_PLAYER)
+    {
+        if(p_action.data[0] == m_mapEngine->getPlayers().size())
+        {
+            m_waitingForPlayers = false;
+        }
+        else
+        {
+            m_playerLeft = m_mapEngine->getPlayers().size() - p_action.data[0];
+        }
     }
 } // notify()

@@ -358,14 +358,28 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     }
 
     // Turn info    
-    if (!p_turn)
+    if (p_turn)
     {
-        sf::Text infoTurn("Not your turn" , m_font, 15);
-        infoTurn.setPosition(m_relativeMapWidth / 2 - infoTurn.getGlobalBounds().width / 2, 2);
+        sf::Text infoTurn("Your turn" , m_font, 18);
+        infoTurn.setPosition(m_relativeMapWidth / 2 - infoTurn.getGlobalBounds().width / 2, m_relativeMapHeight + 71);
+        infoTurn.setColor(sf::Color(0, 0, 0, 255));
 
-        sf::RectangleShape turnRect(sf::Vector2f(100, 30));
-        turnRect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(33), sf::Uint8(33), sf::Uint8(100)));
-        turnRect.setPosition(m_relativeMapWidth / 2 - 50, 0);
+        sf::RectangleShape turnRect(sf::Vector2f(m_relativeMapWidth, 15));
+        turnRect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(255), sf::Uint8(150), sf::Uint8(200)));
+        turnRect.setPosition(0, m_relativeMapHeight + 75);
+
+        m_mainWindow->draw(turnRect);
+        m_mainWindow->draw(infoTurn);
+    }
+    else
+    {
+        sf::Text infoTurn("Not your turn" , m_font, 18);
+        infoTurn.setPosition(m_relativeMapWidth / 2 - infoTurn.getGlobalBounds().width / 2, m_relativeMapHeight + 71);
+        infoTurn.setColor(sf::Color(255, 255, 255, 255));
+
+        sf::RectangleShape turnRect(sf::Vector2f(m_relativeMapWidth, 15));
+        turnRect.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(33), sf::Uint8(33), sf::Uint8(200)));
+        turnRect.setPosition(0, m_relativeMapHeight + 75);
 
         m_mainWindow->draw(turnRect);
         m_mainWindow->draw(infoTurn);
@@ -509,16 +523,45 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     title.setPosition(m_relativeMapWidth / 2 - title.getGlobalBounds().width / 2, 2);
 
     sf::RectangleShape titleRect(sf::Vector2f(200, 40));
-    titleRect.setFillColor(sf::Color(sf::Uint8(100), sf::Uint8(100), sf::Uint8(100), sf::Uint8(255)));
+    titleRect.setFillColor(sf::Color(sf::Uint8(150), sf::Uint8(150), sf::Uint8(150), sf::Uint8(255)));
     titleRect.setPosition(m_relativeMapWidth / 2 - 100, 0);
     m_mainWindow->draw(titleRect);
     m_mainWindow->draw(title);
 
     // Display information
-    sf::Text info("This  is  your  base", m_font, 16);
+    sf::Text info("Create new  unit  :", m_font, 16);
     info.setPosition(5, 50);
     info.setColor(sf::Color(0, 0, 0, 255));
     m_mainWindow->draw(info);
+
+    // Units menu
+    sf::RectangleShape infoBg(sf::Vector2f(100, 75));
+    infoBg.setFillColor(sf::Color(75, 75, 75, 150));
+
+    // Infantry button
+    sf::Sprite infantryBtn;
+    infantryBtn.setTexture(m_tileset_unit);
+    infantryBtn.setTextureRect(sf::IntRect(0, 0, 16, 16));
+    infantryBtn.setPosition(10, 80);
+    infantryBtn.setScale(4, 4);
+    m_mainWindow->draw(infantryBtn);
+
+    // Infantry info
+    UnitInfo infInfo = Unit::getUnitInfo(INFANTRY);
+
+    sf::Text infantryCost("Cost : " + to_string(infInfo.cost), m_font, 15);
+    infantryCost.setPosition(11, 150);
+    m_mainWindow->draw(infantryCost);
+
+    sf::Text infantryInfo("Movment:  " + to_string(infInfo.mvt) + 
+                          "\nAmmo:  " + to_string(infInfo.ammo) + 
+                          "\nRange:  " + to_string(infInfo.range) + 
+                          "\nVision: " + to_string(infInfo.vision), m_font, 15);
+
+    infantryInfo.setPosition(85, 85);
+    infoBg.setPosition(80, 80);
+    m_mainWindow->draw(infoBg);
+    m_mainWindow->draw(infantryInfo);
 } // displayBaseInfo()
 
 
@@ -588,7 +631,7 @@ void GxENGINE::notifyAttack(int p_attackStep, const pair<int, int> &p_where)
     {
         line = line - 9;
     }
-    cout << "LOAD : " << column << "x; " << line << "y" << endl;
+
     m_explosionSprite.setTextureRect(sf::IntRect(column * 16, line * 16, 16, 16));
     m_explosionSprite.setPosition(p_where.first * 16, p_where.second * 16);
     m_mainWindow->draw(m_explosionSprite);

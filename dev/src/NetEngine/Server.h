@@ -41,7 +41,7 @@ namespace nsNetEngine
 
             // Send messages functions
             void send(const NetPackage &p_package, const unsigned int &p_clientId, const bool &p_split);
-            void sendAll(const NetPackage &p_package, const int &p_except);
+            void sendAll(const NetPackage &p_package, const int &p_except = -1);
 
             // Getters
             unsigned int getClientsNumber();

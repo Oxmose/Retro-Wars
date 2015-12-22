@@ -48,7 +48,7 @@ int main(int argc, char** argv)
         if (netEngine.launch("okok", type, &mapEngine))
         {
             cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << type << endl;
-            GameEngine gameEngine(30*16, 20*16 + 75, "Retro Wars", &mapEngine, type, &netEngine);
+            GameEngine gameEngine(30*16, 20*16 + 90, "Retro Wars", &mapEngine, type, &netEngine);
             netEngine.setNotifier(&gameEngine);
             cout << "Loaded game engine" << endl;
             gameEngine.frame();

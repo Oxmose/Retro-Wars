@@ -342,7 +342,7 @@ vector<nsNetEngine::Client> NETSERVER::getClients()
 
 void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_message)
 {
-    // Accect the client
+    // Accect the client 
     m_clientListMutex.lock();
     if(m_clients[p_id].status == false)
     {
@@ -369,9 +369,16 @@ void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_mess
              np.message = "200";
              m_clientListMutex.unlock();
              send(np, p_id, false);
-             np.message = string("SERVER#202#") + to_string(playerType) + m_clients[p_id].playerName;
+	         np.message = "3::" + to_string(getClientsNumber());
              sendAll(np, p_id);
          }
+    }
+    else if(p_message.substr(p_message.size() - 3) == "205")
+    {
+        m_clientListMutex.unlock();
+        NetPackage np;
+	    np.message = "3::" + to_string(getClientsNumber());
+        send(np, p_id, true);
     }
     else
     {

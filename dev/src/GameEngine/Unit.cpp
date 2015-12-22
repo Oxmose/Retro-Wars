@@ -19,106 +19,122 @@ GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_g
 
 	m_owner = p_owner;
 
-	if(p_type == INFANTRY)
-	{
-		m_mvt = 3;
-		m_ammo = -1;//infinite
-		m_fuel = 99;
-		m_vision = 2;
-		m_range = 1;
-		m_mvtType = FOOT;
-		m_cost = 1000;
-	}
+    UnitInfo infoStruct = Unit::getUnitInfo(p_type);
 
-	if(p_type == MDTANK)
-	{
-		m_mvt = 5;
-		m_ammo = 8;
-		m_fuel = 50;
-		m_vision = 1;
-		m_range = 1;
-		m_mvtType = TREADS;
-		m_cost = 16000;
-	}
-
-	if(p_type == RECON)
-	{
-		m_mvt = 8;
-		m_ammo = -1;
-		m_fuel = 80;
-		m_vision = 5;
-		m_range = 1;
-		m_mvtType = TIRES;
-		m_cost = 4000;
-	}
-
-	if(p_type == ARTILLERY)
-	{
-		m_mvt = 5;
-		m_ammo = 9;
-		m_fuel = 50;
-		m_vision = 1;
-		m_range = 3;
-		m_mvtType = TREADS;
-		m_cost = 6000;
-	}
-
-	if(p_type == NEOTANK)
-	{
-		m_mvt = 6;
-		m_ammo = 9;
-		m_fuel = 99;
-		m_vision = 1;
-		m_range = 1;
-		m_mvtType = TREADS;
-		m_cost = 220000;
-	}
-
-	if(p_type == MEGATANK)
-	{
-		m_mvt = 4;
-		m_ammo = 3;
-		m_fuel = 50;
-		m_vision = 1;
-		m_range = 1;
-		m_mvtType = TREADS;
-		m_cost = 280000;
-	}
-
-	if(p_type == MECH)
-	{
-		m_mvt = 2;
-		m_ammo = 3;
-		m_fuel = 70;
-		m_vision = 2;
-		m_range = 1;
-		m_mvtType = BOOTS;
-		m_cost = 3000;
-	}
-
-	if(p_type == TANK)
-	{
-		m_mvt = 6;
-		m_ammo = 9;
-		m_fuel = 70;
-		m_vision = 3;
-		m_range = 1;
-		m_mvtType = TREADS;
-		m_cost = 7000;
-	}
-
-	if(p_type == ROCKET)
-	{
-		m_mvt = 5;
-		m_ammo = 6;
-		m_fuel = 50;
-		m_vision = 1;
-		m_range = 5;
-		m_mvtType = TIRES;
-		m_cost = 15000;
-	}
-
+	m_mvt = infoStruct.mvt;
+	m_ammo = infoStruct.ammo;
+	m_fuel = infoStruct.fuel;
+	m_vision = infoStruct.vision;
+	m_range = infoStruct.range;
+	m_mvtType = infoStruct.mvtType;
+	m_cost = infoStruct.cost;
+	
 	fillBaseDamage();
+}
+
+nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
+{
+    UnitInfo infoStruct;
+    if(p_type == INFANTRY)
+	{
+		infoStruct.mvt = 3;
+		infoStruct.ammo = -1;//infinite
+		infoStruct.fuel = 99;
+		infoStruct.vision = 2;
+		infoStruct.range = 1;
+		infoStruct.mvtType = FOOT;
+		infoStruct.cost = 1000;
+	}
+
+	else if(p_type == MDTANK)
+	{
+		infoStruct.mvt = 5;
+		infoStruct.ammo = 8;
+		infoStruct.fuel = 50;
+		infoStruct.vision = 1;
+		infoStruct.range = 1;
+		infoStruct.mvtType = TREADS;
+		infoStruct.cost = 16000;
+	}
+
+	else if(p_type == RECON)
+	{
+		infoStruct.mvt = 8;
+		infoStruct.ammo = -1;
+		infoStruct.fuel = 80;
+		infoStruct.vision = 5;
+		infoStruct.range = 1;
+		infoStruct.mvtType = TIRES;
+		infoStruct.cost = 4000;
+	}
+
+	else if(p_type == ARTILLERY)
+	{
+		infoStruct.mvt = 5;
+		infoStruct.ammo = 9;
+		infoStruct.fuel = 50;
+		infoStruct.vision = 1;
+		infoStruct.range = 3;
+		infoStruct.mvtType = TREADS;
+		infoStruct.cost = 6000;
+	}
+
+	else if(p_type == NEOTANK)
+	{
+		infoStruct.mvt = 6;
+		infoStruct.ammo = 9;
+		infoStruct.fuel = 99;
+		infoStruct.vision = 1;
+		infoStruct.range = 1;
+		infoStruct.mvtType = TREADS;
+		infoStruct.cost = 220000;
+	}
+
+	else if(p_type == MEGATANK)
+	{
+		infoStruct.mvt = 4;
+		infoStruct.ammo = 3;
+		infoStruct.fuel = 50;
+		infoStruct.vision = 1;
+		infoStruct.range = 1;
+		infoStruct.mvtType = TREADS;
+		infoStruct.cost = 280000;
+	}
+
+	else if(p_type == MECH)
+	{
+		infoStruct.mvt = 2;
+		infoStruct.ammo = 3;
+		infoStruct.fuel = 70;
+		infoStruct.vision = 2;
+		infoStruct.range = 1;
+		infoStruct.mvtType = BOOTS;
+		infoStruct.cost = 3000;
+	}
+
+	else if(p_type == TANK)
+	{
+		infoStruct.mvt = 6;
+		infoStruct.ammo = 9;
+		infoStruct.fuel = 70;
+		infoStruct.vision = 3;
+		infoStruct.range = 1;
+		infoStruct.mvtType = TREADS;
+		infoStruct.cost = 7000;
+	}
+
+	else if(p_type == ROCKET)
+	{
+		infoStruct.mvt = 5;
+		infoStruct.ammo = 6;
+		infoStruct.fuel = 50;
+		infoStruct.vision = 1;
+		infoStruct.range = 5;
+		infoStruct.mvtType = TIRES;
+		infoStruct.cost = 15000;
+	}
+
+    return infoStruct;
 }
 
 void GENGINE_UN::fillBaseDamage()

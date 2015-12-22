@@ -241,11 +241,17 @@ void NETENGINE::parseMessage(const std::string &p_message)
             action.data.push_back(stoi(split[4]));
             m_gameEngine->notify(action);
             break;
-	case '2':
+        case '2':
             action.type = CH_TURN;
             action.data.push_back(stoi(split[1]));
             m_gameEngine->notify(action);
             break;
+        case '3':
+            action.type = NEW_PLAYER;
+            action.data.push_back(stoi(split[1]));
+            m_gameEngine->notify(action);
+            break;
+        
     }
-    	
+        
 } // parseMessage()

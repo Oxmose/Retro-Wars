@@ -32,12 +32,26 @@ namespace nsGameEngine
 		PIPE
 	};
 
+	typedef struct UnitInfo UnitInfo;
+	struct UnitInfo
+	{
+        int mvt;
+		int ammo;
+		int fuel;
+		int vision;
+		int range;
+		MvtType mvtType;
+		int cost;
+	};
+
 	class Unit
 	{
 		public:
 			Unit();
 			Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid);
 			~Unit();
+
+			static UnitInfo getUnitInfo(UnitType p_type);
 
 			void fillBaseDamage();
 			int getBaseDamage(Unit p_b);

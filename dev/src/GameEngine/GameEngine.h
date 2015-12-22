@@ -108,6 +108,8 @@ namespace nsGameEngine
 
             // Turn management
             std::atomic<bool> m_turn;
+            std::atomic<bool> m_waitingForPlayers;
+            std::atomic<int>  m_playerLeft;
     };
 }
 

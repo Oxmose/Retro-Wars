@@ -38,7 +38,8 @@ namespace nsNetEngine
     {
         MOVE = 0,
         ATTACK,
-	CH_TURN
+	CH_TURN,
+	NEW_PLAYER
     };
 
     typedef struct Action Action;
