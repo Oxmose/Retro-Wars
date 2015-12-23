@@ -159,6 +159,9 @@ void NETENGINE::listen()
 
 void NETENGINE::disconnect()
 {
+    NetPackage np;
+    np.message = "4::206";
+    send(np);
     if(m_listenerThread != nullptr)
     {
         m_listenServer = false;
@@ -174,10 +177,9 @@ void NETENGINE::send(const NetPackage &p_package, const bool &p_connect /* = fal
     char* data;
     string toSend = p_package.message + "|||";
     NetPackage np;
-    if(!p_connect)
-        np.message = to_string(m_playerType) + string("#") + toSend;
-    else
-        np.message = toSend;
+
+    np.message = toSend;
+
     vector<NetPackage> splitMessage = splitMessages(np);
     
     for(NetPackage NetP : splitMessage)
@@ -215,10 +217,7 @@ std::pair<int,int> NETENGINE::stringToCooord(const std::string &p_s)
 
 void NETENGINE::parseMessage(const std::string &p_message)
 {   
-    cout << "recu : " << p_message << endl;
     auto split = splitString(p_message, "::");
-    for(auto a : splitString(p_message, "::"))
-        cout << "parse : " << a << endl;
     Action action;
     switch(split[0][split[0].size()-1])
     {
@@ -249,6 +248,10 @@ void NETENGINE::parseMessage(const std::string &p_message)
         case '3':
             action.type = NEW_PLAYER;
             action.data.push_back(stoi(split[1]));
+            m_gameEngine->notify(action);
+            break;
+	    case '4':
+	        action.type = DISCONNECTED;
             m_gameEngine->notify(action);
             break;
         

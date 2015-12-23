@@ -112,6 +112,8 @@ namespace nsGameEngine
             std::atomic<bool> m_turn;
             std::atomic<bool> m_waitingForPlayers;
             std::atomic<int>  m_playerLeft;
+
+	        std::atomic<bool> m_win;
     };
 }
 
