@@ -86,6 +86,9 @@ namespace nsGraphicEngine
             // Other graphicResources
             sf::Texture m_explosionTexture;
             sf::Sprite  m_explosionSprite;
+	        sf::Texture m_miscTextures;
+            sf::Texture m_backgroundTexture;
+            sf::Texture m_baseBgTexture;
 
             // Map dimenssions for display settings
             int m_mapWidth;

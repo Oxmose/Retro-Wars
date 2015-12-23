@@ -41,14 +41,6 @@ GxENGINE::GraphicEngine(sf::RenderWindow* p_mainWindow, nsMapEngine::MapEngine* 
 
     m_relativeMapWidth = m_mapWidth * 16;
     m_relativeMapHeight = m_mapHeight * 16;
-
-    // Load font
-    m_font;
-    if (!m_font.loadFromFile("./res/font.ttf"))
-    {
-        cerr << "Can't load display font!" << endl;
-    }   
-
 } // GraphicEngine()
 
 GxENGINE::~GraphicEngine() 
@@ -222,8 +214,39 @@ void GxENGINE::loadResources()
         cerr << "Can't load explosion texture!" << endl;
     }
     m_explosionTexture.setSmooth(true);
-
     m_explosionSprite.setTexture(m_explosionTexture);
+
+    // Load font
+    m_font;
+    if (!m_font.loadFromFile("./res/font.ttf"))
+    {
+        cerr << "Can't load display font!" << endl;
+    }   
+
+    // Load background textures;
+    if(!m_backgroundTexture.loadFromFile(string(GRAPHIC_RES_IMG) + "bg.jpg"))
+    {
+        cerr << "Can't load background resources!" << endl;
+    }
+    m_backgroundTexture.setSmooth(true);
+    m_backgroundTexture.setRepeated(true);
+
+    if(!m_baseBgTexture.loadFromFile(string(GRAPHIC_RES_IMG) + "basebg.jpg"))
+    {
+        cerr << "Can't load background resources!" << endl;
+    }
+    m_baseBgTexture.setSmooth(true);
+    m_baseBgTexture.setRepeated(true);
+
+    // Load misc textures
+    sf::Image miscImage;
+    miscImage.loadFromFile(string(GRAPHIC_RES_IMG) + "misc.png");
+    miscImage.createMaskFromColor(sf::Color(0, 128, 128, 255));
+    if(!m_miscTextures.loadFromImage(miscImage))
+    {
+        cerr << "Can't load misc resources!" << endl;
+    }
+    m_miscTextures.setSmooth(true);
 } // loadResources()
 
 void GxENGINE::reload() 
@@ -276,7 +299,9 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     
     // Display player cursor
     sf::RectangleShape cursor(sf::Vector2f(16, 16));
-    cursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(255), sf::Uint8(150)));
+    cursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(255), sf::Uint8(255), sf::Uint8(200)));
+    cursor.setOutlineThickness(2);
+    cursor.setOutlineColor(sf::Color(220, 220, 220, 150));
     cursor.setPosition(playerX * 16, playerY * 16);
     m_mainWindow->draw(cursor);
 
@@ -289,19 +314,47 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
         unitName.setPosition(140, m_relativeMapHeight + 5);
         m_mainWindow->draw(unitName);
 
-        // Display unit owner
-        sf::Text unitOwner("Owner : " + getPlayerName(unit.getOwner()), m_font, 15);
-        unitOwner.setPosition(140, m_relativeMapHeight + 30);
-        m_mainWindow->draw(unitOwner);
+        // Draw health bar
+        int life = unit.getHp();
+        int remainPercent = (((float)life / (float)Unit::getUnitInfo(unit.getType()).hp) * 100.0) / 2.0;
+        int lostPercent = 50 - remainPercent;
 
-        // Display unti information
-        sf::Text info("Health : " + to_string(unit.getHp()), m_font, 15);
-        info.setPosition(250, m_relativeMapHeight + 10);
+        sf::RectangleShape lifeBar(sf::Vector2f(52, 12));
+        lifeBar.setPosition(230, m_relativeMapHeight + 13);
+        m_mainWindow->draw(lifeBar);
+    
+        sf::RectangleShape lifeBarFillGreen(sf::Vector2f(remainPercent, 10));
+        lifeBarFillGreen.setFillColor(sf::Color(0, 255, 0, 255));
+        lifeBarFillGreen.setPosition(231, m_relativeMapHeight + 14);
+        m_mainWindow->draw(lifeBarFillGreen);
+    
+        sf::RectangleShape lifeBarFillRed(sf::Vector2f(lostPercent, 10));
+        lifeBarFillRed.setFillColor(sf::Color(255, 0, 0, 255));
+        lifeBarFillRed.setPosition(231 + remainPercent, m_relativeMapHeight + 14);
+        m_mainWindow->draw(lifeBarFillRed);
+
+        sf::Text info(to_string(remainPercent * 2) + " %", m_font, 15);
+        info.setPosition(285, m_relativeMapHeight + 10);
         m_mainWindow->draw(info);
+
+        // Draw separator
+        sf::RectangleShape separator(sf::Vector2f(2, 65));
+        separator.setPosition(335, m_relativeMapHeight + 5);
+        m_mainWindow->draw(separator);
 
         if (unit.getOwner() == p_player->getType())
         {
-            /*string ammo;
+            // Display unit message
+        
+            sf::Text message("\"" + Unit::getUnitInfo(unit.getType()).message + "\"", m_font, 14);
+            message.setPosition(345, m_relativeMapHeight + 5);
+            m_mainWindow->draw(message);
+
+            sf::Text help("Enter  to  select", m_font, 15);
+            help.setPosition(350, m_relativeMapHeight + 50);
+            m_mainWindow->draw(help);
+
+            string ammo;
             if (unit.getAmmo() == -1)
                 ammo = "Infinite";
             else
@@ -309,22 +362,16 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
 
             // Display ammo information
             sf::Text ammoInfo("Ammo : " + ammo, m_font, 15);
-            ammoInfo.setPosition(250, m_relativeMapHeight + 30);
+            ammoInfo.setPosition(140, m_relativeMapHeight + 30);
             m_mainWindow->draw(ammoInfo);
             
             if (unit.getType() != INFANTRY)
             {
                 // Display unit fuel
                 sf::Text fuelInfo("Fuel : " + to_string(unit.getFuel()), m_font, 15);
-                fuelInfo.setPosition(250, m_relativeMapHeight + 50);
+                fuelInfo.setPosition(140, m_relativeMapHeight + 50);
                 m_mainWindow->draw(fuelInfo);
-            }
-            */
-            
-            // Display unit help
-            sf::Text help("Press  enter  to  select", m_font, 15);
-            help.setPosition(330, m_relativeMapHeight + 50);
-            m_mainWindow->draw(help);
+            }           
         }
     }
     else
@@ -338,22 +385,51 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
         terrainName.setPosition(140, m_relativeMapHeight + 5);
         m_mainWindow->draw(terrainName);
 
-        // Display terrain owner
-        sf::Text terrainOwner("Owner : " + getPlayerName(ter.getOwner()), m_font, 15);
-        terrainOwner.setPosition(140, m_relativeMapHeight + 30);
-        m_mainWindow->draw(terrainOwner);
+        // Draw health bar
+        if(terType == BASE || terType == HQ || terType == CITY)
+        {
+            int life = ter.getHp();
+            int remainPercent = ((float)life / 20.0 * 100.0) / 2.0;
+            int lostPercent = 50 - remainPercent;
+
+            sf::RectangleShape lifeBar(sf::Vector2f(52, 12));
+            lifeBar.setPosition(140, m_relativeMapHeight + 33);
+            m_mainWindow->draw(lifeBar);
+        
+            sf::RectangleShape lifeBarFillGreen(sf::Vector2f(remainPercent, 10));
+            lifeBarFillGreen.setFillColor(sf::Color(0, 255, 0, 255));
+            lifeBarFillGreen.setPosition(141, m_relativeMapHeight + 34);
+            m_mainWindow->draw(lifeBarFillGreen);
+        
+            sf::RectangleShape lifeBarFillRed(sf::Vector2f(lostPercent, 10));
+            lifeBarFillRed.setFillColor(sf::Color(255, 0, 0, 255));
+            lifeBarFillRed.setPosition(141 + remainPercent, m_relativeMapHeight + 34);
+            m_mainWindow->draw(lifeBarFillRed);
+
+            sf::Text info(to_string(remainPercent * 2) + " %", m_font, 15);
+            info.setPosition(195, m_relativeMapHeight + 29);
+            m_mainWindow->draw(info);
+        }
+
+        // Draw separator
+        sf::RectangleShape separator(sf::Vector2f(2, 65));
+        separator.setPosition(335, m_relativeMapHeight + 5);
+        m_mainWindow->draw(separator);
 
         // If player owns the terrain
         if (ter.getOwner() == p_player->getType())
         {
             // Display terrain information
-            sf::Text info("Health : " + to_string(ter.getHp()) + "\nDefense : " + to_string(ter.getDefense()), m_font, 15);
-            info.setPosition(250, m_relativeMapHeight + 10);
+            sf::Text infoDef("Defense : " + to_string(ter.getDefense()), m_font, 15);
+            infoDef.setPosition(140, m_relativeMapHeight + 50);
+            m_mainWindow->draw(infoDef);
             if (terType == BASE)
             {
-                info.setString(info.getString() + "\nPress  enter  to  use  the  " + getName(ter.getType()));
+                sf::Text help("Press  enter  to  use", m_font, 15);
+                help.setPosition(350, m_relativeMapHeight + 50);
+                m_mainWindow->draw(help);
             }       
-            m_mainWindow->draw(info);
+            
         }
     }
 
@@ -362,16 +438,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
 
 void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
 {
-    // Display black back
-    sf::RectangleShape downBar(sf::Vector2f(m_relativeMapWidth, 75));
-    downBar.setPosition(0, m_relativeMapHeight);
-    downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
-    m_mainWindow->draw(downBar);
-
-    // Display select unit info
-    sf::Text unitName("Selected : " + p_unit.getName(), m_font, 20);
-    unitName.setPosition(5, m_relativeMapHeight + 5);    
-    m_mainWindow->draw(unitName);
+    displayBar(p_player);
 
     // Display player cursor    
     sf::RectangleShape cursor(sf::Vector2f(16, 16));
@@ -454,58 +521,97 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
         }
     }
 
-    sf::Text info("Health : " + to_string(p_unit.getHp()), m_font, 15);
-    info.setPosition(250, m_relativeMapHeight + 10);
+    // Display unit name
+    sf::Text unitName(p_unit.getName(), m_font, 20);
+    unitName.setPosition(140, m_relativeMapHeight + 5);
+    m_mainWindow->draw(unitName);
+
+    // Draw health bar
+    int life = p_unit.getHp();
+    int remainPercent = (((float)life / (float)Unit::getUnitInfo(p_unit.getType()).hp) * 100.0) / 2.0;
+    int lostPercent = 50 - remainPercent;
+
+    sf::RectangleShape lifeBar(sf::Vector2f(52, 12));
+    lifeBar.setPosition(230, m_relativeMapHeight + 13);
+    m_mainWindow->draw(lifeBar);
+
+    sf::RectangleShape lifeBarFillGreen(sf::Vector2f(remainPercent, 10));
+    lifeBarFillGreen.setFillColor(sf::Color(0, 255, 0, 255));
+    lifeBarFillGreen.setPosition(231, m_relativeMapHeight + 14);
+    m_mainWindow->draw(lifeBarFillGreen);
+
+    sf::RectangleShape lifeBarFillRed(sf::Vector2f(lostPercent, 10));
+    lifeBarFillRed.setFillColor(sf::Color(255, 0, 0, 255));
+    lifeBarFillRed.setPosition(231 + remainPercent, m_relativeMapHeight + 14);
+    m_mainWindow->draw(lifeBarFillRed);
+
+    sf::Text info(to_string(remainPercent * 2) + " %", m_font, 15);
+    info.setPosition(285, m_relativeMapHeight + 10);
     m_mainWindow->draw(info);
 
-    /*string ammo;
+    // Draw separator
+    sf::RectangleShape separator(sf::Vector2f(2, 65));
+    separator.setPosition(335, m_relativeMapHeight + 5);
+    m_mainWindow->draw(separator);
 
+    // Display unit help and message
+    sf::Text message("\"" + Unit::getUnitInfo(p_unit.getType()).message + "\"", m_font, 14);
+    message.setPosition(345, m_relativeMapHeight + 5);
+    m_mainWindow->draw(message);
+
+    sf::Text help("Escape  to  deselect", m_font, 15);
+    help.setPosition(350, m_relativeMapHeight + 50);
+    m_mainWindow->draw(help);
+
+    string ammo;
     if (p_unit.getAmmo() == -1)
         ammo = "Infinite";
     else
         ammo = to_string(p_unit.getAmmo());
 
+    // Display ammo information
     sf::Text ammoInfo("Ammo : " + ammo, m_font, 15);
-    ammoInfo.setPosition(250, m_relativeMapHeight + 30);
+    ammoInfo.setPosition(140, m_relativeMapHeight + 30);
     m_mainWindow->draw(ammoInfo);
     
     if (p_unit.getType() != INFANTRY)
     {
+        // Display unit fuel
         sf::Text fuelInfo("Fuel : " + to_string(p_unit.getFuel()), m_font, 15);
-        fuelInfo.setPosition(250, m_relativeMapHeight + 50);
+        fuelInfo.setPosition(140, m_relativeMapHeight + 50);
         m_mainWindow->draw(fuelInfo);
-    }
-    */
+    }           
+    manageTurn(true);
 } // displayUnitInfo()
 
 void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngine::Terrain &p_terrain, const int &p_select) 
 {
     // Background
-    sf::RectangleShape back(sf::Vector2f(m_relativeMapWidth, m_relativeMapHeight));
-    back.setFillColor(sf::Color(sf::Uint8(225), sf::Uint8(225), sf::Uint8(225), sf::Uint8(200)));
-    back.setPosition(0, 0);
+    sf::Sprite back;
+    back.setTexture(m_baseBgTexture);   
+    back.setColor(sf::Color(75, 75, 75, 150));
+    back.setTextureRect(sf::IntRect(0, 0, m_relativeMapWidth, m_relativeMapHeight));
     m_mainWindow->draw(back);
 
     displayBar(p_player);
     sf::Text quit("Press  escape  to  quit" , m_font, 15);
-    quit.setPosition(5, m_relativeMapHeight + 50);
 
+    quit.setPosition(350, m_relativeMapHeight + 50);
     m_mainWindow->draw(quit);
+
+    // Draw separator
+    sf::RectangleShape separatorText(sf::Vector2f(2, 65));
+    separatorText.setPosition(335, m_relativeMapHeight + 5);
+    m_mainWindow->draw(separatorText);
 
     // DIsplay title
     sf::Text title("Base", m_font, 25);
-    title.setPosition(m_relativeMapWidth / 2 - title.getGlobalBounds().width / 2, 2);
-
-    sf::RectangleShape titleRect(sf::Vector2f(200, 40));
-    titleRect.setFillColor(sf::Color(sf::Uint8(150), sf::Uint8(150), sf::Uint8(150), sf::Uint8(255)));
-    titleRect.setPosition(m_relativeMapWidth / 2 - 100, 0);
-    m_mainWindow->draw(titleRect);
+    title.setPosition(5, 2);
     m_mainWindow->draw(title);
 
     // Display information
-    sf::Text info("Create new  unit  :", m_font, 16);
+    sf::Text info("Create  new  unit  :", m_font, 16);
     info.setPosition(5, 50);
-    info.setColor(sf::Color(0, 0, 0, 255));
     m_mainWindow->draw(info);
 
     // ###########################################  Units menu
@@ -538,15 +644,26 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     UnitInfo takInfo = Unit::getUnitInfo(TANK);
     UnitInfo rocInfo = Unit::getUnitInfo(ROCKET);
 
+    int playerMoney = p_player->getMoney();
+
+    sf::Sprite mineral;
+    mineral.setTexture(m_miscTextures);
+    mineral.setTextureRect(sf::IntRect(0, 0, 47, 50));
+    mineral.setScale(0.35, 0.35);
+
     // ############### Infantry button
     sf::Sprite infantryBtn;
     infantryBtn.setTexture(m_tileset_unit);
     infantryBtn.setTextureRect(sf::IntRect(0, colorSelector * 16, 16, 16));
     infantryBtn.setPosition(27, 80);
     infantryBtn.setScale(3, 3); 
+    if(playerMoney < infInfo.cost)
+        infantryBtn.setColor(sf::Color(80, 80, 80, 255));
   
-    sf::Text infantryCost("Cost: " + to_string(infInfo.cost), m_font, 15);
-    infantryCost.setPosition(16, 130);
+    sf::Text infantryCost(to_string(infInfo.cost), m_font, 15);
+    infantryCost.setPosition(36, 130);
+    mineral.setPosition(16, 130);
+    m_mainWindow->draw(mineral);
     
 
     // ############### MdTank button
@@ -555,21 +672,28 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     mdTankBtn.setTextureRect(sf::IntRect(16, colorSelector * 16, 16, 16));
     mdTankBtn.setPosition(116, 80);
     mdTankBtn.setScale(3, 3);
+    if(playerMoney < mdtInfo.cost)
+        mdTankBtn.setColor(sf::Color(80, 80, 80, 255));
      
   
-    sf::Text mdTankCost("Cost: " + to_string(mdtInfo.cost), m_font, 15);
-    mdTankCost.setPosition(103, 130);
-
+    sf::Text mdTankCost(to_string(mdtInfo.cost), m_font, 15);
+    mdTankCost.setPosition(123, 130);
+    mineral.setPosition(103, 130);
+    m_mainWindow->draw(mineral);
+    
     // ############### Recon button
     sf::Sprite recBtn;
     recBtn.setTexture(m_tileset_unit);
     recBtn.setTextureRect(sf::IntRect(32, colorSelector * 16, 16, 16));
     recBtn.setPosition(211, 80);
     recBtn.setScale(3, 3);
-     
+    if(playerMoney < recInfo.cost)
+        recBtn.setColor(sf::Color(80, 80, 80, 255));
   
-    sf::Text recCost("Cost: " + to_string(recInfo.cost), m_font, 15);
-    recCost.setPosition(196, 130);
+    sf::Text recCost(to_string(recInfo.cost), m_font, 15);
+    recCost.setPosition(216, 130);
+    mineral.setPosition(196, 130);
+    m_mainWindow->draw(mineral);
 
     // ############### Artillery button
     sf::Sprite artBtn;
@@ -577,10 +701,13 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     artBtn.setTextureRect(sf::IntRect(48, colorSelector * 16, 16, 16));
     artBtn.setPosition(306, 80);
     artBtn.setScale(3, 3);
-     
+    if(playerMoney < artInfo.cost)
+        artBtn.setColor(sf::Color(80, 80, 80, 255));
   
-    sf::Text artCost("Cost: " + to_string(artInfo.cost), m_font, 15);
-    artCost.setPosition(289, 130);
+    sf::Text artCost(to_string(artInfo.cost), m_font, 15);
+    artCost.setPosition(309, 130);
+    mineral.setPosition(289, 130);
+    m_mainWindow->draw(mineral);
 
     // ############### NeoTank button
     sf::Sprite neoTankBtn;
@@ -588,10 +715,13 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     neoTankBtn.setTextureRect(sf::IntRect(16, (colorSelector + 1) * 16, 16, 16));
     neoTankBtn.setPosition(409, 80);
     neoTankBtn.setScale(3, 3);
-     
-  
-    sf::Text neoTankCost("Cost: " + to_string(netInfo.cost), m_font, 15);
-    neoTankCost.setPosition(390, 130);
+    if(playerMoney < netInfo.cost)
+        neoTankBtn.setColor(sf::Color(80, 80, 80, 255));
+    
+    sf::Text neoTankCost(to_string(netInfo.cost), m_font, 15);
+    neoTankCost.setPosition(410, 130);
+    mineral.setPosition(390, 130);
+    m_mainWindow->draw(mineral);    
 
     // ############### MegaTank button
     sf::Sprite mgTankBtn;
@@ -599,10 +729,13 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     mgTankBtn.setTextureRect(sf::IntRect(160, colorSelector * 16, 16, 16));
     mgTankBtn.setPosition(25, 180);
     mgTankBtn.setScale(3, 3);
-     
+    if(playerMoney < mgtInfo.cost)
+        mgTankBtn.setColor(sf::Color(80, 80, 80, 255));
   
-    sf::Text mgTankCost("Cost: " + to_string(mgtInfo.cost), m_font, 15);
-    mgTankCost.setPosition(8, 230); 
+    sf::Text mgTankCost(to_string(mgtInfo.cost), m_font, 15);
+    mgTankCost.setPosition(28, 230); 
+    mineral.setPosition(8, 230);
+    m_mainWindow->draw(mineral);
 
     // ############### Mech button
     sf::Sprite mechBtn;
@@ -610,10 +743,13 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     mechBtn.setTextureRect(sf::IntRect(0, (colorSelector + 1) * 16, 16, 16));
     mechBtn.setPosition(113, 180);
     mechBtn.setScale(3, 3);
-     
+    if(playerMoney < mecInfo.cost)
+        mechBtn.setColor(sf::Color(80, 80, 80, 255));
   
-    sf::Text mechCost("Cost: " + to_string(mecInfo.cost), m_font, 15);
-    mechCost.setPosition(105, 230); 
+    sf::Text mechCost(to_string(mecInfo.cost), m_font, 15);
+    mechCost.setPosition(125, 230); 
+    mineral.setPosition(105, 230);
+    m_mainWindow->draw(mineral);
 
     // ############### Tank button
     sf::Sprite tankBtn;
@@ -621,10 +757,13 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     tankBtn.setTextureRect(sf::IntRect(32, (colorSelector + 1) * 16, 16, 16));
     tankBtn.setPosition(205, 180);
     tankBtn.setScale(3, 3);
-     
+    if(playerMoney < takInfo.cost)
+        tankBtn.setColor(sf::Color(80, 80, 80, 255));
   
-    sf::Text tankCost("Cost: " + to_string(takInfo.cost), m_font, 15);
-    tankCost.setPosition(196, 230); 
+    sf::Text tankCost(to_string(takInfo.cost), m_font, 15);
+    tankCost.setPosition(216, 230); 
+    mineral.setPosition(196, 230);
+    m_mainWindow->draw(mineral);
 
     // ############### Rocket button
     sf::Sprite rocketBtn;
@@ -632,18 +771,21 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     rocketBtn.setTextureRect(sf::IntRect(48, (colorSelector + 1) * 16, 16, 16));
     rocketBtn.setPosition(300, 180);
     rocketBtn.setScale(3, 3);
-     
+    if(playerMoney < rocInfo.cost)
+        rocketBtn.setColor(sf::Color(80, 80, 80, 255));
   
-    sf::Text rocketCost("Cost: " + to_string(rocInfo.cost), m_font, 15);
-    rocketCost.setPosition(289, 230);    
+    sf::Text rocketCost(to_string(rocInfo.cost), m_font, 15);
+    rocketCost.setPosition(309, 230); 
+    mineral.setPosition(289, 230);
+    m_mainWindow->draw(mineral);   
 
     // ################ UNIT INFO    
-    sf::Text unitName("Unit", m_font, 16);
-    unitName.setPosition(150, m_relativeMapHeight);
+    sf::Text unitName("Unit", m_font, 20);
+    unitName.setPosition(140, m_relativeMapHeight + 5);
     sf::Text unitInfo1("Unit", m_font, 15);
-    unitInfo1.setPosition(150, m_relativeMapHeight + 20);
+    unitInfo1.setPosition(140, m_relativeMapHeight + 25);
     sf::Text unitInfo2("Unit", m_font, 15);
-    unitInfo2.setPosition(275, m_relativeMapHeight + 20);
+    unitInfo2.setPosition(275, m_relativeMapHeight + 25);
 
     if(p_select == 0)
     {
@@ -839,7 +981,6 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
 
     // Display cursor behind the units and separator
     m_mainWindow->draw(cursor);
-    m_mainWindow->draw(separator);
 
     // Display buttons and costs
     m_mainWindow->draw(infantryBtn);
@@ -899,17 +1040,32 @@ string GxENGINE::getName(TerrainType terrain)
 void GxENGINE::displayBar(Player *p_player)
 {
     // Display black back
-    sf::RectangleShape downBar(sf::Vector2f(m_relativeMapWidth, 75));
+    sf::Sprite downBar;
     downBar.setPosition(0, m_relativeMapHeight);
-    downBar.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));
+    downBar.setColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(150)));    
+    downBar.setTexture(m_backgroundTexture);
+    downBar.setTextureRect(sf::IntRect(0, 0, m_relativeMapWidth, 75));
     m_mainWindow->draw(downBar);
+    //m_miscTextures.setRepeated(false);
 
-    // Display inforation about the player
-    sf::Text playerName("General " + p_player->getPlayerName(), m_font, 20);
-    sf::Text playerMoney("Resources : " + std::to_string(p_player->getMoney()) + "$", m_font, 16);
+    // Display information about the player
+    sf::Text playerName("General  " + p_player->getPlayerName(), m_font, 20);
+    sf::Text playerMoney(std::to_string(p_player->getMoney()), m_font, 16);
 
     playerName.setPosition(5, m_relativeMapHeight + 5);
-    playerMoney.setPosition(5, m_relativeMapHeight + 30);
+    playerMoney.setPosition(45, m_relativeMapHeight + 40);
+    
+    sf::Sprite mineral;
+    mineral.setTexture(m_miscTextures);
+    mineral.setTextureRect(sf::IntRect(0, 0, 47, 50));
+    mineral.setPosition(5, m_relativeMapHeight + 35);
+    mineral.setScale(0.6, 0.6);
+
+    sf::RectangleShape separator (sf::Vector2f(2, 65));
+    separator.setPosition(130, m_relativeMapHeight + 5);
+
+    m_mainWindow->draw(mineral);
+    m_mainWindow->draw(separator);
     m_mainWindow->draw(playerName);
     m_mainWindow->draw(playerMoney);
 } // displayBar()

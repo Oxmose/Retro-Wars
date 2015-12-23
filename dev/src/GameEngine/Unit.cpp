@@ -44,6 +44,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 1;
 		infoStruct.mvtType = FOOT;
 		infoStruct.cost = 1000;
+		infoStruct.message = "WHAT?!";
 	}
 
 	else if(p_type == MDTANK)
@@ -55,6 +56,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 1;
 		infoStruct.mvtType = TREADS;
 		infoStruct.cost = 16000;
+		infoStruct.message = "I  haven't  got\nall  day...";
 	}
 
 	else if(p_type == RECON)
@@ -66,6 +68,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 1;
 		infoStruct.mvtType = TIRES;
 		infoStruct.cost = 4000;
+		infoStruct.message = "Jacked  up  and\ngood  to  go.";
 	}
 
 	else if(p_type == ARTILLERY)
@@ -77,6 +80,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 3;
 		infoStruct.mvtType = TREADS;
 		infoStruct.cost = 6000;
+		infoStruct.message = "Gimme  something\nto  shoot!";
 	}
 
 	else if(p_type == NEOTANK)
@@ -88,6 +92,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 1;
 		infoStruct.mvtType = TREADS;
 		infoStruct.cost = 220000;
+		infoStruct.message = "Orders,  Cap'n?";
 	}
 
 	else if(p_type == MEGATANK)
@@ -99,6 +104,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 1;
 		infoStruct.mvtType = TREADS;
 		infoStruct.cost = 280000;
+		infoStruct.message = "Orders,  SIR!";
 	}
 
 	else if(p_type == MECH)
@@ -110,6 +116,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 1;
 		infoStruct.mvtType = BOOTS;
 		infoStruct.cost = 3000;
+		infoStruct.message = "Whadda  you  want?!";
 	}
 
 	else if(p_type == TANK)
@@ -121,6 +128,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 1;
 		infoStruct.mvtType = TREADS;
 		infoStruct.cost = 7000;
+		infoStruct.message = "Transmit  coordinates.";
 	}
 
 	else if(p_type == ROCKET)
@@ -132,7 +140,9 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.range = 5;
 		infoStruct.mvtType = TIRES;
 		infoStruct.cost = 15000;
+		infoStruct.message = "You  keep  pushin'\nme  boy...";
 	}
+	infoStruct.hp = 10;
 
     return infoStruct;
 }

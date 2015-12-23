@@ -441,12 +441,6 @@ void GENGINE::frame()
                                 m_world->addUnit(unit);
                             }
                         }
-                        else
-                        {
-                            messageTimer = m_fps * 4;
-                            message = "You need more resources to buy this.";
-                            displayMessage = true;
-                        }
                     }
 		            else if(selectedUnitBool && view == 2)
                     {

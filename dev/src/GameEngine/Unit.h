@@ -42,6 +42,8 @@ namespace nsGameEngine
 		int range;
 		MvtType mvtType;
 		int cost;
+		int hp;
+		std::string message;
 	};
 
 	class Unit
