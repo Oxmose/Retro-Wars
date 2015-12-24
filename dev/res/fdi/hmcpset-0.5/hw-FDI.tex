@@ -289,6 +289,7 @@ Ainsi, pour tout $n \in \mathbb{N}$, la fonction $Ack_{n} : x \mapsto Ack(n,x)$ 
 
 
 \begin{problem}[Question 3]
+
 On veut montrer dans cette question que la fonction d'Ackermann n'est pas primitive récursive.
 \begin{itemize}
   \item[(\textit{a})] Montrer que $\forall n \in \mathbb{N}, \, x \in \mathbb{N}^{*}, \, Ack_{n}(x) > x$. En déduire que pour tout entier $n$, $Ack_{n}$ est strictement croissante et que $Ack$ est croissante en son premier argument : $\forall x \geq 2 \, \, \forall n \in \mathbb{N}, \, Ack(n,x) \leq Ack(n+1,x)$
@@ -298,6 +299,8 @@ On veut montrer dans cette question que la fonction d'Ackermann n'est pas primit
 
 
 \end{problem}
+
+\begin{solution}
 
 \begin{solution}[(a)]
 On va procéder par induction bien fondée sur $\mathbb{N} \times \mathbb{N}^{*}$ muni de l'ordre lexicographique naturel (total et bien fondé). Il admet pour minimum : $(0,1)$. \\
@@ -526,7 +529,7 @@ $$
 
 \begin{itemize}
 
-\item $n = 0$ : on vérifie que $\odot$ et les $p_{i}^{k}$ sont dominées par $Ack^{1}_{1}$ (on utilise 3a). \\
+\item $n = 0$ : on vérifie que $\odot$, $s$ et les $p_{i}^{k}$ sont dominées par $Ack^{1}_{1}$ (on utilise 3a). \\
 Ensuite, par distinction de multiples cas on constate que $f$ définie par schéma de composition avec $h$ et $g_{1}
  \, \dots \,g_{p}$ des fonctions de base est dominée par $Ack_{1}$.
  
@@ -576,11 +579,50 @@ $$ f(a_{1}, \, \dots , \, a_{p}, x) \leq Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \
 \newpage 
 
 \noindent D'où : 
+\begin{align*}
+f(a_{1}, \, \dots , \, a_{p}, x) & \leq  Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, C_{2})) \\
+& \leq  Ack_{n+2}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, C_{2})+k_{1} + xk_{2})
+\end{align*}
 
-$$ $$
+TODO
 
 \end{itemize}
 
 \end{solution}
+
+\begin{problem}
+\begin{itemize}  
+  \item[(\textit{e})]  Conclure. \end{itemize}
+ \end{problem}
+ 
+  \begin{solution}[(e)]
+  Supposons par l'absurde que $Ack$ est PR. Alors : $f: \, \, n \mapsto Ack(n,n+1)$ est PR par composition. Supposons $f$ construite avec $m$ utilisations du SR.\\
+   On a montré précédemment qu'alors il existe $C$ tel que $\forall n > C$ :
+   
+   $$ Ack(n,n+1) \leq Ack_{m+1}(n) $$
+   \ \\
+   
+  \noindent Maintenant, si $n > m+1$ par 3a on a :
+   
+   $$ Ack_{m+1}(n) < Ack_{m+1}(n+1) \leq Ack_{n}(n+1) = Ack(n,n+1) $$ 
+   \ \\
+   \noindent Absurde en prenant $n > sup(n,C)$.
+   \\
+   D'où le résultat.
+   \end{solution}
+
+\end{solution}
+
+\begin{problem}[Question 4]
+
+On définit l'ensemble $R$ des fonctions récursives comme le plus petit ensemble de fonctions, éventuellement partielle, qui contient PR et qui est clos par le \textit{schéma de minimisation non-borné} : si $f : A \subseteq \mathbb{N}^{p+1} \to \mathbb{N}$ est dans $R$, alors la fonction $g : B \subseteq \mathbb{N}^{p} \to \mathbb{N}$ est dans $R$, où $g$ est définie par :
+
+$$ g(a_{1}, \, \dots \,, a_{p}) = min \{ z : f(a_{1}, \, \dots , \, a_{p} , \, z) = 0 \} \text{ si non vide}$$
+
+Quelle est la cardinalité de $R$ ? Exhiber une fonction qui n'est pas dans $R$.
+
+\end{problem}
+
+\begin{}
 
 \end{document}
