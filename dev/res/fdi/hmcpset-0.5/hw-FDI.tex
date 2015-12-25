@@ -618,11 +618,64 @@ TODO
 On définit l'ensemble $R$ des fonctions récursives comme le plus petit ensemble de fonctions, éventuellement partielle, qui contient PR et qui est clos par le \textit{schéma de minimisation non-borné} : si $f : A \subseteq \mathbb{N}^{p+1} \to \mathbb{N}$ est dans $R$, alors la fonction $g : B \subseteq \mathbb{N}^{p} \to \mathbb{N}$ est dans $R$, où $g$ est définie par :
 
 $$ g(a_{1}, \, \dots \,, a_{p}) = min \{ z : f(a_{1}, \, \dots , \, a_{p} , \, z) = 0 \} \text{ si non vide}$$
-
+ 
 Quelle est la cardinalité de $R$ ? Exhiber une fonction qui n'est pas dans $R$.
 
 \end{problem}
 
-\begin{}
+\begin{solution}
+Si on pose : 
+\begin{align*}
+& R_{0}  = \{ \odot, \, p^{k}_{i}, \, s \} \\
+& R_{n+1}  = \\ 
+& R_{n} \cup ( \cup_{p} \cup_{m} \{ SC(h,g_{1}, \, \dots \, , g_{p}) \, \, | \, \, h \in  N_{p} \cap R_{n} \, \, g_{i \leq p} \in N_{m} \cap R_{n}  \} ) \\ 
+& \cup (\cup_{p} \{ SR(g,h) \, \, | \, \, g \in N_{p} \cap R_{n} \, \, h \in N_{p+2} \cap R_{n} \}) \\
+& \cup (\cup_{p} \{ SMNB(f) \, \, | \, \, f \in N_{p+1} \cap R_{n} \})
+ \end{align*}
+ 
+ \newpage
+ 
+ Avec $N_{p}$ les fonctions (pouvant être partielles) de $\mathbb{N}^{p} \to \mathbb{N}$. Et $SC$, $SR$, $SMNB$ les différents schémas introduits. Alors d'après la théorie des ensembles inductifs (PROG) on sait que :
+ 
+ $$ R = \cup_{n} R_{n} $$
+
+\noindent Par récurrence on a que les $R_{n}$ sont dénombrables par réunion dénombrable d'ensembles dénombrables ($N_{p}\cap R_{n}$ dénombrable). \\
+Ainsi $R$ est réunion dénombrable d'ensembles dénombrables : $R$ est dénombrable. \\
+\\
+Par argument de cardinalité on a donc l'existence de fonctions non R. On peut en exhiber une par argument diagonal. \\
+On pose $R = \{ f_{n} \}$ et : 
+
+$$ g(n) = f_{n}(n) + 1$$
+
+\noindent Supposons par l'absurde que $g$ est R. Il existe $m$ tel que $g = f_m$ et alors : 
+$$ g(m) = f_{m}(m) + 1 \neq f_{m}(m)$$
+
+\noindent Absurde.
+
+\end{solution}
+
+\begin{problem}[Question 5]
+Montrer que si $f$ est R, alors $f$ est calculable par une machine de Turing.
+\end{problem}
+
+\begin{solution}
+On raisonne par induction structurelle (on prend des entrées en binaire, machine à deux rubans I/O) :
+\begin{itemize}
+\item \textbf{Cas} $\odot$ : une machine qui écrit 0 quelque soit l'entrée.
+\item \textbf{Cas} $p^{k}_{i}$ : on sépare les différents paramètre d'un espace sur le ruban, il suffit de maintenir un compteur pour atteindre $i$ et recopier l'entrée sur la sortie.
+\item \textbf{Cas} $s$ : on sait ajouter $+1$ avec une MT en binaire (cf TD).
+
+\item \textbf{Cas SC} : soit $h \in N_{p} \cap R$ et $g_{1}, \, \dots , \, g_{p} \in N_{n} \cap R$. On   
+considère $f = SC(h,g_{1}, \, \dots , \, g_{p})$. \\
+Par hypothèse d'induction, on dispose de $M_{0}$ qui calcule $h$ et $M_{1} , \, \dots , \, M_{p}$ qui simulent  $g_{1}, \, \dots , \, g_{p}$. Il suffit de composer ces machines en faisant écrire les résultats de $M_{1} , \, \dots \, , M_{p}$ (sur $x_{1} , \, \dots \, x_{n}$) séparés d'un espace sur le ruban d'entrée de $M_{0}$ et appliquer $M_{0}$.
+
+\item \textbf{Cas SR} : Soit $f = SR(g,h)$, $M_{0} = M(f)$ et $M_{1} = M(h)$. Pour calculer $f$ il faut simuler la stack comme sur un ordi, on empile sur le ruban les arguments successifs jusqu'à $x = 0$ auquel cas on calcul avec $M_{0}$ et après on remonte tant que le ruban n'est pas vide en appliquant $M_{1}$ et en utilisant le résultat comme paramètre manquant de l'appel d'après.
+
+\item \textbf{Cas SMNB} : Soit $g = SMB(f)$ et $M_{0} = M(f)$. On interprète la non définition d'une fonction en un point comme la non terminaison sur cette entrée de la machine qui calcule $f$. Muni de cette définition on construit une machine qui teste tous les $z$ dans l'ordre croissant en utilisant le calcul de $M_{0}$. Si un tel $z$ existe on l'écrit sur le ruban sinon le calcul ne termine pas : $g$ n'est pas définie.
+\end{itemize}
+
+
+\end{solution}
+
 
 \end{document}
