@@ -671,11 +671,116 @@ Par hypothèse d'induction, on dispose de $M_{0}$ qui calcule $h$ et $M_{1} , \,
 
 \item \textbf{Cas SR} : Soit $f = SR(g,h)$, $M_{0} = M(f)$ et $M_{1} = M(h)$. Pour calculer $f$ il faut simuler la stack comme sur un ordi, on empile sur le ruban les arguments successifs jusqu'à $x = 0$ auquel cas on calcul avec $M_{0}$ et après on remonte tant que le ruban n'est pas vide en appliquant $M_{1}$ et en utilisant le résultat comme paramètre manquant de l'appel d'après.
 
-\item \textbf{Cas SMNB} : Soit $g = SMB(f)$ et $M_{0} = M(f)$. On interprète la non définition d'une fonction en un point comme la non terminaison sur cette entrée de la machine qui calcule $f$. Muni de cette définition on construit une machine qui teste tous les $z$ dans l'ordre croissant en utilisant le calcul de $M_{0}$. Si un tel $z$ existe on l'écrit sur le ruban sinon le calcul ne termine pas : $g$ n'est pas définie.
+\item \textbf{Cas SMNB} : Soit $g = SMNB(f)$ et $M_{0} = M(f)$. On interprète la non définition d'une fonction en un point comme la non terminaison sur cette entrée de la machine qui calcule $f$. Muni de cette définition on construit une machine qui teste tous les $z$ dans l'ordre croissant en utilisant le calcul de $M_{0}$. Si un tel $z$ existe on l'écrit sur le ruban sinon le calcul ne termine pas : $g$ n'est pas définie.
 \end{itemize}
 
 
 \end{solution}
+
+\begin{problem}[Question 6]
+On s’intéresse maintenant à la réciproque : soit $f$ calculée par une machine de Turing
+M, qu’on suppose déterministe, avec un seul état d’acceptation $q^{+}$,qui ne bloque
+jamais, avec un seul ruban bi-infini.
+
+
+\begin{itemize}
+  \item[(\textit{a})] On suppose que les états de $M$ sont les entiers $\{0, \, \dots , \, n-1\}$ et que les symboles de bande sont les entiers $\{0, \, \dots , \, m-1\}$, le symbole blanc étant l'entier $0$. Proposer un codage d’un bout de ruban semi-infini (à support fini), ie à $u = u_{0}u_{1}u_{2} . . .$ ou $u =
+. . . u_{2}u_{1}u_{0}$ on associe $<u> \in \mathbb{N}$ tel que $< . >$ soit injective.
+  
+   \end{itemize}
+\end{problem}
+
+\begin{solution}[a)]
+Comme les $u_{i}$ sont bornés par $m$ on va prendre le codage en base $m$ modifié un petit peu pour différencier ruban semi infini gauche et droit. Si $u = u_{0} \, \dots \, u_{p}$ on pose :
+$$ <u> = 2\sum_{k=0}^{p} u_{k} m^{k}$$
+
+Si $u = u_{p} \, \dots \, u_{0}$ on pose : 
+$$ <u> = 2\sum_{k=0}^{p} u_{k} m^{k}+1$$
+
+\noindent C'est injectif.
+
+\end{solution}
+
+\begin{problem}
+\begin{itemize}
+  \item[(\textit{b})] 
+  
+  On considère : $F : \, \, <u> \mapsto u_{0}$. Montrer que F est PR.
+    
+   \end{itemize}
+\end{problem}
+
+\begin{solution}[b)]
+
+On a : 
+
+\begin{empheq}[box=\widefbox]{align*}
+F(<u>) = mod(div(<u>,2),m)
+\end{empheq}
+
+\begin{empheq}[box=\widefbox]{align*}
+div(0,m) & = 0 \\
+div(n+1,m) & = div(n,m) + eq(m*(1+div(n,m)),n+1) \\
+\end{empheq}
+
+\begin{empheq}[box=\widefbox]{align*}
+mod(n,m) & = n-m*div(n,m)
+\end{empheq}
+
+Par récurrence on montre que $div$ et $mod$ correspondent bien à la division entière et au modulo. Elles sont PR car on peut les réécrire sous une forme explicitement PR à l'aide de $prod$, $somme$, $sub$ et des schémas PR. \\
+Alors $F$ est bien PR (on peut la réécrire explicitement PR en utilisant $c_{2}$ et $c_{m}$.
+
+\end{solution}
+
+\newpage
+
+\begin{problem}
+\begin{itemize}
+  \item[(\textit{c})] 
+  
+  Soit $(q,a,q',b,d) \in \delta(M)$. Montrer que $\delta State(q,a) = q'$,  $\delta Write(q,a) = b$ et $\delta Move(q,a) = d$ sont PR.
+    
+   \end{itemize}
+\end{problem}
+
+\begin{solution}[c)]
+
+Pour être PR on a besoin de fonctions totales. On prend la convention que les transitions invalides entraînent la nullité de la fonction considérée.\\
+Alors $\delta State$, $\delta Write$ et $\delta Move$ sont à support fini et donc PR d'après \textbf{1g)}.
+
+\end{solution}
+
+\begin{problem}
+\begin{itemize}
+  \item[(\textit{d})] 
+  Montrer que les fonctions suivantes peuvent être définies par récurrence mutuelle :
+  $State(<w>,t)$,$Left(<w>,t)$,$Right(<w>,t)$. Qui donnent respectivement l'état de la machine, le contenu à gauche (exclu) de la tête et à droite (inclus) après $t$ étapes de calcul.
+   \end{itemize}
+\end{problem}
+
+\begin{solution}[d)]
+On suppose que le mot <w> est donné initialement en forme semi-ruban droit. \\
+
+\begin{align*}
+State(<w>,0) & = 0 \\
+Left(<w>,0) & = 0 \\
+Right(<w>,0) & = <w> \\ \\
+q_{t} = State(<w>,t) \quad u_{t} = F(Right(<w>,t)) \\ \\
+State(<w>,t+1) &= \delta State(q_{t}, u_{t}) \\ \\
+\text{Si } \delta Move(q_{t}, u_{t}) = R \, \, :  \\ 
+Left(<w>,t+1) &= 2*(m\frac{Left(<w>,t)-1}{2}+\delta Write(q_{t},u_{t})\, ) + 1 \\
+Right(<w>,t+1) &= 2*\frac{\frac{Right(<w>,t)}{2}-u_{t}}{m} \\ \\
+\text{Si } \delta Move(q_{t}, u_{t}) = L \, \, :  \\ 
+Left(<w>,t+1) &=  2*\frac{\frac{Left(<w>,t)-1}{2}-u_{t}}{m} +1 \\
+Right(<w>,t+1) &= 2*(m\frac{Right(<w>,t)}{2}+\delta Write(q_{t},u_{t})\, )
+\end{align*}
+
+Ce qu'on a fait ici c'est d'attribuer les codages correspondant à chaque mouvement.
+
+\end{solution}
+
+
+
 
 
 \end{document}
