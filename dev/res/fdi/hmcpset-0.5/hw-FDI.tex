@@ -547,7 +547,7 @@ D'où le résultat. (ouf!!)
 
 $$ 
 \property(n) : \text{"} \forall f \text{  PR  } \text{f construite avec } n \text{ utilisations du SR} \implies
-\exists k \in \mathbb{N} \, \, Ack^{k}_{n+1} \text{ domine } f \text{"}
+\exists k \in \mathbb{N} \, \, Ack^{k}_{n} \text{ domine } f \text{"}
 $$
 \newpage
 
@@ -569,33 +569,33 @@ En effet car si $f$ est en étape finale contruite par schéma de composition on
 Par HR on a l'existence de $k_{1}$, $C_{1}$ et $k_{2}$, $C_{2}$ tels que :
 
 \begin{align*}
-\forall a_{1}, \, \dots , \, a_{p} \quad g(a_{1}, \, \dots , \, a_{p}) & \leq  Ack^{k_{1}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, C_{1}))\\
-\forall a_{1}, \, \dots , \, a_p{+1}, \, a_{p+2} \quad  h(a_{1}, \, \dots , \, a_{p+1}, \, a_{p+2}) & \leq  Ack^{k_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p+1}, \, a_{p+2}, C_{2}))\\
+\forall a_{1}, \, \dots , \, a_{p} \quad g(a_{1}, \, \dots , \, a_{p}) & \leq  Ack^{k_{1}}_{n}(sup(a_{1}, \, \dots , \, a_{p}, C_{1}))\\
+\forall a_{1}, \, \dots , \, a_p{+1}, \, a_{p+2} \quad  h(a_{1}, \, \dots , \, a_{p+1}, \, a_{p+2}) & \leq  Ack^{k_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p+1}, \, a_{p+2}, C_{2}))\\
 \end{align*}
 
 En effet si $g$ ou $h$ sont construits avec moins de $n$ applications du SR, la croissance de $Ack$ en le premier argument permet quand même d'établir l'inégalité. \\
 Par récurrence sur $x$ on montre qu'on a alors :
-$$ f(a_{1}, \, \dots , \, a_{p}, x) \leq Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, C_{2}))  $$
+$$ f(a_{1}, \, \dots , \, a_{p}, x) \leq Ack^{k_{1} + xk_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, C_{2}))  $$
 
 	\begin{itemize}[leftmargin=*]
 		\item x = 0 : $C_{2} \leq C_{1}$, c'est connu. $C_{2} > C_{1}$ par croissance.
 		\item \textbf{Hérédité} :
 		
 		\begin{align*}
-			f(a_{1}, \, \dots , \, a_{p}, x+1) & \leq Ack^{k_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, \, x \, , f(a_{1}, \, \dots , \, a_{p}, x) )) \\
-			& \leq Ack^{k_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, \, x \, , Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) ))
+			f(a_{1}, \, \dots , \, a_{p}, x+1) & \leq Ack^{k_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p}, \, x \, , f(a_{1}, \, \dots , \, a_{p}, x) )) \\
+			& \leq Ack^{k_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p}, \, x \, , Ack^{k_{1} + xk_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) ))
 		\end{align*}
 		\noindent Or : 
 		\begin{align*}
-		Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) & \geq  Ack^{k_{1} + xk_{2}}_{n+1}(a_{1}) \geq a_{1} \\
+		Ack^{k_{1} + xk_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) & \geq  Ack^{k_{1} + xk_{2}}_{n}(a_{1}) \geq a_{1} \\
 		& \vdots  \\
-		Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) & \geq  Ack^{k_{1} + xk_{2}}_{n+1}(x) \geq x
+		Ack^{k_{1} + xk_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) & \geq  Ack^{k_{1} + xk_{2}}_{n}(x) \geq x
 		\end{align*}
 		Donc :
 		\begin{align*}
 			f(a_{1}, \, \dots , \, a_{p}, x+1) 
-& \leq Ack^{k_{2}}_{n+1}(Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) ) \\
-		& \leq Ack^{k_{1} + (x+1)k_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) 
+& \leq Ack^{k_{2}}_{n}(Ack^{k_{1} + xk_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) ) \\
+		& \leq Ack^{k_{1} + (x+1)k_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p},  \, x, \, C_{1}, C_{2})) 
 		\end{align*}
 		D'où le résultat.
 	\end{itemize}
@@ -604,11 +604,14 @@ $$ f(a_{1}, \, \dots , \, a_{p}, x) \leq Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \
 
 \noindent D'où : 
 \begin{align*}
-f(a_{1}, \, \dots , \, a_{p}, x) & \leq  Ack^{k_{1} + xk_{2}}_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, C_{2})) \\
-& \leq  Ack_{n+2}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, C_{2})+k_{1} + xk_{2})
+f(a_{1}, \, \dots , \, a_{p}, x) & \leq  Ack^{k_{1} + xk_{2}}_{n}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, \, C_{2})) \\
+& \leq  Ack_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{1}, \, C_{2})+k_{1} + xk_{2}) \\
+& \leq  Ack_{n+1}(Ack^{h}_{2}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{3})) \\
+& \leq  Ack^{h+1}_{n+1}(sup(a_{1}, \, \dots , \, a_{p}, \, x, \,  C_{3}) \\
 \end{align*}
+Car on montre que $somme$, $sup$ et $x \mapsto kx$ sont toutes dominées par $Ack^{h}_{2}$ pour un certain $h$. \\
+D'où le résultat.
 
-TODO
 
 \end{itemize}
 
@@ -637,6 +640,7 @@ TODO
 
 \end{solution}
 
+ \newpage
 \begin{problem}[Question 4]
 
 On définit l'ensemble $R$ des fonctions récursives comme le plus petit ensemble de fonctions, éventuellement partielle, qui contient PR et qui est clos par le \textit{schéma de minimisation non-borné} : si $f : A \subseteq \mathbb{N}^{p+1} \to \mathbb{N}$ est dans $R$, alors la fonction $g : B \subseteq \mathbb{N}^{p} \to \mathbb{N}$ est dans $R$, où $g$ est définie par :
@@ -657,7 +661,6 @@ Si on pose :
 & \cup (\cup_{p} \{ SMNB(f) \, \, | \, \, f \in N_{p+1} \cap R_{n} \})
  \end{align*}
  
- \newpage
  
  Avec $N_{p}$ les fonctions (pouvant être partielles) de $\mathbb{N}^{p} \to \mathbb{N}$. Et $SC$, $SR$, $SMNB$ les différents schémas introduits. Alors d'après la théorie des ensembles inductifs (PROG) on sait que :
  
@@ -756,7 +759,6 @@ Alors $F$ est bien PR (on peut la réécrire explicitement PR en utilisant $c_{2
 
 \end{solution}
 
-\newpage
 
 \begin{problem}
 \begin{itemize}
@@ -773,7 +775,7 @@ Pour être PR on a besoin de fonctions totales. On prend la convention que les t
 Alors $\delta State$, $\delta Write$ et $\delta Move$ sont à support fini et donc PR d'après \textbf{1g)}.
 
 \end{solution}
-
+\newpage 
 \begin{problem}
 \begin{itemize}
   \item[(\textit{d})] 
@@ -803,7 +805,7 @@ Ce qu'on a fait ici c'est d'attribuer les codages correspondant à chaque mouvem
 
 \end{solution}
 
-\newpage 
+\newpage
 
 \begin{problem}
 \begin{itemize}
@@ -839,116 +841,134 @@ Si $f$ est $R$, avec \textbf{5} on construit une machine de Turing $M$ qui calcu
 D'où le résultat. \\
 \end{solution}
 
+
+%\input{xmastree.tex}
+
 \newpage
 
-\clearpage
-\vspace*{\fill}
-\begin{center}
-\begin{minipage}{.6\textwidth}
+\problemlist{Exercice 3}
+
+On s’intéresse aux formules de l’arithmétique de Presburger, ie les formules qui quantifient
+sur des entiers et qui utilisent comme prédicat l’addition et l’égalité. Étant donnée
+une formule de l’arithmétique de Presburger, on s’intéresse à la vérité d’une telle formule. \\
+On va montrer que cette propriété est décidable
+
+\begin{problem} [Question 1]
+Montrer que pour toute formule $\phi$, il existe une formule $\psi$ qui est vraie si et seulement
+si $\phi$ est vraie et qui est sous forme prénexe, ie $\psi = Q_{1}x_{1}Q_{2}x_{2} \, \dots \, Q_{n}x_{n}\hat{\psi}$ avec $Q_{i}$ des quantificateurs et $\hat{\psi}$ une formule sans quantificateur.
+\end{problem}
+
+\begin{solution}
+
+On le démontre par récurrence sur le nombre $n$ de variables liées dans la formule (i.e : variable assujetie à un quantificateur). On s'autorise des variables libres dans la formule.
+
+\begin{itemize}
+\item $n = 0$ : l'absence de variable liée implique l'absence de quantificateur et donc $\phi$ est sous forme prénexe.
+\item \textbf{Hérédité} : $\phi = \phi' c (Q_{1} x_{1} \phi'')$ avec $\phi'$ ne possédant pas de variable liée, $c$ un connecteur binaire ($\phi'$ peut être vide et c inexistant) et $\phi''$ en possédant $n$. Comme aucune variable liée n'apparaît dans $\phi'$ (en particulier $x_{1}$), $\phi$ est équivalente à $Q_{1} x_{1} (\phi' c \phi'') $. \\
+$(\phi' c \phi'')$ possède toujours $n$ variables liées, par HR elle est équivalente à $\phi_{1}$ en forme prénexe. \\
+Finalement $\phi$ est équivalente à $Q_{1}x_{1} \phi_{1}$ qui est sous forme prénexe.
+\end{itemize}
+
+\end{solution}
+
+\begin{problem} [Question 2]
+On considère un codage usuel des entiers en binaire avec le bit de poids fort à
+gauche, avec éventuellement des zéros en tête pour ajuster les longueurs. On se placera
+donc sur un alphabet $\sum = {0, 1}^{p}$, pour $p$ que l’on fixera en fonction de la
+formule à décider. Montrer que les langages suivant sont rationnels :
+\begin{align*}
+L_{+} & = \{(n_{1},n_{2},n_{3}) \, \, | \, \, n_{1} + n_{2} = n_{3} \} \\
+L_{=} & = \{(n_{1}, n_{2}) \, \, | n_{1} = n_{2}\}
+\end{align*}
 
 
-\begin{tikzpicture}[  ball red/.style={
-    decorate,
-    decoration={
-      markings,
-      mark=between positions .2 and 1 step 3cm
-      with
-      {
-        \pgfmathsetmacro{\sz}{2 + .5 * rand}
-        \path[shading=ball,ball color=red] (0,0) circle[radius=\sz mm];
-      }
-    }
-  } ,ball blue/.style={
-    decorate,
-    decoration={
-      markings,
-      mark=between positions 0.1 and .9 step 3cm
-      with
-      {
-        \pgfmathsetmacro{\sz}{2 + .5 * rand}
-        \path[shading=ball,ball color=blue] (0,0) circle[radius=\sz mm];
-      }
-    }
-  }   
-]
+\end{problem}
+\begin{solution}
+En prenant comme alphabet ${0,1}^2$ et en représentant 2 nombres comme les couples successifs de leurs bits on a pour $L_{=}$ l'automate :  \\ \\
+\includegraphics{1}
+\newpage
+Et pour $L_{+}$ en utilisant des triplets :  \\
 
-\draw[fill=Maroon,ultra thick] 
-      (.75,-1)  ..  controls (.5,.5)  and   (.5,3)    .. (0.5,4) 
-   -- (-0.5,4)  ..  controls (-.5,3) and (-.5,.5)     .. (-.75,-1) ;
-\shade[ultra thick, top color=green!90!black,bottom color=green!10!black] 
-      (0,10) .. controls  (0,8)     and   (1,7)    .. (1.5,7) 
-             ..  controls (1,7)     and   (1,7)    .. (0.5,7.25) 
-             ..  controls (1.5,5)   and   (2.5,4)  .. (3,4)
-             ..  controls (2,4)     and   (1.25,4) .. (1,4.5)
-             ..  controls (2,2)     and   (3.5,2)  .. (4,2)
-             ..  controls (1,1)     and   (-1,1)   .. (-4,2) 
-             ..  controls (-3.5,2)  and   (-2,2)   .. (-1,4.5)
-             ..  controls (-1.25,4) and   (-2,4)   .. (-3,4) 
-             ..  controls (-2.5,4)  and   (-1.5,5) .. (-0.5,7.25) 
-             ..  controls  (-1,7)   and   (-1,7)   .. (-1.5,7)
-             ..  controls  (-1,7)   and   (0,8)    .. (0,10)
-              ;
+\includegraphics{2}
 
-\foreach \candle in {(2,5),(-2,5),(0.5,7.5),(-0.5,7.5),(-3,2.5), (3,2.5),
-                    (1.5,1.75),(-1.5,1.75)}
-\node at \candle {\usebox{\mycandle}} ; 
-\node [star, star point height=.5cm, minimum size=.5cm,draw,fill=yellow,thick]
-      at (0,10) {};
-\begin{scope}[decoration={shape sep=.2cm, shape size=.25cm}] 
-    \draw [my star=6, paint=red]  (-4,2)
-             ..  controls (0,2)     and   (1,3.5)   .. (1,4.40); 
-    \draw [my star=6, paint=red]  (-1.5,5.40)
-             ..  controls (0,5.40)     and   (0.5,6.5)      .. (0.5,7);  
-    \draw [my star=6, paint=blue]  (4,2)
-             ..  controls  (0,2) and (-1,3.5)      .. (-1,4.40);             
-    \draw [my star=6, paint=blue]  (1.5,5.40)
-             ..  controls (0,5.40)     and   (-0.5,6.5)      .. (-0.5,7);     
-\end{scope} 
-% the balls
-\path[ball red] 
-      (0,10) .. controls  (0,8)     and   (1,7)    .. (1.5,7) 
-             ..  controls (1,7)     and   (1,7)    .. (0.5,7.25) 
-             ..  controls (1.5,5)   and   (2.5,4)  .. (3,4)
-             ..  controls (2,4)     and   (1.25,4) .. (1,4.5)
-             ..  controls (2,2)     and   (3.5,2)  .. (4,2)
-             ..  controls (1,1)     and   (-1,1)   .. (-4,2) 
-             ..  controls (-3.5,2)  and   (-2,2)   .. (-1,4.5)
-             ..  controls (-1.25,4) and   (-2,4)   .. (-3,4) 
-             ..  controls (-2.5,4)  and   (-1.5,5) .. (-0.5,7.25) 
-             ..  controls  (-1,7)   and   (-1,7)   .. (-1.5,7)
-             ..  controls  (-1,7)   and   (0,8)    .. (0,10)
-              ; 
-\path[ball blue] 
-      (0,10) .. controls  (0,8)     and   (1,7)    .. (1.5,7) 
-             ..  controls (1,7)     and   (1,7)    .. (0.5,7.25) 
-             ..  controls (1.5,5)   and   (2.5,4)  .. (3,4)
-             ..  controls (2,4)     and   (1.25,4) .. (1,4.5)
-             ..  controls (2,2)     and   (3.5,2)  .. (4,2)
-             ..  controls (1,1)     and   (-1,1)   .. (-4,2) 
-             ..  controls (-3.5,2)  and   (-2,2)   .. (-1,4.5)
-             ..  controls (-1.25,4) and   (-2,4)   .. (-3,4) 
-             ..  controls (-2.5,4)  and   (-1.5,5) .. (-0.5,7.25) 
-             ..  controls  (-1,7)   and   (-1,7)   .. (-1.5,7)
-             ..  controls  (-1,7)   and   (0,8)    .. (0,10)
-              ; 
- % the snow
-\foreach \i in {0.5,0.6,...,1.6}
-     \fill [white!80!blue,decoration=Koch snowflake,opacity=.9]
-           [shift={(rand*5,rnd*8)},scale=\i]
-           [double copy shadow={opacity=0.2,shadow xshift=0pt,
-           shadow yshift=3*\i pt,fill=white,draw=none}]
-        decorate {
-          decorate {
-            decorate {
-              (0,0) -- ++(60:1) -- ++(-60:1) -- cycle
-            }
-          }
-        };                  
-\end{tikzpicture}
+Cet automate vérifie l'addition "à l'envers". L'état $c$ correspondant à la retenue et l'autre à l'absence de retenue.
 
-\end{minipage}
-\end{center}
-\vfill % equivalent to \vspace{\fill}
-\clearpage
+\end{solution}
+
+\begin{problem}[Question 3]
+En déduire que pour tout $\phi$ formule sans quantificateurs avec $p$ variables libres l'ensemble suivant est rationnel : \\
+$$ L_{\phi} = \{ (n_{1}, \, n_{2}, \, \dots , \, n_{p}) \, \, | \, \, \phi(n_{1}, \, n_{2}, \, \dots , \, n_{p}) \text{ vraie} \}$$
+
+\end{problem}
+
+\begin{solution}
+
+On a vu que les composants atomiques de $\phi$ donnent des langages rationnels. On va récupérer $L_{\phi}$ par intersection, union ou complémentation des sous langages correspondant à ces formes atomiques (on peut les étendre à $p$ variables en ignorant les $p-2$ ou $p-3$ composantes qui ne servent à rien). Ça reste rationnel.
+
+\end{solution}
+
+\begin{problem}[Question 4]
+Étant donnée une formule $\psi$ sous forme prénexe $\psi = Q_{1}x_{1}Q_{2}x_{2} \, \dots \, Q_{n}x_{n}\hat \psi$, on définit $\psi_k = Q_{k+1}x_{k+1} \, \dots \, Q_{n}x_{n}\hat \psi$.
+Montrer par récurrence que les langages suivant sont rationnels :%
+$$ X_{k} = \{(x_{1}, x_{2}, \, \dots , \, x_{k}) \, \, | \, \, \psi_k(x_{1}, x_{2}, \, \dots , \, x_{k}) \text{ vraie} \}$$
+\end{problem}
+\newpage
+\begin{solution}
+On suppose ici que $\psi$ ne possède pas de variables libres (elle est close). \\
+Par définition $\psi_{k}$ possède $k$ variables libres. On procède par récurrence descendante. Par convention : $\psi_{0} = \psi$ et $\psi_{n} = \hat \psi$.
+\begin{itemize}
+\item $k=n$ : $ X_{n} = \{(x_{1}, x_{2}, \, \dots , \, x_{n}) \, \, | \, \, \hat \psi(x_{1}, x_{2}, \, \dots , \, x_{n}) \text{ vraie} \}$ est rationnel par \textbf{Question 3} puisque $\hat \psi$ est sans quantificateur.
+\item \textbf{Hérédité} : Soit $0 \leq k < n $ on suppose $X_{k+1}$ rationnel. \\ On a donc un AFD $\mathcal{A}_{k+1}$ sur l'alphabet $\{0,1\}^{k+1}$ qui reconnait $X_{k+1}$. \\
+On va construire $\mathcal{A}_{k}$ sur  $\{0,1\}^{k}$ qui reconnait $X_{k}$.
+\\
+$ \psi_k = Q_{k+1}x_{k+1} \psi_{k+1}$. Deux cas :
+
+\begin{itemize}
+\item $Q_{k+1} = \exists$ : \\ La formule devient : $ \psi_k = \exists x_{k+1} \psi_{k+1}$. Et alors si pour $\mathcal{A}_{k}$ on prend $\mathcal{A}_{k+1}$ où l'on supprime la dernière composante de chaque transition, on trouve un automate non déterministe où l'acceptance d'un mot $(x_{1},\, \dots, \, x_{k})$ revient à l'existence d'un $x_{k+1}$ (formé par un certain choix de la composante qu'on a enlevé sur chaque transition) tel que $\mathcal{A}_{k+1}$ accepte $(x_{1},\, \dots, \, x_{k+1})$. La réciproque est vraie, si $\mathcal{A}_{k+1}$ accepte $(x_{1},\, \dots, \, x_{k+1})$ en prenant le même chemin, $\mathcal{A}_{k}$ accepte $(x_{1},\, \dots, \, x_{k})$.  $\mathcal{A}_{k}$ convient donc et $X_{k}$ est rationnel.
+\item $Q_{k+1} = \forall$ : \\ On se ramène au cas précédent par équivalence de $\psi_{k}$ avec $\neg \exists x_{k+1} \neg \psi_{k+1}$. On conclut par stabilité des langages rationnels par passage au complémentaire.
+\end{itemize}
+\end{itemize}
+D'où le résultat.
+\end{solution}
+
+\begin{problem}[Question 5]
+Conclure en considérant $X_{0}$.
+\end{problem}
+
+\begin{solution}
+On a $\psi_{0} =  \psi$. 
+\begin{itemize}
+\item Si $\psi = \forall x_{1} \psi_{1}(x_{1})$ on doit vérifier que $X_{1} = \mathcal{L}(\mathcal{A}_{1}) = \{0,1\}^{*}$
+\item Si $\psi = \exists x_{1} \psi_{1}(x_{1})$ on doit vérifier que $X_{1} = \mathcal{L}(\mathcal{A}_{1}) \neq \emptyset$
+\end{itemize}
+Ces deux problèmes sont décidables. \\ \\
+On peut aussi conclure avec $\mathcal{A}_{0}$ associé à $X_{0}$ : 
+$\mathcal{A}_{0}$ est un graphe orienté. \\
+Par la construction des $\mathcal{A}_{k}$ il suffit désormais de tester l'accessibilité d'un état final à partir d'un état initial (on conclut en fonction de $Q_{1}$) ce qui est décidable. \\
+D'où le résultat.
+\end{solution}
+\newpage
+\begin{problem}[Question 6]
+Faites tourner l'algorithme sur les formules : 
+
+\begin{align*}
+\psi_{0}(x) \equiv \, \, & \exists  y, \, \exists z , \, x = y+z \land z = y + y \\
+\psi_{1} \equiv \, \, & \forall x , \, \psi_{0}(x)
+\end{align*}
+
+\end{problem}
+
+\begin{solution}
+La première formule est équivalente à l'équation $x \equiv 0 \, \, mod \, \, 3$, on veut donc montrer que $\psi_{1}$ est fausse. \\
+Pour $x = y + z \land z = y + y$ on propose l'automate suivant : \\
+\includegraphics{3}
+\\
+On utilise l'agorithme pour trouver l'automate associé à $\psi_{0}$, on trouve : 
+\\
+\includegraphics{4}
+\\
+On se rend compte que la formule est fausse puisque $1$ n'est pas dans le langage de cet automate (voir première conclusion \textbf{Question 5}). \\
+D'où le résultat.
+\end{solution}
 
 \end{document}
