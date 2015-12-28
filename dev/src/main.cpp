@@ -34,7 +34,7 @@ int main(int argc, char** argv)
     try
     {  
         string address = "127.0.0.1"; 
-        unsigned int port = 6010;
+        unsigned int port = 6011;
 
         MapEngine mapEngine("first-map.tmx");
         cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
