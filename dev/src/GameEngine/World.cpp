@@ -267,7 +267,6 @@ std::vector<std::pair<int,int>> GENGINE_W::getIntermediaire(Unit p_unit, std::pa
 
 	while(coord != p_unit.getCoord())
 	{
-		printf("%d %d %d\n", coord.first, coord.second, tdist[coord.second][coord.first]);
 		toReturn.push_back(coord);
 		int minDist = INFINI;
 		auto minVoisin = coord;
@@ -277,7 +276,6 @@ std::vector<std::pair<int,int>> GENGINE_W::getIntermediaire(Unit p_unit, std::pa
 			if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
 				if(tdist[voisin.second][voisin.first] < minDist)
 				{
-					printf("\t%d %d %d\n", voisin.first, voisin.second, tdist[voisin.second][voisin.first]);
 					minDist = tdist[voisin.second][voisin.first];
 					minVoisin = voisin;
 				}

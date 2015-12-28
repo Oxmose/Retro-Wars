@@ -476,11 +476,20 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
 
             sf::RectangleShape damageInfo(sf::Vector2f(50, 20));
             damageInfo.setFillColor(sf::Color(sf::Uint8(75), sf::Uint8(75), sf::Uint8(75), sf::Uint8(200)));
-            damageInfo.setPosition(p_mvtCursor.first * 16 + 16, p_mvtCursor.second * 16 - 8);
+			if((p_mvtCursor.first * 16 + 50) < m_relativeMapWidth)
+            	damageInfo.setPosition(p_mvtCursor.first * 16 + 16, p_mvtCursor.second * 16 - 5);
+			else
+				damageInfo.setPosition(p_mvtCursor.first * 16 + -59, p_mvtCursor.second * 16 - 5);
+
             m_mainWindow->draw(damageInfo);
 
             sf::Text damageInfoText(to_string(p_world->getDamage(p_unit, p_world->getUnit(p_mvtCursor), true)).substr(0, 4) + "%", m_font, 15);
-            damageInfoText.setPosition(p_mvtCursor.first * 16 + 25, p_mvtCursor.second * 16 - 8);
+
+			if((p_mvtCursor.first * 16 + 50) < m_relativeMapWidth)
+            	damageInfoText.setPosition(p_mvtCursor.first * 16 + 25, p_mvtCursor.second * 16 - 5);
+			else
+				damageInfoText.setPosition(p_mvtCursor.first * 16 - 50, p_mvtCursor.second * 16 - 5);
+	
             m_mainWindow->draw(damageInfoText);
             colored = true;
             break;
@@ -559,8 +568,8 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
     message.setPosition(345, m_relativeMapHeight + 5);
     m_mainWindow->draw(message);
 
-    sf::Text help("Escape  to  deselect", m_font, 15);
-    help.setPosition(350, m_relativeMapHeight + 50);
+    sf::Text help("W for attack range\nEscape  to  deselect", m_font, 15);
+    help.setPosition(350, m_relativeMapHeight + 35);
     m_mainWindow->draw(help);
 
     string ammo;
@@ -712,7 +721,7 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     // ############### NeoTank button
     sf::Sprite neoTankBtn;
     neoTankBtn.setTexture(m_tileset_unit);
-    neoTankBtn.setTextureRect(sf::IntRect(16, (colorSelector + 1) * 16, 16, 16));
+    neoTankBtn.setTextureRect(sf::IntRect(144, colorSelector * 16, 16, 16));
     neoTankBtn.setPosition(409, 80);
     neoTankBtn.setScale(3, 3);
     if(playerMoney < netInfo.cost)
@@ -754,7 +763,7 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     // ############### Tank button
     sf::Sprite tankBtn;
     tankBtn.setTexture(m_tileset_unit);
-    tankBtn.setTextureRect(sf::IntRect(32, (colorSelector + 1) * 16, 16, 16));
+    tankBtn.setTextureRect(sf::IntRect(16, (colorSelector + 1) * 16, 16, 16));
     tankBtn.setPosition(205, 180);
     tankBtn.setScale(3, 3);
     if(playerMoney < takInfo.cost)

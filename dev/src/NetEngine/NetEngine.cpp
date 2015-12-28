@@ -230,16 +230,12 @@ void NETENGINE::parseMessage(const std::string &p_message)
         case '0':
             
             action.type = MOVE;
-            stringToCooord(split[1]);
-            stringToCooord(split[2]);
             action.coord.push_back(stringToCooord(split[1]));
             action.coord.push_back(stringToCooord(split[2]));
             m_gameEngine->notify(action);
             break;
         case '1':
             action.type = ATTACK;
-            stringToCooord(split[1]);
-            stringToCooord(split[2]);
             action.coord.push_back(stringToCooord(split[1]));
             action.coord.push_back(stringToCooord(split[2]));
             action.data.push_back(stoi(split[3]));
@@ -260,7 +256,13 @@ void NETENGINE::parseMessage(const std::string &p_message)
 	        action.type = DISCONNECTED;
             m_gameEngine->notify(action);
             break;
-        
+		case '5':
+			action.type = NEW_UNIT;
+			action.coord.push_back(stringToCooord(split[1]));
+			action.data.push_back(stoi(split[2]));
+			action.data.push_back(stoi(split[3]));
+			m_gameEngine->notify(action);
+			break;        
     }
         
 } // parseMessage()

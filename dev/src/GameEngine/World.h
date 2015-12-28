@@ -4,7 +4,7 @@
 #include <vector>
 #include <queue>
 #include <list>
-
+#include <algorithm>
 #include "Terrain.h"
 #include "Unit.h"
 

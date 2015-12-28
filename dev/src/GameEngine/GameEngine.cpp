@@ -62,7 +62,7 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
         m_turn = false;
 
     m_waitingForPlayers = true;
-
+	m_moveUnit = false;
     m_win = false;
 
 } // GameEngine();
@@ -378,7 +378,7 @@ void GENGINE::frame()
         sf::Event event;
         while(m_window->pollEvent(event))
         {
-            if(!m_win)
+            if(!m_win && !m_moveUnit)
             {
                 // Key event
                 if(event.type == sf::Event::KeyPressed && !m_waitingForPlayers)
@@ -487,6 +487,7 @@ void GENGINE::frame()
                                     message = "Are you sure you want to buy this?\n(enter to validate / escape to cancel)";
                                     displayMessage = true;
                                     validateBuy = false;
+									
                                 }
                                 else
                                 {
@@ -497,6 +498,15 @@ void GENGINE::frame()
                                     pair<int, int> availableCoord = getAvailableSpawnCoord();
                                     Unit unit ((UnitType)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), unitNPlayerTypeToGid((UnitType)selectedUnitBase, m_player->getType()));
                                     m_world->addUnit(unit);
+									movedUnits.push_back(unit.getId());
+									selectedUnitBase = 0;
+									validateBuy = true;
+									view = 0;
+
+									// Send message
+									NetPackage np;
+									np.message = "5::" + coordToString(availableCoord) + "::" + to_string(selectedUnitBase) + "::" + to_string(m_player->getType());
+									m_netEngine->send(np);
                                 }
                             }
                         }
@@ -533,8 +543,14 @@ void GENGINE::frame()
                                     if(move)
                                     {
                                         NetPackage np;
-                                        np.message = "0::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
-                                        m_world->moveUnit(selectedUnit, mvtCursor);
+                                        
+										np.message = "0::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
+
+										m_interMove = m_world->getIntermediaire(selectedUnit, mvtCursor);
+										m_moveUnit = true;
+										m_counter = 0;
+										m_interPos = -1;
+										m_movingUnit = selectedUnit;
 									
 									    m_netEngine->send(np);
                                         m_player->setCoord(mvtCursor);
@@ -736,9 +752,38 @@ void GENGINE::frame()
             message = "Waiting  for  " + to_string(m_playerLeft) + "  more  player.";
         }
 
-
         if(displayMessage)
             m_graphicEngine->displayMessage(message);
+
+		// Animation
+		if(m_moveUnit)
+		{	
+			bool noJump = true;
+				
+			if((m_counter % 10) == 0)
+			{				
+				++m_interPos;
+
+				if(m_interPos != 0)
+				{
+					m_movingUnit = m_world->getUnit(m_interMove[m_interPos - 1]);
+					if((m_movingUnit.getOwner() != m_player->getType() && m_turn) || (m_movingUnit.getOwner() == m_player->getType() && !m_turn))
+					{
+						m_world->moveUnit(m_movingUnit, make_pair(400, 400));
+						m_world->moveUnit(m_world->getUnit(m_interMove[m_interPos - 1]), m_interMove[m_interPos]);
+						m_world->moveUnit(m_world->getUnit(make_pair(400, 400)), m_interMove[m_interPos - 1]);
+						noJump = false;
+					}
+				}
+				if(noJump)
+					m_world->moveUnit(m_movingUnit, m_interMove[m_interPos]);
+			}
+
+			if(m_interPos == m_interMove.size() - 1)
+				m_moveUnit = false;
+
+			++m_counter;
+		}
 
         if(m_attackNotify)
         {
@@ -767,7 +812,11 @@ void GENGINE::notify(const Action &p_action)
 {
     if(p_action.type == MOVE)
     {
-        m_world->moveUnit(m_world->getUnit(p_action.coord[0]), p_action.coord[1]);
+		m_interMove = m_world->getIntermediaire(m_world->getUnit(p_action.coord[0]), p_action.coord[1]);
+		m_moveUnit = true;
+		m_counter = 0;
+		m_interPos = -1;
+		m_movingUnit = m_world->getUnit(p_action.coord[0]);
     }
     else if(p_action.type == ATTACK)
     {
@@ -808,6 +857,13 @@ void GENGINE::notify(const Action &p_action)
     {
         m_win = true;
     }
+	else if(p_action.type == NEW_UNIT)
+	{
+		UnitType type = (UnitType)p_action.data[0];
+		PLAYER_TYPE playerType = (PLAYER_TYPE)p_action.data[1];
+		Unit unit (type, p_action.coord[0].first, p_action.coord[0].second, playerType, unitNPlayerTypeToGid(type, playerType));
+		m_world->addUnit(unit);
+	}
 } // notify()
 
 pair<int, int> GENGINE::getAvailableSpawnCoord()
@@ -824,19 +880,6 @@ pair<int, int> GENGINE::getAvailableSpawnCoord()
             {
                 base = make_pair(i, j);
                 found = true;
-            }
-        }
-    }
-    for(int i = -1; i < 2; ++i)
-    {
-        for(int j = -1; j < 2; ++j)
-        {
-			if(i == 0 && j == 0)
-				continue;
-
-            if(m_world->getUnit(base.first + i, base.second + j).getOwner() == NEUTRAL)                
-            {
-				return make_pair(base.first + i, base.second + j);
             }
         }
     }

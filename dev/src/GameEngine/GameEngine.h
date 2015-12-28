@@ -109,6 +109,13 @@ namespace nsGameEngine
             std::pair<int, int> m_attackPos;
             std::pair<int, int> m_attackFrom;
 
+			// Movement notification
+			std::atomic<bool> m_moveUnit;
+			std::vector<std::pair<int, int>> m_interMove;
+			std::atomic<int> m_counter;
+			std::atomic<int> m_interPos;
+			Unit m_movingUnit;
+
             // Turn management
             std::atomic<bool> m_turn;
             std::atomic<bool> m_waitingForPlayers;
