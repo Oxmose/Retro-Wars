@@ -40,7 +40,7 @@ namespace nsNetEngine
             bool launch(const std::string &p_playerName, const PLAYER_TYPE &p_player = NEUTRAL, const nsMapEngine::MapEngine *p_map = nullptr);
 
             // Connection management
-            void joinServer();
+            bool joinServer();
             void disconnect();
             
             // Send / receive management
@@ -75,6 +75,7 @@ namespace nsNetEngine
             std::atomic<bool>               m_listenServer;
             sf::TcpSocket                   m_socket;        
             std::thread                     *m_listenerThread;
+			std::atomic<bool>				m_connected;
 
             // Server management
             Server                          *m_server;        

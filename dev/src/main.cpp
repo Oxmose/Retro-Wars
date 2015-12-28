@@ -33,30 +33,55 @@ int main(int argc, char** argv)
 {
     try
     {  
-	string address = "127.0.0.1"; 
+        string address = "127.0.0.1"; 
+        unsigned int port = 6010;
+
         MapEngine mapEngine("first-map.tmx");
         cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
-        NetEngine netEngine("127.0.0.1", 6010);
-	PLAYER_TYPE type = RED;
-	netEngine.setIsServer(true);
-	if (argc > 1)
-	{
-		type = BLUE;
-		netEngine.setIsServer(false);
-	}
-	
+
+        NetEngine netEngine(address, port);
+        bool isServer = true;
+
+        PLAYER_TYPE type = RED;
+
+        if (argc > 1)
+        {
+            type = BLUE;
+            isServer = false;
+        }
+    
+        netEngine.setIsServer(isServer);
+
         if (netEngine.launch("okok", type, &mapEngine))
         {
-            cout << "Loaded server on 127.0.0.1:5000.\nLoaded client : " << "Alexy" << " is " << type << endl;
+            if(isServer)
+                cout << "Loaded server on 127.0.0.1:5000." << endl;
+
+            cout << "Loaded client, type is : " << type << endl;
+
             GameEngine gameEngine(30*16, 20*16 + 90, "Retro Wars", &mapEngine, type, &netEngine);
+
             netEngine.setNotifier(&gameEngine);
-            cout << "Loaded game engine" << endl;
             gameEngine.frame();
+        }
+        else
+        {
+			cout << "\x1b[32;1mPlease make sure that : " << endl << "\t -The server is launched." <<
+												  endl << "\t -If hosting, your router/NAT is correctly configured." <<
+												  endl << "\t -If hosting, your system is not blocking used port." <<
+												  endl << "\t -You have access to the network." <<
+												  endl << "Then restart the game." << endl << "\x1b[0m";    
         }       
     }
     catch(exception &e)
     {
         cerr << "[EXC] " << e.what() << endl;
     }
+	catch(...)
+	{
+		cerr << "ERROR" << endl;
+	}
+
+	
 } // main()
 

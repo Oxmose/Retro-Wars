@@ -63,8 +63,10 @@ namespace nsTools
         std::vector<std::string> splited = splitString(p_message, "/");
 
         return splited[1].substr(0, stoi(splited[0]));
-    } // inline cleanMessage
+    } // inline cleanMessage()
 
 } // nsTools
+
+
 
 #endif

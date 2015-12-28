@@ -26,15 +26,17 @@ NETENGINE::NetEngine(const std::string &p_ipAddress, const unsigned int &p_port)
     m_port = p_port;
     m_listenServer = true;
     m_isServer = false;
+	m_connected = false;
 } // NetEngine()
 
 NETENGINE::~NetEngine()
 {
     // Disconnecting from server
-    disconnect();
+	if(m_connected)
+    	disconnect();
 
     // If is host, disconnect server
-    if(m_isServer)
+    if(m_isServer && m_server != nullptr)
         delete m_server;   
 } // ~NetEngine()
 
@@ -60,7 +62,7 @@ bool NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_pla
     m_playerType = p_player;
 
     // Join the server
-    joinServer(); 
+    launched = joinServer(); 
 
     return launched;
 } // launch()
@@ -76,15 +78,14 @@ bool NETENGINE::isServer()
     return m_isServer;
 } // isServer()
 
-void NETENGINE::joinServer()
+bool NETENGINE::joinServer()
 {
     sf::Time timeout = sf::seconds(10.0);
 
     if(m_socket.connect(m_ipAddress, m_port, timeout) != sf::Socket::Done)
     {
         cout << "[ERROR]Failed to connect to server" << endl;
-        return;
-
+        return false;
     }
     
     // Waiting for the welcome message (200)
@@ -111,11 +112,14 @@ void NETENGINE::joinServer()
     if(cleanMessage(string(data2)) != "200")
     {
         manageError(string(data, 3));
-        return;
+        return false;
     }  
         
     // Start listener thread
+	m_connected = true;
     m_listenerThread = new thread(&NetEngine::listen, this);   
+
+    return true;
 } // joinServer()
 
 void NETENGINE::listen()

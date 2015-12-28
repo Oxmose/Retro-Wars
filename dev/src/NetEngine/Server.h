@@ -57,6 +57,10 @@ namespace nsNetEngine
             // Thread listening to clients
             void listenClients(unsigned int p_id);
 
+			// Allow to timeout (non blocking forever the thread)
+			sf::Socket::Status receiveTime(sf::TcpSocket &p_socket, char* p_buffer, const unsigned int p_limit, size_t &p_received);
+			sf::Socket::Status acceptTime(sf::TcpListener &p_listener, sf::TcpSocket &p_client);
+
             // Parse net messages
             void parseMessage(const unsigned int &p_id, const std::string &p_message);
 

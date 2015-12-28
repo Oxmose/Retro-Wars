@@ -37,25 +37,29 @@ NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, Ne
 
     for(PLAYER_TYPE type : p_allowedPlayers)
         m_availablePositions[type] = true;
+
+	m_connectThread = nullptr;
 } // Server()
 
 NETSERVER::~Server()
 {
-    m_clientListMutex.unlock();
-    // Disconnect all clients
-    disconnectClients();  
-         
-    // Stop waiting for clients and listening to connected clients  
+	// Stop waiting for clients and listening to connected clients  
     m_waitForClients = false;
     m_listen         = false; 
-   
-    // Close the tcp listener
+
+	// Close the tcp listener
     m_listener.close();
 
+    m_clientListMutex.unlock();
+    // Disconnect all clients
+    disconnectClients();   
+
     // Detach and delete the listener thread
-    // Can't join due to blocking "accept()" function
-    m_connectThread->detach();   
-    delete m_connectThread;
+    if(m_connectThread != nullptr)
+	{
+		m_connectThread->join();   
+    	delete m_connectThread;
+	}
 } // ~Server()
 
 bool NETSERVER::launch()
@@ -74,8 +78,7 @@ bool NETSERVER::launch()
 
         // Start listener thread
         m_connectThread = new thread(&Server::connectClient, this);
-
-        return true;
+		return true;
     }
 } // launch()
 
@@ -135,16 +138,26 @@ void NETSERVER::connectClient()
     // While listening for new clients
     while(m_waitForClients)
     {
+		cout << "WAIT : " << m_waitForClients << endl;
         sf::TcpSocket* client = new sf::TcpSocket();
-        
+       	sf::Socket::Status status; 
         // Accept new client
-        if(m_listener.accept(*client) != sf::Socket::Done)
+        if((status = acceptTime(m_listener, *client)) != sf::Socket::Done)
         {
+			if(!m_waitForClients)
+				break;
+
+			if(status == sf::Socket::NotReady)
+				continue;
+
             cerr << "[SERVER][ERROR] Can't accept new client." << endl;
             delete client;
         }
         else 
         {
+			if(!m_waitForClients)
+				break;
+
             // If too much player
             if(getClientsNumber() == m_maxPlayer)
             {
@@ -189,6 +202,7 @@ void NETSERVER::connectClient()
             }
         }
     }
+	cout << " OUT OF CONENCT " << endl;
 } // connectClient()
 
 void NETSERVER::listenClients(unsigned int p_id)
@@ -199,51 +213,94 @@ void NETSERVER::listenClients(unsigned int p_id)
     m_clientListMutex.unlock();
     
     char data[256];
-    size_t received = 0;
+	size_t received = 0;
     string message("");
 
     // While listening to client
     while(m_listen)
     {
         // Manage client disconnection
-        sf::Socket::Status status;
-        if((status = client->receive(data, 256, received)) != sf::Socket::Done)
-        {
-            if(m_clients.find(p_id) != m_clients.end())
-            {
-                if(sf::Socket::Disconnected == status)
-                {
-                    if(m_clients[p_id].status != false)
-                    {
-                        m_clients[p_id].status = false;
-                        disconnectClient(p_id, false); 
-                    }                                  
-                }
-                
-                return;
-            }            
+		sf::Socket::Status status;
+        if((status = receiveTime(*client, data, 256, received)) != sf::Socket::Done)
+		{
+
+			if(!m_listen)
+				break;
+	
+			if(status == sf::Socket::NotReady)
+				continue;
+
+			
+			if(m_clients.find(p_id) != m_clients.end())
+           	{
+               	if(sf::Socket::Disconnected == status)
+               	{
+                   	if(m_clients[p_id].status != false)
+                   	{
+                       	m_clients[p_id].status = false;
+                       	disconnectClient(p_id, false); 
+                   	}                                  
+               	}
+               
+               	return;
+           	}            
         }
 
-        // Clean received message
-        string strData = cleanMessage(string(data));
+		if (!m_listen)
+			break;
 
-        // Preparse message (if message ends with ||| it has to be parsed
-        if(strData.substr(strData.size() - 3) == "|||")
-        {
-            message += strData.substr(0, strData.size() - 3);
-            parseMessage(p_id, message);
-            message = "";
-        }
-        else if (received == 3 && strData == "201")
-        {
-            // Disconnet message received
-            disconnectClient(p_id, false);
-            return;
-        }
-        else
-            message += strData;
-    }
+
+		string strData = cleanMessage(string(data));
+
+	   	// Preparse message (if message ends with ||| it has to be parsed
+       	if(strData.substr(strData.size() - 3) == "|||")
+       	{
+           	message += strData.substr(0, strData.size() - 3);
+           	parseMessage(p_id, message);
+           	message = "";
+       	}
+       	else if (received == 3 && strData == "201")
+       	{
+           	// Disconnet message received
+           	disconnectClient(p_id, false);
+           	return;
+       	}
+       	else
+           	message += strData;
+
+	}
+
 } // listenClient()
+
+sf::Socket::Status NETSERVER::receiveTime(sf::TcpSocket &p_socket, char* p_buffer, const unsigned int p_limit, size_t &p_received)
+{
+	sf::SocketSelector selector;
+    selector.add(p_socket);
+
+    if (selector.wait(sf::seconds(2)))
+	{
+		return p_socket.receive(p_buffer, p_limit, p_received);
+    }
+	else
+	{
+		return sf::Socket::NotReady;
+	}
+} // receiveTime()
+
+sf::Socket::Status NETSERVER::acceptTime(sf::TcpListener &p_listener, sf::TcpSocket &p_client)
+{
+	sf::SocketSelector selector;
+	selector.add(p_listener);
+	
+	if(selector.wait(sf::seconds(0.5)))
+	{
+		return p_listener.accept(p_client);
+	}
+	else
+	{
+		return sf::Socket::NotReady;
+	}
+} // acceptTime()
 
 void NETSERVER::sendAll(const NetPackage &p_package, const int &p_except /* = -1 */)
 {        
@@ -297,8 +354,7 @@ void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /
         // Disconnect client
         m_clients[p_id].status = false;
         m_clients[p_id].socket->disconnect();    
-        m_listenClientsThreads[p_id]->detach();
-        
+        m_listenClientsThreads[p_id]->join();
         // Delete listener and socket
         delete m_listenClientsThreads[p_id];
         delete m_clients[p_id].socket;
@@ -342,6 +398,9 @@ vector<nsNetEngine::Client> NETSERVER::getClients()
 
 void NETSERVER::parseMessage(const unsigned int &p_id, const std::string &p_message)
 {
+	if(!m_listen)
+		return;
+
     // Accect the client 
     m_clientListMutex.lock();
     if(m_clients[p_id].status == false)
