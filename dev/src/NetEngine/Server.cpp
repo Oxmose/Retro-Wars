@@ -52,7 +52,13 @@ NETSERVER::~Server()
 
     m_clientListMutex.unlock();
     // Disconnect all clients
-    disconnectClients();   
+    disconnectClients();  
+	
+	for(pair<unsigned int, thread*> listenThread : m_listenClientsThreads)
+	{
+		listenThread.second->join();
+		delete listenThread.second;
+	} 
 
     // Detach and delete the listener thread
     if(m_connectThread != nullptr)
@@ -138,8 +144,7 @@ void NETSERVER::connectClient()
     // While listening for new clients
     while(m_waitForClients)
     {
-		cout << "WAIT : " << m_waitForClients << endl;
-        sf::TcpSocket* client = new sf::TcpSocket();
+		sf::TcpSocket* client = new sf::TcpSocket();
        	sf::Socket::Status status; 
         // Accept new client
         if((status = acceptTime(m_listener, *client)) != sf::Socket::Done)
@@ -202,7 +207,6 @@ void NETSERVER::connectClient()
             }
         }
     }
-	cout << " OUT OF CONENCT " << endl;
 } // connectClient()
 
 void NETSERVER::listenClients(unsigned int p_id)
@@ -237,7 +241,8 @@ void NETSERVER::listenClients(unsigned int p_id)
                	{
                    	if(m_clients[p_id].status != false)
                    	{
-                       	m_clients[p_id].status = false;
+						cout << "DISCONNECT" << endl;
+						m_clients[p_id].status = false;
                        	disconnectClient(p_id, false); 
                    	}                                  
                	}
@@ -354,12 +359,8 @@ void NETSERVER::disconnectClient(const unsigned int &p_id, const bool &p_erase /
         // Disconnect client
         m_clients[p_id].status = false;
         m_clients[p_id].socket->disconnect();    
-        m_listenClientsThreads[p_id]->join();
-        // Delete listener and socket
-        delete m_listenClientsThreads[p_id];
-        delete m_clients[p_id].socket;
+		delete m_clients[p_id].socket;
     }
-
     // Erase the client from the socket list
     if(p_erase)
     {        

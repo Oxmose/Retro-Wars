@@ -135,7 +135,8 @@ void NETENGINE::listen()
         if((status = m_socket.receive(data, 256, received)) != sf::Socket::Done)
         {
             cout << "Error receiving message for server " << status << endl;         
-            
+         	parseMessage("4::4");
+   
             if(status == sf::Socket::Disconnected)
                 return;  
         }
@@ -223,6 +224,7 @@ void NETENGINE::parseMessage(const std::string &p_message)
 {   
     auto split = splitString(p_message, "::");
     Action action;
+
     switch(split[0][split[0].size()-1])
     {
         case '0':
