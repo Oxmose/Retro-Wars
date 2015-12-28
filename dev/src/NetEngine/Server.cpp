@@ -241,7 +241,6 @@ void NETSERVER::listenClients(unsigned int p_id)
                	{
                    	if(m_clients[p_id].status != false)
                    	{
-						cout << "DISCONNECT" << endl;
 						m_clients[p_id].status = false;
                        	disconnectClient(p_id, false); 
                    	}                                  

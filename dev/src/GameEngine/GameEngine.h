@@ -67,6 +67,7 @@ namespace nsGameEngine
 
             Terrain gidToTerrain(int p_gid, int p_x, int p_y);
             Unit gidToUnit(int p_gid, int p_x, int p_y);
+			int unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType);
 
             /// @fn void frame();
             /// @brief The main loop.

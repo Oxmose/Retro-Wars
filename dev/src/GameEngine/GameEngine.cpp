@@ -205,6 +205,60 @@ Unit GENGINE::gidToUnit(int gid, int p_x, int p_y)
     }
 }
 
+int GENGINE::unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType)
+{
+	switch(p_playerType)
+	{
+		case BLUE:
+			switch(p_unitType)
+			{
+				case INFANTRY:
+					return 255;
+				case MDTANK:
+					return 256;
+				case RECON:
+					return 257;
+				case ARTILLERY:
+					return 258;
+				case NEOTANK:
+					return 264;
+				case MEGATANK:
+					return 265;
+				case MECH:
+					return 268;
+				case TANK:
+					return 269;
+				case ROCKET:
+					return 271;
+			}
+			break;
+		case RED:
+			switch(p_unitType)
+			{
+				case INFANTRY:
+					return 229;
+				case MDTANK:
+					return 230;
+				case RECON:
+					return 231;
+				case ARTILLERY:
+					return 232;
+				case NEOTANK:
+					return 238;
+				case MEGATANK:
+					return 239;
+				case MECH:
+					return 242;
+				case TANK:
+					return 243;
+				case ROCKET:
+					return 245;
+
+			}
+			break;
+	}
+}
+
 void GENGINE::loadWorld()
 {
     int x = 0, y = 0;
@@ -441,7 +495,7 @@ void GENGINE::frame()
                                     messageTimer = m_fps * 4;
                                     displayMessage = false;
                                     pair<int, int> availableCoord = getAvailableSpawnCoord();
-                                    Unit unit ((UnitType)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), 229);
+                                    Unit unit ((UnitType)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), unitNPlayerTypeToGid((UnitType)selectedUnitBase, m_player->getType()));
                                     m_world->addUnit(unit);
                                 }
                             }
@@ -777,13 +831,14 @@ pair<int, int> GENGINE::getAvailableSpawnCoord()
     {
         for(int j = -1; j < 2; ++j)
         {
-            TerrainType type = m_world->getTerrain(base.first + i, base.second + j).getType();
-            if((type == PLAIN || type == ROADS) && m_world->getUnit(base.first + i, base.second + j).getOwner() == NEUTRAL)                
+			if(i == 0 && j == 0)
+				continue;
+
+            if(m_world->getUnit(base.first + i, base.second + j).getOwner() == NEUTRAL)                
             {
-                return make_pair(base.first + i, base.second + j);
+				return make_pair(base.first + i, base.second + j);
             }
         }
-        
-        return base;
     }
+	return base;
 } // getAvailableSpawnCoord()
