@@ -193,7 +193,7 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 		int mp = toVisit.top().first.second;
 		auto coord = toVisit.top().second;
 		toVisit.pop();
-		if((getUnit(coord).isNoneUnit() || !isVisible(coord)) && (coord.first != p_unit.getCoord().first || coord.second != p_unit.getCoord().second) && mp >= 0)
+		if(getUnit(coord).isNoneUnit() && (coord.first != p_unit.getCoord().first || coord.second != p_unit.getCoord().second) && mp >= 0)
 			toReturn.push_back(coord);
 		
 		if(mp > 0)
@@ -286,12 +286,12 @@ std::vector<std::pair<int,int>> GENGINE_W::getIntermediaire(Unit p_unit, std::pa
 		coord = minVoisin;
 	}
 
-	for(int i = 0 ; i < m_height ; i++)
+	/*for(int i = 0 ; i < m_height ; i++)
 	{
 		for(int j = 0 ; j < m_width ; j++)
 			printf("%d ", (tdist[i][j] == INFINI) ? 9 : tdist[i][j]);
 		printf("\n");
-	}
+	}*/
 
 	std::reverse(toReturn.begin(), toReturn.end());
 	return toReturn;
@@ -369,22 +369,8 @@ unsigned int GENGINE_W::rand_interval(unsigned int min, unsigned int max)
 
 void GENGINE_W::moveUnit(Unit p_unit, std::pair<int,int> p_whereTo)
 {
+
 	refreshVisibleUnit(p_unit,-1);
-
-	if(!isVisible(p_whereTo) && !getUnit(p_whereTo).isNoneUnit())
-	{
-		auto inter = getIntermediaire(p_unit,p_whereTo);
-		int k = inter.size()-2;
-		while(k >= 0 && !isVisible(p_whereTo) && !getUnit(p_whereTo).isNoneUnit())
-		{
-			p_whereTo = inter[k];
-			k --;
-		}
-
-		if(k == 0 && !getUnit(p_whereTo).isNoneUnit())
-			return;
-	}
-
 	getUnit(p_unit.getCoord()).setCoord(p_whereTo.first,p_whereTo.second);
 	p_unit.setCoord(p_whereTo.first, p_whereTo.second);
 	refreshVisibleUnit(p_unit);
