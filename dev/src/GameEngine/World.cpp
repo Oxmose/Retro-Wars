@@ -394,7 +394,7 @@ float GENGINE_W::getDamage(Unit p_attack, Unit p_defend, bool p_moy)
 void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 {
 	float damage1 = getDamage(p_attack, p_defend)/100;
-	int newHealth1 = p_defend.getHp()-int(damage1*p_defend.getHp());
+	int newHealth1 = p_defend.getHp()-int(damage1*p_defend.getHp())-((damage1 > 0.05) ? 1 : 0);
 	p_defend.setHp(newHealth1);
 	getUnit(p_defend.getCoord()).setHp(newHealth1);
 
@@ -405,7 +405,7 @@ void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 		if(man(p_attack.getCoord(),p_defend.getCoord()) <= p_defend.getRange())
 		{
 			float damage2 = getDamage(p_defend, p_attack)/100;
-			int newHealth2 = std::max(p_attack.getHp()-int(damage2*p_attack.getHp()),0);
+			int newHealth2 = p_attack.getHp()-int(damage2*p_attack.getHp())-((damage2 > 0.05) ? 1 : 0);
 			p_attack.setHp(newHealth2);
 			getUnit(p_attack.getCoord()).setHp(newHealth2);
 			if(newHealth2 == 0)
