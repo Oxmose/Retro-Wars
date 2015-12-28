@@ -3,67 +3,110 @@
 #include "GameEngine/GameEngine.h"
 #include "NetEngine/NetEngine.h"
 #include "MapEngine/MapEngine.h"
+#include "Misc/Tools.h"
 
 using namespace std;
 using namespace nsGameEngine;
 using namespace nsMapEngine;
 using namespace nsNetEngine;
+using namespace nsTools;
 
+// Static UniqID init
 int Unit::m_lastId = 0;
-
-unsigned int rand_interval(unsigned int min, unsigned int max)
-{
-    int r;
-    const unsigned int range = 1 + max - min;
-    const unsigned int buckets = RAND_MAX / range;
-    const unsigned int limit = buckets * range;
-
-    /* Create equal size buckets all in a row, then fire randomly towards
-     * the buckets until you land in one of them. All buckets are equally
-     * likely. If you land off the end of the line of buckets, try again. */
-    do
-    {
-        r = rand();
-    } while (r >= limit);
-
-    return min + (r / buckets);
-}
 
 int main(int argc, char** argv)
 {
     try
     {  
-        string address = "127.0.0.1"; 
-        unsigned int port = 6011;
+		// IP / PORT OF SERVER
+		string serverAddress = "127.0.0.1";
+		unsigned int serverPort = 5000;
 
+		// IS HOST SETTING
+		bool isServer = true;
+
+		// TYPE OF PLAYER
+		PLAYER_TYPE playerType = RED;
+
+		// Parameters were added
+		if(argc == 1)
+		{
+			cerr << "\x1b[32;1mWrong command, use \"" << argv[0] << " -help\" to get help.\x1b[0m" << endl;
+			return 1;
+		}
+        else if(argc == 2)
+		{
+			//if debug run
+			if(string(argv[1]).compare("-debug") == 0)
+			{
+				playerType = BLUE;
+				isServer = false;
+			}
+			//if normal lauch
+			else if(string(argv[1]).compare("-help") == 0)
+			{
+				cout << "Usage : " << endl;
+				cout << "\tRun as host : \"" << argv[0] << " <port_of_server>\"" << endl;
+				cout << "\tRun as client : \"" << argv[0] << " <ipv4_of_server> <port_of_server>\"" << endl << endl;
+				return 0;	
+			}
+			else if(stoi(argv[1]) > 1024 && stoi(argv[1]) < 65000)
+			{
+				serverPort = stoi(argv[1]);
+			}
+			else
+			{
+				cerr << "\x1b[32;1mWrong command, use \"" << argv[0] << " -help\" to get help.\x1b[0m" << endl;
+				return 1;
+			}
+		}
+		else if(argc == 3)
+		{
+			
+			isServer = false;
+			playerType = BLUE;
+
+			if(validateIP(argv[1]))
+				serverAddress = argv[1];
+			else
+			{
+				cerr << "\x1b[31;1mWrong ip address, use \"" << argv[0] << " -help\" to get help.\x1b[0m" << endl;
+				return 1;
+			}
+			if(isNumber(argv[2]) && stoi(argv[2]) > 1024 && stoi(argv[2]) < 65000)
+				serverPort = stoi(argv[2]);
+			else
+			{
+				cerr << "\x1b[31;1mWrong port, use \"" << argv[0] << " -help\" to get help.\x1b[0m" << endl;
+				return 1;
+			}
+		}
+		else
+		{
+			cerr << "\x1b[32;1mWrong command, use \"" << argv[0] << " -help\" to get help.\x1b[0m" << endl;
+			return 1;
+		}
+
+		// Load MAP
         MapEngine mapEngine("first-map.tmx");
         cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
 
-        NetEngine netEngine(address, port);
-        bool isServer = true;
-
-        PLAYER_TYPE type = RED;
-
-        if (argc > 1)
-        {
-            type = BLUE;
-            isServer = false;
-        }
-    
+		// Load NETENGINE
+        NetEngine netEngine(serverAddress, serverPort);            
         netEngine.setIsServer(isServer);
 
-        if (netEngine.launch("okok", type, &mapEngine))
+		// Launch NETENGINE
+        if (netEngine.launch("PLAYER" + to_string(playerType), playerType, &mapEngine))
         {
             if(isServer)
-                cout << "Loaded server on 127.0.0.1:5000." << endl;
-
-            cout << "Loaded client, type is : " << type << endl;
-
-            GameEngine gameEngine(30*16, 20*16 + 90, "Retro Wars", &mapEngine, type, &netEngine);
-
+                cout << "Loaded server on 127.0.0.1:" << serverPort << endl;
+          
+			// Load GAMEENGINE
+            GameEngine gameEngine(30*16, 20*16 + 90, "Retro Wars", &mapEngine, playerType, &netEngine);
             netEngine.setNotifier(&gameEngine);
             gameEngine.frame();
         }
+		// ON ERROR
         else
         {
 			cout << "\x1b[32;1mPlease make sure that : " << endl << "\t -The server is launched." <<
@@ -79,9 +122,7 @@ int main(int argc, char** argv)
     }
 	catch(...)
 	{
-		cerr << "ERROR" << endl;
-	}
-
-	
+		cerr << "UNKNOW ERROR, please contact developers (and do not expect replay from them)." << endl;
+	}	
 } // main()
 

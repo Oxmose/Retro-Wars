@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <ctype.h>
 
 #include "../NetEngine/Structures.h"
 
@@ -65,6 +66,32 @@ namespace nsTools
         return splited[1].substr(0, stoi(splited[0]));
     } // inline cleanMessage()
 
+	// Tell if p_str is a number
+	inline bool isNumber(const std::string &p_str)
+	{
+		for(unsigned int i = 0; i < p_str.size(); ++i)
+		{
+			if(!isdigit(p_str[i]))
+				return false;
+		}
+		return true;
+	} // inline isNumber()
+
+	// Validate IP address
+	inline bool validateIP(const std::string &p_ip)
+	{
+		std::vector<std::string> splited = splitString(p_ip, ".");
+
+		if(splited.size() != 4)
+			return false;
+		for(std::string ip_pack : splited)
+		{
+			if(!isNumber(ip_pack) || stoi(ip_pack) < 0 || stoi(ip_pack) > 255)
+				return false;
+		}
+	} // inline validateIP()
+
+	
 } // nsTools
 
 
