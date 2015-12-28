@@ -33,7 +33,10 @@ namespace nsGameEngine
 			bool isVisible(std::pair<int,int> p_coord);
 
 			std::vector<std::pair<int,int>> getAccessible(Unit p_unit);
+			std::vector<std::pair<int,int>> getIntermediaire(Unit p_unit, std::pair<int,int> p_whereTo);
 			std::vector<std::pair<int,int>> getPortee(Unit p_unit);
+
+
 
 			void moveUnit(Unit p_unit, std::pair<int,int> p_whereTo);
 			void combatUnit(Unit p_attack, Unit p_defend);

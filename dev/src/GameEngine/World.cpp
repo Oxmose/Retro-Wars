@@ -215,6 +215,79 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 	return toReturn;
 }
 
+std::vector<std::pair<int,int>> GENGINE_W::getIntermediaire(Unit p_unit, std::pair<int,int> p_whereTo)
+{
+	std::vector<std::pair<int,int>> toReturn;
+	
+	std::priority_queue<forAcc,std::vector<forAcc>,decltype(&comp)> toVisit(&comp); //dist,mp,coord
+	toVisit.push(std::make_pair(std::make_pair(0,p_unit.getMvt()),p_unit.getCoord()));
+	
+
+	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
+	bool vu[m_height][m_width];
+	int tdist[m_height][m_width];
+	const int INFINI = 1000*1000*1000;
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
+		{
+			vu[i][j] = false;
+			tdist[i][j] = INFINI;
+		}
+
+	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
+
+
+	while(!toVisit.empty())
+	{
+		int dist = toVisit.top().first.first;
+		int mp = toVisit.top().first.second;
+		auto coord = toVisit.top().second;
+		tdist[coord.second][coord.first] = dist;
+		toVisit.pop();
+		
+		if(mp > 0)
+		{
+			for(int iDir = 0 ; iDir < 4 ; iDir++)
+			{
+				auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
+				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
+					if(!vu[voisin.second][voisin.first] && getTerrain(voisin).getMvt()[p_unit.getMvtType()] != 0)
+					{
+						vu[voisin.second][voisin.first] = true;
+						toVisit.push(std::make_pair(std::make_pair(getTerrain(voisin).getMvt()[p_unit.getMvtType()],mp-getTerrain(voisin).getMvt()[p_unit.getMvtType()]),voisin));
+					}
+			}
+		}
+
+	}
+
+	auto coord = p_whereTo;
+
+	while(coord != p_unit.getCoord())
+	{
+		toReturn.push_back(coord);
+		int minDist = INFINI;
+		auto minVoisin = coord;
+		for(int iDir = 0 ; iDir < 4 ; iDir++)
+		{
+			auto voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
+			if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
+				if(tdist[voisin.second][voisin.first] < minDist)
+				{
+					minDist = tdist[voisin.second][voisin.first];
+					minVoisin = voisin;
+				}
+		}
+
+		coord = minVoisin;
+	}
+
+	std::reverse(toReturn.begin(), toReturn.end());
+	return toReturn;
+}
+
+
+
 std::vector<std::pair<int,int>> GENGINE_W::getPortee(Unit p_unit)
 {
 	std::vector<std::pair<int,int>> toReturn;

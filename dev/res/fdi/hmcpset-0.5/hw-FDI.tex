@@ -718,15 +718,14 @@ jamais, avec un seul ruban bi-infini.
 \end{problem}
 
 \begin{solution}[a)]
-Comme les $u_{i}$ sont bornés par $m$ on va prendre le codage en base $m$ modifié un petit peu pour différencier ruban semi infini gauche et droit. Si $u = u_{0} \, \dots \, u_{p}$ on pose :
-$$ <u> = 2\sum_{k=0}^{p} u_{k} m^{k}$$
-
-Si $u = u_{p} \, \dots \, u_{0}$ on pose : 
-$$ <u> = 2\sum_{k=0}^{p} u_{k} m^{k}+1$$
+Comme les $u_{i}$ sont bornés par $m$ on va prendre le codage en base $m$ (on ne différencie pas semi-inf gauche de droite quitte à retourner). Si $u = u_{0} \, \dots \, u_{p}$ on pose :
+$$ <u> = \sum_{k=0}^{p} u_{k} m^{k}$$
 
 \noindent C'est injectif.
 
 \end{solution}
+
+\newpage
 
 \begin{problem}
 \begin{itemize}
@@ -794,10 +793,10 @@ Right(<w>,0) & = <w> \\ \\
 q_{t} = State(<w>,t) \quad u_{t} = F(Right(<w>,t)) \\ \\
 State(<w>,t+1) &= \delta State(q_{t}, u_{t}) \\ \\
 \text{Si } \delta Move(q_{t}, u_{t}) = R \, \, :  \\ 
-Left(<w>,t+1) &= 2*(m\frac{Left(<w>,t)-1}{2}+\delta Write(q_{t},u_{t})\, ) + 1 \\
+Left(<w>,t+1) &= 2*(m\frac{Left(<w>,t)}{2}+\delta Write(q_{t},u_{t})\, )  \\
 Right(<w>,t+1) &= 2*\frac{\frac{Right(<w>,t)}{2}-u_{t}}{m} \\ \\
 \text{Si } \delta Move(q_{t}, u_{t}) = L \, \, :  \\ 
-Left(<w>,t+1) &=  2*\frac{\frac{Left(<w>,t)-1}{2}-u_{t}}{m} +1 \\
+Left(<w>,t+1) &=  2*\frac{\frac{Left(<w>,t)}{2}-u_{t}}{m} \\
 Right(<w>,t+1) &= 2*(m\frac{Right(<w>,t)}{2}+\delta Write(q_{t},u_{t})\, )
 \end{align*}
 
@@ -843,6 +842,7 @@ D'où le résultat. \\
 
 
 %\input{xmastree.tex}
+%\newpage
 
 \newpage
 
@@ -963,7 +963,7 @@ La première formule est équivalente à l'équation $x \equiv 0 \, \, mod \, \,
 Pour $x = y + z \land z = y + y$ on propose l'automate suivant : \\
 \includegraphics{3}
 \\
-On utilise l'agorithme pour trouver l'automate associé à $\psi_{0}$, on trouve : 
+On utilise l'agorithme pour trouver l'automate associé à $\psi_{0}$, après déterminisation on trouve : 
 \\
 \includegraphics{4}
 \\
@@ -971,4 +971,70 @@ On se rend compte que la formule est fausse puisque $1$ n'est pas dans le langag
 D'où le résultat.
 \end{solution}
 
+\newpage
+
+\problemlist{Exercice 2}
+On définit le problème $Term$ (resp. $Conf$) de la manière suivante : étant donné un système
+de réécriture de termes $\mathcal{R}$, est ce que $\mathcal{R}$ est terminant (resp. confluent). \\
+
+\begin{problem}[Question 1]
+Expliquer comment coder des mots dans un système de termes.
+\end{problem}
+\begin{solution}
+On suppose que les mots sont codés dans $\{0,1\}^{*}$. \\
+On peut par exemple se donner deux symboles unaires $0(x)$ et $1(x)$ ainsi qu'un symbole
+constant $\circ$.  Par exemple on code $01001$ par $0(1(0(0(0(1(\circ))))))$.\\
+De manière générale on code $u = u_{0} \dots u_{n}$ par $u_{0}( \dots u_{n}( \circ) \dots )$.\\
+On notera directement $u(x)$.
+\end{solution}
+
+
+\begin{problem}[Question 2]
+Exhiber une réduction de PCP vers $Term$ avec une signature contenant un seul symbole
+de fonction ternaire $f$ (en plus de ce qui est nécessaire pour simuler des mots).
+\end{problem}
+\begin{solution}
+Soit une instance $<\alpha_{i}, \beta_{i}>$ de PCP. On va montrer qu'on peut lui associer un système de réécriture qui ne termine pas si et seulement si cette instance possède une solution. \\
+On prend la signature $\sum = \{\circ,\, 0(x),\, 1(x),\, g(x,y,z)\}$. On définit les règles :
+
+\begin{align*}
+r_{i} : & \quad g(\alpha_{i}(x), \, \beta_{i}(y), \, z) \quad \to \quad g(x,y,z) \\
+r_{\circ,0} : & \quad g(\circ, \, \circ, \, 0(x)) \quad \to \quad g(0(x),0(x),0(x)) \\
+r_{\circ,1} : & \quad g(\circ, \, \circ, \, 1(x)) \quad \to \quad g(1(x),1(x),1(x))
+\end{align*}
+\noindent
+Grâce à ces règles on va pouvoir créer des cycles : $g(\circ, \circ, u(\circ)) \to g(u(\circ), u(\circ), u(\circ))$. \\
+
+\begin{itemize}
+\item Supposons que l'instance est une solution : $\alpha_{i_{1}} \dots \alpha_{i_{m}} \equiv \beta_{i_{1}} \dots \beta_{i_{m}}$, on pose $u = \alpha_{i_{1}} \dots \alpha_{i_{m}}$. Alors en utilisant les règles on va dépiler successivement les deux premiers arguments de $g$ et lorsque $\circ$ est atteint on retrouve la situation initiale. On a bien : 
+
+$$ g(u(\circ),u(\circ),u(\circ)) =  g(\alpha_{i_{1}} \dots \alpha_{i_{m}}(\circ),\beta_{i_{1}} \dots \beta_{i_{m}}(\circ),u(\circ)) \to g(\circ,\circ,u(\circ)) \to g(u(\circ),u(\circ),u(\circ)) $$
+Cette réduction est cyclique, le système ne termine pas. \\
+
+\item On suppose que l'instance n'a pas de solution. On veut montrer que $\mathcal{R}$ termine. Ceci par induction sur les termes on montre que tout terme se réduit en un nombre fini d'étapes en une forme normale.
+
+\begin{itemize}
+\item \textbf{Cas} $x$ une variable : déjà en forme normale.
+\item \textbf{Cas} $\circ$ : idem
+\item \textbf{Cas} $0(t)$ : on ne peut appliquer aucune règles, donc par hypothèse d'induction sur $t$ c'est bon.
+\item \textbf{Cas} $1(t)$ : idem
+\item \textbf{Cas} $t = g(t_{1},t_{2},t_{3})$ : supposons que $t$ possède une suite de réduction infinie. Les règles $r_{i}$ épuisent les deux premières composantes on se retrouve donc nécessairement dans une situation du type $r_{\circ,0}$ ou $r_{\circ,1}$ à un moment de la chaîne de réduction. On a donc un schéma du type :
+
+$$ g(t_{1}, t_{2}, t_{3}) \to^{*} g(\circ, \circ, t_{4}) \to g(t_{4}, t_{4}, t_{4})$$
+
+La séquence est infinie avec le même argument : 
+
+$$ g(t_{4}, t_{4}, t_{4}) \to^{*} g(\circ, \circ, t_{5}) \to g(t_{5}, t_{5}, t_{5}) $$
+
+\end{itemize}
+
+\end{itemize}
+
+\end{solution}
+
+
 \end{document}
+
+
+
+

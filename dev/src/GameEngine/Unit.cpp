@@ -91,7 +91,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.vision = 1;
 		infoStruct.range = 1;
 		infoStruct.mvtType = TREADS;
-		infoStruct.cost = 220000;
+		infoStruct.cost = 22000;
 		infoStruct.message = "Orders,  Cap'n?";
 	}
 
@@ -103,7 +103,7 @@ nsGameEngine::UnitInfo GENGINE_UN::getUnitInfo(UnitType p_type)
 		infoStruct.vision = 1;
 		infoStruct.range = 1;
 		infoStruct.mvtType = TREADS;
-		infoStruct.cost = 280000;
+		infoStruct.cost = 28000;
 		infoStruct.message = "Orders,  SIR!";
 	}
 
