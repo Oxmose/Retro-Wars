@@ -16,9 +16,9 @@ namespace nsGameEngine
 			void setMoney(int p_money);
 			int getMoney();
 
-			void setCoord(int p_x, int p_y);
-			void setCoord(const std::pair<int, int> &p_coord);
-			std::pair<int,int> getCoord();
+			void setCoord(unsigned int p_x, unsigned int p_y);
+			void setCoord(const std::pair<unsigned int, unsigned int> &p_coord);
+			std::pair<unsigned int, unsigned int> getCoord();
 			std::string getPlayerName();
 			PLAYER_TYPE getType();
 			

@@ -8,7 +8,7 @@ GENGINE_UN::Unit()
 	m_id = m_lastId++;
 }
 
-GENGINE_UN::Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid)
+GENGINE_UN::Unit(UnitType p_type, unsigned int p_x, unsigned int p_y, PLAYER_TYPE p_owner, int p_gid)
 {
 	m_type = p_type;
 	m_x = p_x;
@@ -265,7 +265,7 @@ int GENGINE_UN::getVision()
 	return m_vision;
 }
 
-std::pair<int,int> GENGINE_UN::getCoord()
+std::pair<unsigned int, unsigned int> GENGINE_UN::getCoord()
 {
 	return std::make_pair(m_x,m_y);
 }
@@ -296,6 +296,8 @@ std::string GENGINE_UN::getName()
 			return "Tank";
 		case ROCKET:
 			return "Rocket";
+		default:
+			return "Unknown";
 	}
 }
 int GENGINE_UN::getMvt()
@@ -318,7 +320,7 @@ int GENGINE_UN::getFuel()
 
 bool GENGINE_UN::isNoneUnit()
 {
-	return m_type == INFANTRY && m_x == -1 && m_y == -1 && m_owner == NEUTRAL && m_gid == 0;
+	return m_type == INFANTRY && m_owner == NEUTRAL && m_gid == 0;
 }
 
 nsGameEngine::UnitType GENGINE_UN::getType()
@@ -331,7 +333,7 @@ int GENGINE_UN::getId()
 	return m_id;
 }
 
-void GENGINE_UN::setCoord(int p_x, int p_y)
+void GENGINE_UN::setCoord(unsigned int p_x, unsigned int p_y)
 {
 	m_x = p_x;
 	m_y = p_y;

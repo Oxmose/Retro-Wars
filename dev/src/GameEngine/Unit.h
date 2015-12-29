@@ -50,7 +50,7 @@ namespace nsGameEngine
 	{
 		public:
 			Unit();
-			Unit(UnitType p_type, int p_x, int p_y, PLAYER_TYPE p_owner, int p_gid);
+			Unit(UnitType p_type, unsigned int p_x, unsigned int p_y, PLAYER_TYPE p_owner, int p_gid);
 			~Unit();
 
 			static UnitInfo getUnitInfo(UnitType p_type);
@@ -59,8 +59,8 @@ namespace nsGameEngine
 			int getBaseDamage(Unit p_b);
 
 			int getGid();
-			std::pair<int,int> getCoord();
-			void setCoord(int p_x, int p_y);
+			std::pair<unsigned int, unsigned int> getCoord();
+			void setCoord(unsigned int p_x, unsigned int p_y);
 			PLAYER_TYPE getOwner();
 			int getVision();
 			int getHp();
@@ -87,8 +87,8 @@ namespace nsGameEngine
 
 		private:
 			UnitType m_type;
-			int m_x;
-			int m_y;
+			unsigned int m_x;
+			unsigned int m_y;
 			PLAYER_TYPE m_owner;
 			int m_gid;
 

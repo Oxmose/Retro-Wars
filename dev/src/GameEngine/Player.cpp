@@ -18,13 +18,13 @@ int GENGINE_PLAYER::getMoney()
 	return m_money;
 }
 
-void GENGINE_PLAYER::setCoord(int p_x, int p_y)
+void GENGINE_PLAYER::setCoord(unsigned int p_x, unsigned int p_y)
 {
 	m_x = p_x;
 	m_y = p_y;
 }
 
-std::pair<int,int> GENGINE_PLAYER::getCoord()
+std::pair<unsigned int, unsigned int> GENGINE_PLAYER::getCoord()
 {
 	return std::make_pair(m_x,m_y);
 }
@@ -34,7 +34,7 @@ PLAYER_TYPE GENGINE_PLAYER::getType()
 	return m_playerType;
 }
 
-void GENGINE_PLAYER::setCoord(const std::pair<int, int> &p_coord)
+void GENGINE_PLAYER::setCoord(const std::pair<unsigned int, unsigned int> &p_coord)
 {
 	setCoord(p_coord.first, p_coord.second);
 }
@@ -55,5 +55,7 @@ std::string GENGINE_PLAYER::getPlayerName()
 			return "Yellow";
 		case 5:
 			return "Black";
+		default:
+			return "Neutral";
 	}
 }

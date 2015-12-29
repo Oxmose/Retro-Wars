@@ -9,7 +9,7 @@ GENGINE_TER::Terrain()
 {
 }
 
-GENGINE_TER::Terrain(TerrainType p_type, int p_x, int p_y, PLAYER_TYPE p_owner)
+GENGINE_TER::Terrain(TerrainType p_type, unsigned int p_x, unsigned int p_y, PLAYER_TYPE p_owner)
 {
 	m_type = p_type;
 
@@ -93,7 +93,7 @@ std::array<int,8> GENGINE_TER::getMvt()
 	return m_mvt;
 }
 
-pair<int,int> GENGINE_TER::getCoord()
+pair<unsigned int, unsigned int> GENGINE_TER::getCoord()
 {
 	return make_pair(m_x,m_y);
 }
@@ -110,7 +110,7 @@ bool GENGINE_TER::isProperty()
 
 bool GENGINE_TER::isNoneTerrain()
 {
-	return m_type == OTHER && m_x == -1 && m_y == -1;
+	return m_type == OTHER && m_x == 999  && m_y == 999;
 }
 
 PLAYER_TYPE GENGINE_TER::getOwner() const

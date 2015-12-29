@@ -84,6 +84,8 @@ sf::IntRect GxENGINE::propertyToRect(Terrain p_property)
             case BLACK:
                 gid = 145 + 63;
                 break;
+			default:
+				break;
         }
     }
 
@@ -217,7 +219,6 @@ void GxENGINE::loadResources()
     m_explosionSprite.setTexture(m_explosionTexture);
 
     // Load font
-    m_font;
     if (!m_font.loadFromFile("./res/font.ttf"))
     {
         cerr << "Can't load display font!" << endl;
@@ -261,8 +262,8 @@ void GxENGINE::drawMap(nsGameEngine::World* p_world)
         for(sf::Sprite spt : m_map[iLayer])
             m_mainWindow->draw(spt);
 
-    for(int x = 0; x < m_mapWidth; ++x)
-        for(int y = 0 ; y < m_mapHeight; ++y)
+    for(unsigned int x = 0; x < m_mapWidth; ++x)
+        for(unsigned int y = 0 ; y < m_mapHeight; ++y)
         {
             if(!p_world->isVisible(x, y))
             {
@@ -436,7 +437,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     manageTurn(p_turn);
 } // refreshUserInterface()
 
-void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
+void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<unsigned int, unsigned int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
 {
     displayBar(p_player);
 
@@ -452,10 +453,10 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
     possibleMove.setOutlineThickness(0.5);
     possibleMove.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(100), sf::Uint8(100)));
     
-    vector<pair<int, int>> accessible = p_world->getAccessible(p_unit);
-    vector<pair<int, int>> enemies = p_world->getPortee(p_unit);
+    vector<pair<unsigned int, unsigned int>> accessible = p_world->getAccessible(p_unit);
+    vector<pair<unsigned int, unsigned int>> enemies = p_world->getPortee(p_unit);
 
-    for (pair<int, int> Coord : accessible)
+    for (pair<unsigned int, unsigned int> Coord : accessible)
     {
         possibleMove.setPosition(Coord.first * 16, Coord.second * 16);
         m_mainWindow->draw(possibleMove);
@@ -468,7 +469,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
     bool colored = false;
     
     // If cursor is over an enemy
-    for (pair<int, int> Coord : enemies)
+    for (pair<unsigned int, unsigned int> Coord : enemies)
     {
         if (p_mvtCursor.first == Coord.first && p_mvtCursor.second == Coord.second)
         {
@@ -499,7 +500,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
     if (!colored)
     {
         bool acces = false;      
-        for (pair<int, int> Coord : accessible)
+        for (pair<unsigned int, unsigned int> Coord : accessible)
         {
             if (p_mvtCursor.first == Coord.first && p_mvtCursor.second == Coord.second)
             {
@@ -1044,6 +1045,7 @@ string GxENGINE::getName(TerrainType terrain)
         case 8:
             return "Other";
     }
+	return "Other";
 } // getName()
 
 void GxENGINE::displayBar(Player *p_player)
@@ -1124,11 +1126,11 @@ void GxENGINE::manageTurn(bool p_turn)
     }
 }
 
-void GxENGINE::notifyAttack(int p_attackStep, const pair<int, int> &p_where)
+void GxENGINE::notifyAttack(int p_attackStep, const pair<unsigned int, unsigned int> &p_where)
 {
     p_attackStep = 72 - p_attackStep;
-    int column = p_attackStep % 8;
-    int line = p_attackStep / 8;
+    unsigned int column = p_attackStep % 8;
+    unsigned int line = p_attackStep / 8;
     while(line >= 9)
     {
         line = line - 9;
