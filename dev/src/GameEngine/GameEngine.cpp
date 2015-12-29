@@ -259,6 +259,7 @@ int GENGINE::unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType)
 		default:
 			return 0;
 	}
+	return 0;
 }
 
 void GENGINE::loadWorld()
@@ -326,7 +327,7 @@ void GENGINE::frame()
 
     sf::Time framerate = sf::milliseconds(1000 / m_fps);
     
-    pair<int, int> mvtCursor = make_pair(0, 0);
+    pair<unsigned int, unsigned int> mvtCursor = make_pair(0, 0);
     vector<int> movedUnits;
     bool cleared;
 
@@ -531,10 +532,10 @@ void GENGINE::frame()
                                 }
                                 else
                                 {
-                                    vector<pair<int, int>> accessible = m_world->getAccessible(selectedUnit);
+                                    vector<pair<unsigned int, unsigned int>> accessible = m_world->getAccessible(selectedUnit);
                                     // Check if user can move there
                                     bool move = false;
-                                    for(pair<int, int> Coord : accessible)
+                                    for(pair<unsigned int, unsigned int> Coord : accessible)
                                     {
                                         if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
                                         {
@@ -565,9 +566,9 @@ void GENGINE::frame()
                                     else
                                     {
                                         // Check if user wanted to attack a unit
-                                        vector<pair<int, int>> enemies = m_world->getPortee(selectedUnit);
+                                        vector<pair<unsigned int, unsigned int>> enemies = m_world->getPortee(selectedUnit);
                                         bool attack = false;
-                                        for(pair<int, int> Coord : enemies)
+                                        for(pair<unsigned int, unsigned int> Coord : enemies)
                                         {
                                             if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
                                             {
@@ -848,7 +849,7 @@ void GENGINE::notify(const Action &p_action)
     }
     else if(p_action.type == NEW_PLAYER)
     {
-        if(p_action.data[0] == m_mapEngine->getPlayers().size())
+        if((unsigned int)p_action.data[0] == m_mapEngine->getPlayers().size())
         {
             m_waitingForPlayers = false;
         }

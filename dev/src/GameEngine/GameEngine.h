@@ -111,7 +111,7 @@ namespace nsGameEngine
 
 			// Movement notification
 			std::atomic<bool> m_moveUnit;
-			std::vector<std::pair<int, int>> m_interMove;
+			std::vector<std::pair<unsigned int, unsigned int>> m_interMove;
 			std::atomic<unsigned int> m_counter;
 			std::atomic<unsigned int> m_interPos;
 			Unit m_movingUnit;

@@ -39,14 +39,14 @@ namespace nsGraphicEngine
             
             // Display info about base (also manage base menu) and units information (also manage unit movment display part)                 
             void displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngine::Terrain &p_terrain, const int &p_select);
-            void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, const std::pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
+            void displayUnitInfo(nsGameEngine::Player *p_player, nsGameEngine::Unit &p_unit, const std::pair<unsigned int, unsigned int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte); 
 
             // Display message
             void displayMessage(const std::string &p_message);
-	    void manageTurn(bool p_turn);
+	   		void manageTurn(bool p_turn);
 
             // Display attack notification
-            void notifyAttack(int p_attackStep, const std::pair<int, int> &p_where);
+            void notifyAttack(int p_attackStep, const std::pair<unsigned int, unsigned int> &p_where);
 
             void checkProperties(nsGameEngine::World* p_world);
 
@@ -91,10 +91,10 @@ namespace nsGraphicEngine
             sf::Texture m_baseBgTexture;
 
             // Map dimenssions for display settings
-            int m_mapWidth;
-            int m_mapHeight;
-            int m_relativeMapWidth;
-            int m_relativeMapHeight;
+            unsigned int m_mapWidth;
+            unsigned int m_mapHeight;
+            unsigned int m_relativeMapWidth;
+            unsigned int m_relativeMapHeight;
 
             // Font used for display
             sf::Font m_font;  
