@@ -89,6 +89,8 @@ namespace nsTools
 			if(!isNumber(ip_pack) || stoi(ip_pack) < 0 || stoi(ip_pack) > 255)
 				return false;
 		}
+
+        return true;
 	} // inline validateIP()
 
 	

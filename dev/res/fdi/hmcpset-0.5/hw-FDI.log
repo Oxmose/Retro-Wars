@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.10.17)  28 DEC 2015 14:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.10.17)  28 DEC 2015 20:06
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -997,12 +997,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 565--568
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 629--631
+Underfull \hbox (badness 10000) in paragraph at lines 630--632
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 669--674
+Underfull \hbox (badness 10000) in paragraph at lines 670--675
 
  []
 
@@ -1010,78 +1010,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 669--674
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
 [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 787--788
+Underfull \hbox (badness 10000) in paragraph at lines 788--789
 
  []
 
 
-Overfull \hbox (8.35677pt too wide) in paragraph at lines 801--801
+Overfull \hbox (8.35677pt too wide) in paragraph at lines 802--802
 [] 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 822--827
+Underfull \hbox (badness 10000) in paragraph at lines 823--828
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 822--827
+Underfull \hbox (badness 10000) in paragraph at lines 823--828
 
  []
 
 [16] <1.png, id=93, 142.5325pt x 95.35625pt>
 File: 1.png Graphic file (type png)
  <use 1.png>
-Package pdftex.def Info: 1.png used on input line 888.
+Package pdftex.def Info: 1.png used on input line 889.
 (pdftex.def)             Requested size: 142.53214pt x 95.356pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 887--889
+Underfull \hbox (badness 10000) in paragraph at lines 888--890
 
  []
 
 [17 <./1.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 890--891
+Underfull \hbox (badness 10000) in paragraph at lines 891--892
 
  []
 
 <2.pdf, id=99, 245.91875pt x 138.5175pt>
 File: 2.pdf Graphic file (type pdf)
  <use 2.pdf>
-Package pdftex.def Info: 2.pdf used on input line 892.
+Package pdftex.def Info: 2.pdf used on input line 893.
 (pdftex.def)             Requested size: 245.91814pt x 138.51715pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 898--900
+Underfull \hbox (badness 10000) in paragraph at lines 899--901
 
  []
 
 [18 <./2.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 944--949
+Underfull \hbox (badness 10000) in paragraph at lines 945--950
 
  []
 
 [19] <3.png, id=117, 304.13625pt x 175.65625pt>
 File: 3.png Graphic file (type png)
  <use 3.png>
-Package pdftex.def Info: 3.png used on input line 964.
+Package pdftex.def Info: 3.png used on input line 965.
 (pdftex.def)             Requested size: 304.1355pt x 175.6558pt.
 
 <4.png, id=118, 310.15875pt x 93.34875pt>
 File: 4.png Graphic file (type png)
  <use 4.png>
-Package pdftex.def Info: 4.png used on input line 968.
+Package pdftex.def Info: 4.png used on input line 969.
 (pdftex.def)             Requested size: 310.15799pt x 93.34851pt.
  [20 <./3.png> <./4.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 977--979
+Underfull \hbox (badness 10000) in paragraph at lines 978--980
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1004--1007
+Underfull \hbox (badness 10000) in paragraph at lines 1005--1008
 
  []
 
 
-Overfull \hbox (56.70222pt too wide) detected at line 1011
+Overfull \hbox (56.70222pt too wide) detected at line 1012
 \OML/zplm/m/it/12 g\OT1/zplm/m/n/12 (\OML/zplm/m/it/12 u\OT1/zplm/m/n/12 (\OMS/
 zplm/m/n/12 ^^N\OT1/zplm/m/n/12 )\OT1/ppl/m/n/12 , \OML/zplm/m/it/12 u\OT1/zplm
 /m/n/12 (\OMS/zplm/m/n/12 ^^N\OT1/zplm/m/n/12 )\OT1/ppl/m/n/12 , \OML/zplm/m/it
@@ -1100,7 +1100,7 @@ n/12 (\OMS/zplm/m/n/12 ^^N\OT1/zplm/m/n/12 ))
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1011--1013
+Underfull \hbox (badness 10000) in paragraph at lines 1012--1014
 
  []
 
@@ -1126,7 +1126,7 @@ r/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/
 local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/t
 exlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/
 2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on hw-FDI.pdf (22 pages, 202439 bytes).
+Output written on hw-FDI.pdf (22 pages, 192854 bytes).
 PDF statistics:
  169 PDF objects out of 1000 (max. 8388607)
  105 compressed objects within 2 object streams

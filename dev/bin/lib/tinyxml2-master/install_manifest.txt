@@ -1,0 +1,5 @@
+/usr/local/lib/libtinyxml2.3.0.0.dylib
+/usr/local/lib/libtinyxml2.3.dylib
+/usr/local/lib/libtinyxml2.dylib
+/usr/local/include/tinyxml2.h
+/usr/local/lib/pkgconfig/tinyxml2.pc
