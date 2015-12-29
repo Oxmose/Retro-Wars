@@ -125,8 +125,7 @@ std::list<Unit>& GENGINE_W::getUnits()
 
 Terrain& GENGINE_W::getTerrain(int p_x, int p_y)
 {
-	bool found = false;
-	for(int i = 0 ; i < m_terrain.size() ; i++)
+	for(unsigned int i = 0 ; i < m_terrain.size() ; i++)
 		if(m_terrain[i].getCoord().first == p_x && m_terrain[i].getCoord().second == p_y)
 			return m_terrain[i];
 	return m_noneTerrain;
@@ -140,7 +139,6 @@ Terrain& GENGINE_W::getTerrain(std::pair<int,int> p_coord)
 
 Unit& GENGINE_W::getUnit(int p_x, int p_y)
 {
-	bool found = false;
 	for(Unit& unit : m_unit)
 		if(unit.getCoord().first == p_x && unit.getCoord().second == p_y)
 			return unit;
@@ -188,8 +186,7 @@ std::vector<std::pair<int,int>> GENGINE_W::getAccessible(Unit p_unit)
 
 
 	while(!toVisit.empty())
-	{
-		int dist = toVisit.top().first.first;
+	{	
 		int mp = toVisit.top().first.second;
 		auto coord = toVisit.top().second;
 		toVisit.pop();
@@ -240,7 +237,6 @@ std::vector<std::pair<int,int>> GENGINE_W::getIntermediaire(Unit p_unit, std::pa
 
 	while(!toVisit.empty())
 	{
-		int dist = toVisit.top().first.first;
 		int mp = toVisit.top().first.second;
 		auto coord = toVisit.top().second;
 		

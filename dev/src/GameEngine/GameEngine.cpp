@@ -42,9 +42,9 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
     loadWorld();
 
     bool found = false;
-    for (int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
+    for (unsigned int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
     {
-        for (int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
+        for (unsigned int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
         {
             Terrain tmp_ter = m_world->getTerrain(i, j);
             if (tmp_ter.getType() == HQ && tmp_ter.getOwner() == p_playerType)
@@ -256,12 +256,14 @@ int GENGINE::unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType)
 
 			}
 			break;
+		default:
+			return 0;
 	}
 }
 
 void GENGINE::loadWorld()
 {
-    int x = 0, y = 0;
+    unsigned int x = 0, y = 0;
     
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
@@ -393,9 +395,9 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            int newY = m_player->getCoord().second - 1;
+                            unsigned int newY = m_player->getCoord().second - 1;
 
-                            if (newY < 0)
+                            if (m_player->getCoord().second == 0)
                                 newY = 0;
             
                             m_player->setCoord(m_player->getCoord().first, newY);
@@ -412,7 +414,7 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            int newY = m_player->getCoord().second + 1;
+                            unsigned int newY = m_player->getCoord().second + 1;
 
                             if (newY > m_mapEngine->getHeight() - 1)
                                 newY = m_mapEngine->getHeight() - 1;
@@ -438,9 +440,9 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            int newX = m_player->getCoord().first - 1;
+                            unsigned int newX = m_player->getCoord().first - 1;
 
-                            if (newX < 0)
+                            if (m_player->getCoord().first == 0)
                                 newX = 0;
                            
                             m_player->setCoord(newX, m_player->getCoord().second);
@@ -464,7 +466,7 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            int newX = m_player->getCoord().first + 1;
+                            unsigned int newX = m_player->getCoord().first + 1;
 
                             if (newX > m_mapEngine->getWidth() - 1)
                                 newX = m_mapEngine->getWidth() - 1;
@@ -642,6 +644,8 @@ void GENGINE::frame()
                                         case 7:
                                             view = 1;
                                             break;
+										default:
+											break;
                                         
                                     }
                                 }
@@ -870,10 +874,10 @@ pair<int, int> GENGINE::getAvailableSpawnCoord()
 {
     PLAYER_TYPE playerType = m_player->getType();
     bool found = false;
-    pair<int, int> base;
-    for (int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
+    pair<unsigned int, unsigned int> base;
+    for (unsigned int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
     {
-        for (int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
+        for (unsigned int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
         {
             Terrain tmp_ter = m_world->getTerrain(i, j);
             if (tmp_ter.getType() == BASE && tmp_ter.getOwner() == playerType)

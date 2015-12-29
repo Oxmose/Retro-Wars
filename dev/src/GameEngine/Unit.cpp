@@ -296,6 +296,8 @@ std::string GENGINE_UN::getName()
 			return "Tank";
 		case ROCKET:
 			return "Rocket";
+		default:
+			return "Unknown";
 	}
 }
 int GENGINE_UN::getMvt()

@@ -55,5 +55,7 @@ std::string GENGINE_PLAYER::getPlayerName()
 			return "Yellow";
 		case 5:
 			return "Black";
+		default:
+			return "Neutral";
 	}
 }

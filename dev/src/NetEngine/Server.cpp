@@ -313,7 +313,7 @@ void NETSERVER::sendAll(const NetPackage &p_package, const int &p_except /* = -1
     for(pair<unsigned int, Client> client : m_clients)
     {
         // if a clients should not get a message he will be rejected
-        if(client.first != p_except)
+        if((int)client.first != p_except)
         {
             m_clientListMutex.unlock();
             send(p_package, client.first, true);
