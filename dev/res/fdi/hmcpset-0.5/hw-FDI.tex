@@ -10,7 +10,7 @@
 
 \usepackage{empheq}
 
-
+\usepackage{vaucanson-g}
 
 
 \newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
@@ -26,29 +26,29 @@
 \assignment{DM \#2}
 \duedate{21/12/2015}
 
-\usepackage[dvipsnames,svgnames]{xcolor}  
-\usepackage{tikz}
-\usetikzlibrary{%
-  shapes,
-  decorations.shapes,
-  decorations.fractals,
-  decorations.markings,
-  shadows
-}
-
-\newsavebox{\mycandle}
-\savebox{\mycandle}{ 
-\begin{tikzpicture}[scale=.1]
-\shade[top color=yellow,bottom color=red] (0,0) .. controls (1,.2) and (1,.5) .. (0,2) .. controls (-1,.5)  and  (-1,.2) .. (0,0);
-\fill[yellow!90!black] (.8,0) rectangle (-.8,-5); 
-\end{tikzpicture} } 
-
-\tikzset{
-  paint/.style={draw=#1!50!black, fill=#1!50},
-  my star/.style={decorate,decoration={shape backgrounds,shape=star},
-                  star points=#1}
-}  
-
+%\usepackage[dvipsnames,svgnames]{xcolor}  
+%\usepackage{tikz}
+%\usetikzlibrary{%
+%  shapes,
+%  decorations.shapes,
+%  decorations.fractals,
+%  decorations.markings,
+%  shadows
+%}
+%
+%\newsavebox{\mycandle}
+%\savebox{\mycandle}{ 
+%\begin{tikzpicture}[scale=.1]
+%\shade[top color=yellow,bottom color=red] (0,0) .. controls (1,.2) and (1,.5) .. (0,2) .. controls (-1,.5)  and  (-1,.2) .. (0,0);
+%\fill[yellow!90!black] (.8,0) rectangle (-.8,-5); 
+%\end{tikzpicture} } 
+%
+%\tikzset{
+%  paint/.style={draw=#1!50!black, fill=#1!50},
+%  my star/.style={decorate,decoration={shape backgrounds,shape=star},
+%                  star points=#1}
+%}  
+%
 
 \begin{document}
 
@@ -885,12 +885,53 @@ L_{=} & = \{(n_{1}, n_{2}) \, \, | n_{1} = n_{2}\}
 
 \end{problem}
 \begin{solution}
-En prenant comme alphabet ${0,1}^2$ et en représentant 2 nombres comme les couples successifs de leurs bits on a pour $L_{=}$ l'automate :  \\ \\
-\includegraphics{1}
+En prenant comme alphabet $\{0,1\}^2$ et en représentant 2 nombres comme les couples successifs de leurs bits on a pour $L_{=}$ l'automate :  \\ \\
+
+\begin{center}
+\begin{VCPicture}{(0,-2)(6,2)}
+
+% states
+\State[p]{(0,0)}{A}
+
+% initial--final
+\Initial{A} \Final{A}
+
+% transitions
+%\EdgeL{A}{B}{a} \ArcL{B}{C}{b} \ArcL{C}{B}{b}
+\LoopNE{A}{(0,0)}
+\LoopNW{A}{(1,1)} 
+
+\end{VCPicture}
+\end{center}
+
+
+
 \newpage
 Et pour $L_{+}$ en utilisant des triplets :  \\
 
-\includegraphics{2}
+\begin{center}
+\begin{VCPicture}{(0,-2)(10,2)}
+
+% states
+\State[\neg r]{(0,0)}{A} \State[r]{(10,0)}{B}
+
+% initial--final
+\Initial{A} \Final{A}
+%VCPref-mystyle.tex
+% transitions
+% \EdgeL{A}{B}{a} 
+\ArcL{A}{B}{(0,0,1)} \ArcL{B}{A}{(1,1,0)}
+\LoopNW{A}{(1,0,1)} 
+\LoopSW{A}{(0,1,1)}
+\LoopSE{A}{(0,0,0)}
+
+\LoopNE{B}{(1,1,1)} 
+\LoopSW{B}{(1,0,0)}
+\LoopSE{B}{(0,1,0)}
+
+\end{VCPicture}
+\end{center}
+
 
 Cet automate vérifie l'addition "à l'envers". L'état $c$ correspondant à la retenue et l'autre à l'absence de retenue.
 
@@ -908,12 +949,13 @@ On a vu que les composants atomiques de $\phi$ donnent des langages rationnels. 
 
 \end{solution}
 
+
 \begin{problem}[Question 4]
 Étant donnée une formule $\psi$ sous forme prénexe $\psi = Q_{1}x_{1}Q_{2}x_{2} \, \dots \, Q_{n}x_{n}\hat \psi$, on définit $\psi_k = Q_{k+1}x_{k+1} \, \dots \, Q_{n}x_{n}\hat \psi$.
 Montrer par récurrence que les langages suivant sont rationnels :%
 $$ X_{k} = \{(x_{1}, x_{2}, \, \dots , \, x_{k}) \, \, | \, \, \psi_k(x_{1}, x_{2}, \, \dots , \, x_{k}) \text{ vraie} \}$$
 \end{problem}
-\newpage
+
 \begin{solution}
 On suppose ici que $\psi$ ne possède pas de variables libres (elle est close). \\
 Par définition $\psi_{k}$ possède $k$ variables libres. On procède par récurrence descendante. Par convention : $\psi_{0} = \psi$ et $\psi_{n} = \hat \psi$.
@@ -948,7 +990,6 @@ $\mathcal{A}_{0}$ est un graphe orienté. \\
 Par la construction des $\mathcal{A}_{k}$ il suffit désormais de tester l'accessibilité d'un état final à partir d'un état initial (on conclut en fonction de $Q_{1}$) ce qui est décidable. \\
 D'où le résultat.
 \end{solution}
-\newpage
 \begin{problem}[Question 6]
 Faites tourner l'algorithme sur les formules : 
 
@@ -961,77 +1002,163 @@ Faites tourner l'algorithme sur les formules :
 
 \begin{solution}
 La première formule est équivalente à l'équation $x \equiv 0 \, \, mod \, \, 3$, on veut donc montrer que $\psi_{1}$ est fausse. \\
-Pour $x = y + z \land z = y + y$ on propose l'automate suivant : \\
-\includegraphics{3}
-\\
-On utilise l'agorithme pour trouver l'automate associé à $\psi_{0}$, après déterminisation on trouve : 
-\\
-\includegraphics{4}
-\\
-On se rend compte que la formule est fausse puisque $1$ n'est pas dans le langage de cet automate (voir première conclusion \textbf{Question 5}). \\
+Pour $x = y + z \land z = y + y$ on propose l'automate suivant : \\ \\ \\ 
+
+
+\begin{center}
+\begin{VCPicture}{(0,-3)(6,3)}
+
+% states
+\State[q_{0}]{(0,3)}{A} 
+\State[q_{1}]{(6,3)}{B}
+\State[q_{2}]{(6,-3)}{C}
+\State[q_{3}]{(0,-3)}{D}
+
+% initial--final
+\Initial{A} \Final{A}
+
+\LoopW{A}{(0,0,0)}
+\ArcL{A}{B}{(1,0,1)}
+\EdgeL{A}{D}{(1,0,0)}
+
+\ArcL{B}{A}{(1,1,0)}
+
+\LoopE{C}{(1,1,1)}
+\ArcL{C}{D}{(0,1,0)}
+\EdgeL{C}{B}{(0,1,1)}
+
+\ArcL{D}{C}{(0,0,1)}
+
+
+%VCPref-mystyle.tex
+% transitions
+% \EdgeL{A}{B}{a} 
+%\ArcL{A}{B}{(0,0,1)} \ArcL{B}{A}{(1,1,0)}
+%\LoopNW{A}{(1,0,1)} 
+%\LoopSW{A}{(0,1,1)}
+%\LoopSE{A}{(0,0,0)}
+
+%\LoopNE{B}{(1,1,1)} 
+%\LoopSW{B}{(1,0,0)}
+%\LoopSE{B}{(0,1,0)}
+
+\end{VCPicture}
+\end{center}
+\ \\ \\ \\
+On utilise l'agorithme pour trouver l'automate associé à $X_{1}$ (défini plus haut)  : 
+
+\ \\ 
+
+
+\begin{center}
+\begin{VCPicture}{(0,-3)(6,3)}
+
+% states
+\State[q_{0}]{(0,3)}{A} 
+\State[q_{1}]{(6,3)}{B}
+\State[q_{2}]{(6,-3)}{C}
+\State[q_{3}]{(0,-3)}{D}
+
+% initial--final
+\Initial{A} \Final{A}
+
+\LoopW{A}{0}
+\ArcL{A}{B}{1}
+\EdgeL{A}{D}{1}
+
+\ArcL{B}{A}{1}
+
+\LoopE{C}{1}
+\ArcL{C}{D}{0}
+\EdgeL{C}{B}{0}
+
+\ArcL{D}{C}{0}
+
+
+%VCPref-mystyle.tex
+% transitions
+% \EdgeL{A}{B}{a} 
+%\ArcL{A}{B}{(0,0,1)} \ArcL{B}{A}{(1,1,0)}
+%\LoopNW{A}{(1,0,1)} 
+%\LoopSW{A}{(0,1,1)}
+%\LoopSE{A}{(0,0,0)}
+
+%\LoopNE{B}{(1,1,1)} 
+%\LoopSW{B}{(1,0,0)}
+%\LoopSE{B}{(0,1,0)}
+
+\end{VCPicture}
+\end{center}
+\ \\ \\ \\
+
+
+On se rend compte que la formule est fausse puisque $1$ n'est pas dans le langage de cet automate alors que $\psi_{0}$ a le quantificateur $\forall$ (voir première conclusion \textbf{Question 5}). \\
 D'où le résultat.
 \end{solution}
 
-\newpage
-
-\problemlist{Exercice 2}
-On définit le problème $Term$ (resp. $Conf$) de la manière suivante : étant donné un système
-de réécriture de termes $\mathcal{R}$, est ce que $\mathcal{R}$ est terminant (resp. confluent). \\
-
-\begin{problem}[Question 1]
-Expliquer comment coder des mots dans un système de termes.
-\end{problem}
-\begin{solution}
-On suppose que les mots sont codés dans $\{0,1\}^{*}$. \\
-On peut par exemple se donner deux symboles unaires $0(x)$ et $1(x)$ ainsi qu'un symbole
-constant $\circ$.  Par exemple on code $01001$ par $0(1(0(0(0(1(\circ))))))$.\\
-De manière générale on code $u = u_{0} \dots u_{n}$ par $u_{0}( \dots u_{n}( \circ) \dots )$.\\
-On notera directement $u(x)$.
-\end{solution}
 
 
-\begin{problem}[Question 2]
-Exhiber une réduction de PCP vers $Term$ avec une signature contenant un seul symbole
-de fonction ternaire $f$ (en plus de ce qui est nécessaire pour simuler des mots).
-\end{problem}
-\begin{solution}
-Soit une instance $<\alpha_{i}, \beta_{i}>$ de PCP. On va montrer qu'on peut lui associer un système de réécriture qui ne termine pas si et seulement si cette instance possède une solution. \\
-On prend la signature $\sum = \{\circ,\, 0(x),\, 1(x),\, g(x,y,z)\}$. On définit les règles :
 
-\begin{align*}
-r_{i} : & \quad g(\alpha_{i}(x), \, \beta_{i}(y), \, z) \quad \to \quad g(x,y,z) \\
-r_{\circ,0} : & \quad g(\circ, \, \circ, \, 0(x)) \quad \to \quad g(0(x),0(x),0(x)) \\
-r_{\circ,1} : & \quad g(\circ, \, \circ, \, 1(x)) \quad \to \quad g(1(x),1(x),1(x))
-\end{align*}
-\noindent
-Grâce à ces règles on va pouvoir créer des cycles : $g(\circ, \circ, u(\circ)) \to g(u(\circ), u(\circ), u(\circ))$. \\
-
-\begin{itemize}
-\item Supposons que l'instance est une solution : $\alpha_{i_{1}} \dots \alpha_{i_{m}} \equiv \beta_{i_{1}} \dots \beta_{i_{m}}$, on pose $u = \alpha_{i_{1}} \dots \alpha_{i_{m}}$. Alors en utilisant les règles on va dépiler successivement les deux premiers arguments de $g$ et lorsque $\circ$ est atteint on retrouve la situation initiale. On a bien : 
-
-$$ g(u(\circ),u(\circ),u(\circ)) =  g(\alpha_{i_{1}} \dots \alpha_{i_{m}}(\circ),\beta_{i_{1}} \dots \beta_{i_{m}}(\circ),u(\circ)) \to g(\circ,\circ,u(\circ)) \to g(u(\circ),u(\circ),u(\circ)) $$
-Cette réduction est cyclique, le système ne termine pas. \\
-
-\item On suppose que l'instance n'a pas de solution. On veut montrer que $\mathcal{R}$ termine. Ceci par induction sur les termes on montre que tout terme se réduit en un nombre fini d'étapes en une forme normale.
-
-\begin{itemize}
-\item \textbf{Cas} $x$ une variable : déjà en forme normale.
-\item \textbf{Cas} $\circ$ : idem
-\item \textbf{Cas} $0(t)$ : on ne peut appliquer aucune règles, donc par hypothèse d'induction sur $t$ c'est bon.
-\item \textbf{Cas} $1(t)$ : idem
-\item \textbf{Cas} $t = g(t_{1},t_{2},t_{3})$ : supposons que $t$ possède une suite de réduction infinie. Les règles $r_{i}$ épuisent les deux premières composantes on se retrouve donc nécessairement dans une situation du type $r_{\circ,0}$ ou $r_{\circ,1}$ à un moment de la chaîne de réduction. On a donc un schéma du type :
-
-$$ g(t_{1}, t_{2}, t_{3}) \to^{*} g(\circ, \circ, t_{4}) \to g(t_{4}, t_{4}, t_{4})$$
-
-La séquence est infinie avec le même argument : 
-
-$$ g(t_{4}, t_{4}, t_{4}) \to^{*} g(\circ, \circ, t_{5}) \to g(t_{5}, t_{5}, t_{5}) $$
-
-\end{itemize}
-
-\end{itemize}
-
-\end{solution}
+%\newpage
+%
+%\problemlist{Exercice 2}
+%On définit le problème $Term$ (resp. $Conf$) de la manière suivante : étant donné un système
+%de réécriture de termes $\mathcal{R}$, est ce que $\mathcal{R}$ est terminant (resp. confluent). \\
+%
+%\begin{problem}[Question 1]
+%Expliquer comment coder des mots dans un système de termes.
+%\end{problem}
+%\begin{solution}
+%On suppose que les mots sont codés dans $\{0,1\}^{*}$. \\
+%On peut par exemple se donner deux symboles unaires $0(x)$ et $1(x)$ ainsi qu'un symbole
+%constant $\circ$.  Par exemple on code $01001$ par $0(1(0(0(0(1(\circ))))))$.\\
+%De manière générale on code $u = u_{0} \dots u_{n}$ par $u_{0}( \dots u_{n}( \circ) \dots )$.\\
+%On notera directement $u(x)$.
+%\end{solution}
+%
+%
+%\begin{problem}[Question 2]
+%Exhiber une réduction de PCP vers $Term$ avec une signature contenant un seul symbole
+%de fonction ternaire $f$ (en plus de ce qui est nécessaire pour simuler des mots).
+%\end{problem}
+%\begin{solution}
+%Soit une instance $<\alpha_{i}, \beta_{i}>$ de PCP. On va montrer qu'on peut lui associer un système de réécriture qui ne termine pas si et seulement si cette instance possède une solution. \\
+%On prend la signature $\sum = \{\circ,\, 0(x),\, 1(x),\, g(x,y,z)\}$. On définit les règles :
+%
+%\begin{align*}
+%r_{i} : & \quad g(\alpha_{i}(x), \, \beta_{i}(y), \, z) \quad \to \quad g(x,y,z) \\
+%r_{\circ,0} : & \quad g(\circ, \, \circ, \, 0(x)) \quad \to \quad g(0(x),0(x),0(x)) \\
+%r_{\circ,1} : & \quad g(\circ, \, \circ, \, 1(x)) \quad \to \quad g(1(x),1(x),1(x))
+%\end{align*}
+%\noindent
+%Grâce à ces règles on va pouvoir créer des cycles : $g(\circ, \circ, u(\circ)) \to g(u(\circ), u(\circ), u(\circ))$. \\
+%
+%\begin{itemize}
+%\item Supposons que l'instance est une solution : $\alpha_{i_{1}} \dots \alpha_{i_{m}} \equiv \beta_{i_{1}} \dots \beta_{i_{m}}$, on pose $u = \alpha_{i_{1}} \dots \alpha_{i_{m}}$. Alors en utilisant les règles on va dépiler successivement les deux premiers arguments de $g$ et lorsque $\circ$ est atteint on retrouve la situation initiale. On a bien : 
+%
+%$$ g(u(\circ),u(\circ),u(\circ)) =  g(\alpha_{i_{1}} \dots \alpha_{i_{m}}(\circ),\beta_{i_{1}} \dots \beta_{i_{m}}(\circ),u(\circ)) \to g(\circ,\circ,u(\circ)) \to g(u(\circ),u(\circ),u(\circ)) $$
+%Cette réduction est cyclique, le système ne termine pas. \\
+%
+%\item On suppose que l'instance n'a pas de solution. On veut montrer que $\mathcal{R}$ termine. Ceci par induction sur les termes on montre que tout terme se réduit en un nombre fini d'étapes en une forme normale.
+%
+%\begin{itemize}
+%\item \textbf{Cas} $x$ une variable : déjà en forme normale.
+%\item \textbf{Cas} $\circ$ : idem
+%\item \textbf{Cas} $0(t)$ : on ne peut appliquer aucune règles, donc par hypothèse d'induction sur $t$ c'est bon.
+%\item \textbf{Cas} $1(t)$ : idem
+%\item \textbf{Cas} $t = g(t_{1},t_{2},t_{3})$ : supposons que $t$ possède une suite de réduction infinie. Les règles $r_{i}$ épuisent les deux premières composantes on se retrouve donc nécessairement dans une situation du type $r_{\circ,0}$ ou $r_{\circ,1}$ à un moment de la chaîne de réduction. On a donc un schéma du type :
+%
+%$$ g(t_{1}, t_{2}, t_{3}) \to^{*} g(\circ, \circ, t_{4}) \to g(t_{4}, t_{4}, t_{4})$$
+%
+%La séquence est infinie avec le même argument : 
+%
+%$$ g(t_{4}, t_{4}, t_{4}) \to^{*} g(\circ, \circ, t_{5}) \to g(t_{5}, t_{5}, t_{5}) $$
+%
+%\end{itemize}
+%
+%\end{itemize}
+%
+%\end{solution}
 
 
 \end{document}
