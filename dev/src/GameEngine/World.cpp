@@ -417,6 +417,15 @@ void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 
 }
 
+int GENGINE_W::getNumberProperties()
+{
+	int toReturn = 0;
+	for(auto ter : m_terrain)
+		if(ter.isProperty() && ter.getOwner() == m_player)
+			toReturn ++;
+	return toReturn;
+}
+
 Unit& GENGINE_W::getNoneUnit()
 {
 	return m_noneUnit;

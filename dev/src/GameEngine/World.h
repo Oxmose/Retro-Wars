@@ -46,6 +46,8 @@ namespace nsGameEngine
 
 			bool capture(Unit p_unit, std::pair<int,int> p_toCapture);
 
+			int getNumberProperties();
+
 		private:
 
 			Terrain m_noneTerrain;
