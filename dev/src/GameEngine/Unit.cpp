@@ -320,7 +320,7 @@ int GENGINE_UN::getFuel()
 
 bool GENGINE_UN::isNoneUnit()
 {
-	return m_type == INFANTRY && m_owner == NEUTRAL && m_gid == 0;
+	return m_type == INFANTRY && m_x == -1 && m_y == -1 &&  m_owner == NEUTRAL && m_gid == 0;
 }
 
 nsGameEngine::UnitType GENGINE_UN::getType()
