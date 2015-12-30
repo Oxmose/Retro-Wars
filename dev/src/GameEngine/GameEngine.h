@@ -21,6 +21,7 @@
 #include <string>                // std::string
 #include <utility>
 #include <atomic>
+#include <tuple>
 
 #include "GameEngine.h"            // nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"        // nsGraphicEngine::GraphicEngine
@@ -74,9 +75,14 @@ namespace nsGameEngine
             /// @details The frame function is the main loop of the game, where all the game management will take place.
             void frame() ;
 
+			// Notify the game engine on new message
             void notify(const nsNetEngine::Action &p_action);
 
+			// Allow spawn of new unit
 	        std::pair<int, int> getAvailableSpawnCoord();
+
+			// Win condition validation
+			void winCondition();
 
             std::string coordToString(std::pair<int,int> p_coord);
 
@@ -122,7 +128,7 @@ namespace nsGameEngine
             std::atomic<int>  m_playerLeft;
 
 			// Capture management
-			std::vector<std::pair<int, int>> m_capturingBuilding;
+			std::vector<std::tuple<std::pair<int, int>, Unit, bool>> m_capturingBuilding;
 			
 
 	        std::atomic<bool> m_win;

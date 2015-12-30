@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>	// sf::RenderWindow, sf::VideoMode
 #include <string>				// std::string
+#include <tuple>
 
 #include "GameEngine.h"			// nsGameEngine::GameEngine
 #include "../GraphicEngine/GraphicEngine.h"		// nsGraphicEngine::GraphicEngine
@@ -348,9 +349,6 @@ void GENGINE::frame()
     np.message = "205";
     m_netEngine->send(np);
 
-	// Capture management
-	bool capturedThisTurn = false;
-
     sf::Clock clock;
     while(m_window->isOpen())
     {	
@@ -379,8 +377,13 @@ void GENGINE::frame()
         {
             movedUnits.clear();
             cleared = true;
+
+			for(vector<tuple<pair<int, int>, Unit, bool>>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
+			{
+				get<2>(*iter) = false;
+			}
         }
-       
+    
         sf::Event event;
         while(m_window->pollEvent(event))
         {
@@ -617,24 +620,12 @@ void GENGINE::frame()
                             {
                                 if (unit.getOwner() == m_player->getType())
                                 {
-                                    bool moved = false;
-                                    for(int id : movedUnits)
-                                    {
-                                        if(unit.getId() == id)
-                                            moved = true;
-                                    } 
-                                    if(moved)
-                                    {
-                                        displayMessage = true;
-                                        messageTimer = m_fps * 4;
-                                        message = "Unit already used this turn!";
-                                    }
-                                    else
-                                    {
+
+                                    
                                         selectedUnitBool = true;
                                         selectedUnit = unit;
                                         view = 2;
-                                    }
+                                    
                                 }
                             }
                             else
@@ -711,6 +702,9 @@ void GENGINE::frame()
                                 messageTimer = m_fps * 4;
                                 validateEndTurn = false;
                                 view = 0;
+								selectedUnitBool = false;
+                            	displayPorte = false;
+                            	selectedUnitBase = 0;
 		                }
                         else
                         {
@@ -721,18 +715,18 @@ void GENGINE::frame()
                     }
 					else if(event.key.code == sf::Keyboard::C && selectedUnitBool && (selectedUnit.getType() == MECH || selectedUnit.getType() == INFANTRY))
 					{
-						
+					
 						Terrain currentTerrain = m_world->getTerrain(selectedUnit.getCoord());
-
-						if(currentTerrain.getOwner() != m_player->getType())
+						if(currentTerrain.getOwner() != m_player->getType() && (currentTerrain.getType() == BASE || currentTerrain.getType() == HQ || currentTerrain.getType() == CITY))
 						{
 							bool foundBuilding = false;
-							for(pair<int, int> buildPos : m_capturingBuilding)
-								if(buildPos == currentTerrain.getCoord())
+							for(tuple<pair<int, int>, Unit, bool> buildPos : m_capturingBuilding)
+								if(get<0>(buildPos) == currentTerrain.getCoord())
 									foundBuilding = true;
 			
 							if(!foundBuilding)
-								m_capturingBuilding.push_back(currentTerrain.getCoord());
+								m_capturingBuilding.push_back(make_tuple(currentTerrain.getCoord(), selectedUnit, true));
+
 						}
 					}
                 }
@@ -741,30 +735,49 @@ void GENGINE::frame()
                 m_window->close();
         }
 
+		vector<pair<int, int>> captureFlags;
+
 		// Capture management
-		if(m_turn && !capturedThisTurn)
+		if(m_turn)
 		{
-			/*vector<<pair<int, int>>::iterator> captured;
-			for(vector<pair<int, int>>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
+			cleared = false;
+
+			vector<vector<tuple<pair<int, int>, Unit, bool>>::iterator> captured;
+			vector<vector<tuple<pair<int, int>, Unit, bool>>::iterator> gone;
+
+			for(vector<tuple<pair<int, int>, Unit, bool>>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
 			{
-				/*Terrain currentTerrain = m_world->getTerrain(*iter);
-				currentTerrain.setHp(currentTerrain.getHp() - 1);
-				if(currentTerrain.getHp() == 0)
+				// Test if unit still here
+				if(m_world->getUnit(get<0>(*iter)) == m_world->getNoneUnit())
 				{
-					captured.push_back(iter);
+					gone.push_back(iter);
+					get<2>(*iter) = true;	
 				}
+				if(!get<2>(*iter))
+				{
+					Terrain currentTerrain = m_world->getTerrain(get<0>(*iter));
+					get<2>(*iter) = true;
+					if(m_world->capture(get<1>(*iter), get<0>(*iter)))
+					{
+						captured.push_back(iter);
+					}
+				}
+				captureFlags.push_back(get<0>(*iter));
 			}
 		
-			/*for(vector<int>::iterator iter : captured)
+			for(vector<tuple<pair<int, int>, Unit, bool>>::iterator iter : gone)
 			{
-								// TO DO RESETLIFE
-				Terrain currentTerrain = m_world->getTerrain(*iter);
-				currentTerrain.setHp(10);
-				cout << "CAPTURED!" << endl;
-				//m_capturingBuilding.erase(iter);
+				m_world->getTerrain(get<0>(*iter)).resetHp();
+				m_capturingBuilding.erase(iter);
+			}
+			gone.clear();			
 
-			}*/
-
+			for(vector<tuple<pair<int, int>, Unit, bool>>::iterator iter : captured)
+			{
+				m_world->getTerrain(get<0>(*iter)).resetHp();
+				m_capturingBuilding.erase(iter);
+			}
+			captured.clear();
 		}
 
         m_graphicEngine->reload();
@@ -783,6 +796,9 @@ void GENGINE::frame()
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
             m_graphicEngine->refreshUserInterface(m_player, m_world, m_turn);
+
+			// Capture flags
+			m_graphicEngine->captureFlags(captureFlags);
         }
         else if (view == 1)
         {
@@ -793,6 +809,9 @@ void GENGINE::frame()
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
             m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world, displayPorte);
+			// Capture flags
+			m_graphicEngine->captureFlags(captureFlags);
+
         }
 
         if(m_waitingForPlayers)
@@ -801,6 +820,9 @@ void GENGINE::frame()
             messageTimer = m_fps / 25;
             message = "Waiting  for  " + to_string(m_playerLeft) + "  more  player.";
         }
+		
+		captureFlags.clear();		
+
 
         if(displayMessage)
             m_graphicEngine->displayMessage(message);
@@ -933,3 +955,12 @@ pair<int, int> GENGINE::getAvailableSpawnCoord()
     }
 	return base;
 } // getAvailableSpawnCoord()
+
+void GENGINE::winCondition()
+{
+	cout << m_world->getHQCount() << endl;
+	if(m_world->getHQCount() == 0)
+	{
+		cout << "PERDU!" << endl;
+	}
+} // winCondition()

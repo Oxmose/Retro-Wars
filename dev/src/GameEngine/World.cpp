@@ -284,12 +284,6 @@ std::vector<std::pair<int, int>> GENGINE_W::getIntermediaire(Unit p_unit, std::p
 	return toReturn;
 }
 
-
-
-
-
-
-
 std::vector<std::pair<int, int>> GENGINE_W::getPortee(Unit p_unit)
 {
 	std::vector<std::pair<int, int>> toReturn;
@@ -428,7 +422,16 @@ int GENGINE_W::getNumberProperties()
 
 Unit& GENGINE_W::getNoneUnit()
 {
-	return m_noneUnit;
+	return m_noneUnit;	
+}
+
+int GENGINE_W::getHQCount()
+{
+	int toReturn = 0;
+	for(auto ter : m_terrain)
+		if(ter.isProperty() && ter.getOwner() == m_player && ter.getType() == HQ)
+			toReturn ++;
+	return toReturn;
 }
 
 GENGINE_W::~World()

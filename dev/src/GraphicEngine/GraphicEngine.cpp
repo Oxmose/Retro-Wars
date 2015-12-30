@@ -1152,3 +1152,21 @@ void GxENGINE::notifyAttack(int p_attackStep, const pair<int, int> &p_where)
     m_explosionSprite.setPosition(p_where.first * 16, p_where.second * 16);
     m_mainWindow->draw(m_explosionSprite);
 } // notifyAttack()
+
+void GxENGINE::captureFlags(const vector<pair<int, int>> &p_flags)
+{
+	for(pair<int, int> coord : p_flags)
+	{
+		sf::Text text("Capture" , m_font, 14);
+        text.setPosition(coord.first * 16 - text.getGlobalBounds().width / 2 + 8, coord.second * 16 - text.getGlobalBounds().height - 5);
+        text.setColor(sf::Color(255, 255, 255, 255));
+
+        sf::RectangleShape rect(sf::Vector2f(text.getGlobalBounds().width + 10, text.getGlobalBounds().height + 8));
+        rect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(33), sf::Uint8(33), sf::Uint8(150)));
+        rect.setPosition(coord.first * 16 - text.getGlobalBounds().width / 2 + 3, coord.second * 16 - text.getGlobalBounds().height - 5);
+
+        m_mainWindow->draw(rect);
+        m_mainWindow->draw(text);
+
+	}
+} // captureFlags()
