@@ -27,7 +27,7 @@ file(
 
 add_executable(
 
-    bin/RetroWars
+    bin/OSXRelease/RetroWars
 
     ${source_files}
 )
