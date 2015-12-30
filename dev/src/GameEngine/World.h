@@ -22,7 +22,7 @@ namespace nsGameEngine
 
 			void addUnit(Unit p_unit);
 			void removeUnit(Unit p_unit);
-			void refreshVisibleMyProperty(Terrain p_terrain);
+			void refreshVisibleMyProperty(Terrain p_terrain, bool p_erase = false);
 			void refreshVisibleUnit(Unit p_unit, int p_reinit);
 			Unit& getUnit(int p_x, int p_y);
 			Unit& getNoneUnit();

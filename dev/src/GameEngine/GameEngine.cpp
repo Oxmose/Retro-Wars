@@ -950,6 +950,7 @@ void GENGINE::notify(const Action &p_action)
     else if(p_action.type == CAPTURE)
     {
         m_world->getTerrain(p_action.coord[0]).setOwner((PLAYER_TYPE)p_action.data[0]);
+        m_world->refreshVisibleMyProperty(m_world->getTerrain(p_action.coord[0]),true);
 		winCondition();
     }
 } // notify()

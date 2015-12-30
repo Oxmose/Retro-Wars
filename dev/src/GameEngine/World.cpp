@@ -31,12 +31,11 @@ int GENGINE_W::getI(std::pair<int, int> p_coord)
 	return getI(p_coord.first, p_coord.second);
 }
 
-void GENGINE_W::refreshVisibleMyProperty(Terrain p_terrain)
+void GENGINE_W::refreshVisibleMyProperty(Terrain p_terrain, bool p_erase)
 {
-	
-	if(p_terrain.isProperty() && p_terrain.getOwner() == m_player)
-		m_visible[getI(p_terrain.getCoord())] = 1;
-
+	int p = (p_erase) ? -1 : 1;
+	if(p_terrain.isProperty() && (p_terrain.getOwner() == m_player || p_erase))
+		m_visible[getI(p_terrain.getCoord())] += p;
 }
 
 int GENGINE_W::man(std::pair<int, int> a, std::pair<int, int> b)
@@ -367,6 +366,7 @@ bool GENGINE_W::capture(Unit p_unit, std::pair<int,int> p_toCapture)
 	if(getTerrain(p_toCapture).getHp() == 0)
 	{
 		getTerrain(p_toCapture).setOwner(m_player);
+		refreshVisibleMyProperty(getTerrain(p_toCapture));
 		return true;
 	}
 
