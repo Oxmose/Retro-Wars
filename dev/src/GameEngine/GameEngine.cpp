@@ -349,6 +349,9 @@ void GENGINE::frame()
     np.message = "205";
     m_netEngine->send(np);
 
+	// Resources management
+	bool isPaid = false;
+
     sf::Clock clock;
     while(m_window->isOpen())
     {	
@@ -372,11 +375,18 @@ void GENGINE::frame()
             }
         }
 
+		if(!isPaid && m_turn)
+		{
+			m_player->setMoney(m_player->getMoney() + 1000 * m_world->getNumberProperties());
+			isPaid = true;
+		}
+
         // Reset vars
         if (!m_turn  && !cleared)
         {
             movedUnits.clear();
             cleared = true;
+			isPaid = false;
 
 			for(vector<tuple<pair<int, int>, Unit, bool>>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
 			{
@@ -504,7 +514,7 @@ void GENGINE::frame()
                                     validateBuy = true;
                                     messageTimer = m_fps * 4;
                                     displayMessage = false;
-                                    pair<int, int> availableCoord = getAvailableSpawnCoord();
+                                    pair<int, int> availableCoord = selectedTerrain.getCoord();
                                     Unit unit ((UnitType)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), unitNPlayerTypeToGid((UnitType)selectedUnitBase, m_player->getType()));
                                     m_world->addUnit(unit);
 									movedUnits.push_back(unit.getId());
@@ -729,6 +739,7 @@ void GENGINE::frame()
 
 						}
 						selectedUnitBool = false;
+						view = 0;
 					}
                 }
             }
@@ -910,8 +921,6 @@ void GENGINE::notify(const Action &p_action)
             m_turn = true;
         else
             m_turn = false;
-
-        m_player->setMoney(m_player->getMoney() + 1000);
     }
     else if(p_action.type == NEW_PLAYER)
     {
@@ -936,26 +945,6 @@ void GENGINE::notify(const Action &p_action)
 		m_world->addUnit(unit);
 	}
 } // notify()
-
-pair<int, int> GENGINE::getAvailableSpawnCoord()
-{
-    PLAYER_TYPE playerType = m_player->getType();
-    bool found = false;
-    pair<int, int> base;
-    for (int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
-    {
-        for (int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
-        {
-            Terrain tmp_ter = m_world->getTerrain(i, j);
-            if (tmp_ter.getType() == BASE && tmp_ter.getOwner() == playerType)
-            {
-                base = make_pair(i, j);
-                found = true;
-            }
-        }
-    }
-	return base;
-} // getAvailableSpawnCoord()
 
 void GENGINE::winCondition()
 {

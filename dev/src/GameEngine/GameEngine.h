@@ -78,9 +78,6 @@ namespace nsGameEngine
 			// Notify the game engine on new message
             void notify(const nsNetEngine::Action &p_action);
 
-			// Allow spawn of new unit
-	        std::pair<int, int> getAvailableSpawnCoord();
-
 			// Win condition validation
 			void winCondition();
 
