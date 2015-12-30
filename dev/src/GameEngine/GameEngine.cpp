@@ -17,7 +17,7 @@ using namespace nsGraphicEngine;
 using namespace nsNetEngine;
 using namespace std;
 
-GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height, const string & p_title, 
+GENGINE::GameEngine(const int & p_width, const int & p_height, const string & p_title, 
                     MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, NetEngine *p_netEngine) noexcept
 {
 	// Init basic settings
@@ -42,9 +42,9 @@ GENGINE::GameEngine(const unsigned int & p_width, const unsigned int & p_height,
     loadWorld();
 
     bool found = false;
-    for (unsigned int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
+    for (int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
     {
-        for (unsigned int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
+        for (int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
         {
             Terrain tmp_ter = m_world->getTerrain(i, j);
             if (tmp_ter.getType() == HQ && tmp_ter.getOwner() == p_playerType)
@@ -264,7 +264,7 @@ int GENGINE::unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType)
 
 void GENGINE::loadWorld()
 {
-    unsigned int x = 0, y = 0;
+    int x = 0, y = 0;
     
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
@@ -327,7 +327,7 @@ void GENGINE::frame()
 
     sf::Time framerate = sf::milliseconds(1000 / m_fps);
     
-    pair<unsigned int, unsigned int> mvtCursor = make_pair(0, 0);
+    pair<int, int> mvtCursor = make_pair(0, 0);
     vector<int> movedUnits;
     bool cleared;
 
@@ -399,7 +399,7 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            unsigned int newY = m_player->getCoord().second - 1;
+                            int newY = m_player->getCoord().second - 1;
 
                             if (m_player->getCoord().second == 0)
                                 newY = 0;
@@ -418,7 +418,7 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            unsigned int newY = m_player->getCoord().second + 1;
+                            int newY = m_player->getCoord().second + 1;
 
                             if (newY > m_mapEngine->getHeight() - 1)
                                 newY = m_mapEngine->getHeight() - 1;
@@ -444,7 +444,7 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            unsigned int newX = m_player->getCoord().first - 1;
+                            int newX = m_player->getCoord().first - 1;
 
                             if (m_player->getCoord().first == 0)
                                 newX = 0;
@@ -470,7 +470,7 @@ void GENGINE::frame()
                         }
                         else
                         {
-                            unsigned int newX = m_player->getCoord().first + 1;
+                            int newX = m_player->getCoord().first + 1;
 
                             if (newX > m_mapEngine->getWidth() - 1)
                                 newX = m_mapEngine->getWidth() - 1;
@@ -535,10 +535,10 @@ void GENGINE::frame()
                                 }
                                 else
                                 {
-                                    vector<pair<unsigned int, unsigned int>> accessible = m_world->getAccessible(selectedUnit);
+                                    vector<pair<int, int>> accessible = m_world->getAccessible(selectedUnit);
                                     // Check if user can move there
                                     bool move = false;
-                                    for(pair<unsigned int, unsigned int> Coord : accessible)
+                                    for(pair<int, int> Coord : accessible)
                                     {
                                         if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
                                         {
@@ -569,9 +569,9 @@ void GENGINE::frame()
                                     else
                                     {
                                         // Check if user wanted to attack a unit
-                                        vector<pair<unsigned int, unsigned int>> enemies = m_world->getPortee(selectedUnit);
+                                        vector<pair<int, int>> enemies = m_world->getPortee(selectedUnit);
                                         bool attack = false;
-                                        for(pair<unsigned int, unsigned int> Coord : enemies)
+                                        for(pair<int, int> Coord : enemies)
                                         {
                                             if(Coord.first == mvtCursor.first && Coord.second == mvtCursor.second)
                                             {
@@ -694,8 +694,8 @@ void GENGINE::frame()
 		                {
 		                        m_turn = false;
 		                        vector<PLAYER_TYPE> players = m_mapEngine->getPlayers();
-		                        unsigned int index;
-		                        for(unsigned int i = 0; i < players.size(); ++i)
+		                        int index;
+		                        for(int i = 0; i < players.size(); ++i)
 		                        {
 		                            if(players[i] == m_player->getType())
 		                            {
@@ -703,7 +703,7 @@ void GENGINE::frame()
 		                                break;
 		                            }
 		                        }		
-		                        unsigned int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
+		                        int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
 		                        NetPackage np;
 		                        np.message = "2::" + to_string(nextPlayer);
 		                        m_netEngine->send(np);
@@ -727,7 +727,7 @@ void GENGINE::frame()
 						if(currentTerrain.getOwner() != m_player->getType())
 						{
 							bool foundBuilding = false;
-							for(pair<unsigned int, unsigned int> buildPos : m_capturingBuilding)
+							for(pair<int, int> buildPos : m_capturingBuilding)
 								if(buildPos == currentTerrain.getCoord())
 									foundBuilding = true;
 			
@@ -744,9 +744,9 @@ void GENGINE::frame()
 		// Capture management
 		if(m_turn && !capturedThisTurn)
 		{
-			vector<vector<unsigned int>::iterator> captured;
+			vector<vector<int>::iterator> captured;
 
-			/*for(vector<unsigned int>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
+			/*for(vector<int>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
 			{
 				/*Terrain currentTerrain = m_world->getTerrain(*iter);
 				currentTerrain.setHp(currentTerrain.getHp() - 1);
@@ -756,7 +756,7 @@ void GENGINE::frame()
 				}
 			}*/
 		
-			/*for(vector<unsigned int>::iterator iter : captured)
+			/*for(vector<int>::iterator iter : captured)
 			{
 								// TO DO RESETLIFE
 				Terrain currentTerrain = m_world->getTerrain(*iter);
@@ -895,7 +895,7 @@ void GENGINE::notify(const Action &p_action)
     }
     else if(p_action.type == NEW_PLAYER)
     {
-        if((unsigned int)p_action.data[0] == m_mapEngine->getPlayers().size())
+        if((int)p_action.data[0] == m_mapEngine->getPlayers().size())
         {
             m_waitingForPlayers = false;
         }
@@ -921,10 +921,10 @@ pair<int, int> GENGINE::getAvailableSpawnCoord()
 {
     PLAYER_TYPE playerType = m_player->getType();
     bool found = false;
-    pair<unsigned int, unsigned int> base;
-    for (unsigned int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
+    pair<int, int> base;
+    for (int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
     {
-        for (unsigned int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
+        for (int j = 0; j < m_mapEngine->getHeight() && !found; ++j)
         {
             Terrain tmp_ter = m_world->getTerrain(i, j);
             if (tmp_ter.getType() == BASE && tmp_ter.getOwner() == playerType)

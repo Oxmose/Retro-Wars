@@ -48,14 +48,14 @@ namespace nsGameEngine
     class GameEngine
     {
         public:
-            /// @fn GameEngine(const unsigned int & p_width, const unsigned int & p_height, const std::string & p_title) noexcept;
+            /// @fn GameEngine(const int & p_width, const int & p_height, const std::string & p_title) noexcept;
             /// @param p_width The width of the window.
             /// @param p_height The height of the window.
             /// @param p_title The title of the window.
             /// @brief The detailed constructor of the GameEngine class.
             /// @details It creates a new instance of the game, load some basics parameters and initialize the window context.
             /// It will also initialize the graphic engine.
-            GameEngine(const unsigned int & p_width, const unsigned int & p_height, const std::string & p_title, 
+            GameEngine(const int & p_width, const int & p_height, const std::string & p_title, 
                        nsMapEngine::MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, nsNetEngine::NetEngine* p_netEngine) noexcept;
 
             /// @fn ~GameEngine();
@@ -84,7 +84,7 @@ namespace nsGameEngine
         private:
             /// @brief The window dimension variable.
             sf::VideoMode     m_windowDim;
-            unsigned int m_fps;
+            int m_fps;
 
             /// @brief The window title.
             std::string     m_windowTitle;
@@ -111,9 +111,9 @@ namespace nsGameEngine
 
 			// Movement notification
 			std::atomic<bool> m_moveUnit;
-			std::vector<std::pair<unsigned int, unsigned int>> m_interMove;
-			std::atomic<unsigned int> m_counter;
-			std::atomic<unsigned int> m_interPos;
+			std::vector<std::pair<int, int>> m_interMove;
+			std::atomic<int> m_counter;
+			std::atomic<int> m_interPos;
 			Unit m_movingUnit;
 
             // Turn management
@@ -122,7 +122,7 @@ namespace nsGameEngine
             std::atomic<int>  m_playerLeft;
 
 			// Capture management
-			std::vector<std::pair<unsigned int, unsigned int>> m_capturingBuilding;
+			std::vector<std::pair<int, int>> m_capturingBuilding;
 			
 
 	        std::atomic<bool> m_win;

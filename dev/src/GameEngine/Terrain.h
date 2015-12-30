@@ -32,10 +32,10 @@ namespace nsGameEngine
 	{
 		public:
 			Terrain();
-			Terrain(TerrainType p_type, unsigned int p_x, unsigned int p_y, PLAYER_TYPE p_owner = NEUTRAL);
+			Terrain(TerrainType p_type, int p_x, int p_y, PLAYER_TYPE p_owner = NEUTRAL);
 			~Terrain();
 
-			std::pair<unsigned int, unsigned int> getCoord();
+			std::pair<int, int> getCoord();
 			bool isProperty();
 			TerrainType getType() const;
 			PLAYER_TYPE getOwner() const;
@@ -45,9 +45,9 @@ namespace nsGameEngine
 
 			bool isNoneTerrain();
 			int getHp();
-			void setHp(int p_hp);
 			int getDefense();
 			void setHp(int p_hp);
+			void resetHp();
 
 		private:
 			TerrainType m_type;
@@ -55,8 +55,8 @@ namespace nsGameEngine
 			int m_defense;
 			std::array<int,8> m_mvt;
 
-			unsigned int m_x;
-			unsigned int m_y;
+			int m_x;
+			int m_y;
 
 			bool m_property;
 			PLAYER_TYPE m_owner;

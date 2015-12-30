@@ -9,7 +9,7 @@ GENGINE_TER::Terrain()
 {
 }
 
-GENGINE_TER::Terrain(TerrainType p_type, unsigned int p_x, unsigned int p_y, PLAYER_TYPE p_owner)
+GENGINE_TER::Terrain(TerrainType p_type, int p_x, int p_y, PLAYER_TYPE p_owner)
 {
 	m_type = p_type;
 
@@ -93,7 +93,7 @@ std::array<int,8> GENGINE_TER::getMvt()
 	return m_mvt;
 }
 
-pair<unsigned int, unsigned int> GENGINE_TER::getCoord()
+pair<int, int> GENGINE_TER::getCoord()
 {
 	return make_pair(m_x,m_y);
 }
@@ -133,11 +133,6 @@ int GENGINE_TER::getHp()
 	return m_hp;
 }
 
-void GENGINE_TER::setHp(int p_hp)
-{
-	m_hp = p_hp;
-}
-
 int GENGINE_TER::getDefense()
 {
     return m_defense;
@@ -145,4 +140,9 @@ int GENGINE_TER::getDefense()
 void GENGINE_TER::setHp(int p_hp)
 {
 	m_hp = p_hp;
+}
+
+void GENGINE_TER::resetHp()
+{
+	setHp(20);
 }

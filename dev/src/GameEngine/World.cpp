@@ -14,19 +14,19 @@ GENGINE_W::World(PLAYER_TYPE p_player, int p_width, int p_height)
 	m_width = p_width;
 	m_height = p_height;
 
-	for(unsigned int y = 0 ; y < m_height ; y++)
-		for(unsigned int x =  0 ; x < m_width ; x++)
+	for(int y = 0 ; y < m_height ; y++)
+		for(int x =  0 ; x < m_width ; x++)
 			m_visible.push_back(0);
 
 	srand(time(NULL));
 }
 
-int GENGINE_W::getI(unsigned int p_x, unsigned int p_y)
+int GENGINE_W::getI(int p_x, int p_y)
 {
 	return p_y*m_width+p_x%m_width;
 }
 
-int GENGINE_W::getI(std::pair<unsigned int, unsigned int> p_coord)
+int GENGINE_W::getI(std::pair<int, int> p_coord)
 {
 	return getI(p_coord.first, p_coord.second);
 }
@@ -39,7 +39,7 @@ void GENGINE_W::refreshVisibleMyProperty(Terrain p_terrain)
 
 }
 
-int GENGINE_W::man(std::pair<unsigned int, unsigned int> a, std::pair<unsigned int, unsigned int> b)
+int GENGINE_W::man(std::pair<int, int> a, std::pair<int, int> b)
 {
 	return abs(a.first-b.first)+abs(a.second-b.second);
 }
@@ -57,8 +57,8 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
 	bool vu[m_height][m_width];
-	for(unsigned int i = 0 ; i < m_height ; i++)
-		for(unsigned int j = 0 ; j < m_width ; j++)
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
 			vu[i][j] = false;
 
 	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
@@ -85,7 +85,7 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 				m_visible[getI(coord)] += p_reinit;
 			for(int iDir = 0 ; iDir < 4 ; iDir++)
 			{
-				std::pair<unsigned int, unsigned int> voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
+				std::pair<int, int> voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
 				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
 					if(!vu[voisin.second][voisin.first])
 					{
@@ -123,21 +123,21 @@ std::list<Unit>& GENGINE_W::getUnits()
 	return m_unit;
 }
 
-Terrain& GENGINE_W::getTerrain(unsigned int p_x, unsigned int p_y)
+Terrain& GENGINE_W::getTerrain(int p_x, int p_y)
 {
-	for(unsigned int i = 0 ; i < m_terrain.size() ; i++)
+	for(int i = 0 ; i < m_terrain.size() ; i++)
 		if(m_terrain[i].getCoord().first == p_x && m_terrain[i].getCoord().second == p_y)
 			return m_terrain[i];
 	return m_noneTerrain;
 }
 
 
-Terrain& GENGINE_W::getTerrain(std::pair<unsigned int, unsigned int> p_coord)
+Terrain& GENGINE_W::getTerrain(std::pair<int, int> p_coord)
 {
 	return getTerrain(p_coord.first, p_coord.second);
 }
 
-Unit& GENGINE_W::getUnit(unsigned int p_x, unsigned int p_y)
+Unit& GENGINE_W::getUnit(int p_x, int p_y)
 {
 	for(Unit& unit : m_unit)
 		if(unit.getCoord().first == p_x && unit.getCoord().second == p_y)
@@ -145,22 +145,22 @@ Unit& GENGINE_W::getUnit(unsigned int p_x, unsigned int p_y)
 	return m_noneUnit;	
 }
 
-Unit& GENGINE_W::getUnit(std::pair<unsigned int, unsigned int> p_coord)
+Unit& GENGINE_W::getUnit(std::pair<int, int> p_coord)
 {
 	return getUnit(p_coord.first, p_coord.second);	
 }
 
-bool GENGINE_W::isVisible(unsigned int p_x, unsigned int p_y)
+bool GENGINE_W::isVisible(int p_x, int p_y)
 {
 	return m_visible[getI(p_x,p_y)] != 0;
 }
 
-bool GENGINE_W::isVisible(std::pair<unsigned int, unsigned int> p_coord)
+bool GENGINE_W::isVisible(std::pair<int, int> p_coord)
 {
 	return isVisible(p_coord.first, p_coord.second);
 }
 
-typedef std::pair<std::pair<unsigned int, unsigned int>, std::pair<unsigned int, unsigned int>> forAcc;
+typedef std::pair<std::pair<int, int>, std::pair<int, int>> forAcc;
 
 static bool comp(const forAcc& A, const forAcc& B)
 {
@@ -168,9 +168,9 @@ static bool comp(const forAcc& A, const forAcc& B)
 }
 
 //TODO : bizarre que rocket puisse pas aller au dessus factory
-std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getAccessible(Unit p_unit)
+std::vector<std::pair<int, int>> GENGINE_W::getAccessible(Unit p_unit)
 {
-	std::vector<std::pair<unsigned int, unsigned int>> toReturn;
+	std::vector<std::pair<int, int>> toReturn;
 	
 	std::priority_queue<forAcc,std::vector<forAcc>,decltype(&comp)> toVisit(&comp); //dist,mp,coord
 	toVisit.push(std::make_pair(std::make_pair(0,p_unit.getMvt()),p_unit.getCoord()));
@@ -178,8 +178,8 @@ std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getAccessible(Unit
 
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
 	bool vu[m_height][m_width];
-	for(unsigned int i = 0 ; i < m_height ; i++)
-		for(unsigned int j = 0 ; j < m_width ; j++)
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
 			vu[i][j] = false;
 
 	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
@@ -197,7 +197,7 @@ std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getAccessible(Unit
 		{
 			for(int iDir = 0 ; iDir < 4 ; iDir++)
 			{
-				std::pair<unsigned int, unsigned int> voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
+				std::pair<int, int> voisin = std::make_pair(coord.first+dir[iDir][0], coord.second+dir[iDir][1]);
 				if(voisin.first >= 0 && voisin.first < m_width && voisin.second >= 0 && voisin.second < m_height)
 					if(!vu[voisin.second][voisin.first] && getTerrain(voisin).getMvt()[p_unit.getMvtType()] != 0)
 					{
@@ -212,9 +212,9 @@ std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getAccessible(Unit
 	return toReturn;
 }
 
-std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getIntermediaire(Unit p_unit, std::pair<unsigned int, unsigned int> p_whereTo)
+std::vector<std::pair<int, int>> GENGINE_W::getIntermediaire(Unit p_unit, std::pair<int, int> p_whereTo)
 {
-	std::vector<std::pair<unsigned int, unsigned int>> toReturn;
+	std::vector<std::pair<int, int>> toReturn;
 	
 	std::priority_queue<forAcc,std::vector<forAcc>,decltype(&comp)> toVisit(&comp); //dist,mp,coord
 	toVisit.push(std::make_pair(std::make_pair(0,p_unit.getMvt()),p_unit.getCoord()));
@@ -224,8 +224,8 @@ std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getIntermediaire(U
 	bool vu[m_height][m_width];
 	int tdist[m_height][m_width];
 	const int INFINI = 1000*1000*1000;
-	for(unsigned int i = 0 ; i < m_height ; i++)
-		for(unsigned int j = 0 ; j < m_width ; j++)
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
 		{
 			vu[i][j] = false;
 			tdist[i][j] = INFINI;
@@ -290,17 +290,17 @@ std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getIntermediaire(U
 
 
 
-std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getPortee(Unit p_unit)
+std::vector<std::pair<int, int>> GENGINE_W::getPortee(Unit p_unit)
 {
-	std::vector<std::pair<unsigned int, unsigned int>> toReturn;
+	std::vector<std::pair<int, int>> toReturn;
 	
-	std::queue<std::pair<unsigned int, unsigned int>> toVisit;
+	std::queue<std::pair<int, int>> toVisit;
 	toVisit.push(p_unit.getCoord());
 
 	int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
 	bool vu[m_height][m_width];
-	for(unsigned int i = 0 ; i < m_height ; i++)
-		for(unsigned int j = 0 ; j < m_width ; j++)
+	for(int i = 0 ; i < m_height ; i++)
+		for(int j = 0 ; j < m_width ; j++)
 			vu[i][j] = false;
 
 	vu[p_unit.getCoord().second][p_unit.getCoord().first] = true;
@@ -335,12 +335,12 @@ std::vector<std::pair<unsigned int, unsigned int>> GENGINE_W::getPortee(Unit p_u
 }
 
 
-unsigned int GENGINE_W::rand_interval(unsigned int min, unsigned int max)
+int GENGINE_W::rand_interval(int min, int max)
 {
-    unsigned int r;
-    const unsigned int range = 1 + max - min;
-    const unsigned int buckets = RAND_MAX / range;
-    const unsigned int limit = buckets * range;
+    int r;
+    const int range = 1 + max - min;
+    const int buckets = RAND_MAX / range;
+    const int limit = buckets * range;
 
     /* Create equal size buckets all in a row, then fire randomly towards
      * the buckets until you land in one of them. All buckets are equally
@@ -354,7 +354,7 @@ unsigned int GENGINE_W::rand_interval(unsigned int min, unsigned int max)
 }
 
 
-void GENGINE_W::moveUnit(Unit p_unit, std::pair<unsigned int, unsigned int> p_whereTo)
+void GENGINE_W::moveUnit(Unit p_unit, std::pair<int, int> p_whereTo)
 {
 
 	refreshVisibleUnit(p_unit,-1);
@@ -367,13 +367,13 @@ void GENGINE_W::moveUnit(Unit p_unit, std::pair<unsigned int, unsigned int> p_wh
 
 bool GENGINE_W::capture(Unit p_unit, std::pair<int,int> p_toCapture)
 {
-	int currHp = getTerrain(p_toCapture)->getHp();
-	getTerrain(p_toCapture)->setHp(max(currHp-p_unit().getHp(),0));
+	int currHp = getTerrain(p_toCapture).getHp();
+	getTerrain(p_toCapture).setHp(std::max(currHp-p_unit.getHp(),0));
 
-	if(getTerrain(p_toCapture)->getHp() == 0)
+	if(getTerrain(p_toCapture).getHp() == 0)
 	{
-		getTerrain(p_toCapture)->setOwner(m_player);
-		return getTerrain(p_toCapture)->getType() == HQ;
+		getTerrain(p_toCapture).setOwner(m_player);
+		return getTerrain(p_toCapture).getType() == HQ;
 	}
 
 	return false;

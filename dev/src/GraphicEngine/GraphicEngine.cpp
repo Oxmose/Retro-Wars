@@ -262,8 +262,8 @@ void GxENGINE::drawMap(nsGameEngine::World* p_world)
         for(sf::Sprite spt : m_map[iLayer])
             m_mainWindow->draw(spt);
 
-    for(unsigned int x = 0; x < m_mapWidth; ++x)
-        for(unsigned int y = 0 ; y < m_mapHeight; ++y)
+    for(int x = 0; x < m_mapWidth; ++x)
+        for(int y = 0 ; y < m_mapHeight; ++y)
         {
             if(!p_world->isVisible(x, y))
             {
@@ -437,7 +437,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     manageTurn(p_turn);
 } // refreshUserInterface()
 
-void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<unsigned int, unsigned int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
+void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, int> &p_mvtCursor, nsGameEngine::World* p_world, bool p_displayPorte)
 {
     displayBar(p_player);
 
@@ -453,10 +453,10 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<unsign
     possibleMove.setOutlineThickness(0.5);
     possibleMove.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(100), sf::Uint8(100)));
     
-    vector<pair<unsigned int, unsigned int>> accessible = p_world->getAccessible(p_unit);
-    vector<pair<unsigned int, unsigned int>> enemies = p_world->getPortee(p_unit);
+    vector<pair<int, int>> accessible = p_world->getAccessible(p_unit);
+    vector<pair<int, int>> enemies = p_world->getPortee(p_unit);
 
-    for (pair<unsigned int, unsigned int> Coord : accessible)
+    for (pair<int, int> Coord : accessible)
     {
         possibleMove.setPosition(Coord.first * 16, Coord.second * 16);
         m_mainWindow->draw(possibleMove);
@@ -469,7 +469,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<unsign
     bool colored = false;
     
     // If cursor is over an enemy
-    for (pair<unsigned int, unsigned int> Coord : enemies)
+    for (pair<int, int> Coord : enemies)
     {
         if (p_mvtCursor.first == Coord.first && p_mvtCursor.second == Coord.second)
         {
@@ -500,7 +500,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<unsign
     if (!colored)
     {
         bool acces = false;      
-        for (pair<unsigned int, unsigned int> Coord : accessible)
+        for (pair<int, int> Coord : accessible)
         {
             if (p_mvtCursor.first == Coord.first && p_mvtCursor.second == Coord.second)
             {
@@ -570,7 +570,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<unsign
     m_mainWindow->draw(message);
 
 	string ability;
-	unsigned int position;
+	int position;
 	if(p_unit.getType() == MECH || p_unit.getType() == INFANTRY)
 	{
 		ability = "C  to  capture\nW  for  attack  range\nEscape  to  deselect";
@@ -1138,11 +1138,11 @@ void GxENGINE::manageTurn(bool p_turn)
     }
 }
 
-void GxENGINE::notifyAttack(int p_attackStep, const pair<unsigned int, unsigned int> &p_where)
+void GxENGINE::notifyAttack(int p_attackStep, const pair<int, int> &p_where)
 {
     p_attackStep = 72 - p_attackStep;
-    unsigned int column = p_attackStep % 8;
-    unsigned int line = p_attackStep / 8;
+    int column = p_attackStep % 8;
+    int line = p_attackStep / 8;
     while(line >= 9)
     {
         line = line - 9;
