@@ -111,166 +111,166 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named bin/RetroWars
+# Target rules for targets named bin/OSXRelease/RetroWars
 
 # Build rule for target.
-bin/RetroWars: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bin/RetroWars
-.PHONY : bin/RetroWars
+bin/OSXRelease/RetroWars: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bin/OSXRelease/RetroWars
+.PHONY : bin/OSXRelease/RetroWars
 
 # fast build rule for target.
-bin/RetroWars/fast:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/build
-.PHONY : bin/RetroWars/fast
+bin/OSXRelease/RetroWars/fast:
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/build
+.PHONY : bin/OSXRelease/RetroWars/fast
 
 # target to build an object file
 src/GameEngine/GameEngine.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/GameEngine.o
 .PHONY : src/GameEngine/GameEngine.o
 
 # target to preprocess a source file
 src/GameEngine/GameEngine.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/GameEngine.i
 .PHONY : src/GameEngine/GameEngine.i
 
 # target to generate assembly for a file
 src/GameEngine/GameEngine.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/GameEngine.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/GameEngine.s
 .PHONY : src/GameEngine/GameEngine.s
 
 # target to build an object file
 src/GameEngine/Player.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Player.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Player.o
 .PHONY : src/GameEngine/Player.o
 
 # target to preprocess a source file
 src/GameEngine/Player.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Player.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Player.i
 .PHONY : src/GameEngine/Player.i
 
 # target to generate assembly for a file
 src/GameEngine/Player.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Player.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Player.s
 .PHONY : src/GameEngine/Player.s
 
 # target to build an object file
 src/GameEngine/Terrain.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Terrain.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Terrain.o
 .PHONY : src/GameEngine/Terrain.o
 
 # target to preprocess a source file
 src/GameEngine/Terrain.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Terrain.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Terrain.i
 .PHONY : src/GameEngine/Terrain.i
 
 # target to generate assembly for a file
 src/GameEngine/Terrain.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Terrain.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Terrain.s
 .PHONY : src/GameEngine/Terrain.s
 
 # target to build an object file
 src/GameEngine/Unit.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Unit.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Unit.o
 .PHONY : src/GameEngine/Unit.o
 
 # target to preprocess a source file
 src/GameEngine/Unit.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Unit.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Unit.i
 .PHONY : src/GameEngine/Unit.i
 
 # target to generate assembly for a file
 src/GameEngine/Unit.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/Unit.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/Unit.s
 .PHONY : src/GameEngine/Unit.s
 
 # target to build an object file
 src/GameEngine/World.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/World.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/World.o
 .PHONY : src/GameEngine/World.o
 
 # target to preprocess a source file
 src/GameEngine/World.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/World.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/World.i
 .PHONY : src/GameEngine/World.i
 
 # target to generate assembly for a file
 src/GameEngine/World.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GameEngine/World.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GameEngine/World.s
 .PHONY : src/GameEngine/World.s
 
 # target to build an object file
 src/GraphicEngine/GraphicEngine.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GraphicEngine/GraphicEngine.o
 .PHONY : src/GraphicEngine/GraphicEngine.o
 
 # target to preprocess a source file
 src/GraphicEngine/GraphicEngine.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GraphicEngine/GraphicEngine.i
 .PHONY : src/GraphicEngine/GraphicEngine.i
 
 # target to generate assembly for a file
 src/GraphicEngine/GraphicEngine.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/GraphicEngine/GraphicEngine.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/GraphicEngine/GraphicEngine.s
 .PHONY : src/GraphicEngine/GraphicEngine.s
 
 # target to build an object file
 src/MapEngine/MapEngine.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/MapEngine/MapEngine.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/MapEngine/MapEngine.o
 .PHONY : src/MapEngine/MapEngine.o
 
 # target to preprocess a source file
 src/MapEngine/MapEngine.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/MapEngine/MapEngine.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/MapEngine/MapEngine.i
 .PHONY : src/MapEngine/MapEngine.i
 
 # target to generate assembly for a file
 src/MapEngine/MapEngine.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/MapEngine/MapEngine.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/MapEngine/MapEngine.s
 .PHONY : src/MapEngine/MapEngine.s
 
 # target to build an object file
 src/NetEngine/NetEngine.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/NetEngine.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/NetEngine/NetEngine.o
 .PHONY : src/NetEngine/NetEngine.o
 
 # target to preprocess a source file
 src/NetEngine/NetEngine.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/NetEngine.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/NetEngine/NetEngine.i
 .PHONY : src/NetEngine/NetEngine.i
 
 # target to generate assembly for a file
 src/NetEngine/NetEngine.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/NetEngine.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/NetEngine/NetEngine.s
 .PHONY : src/NetEngine/NetEngine.s
 
 # target to build an object file
 src/NetEngine/Server.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/Server.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/NetEngine/Server.o
 .PHONY : src/NetEngine/Server.o
 
 # target to preprocess a source file
 src/NetEngine/Server.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/Server.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/NetEngine/Server.i
 .PHONY : src/NetEngine/Server.i
 
 # target to generate assembly for a file
 src/NetEngine/Server.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/NetEngine/Server.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/NetEngine/Server.s
 .PHONY : src/NetEngine/Server.s
 
 # target to build an object file
 src/main.o:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/main.o
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/main.o
 .PHONY : src/main.o
 
 # target to preprocess a source file
 src/main.i:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/main.i
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/main.i
 .PHONY : src/main.i
 
 # target to generate assembly for a file
 src/main.s:
-	$(MAKE) -f CMakeFiles/bin/RetroWars.dir/build.make CMakeFiles/bin/RetroWars.dir/src/main.s
+	$(MAKE) -f CMakeFiles/bin/OSXRelease/RetroWars.dir/build.make CMakeFiles/bin/OSXRelease/RetroWars.dir/src/main.s
 .PHONY : src/main.s
 
 # Help Target
@@ -281,7 +281,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... bin/RetroWars"
+	@echo "... bin/OSXRelease/RetroWars"
 	@echo "... src/GameEngine/GameEngine.o"
 	@echo "... src/GameEngine/GameEngine.i"
 	@echo "... src/GameEngine/GameEngine.s"
