@@ -121,6 +121,10 @@ namespace nsGameEngine
             std::atomic<bool> m_waitingForPlayers;
             std::atomic<int>  m_playerLeft;
 
+			// Capture management
+			std::vector<std::pair<unsigned int, unsigned int>> m_capturingBuilding;
+			
+
 	        std::atomic<bool> m_win;
     };
 }

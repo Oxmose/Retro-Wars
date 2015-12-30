@@ -352,7 +352,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
             m_mainWindow->draw(message);
 
             sf::Text help("Enter  to  select", m_font, 15);
-            help.setPosition(350, m_relativeMapHeight + 50);
+            help.setPosition(345, m_relativeMapHeight + 50);
             m_mainWindow->draw(help);
 
             string ammo;
@@ -427,7 +427,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
             if (terType == BASE)
             {
                 sf::Text help("Press  enter  to  use", m_font, 15);
-                help.setPosition(350, m_relativeMapHeight + 50);
+                help.setPosition(345, m_relativeMapHeight + 50);
                 m_mainWindow->draw(help);
             }       
             
@@ -569,8 +569,20 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<unsign
     message.setPosition(345, m_relativeMapHeight + 5);
     m_mainWindow->draw(message);
 
-    sf::Text help("W for attack range\nEscape  to  deselect", m_font, 15);
-    help.setPosition(350, m_relativeMapHeight + 35);
+	string ability;
+	unsigned int position;
+	if(p_unit.getType() == MECH || p_unit.getType() == INFANTRY)
+	{
+		ability = "C  to  capture\nW  for  attack  range\nEscape  to  deselect";
+		position = m_relativeMapHeight + 25;
+	}
+	else
+	{
+		ability = "W  for  attack  range\nEscape  to  deselect";
+		position = m_relativeMapHeight + 35;
+	}
+    sf::Text help(ability, m_font, 14);
+    help.setPosition(345, position);
     m_mainWindow->draw(help);
 
     string ammo;

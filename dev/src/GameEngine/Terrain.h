@@ -47,6 +47,7 @@ namespace nsGameEngine
 			int getHp();
 			void setHp(int p_hp);
 			int getDefense();
+			void setHp(int p_hp);
 
 		private:
 			TerrainType m_type;
