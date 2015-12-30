@@ -417,6 +417,11 @@ void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 
 }
 
+Unit& GENGINE_W::getNoneUnit()
+{
+	return m_noneUnit;
+}
+
 GENGINE_W::~World()
 {
 }

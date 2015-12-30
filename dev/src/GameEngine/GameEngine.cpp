@@ -744,9 +744,8 @@ void GENGINE::frame()
 		// Capture management
 		if(m_turn && !capturedThisTurn)
 		{
-			vector<vector<int>::iterator> captured;
-
-			/*for(vector<int>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
+			/*vector<<pair<int, int>>::iterator> captured;
+			for(vector<pair<int, int>>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
 			{
 				/*Terrain currentTerrain = m_world->getTerrain(*iter);
 				currentTerrain.setHp(currentTerrain.getHp() - 1);
@@ -754,7 +753,7 @@ void GENGINE::frame()
 				{
 					captured.push_back(iter);
 				}
-			}*/
+			}
 		
 			/*for(vector<int>::iterator iter : captured)
 			{
@@ -812,22 +811,20 @@ void GENGINE::frame()
 			bool noJump = true;
 				
 			if((m_counter % 10) == 0)
-			{				
+			{	
+						
 				++m_interPos;
-
-				if(m_interPos != 0)
+				
+				Unit newmovingUnit = m_world->getUnit(m_interMove[m_interPos]);
+				while(newmovingUnit != m_world->getNoneUnit())
 				{
-					m_movingUnit = m_world->getUnit(m_interMove[m_interPos - 1]);
-					if((m_movingUnit.getOwner() != m_player->getType() && m_turn) || (m_movingUnit.getOwner() == m_player->getType() && !m_turn))
-					{
-						m_world->moveUnit(m_movingUnit, make_pair(400, 400));
-						m_world->moveUnit(m_world->getUnit(m_interMove[m_interPos - 1]), m_interMove[m_interPos]);
-						m_world->moveUnit(m_world->getUnit(make_pair(400, 400)), m_interMove[m_interPos - 1]);
-						noJump = false;
-					}
+					newmovingUnit = m_world->getUnit(m_interMove[++m_interPos]);
 				}
-				if(noJump)
-					m_world->moveUnit(m_movingUnit, m_interMove[m_interPos]);
+				
+			
+				m_world->moveUnit(m_movingUnit, m_interMove[m_interPos]);
+				m_movingUnit = m_world->getUnit(m_interMove[m_interPos]);
+
 			}
 
 			if(m_interPos == m_interMove.size() - 1)
