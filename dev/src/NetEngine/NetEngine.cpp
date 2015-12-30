@@ -262,7 +262,13 @@ void NETENGINE::parseMessage(const std::string &p_message)
 			action.data.push_back(stoi(split[2]));
 			action.data.push_back(stoi(split[3]));
 			m_gameEngine->notify(action);
-			break;        
+			break;   
+        case '6':
+            action.type = CAPTURE;
+            action.coord.push_back(stringToCooord(split[1]));
+            action.data.push_back(stoi(split[2]));
+            m_gameEngine->notify(action);
+            break;     
     }
         
 } // parseMessage()

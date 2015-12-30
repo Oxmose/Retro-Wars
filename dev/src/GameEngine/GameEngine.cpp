@@ -772,6 +772,9 @@ void GENGINE::frame()
 					if(m_world->capture(get<1>(*iter), get<0>(*iter)))
 					{
 						captured.push_back(iter);
+                        NetPackage np;
+                        np.message = "6::"+coordToString(get<0>(*iter))+"::"+to_string((int)(m_player->getType()));
+                        m_netEngine->send(np);
 					}
 				}
 				captureFlags.push_back(get<0>(*iter));
@@ -944,6 +947,10 @@ void GENGINE::notify(const Action &p_action)
 		Unit unit (type, p_action.coord[0].first, p_action.coord[0].second, playerType, unitNPlayerTypeToGid(type, playerType));
 		m_world->addUnit(unit);
 	}
+    else if(p_action.type == CAPTURE)
+    {
+        m_world->getTerrain(p_action.coord[0]).setOwner((PLAYER_TYPE)p_action.data[0]);
+    }
 } // notify()
 
 void GENGINE::winCondition()
