@@ -17,9 +17,7 @@
 # Cmake
 CMakeFiles/
 CMakeCache.txt
-CMakeLists.txt
 cmake_install.cmake
-*.txt
 
 # Debug files
 *.dSYM/
