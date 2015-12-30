@@ -373,7 +373,7 @@ bool GENGINE_W::capture(Unit p_unit, std::pair<int,int> p_toCapture)
 	if(getTerrain(p_toCapture).getHp() == 0)
 	{
 		getTerrain(p_toCapture).setOwner(m_player);
-		return getTerrain(p_toCapture).getType() == HQ;
+		return true;
 	}
 
 	return false;
