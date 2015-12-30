@@ -42,7 +42,8 @@ namespace nsNetEngine
 		NEW_PLAYER,
 		DISCONNECTED,
 		NEW_UNIT,
-        CAPTURE
+        CAPTURE,
+		WIN
     };
 
     typedef struct Action Action;
