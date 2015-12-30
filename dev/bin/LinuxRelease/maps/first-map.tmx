@@ -4,9 +4,8 @@
   <property name="Players" value="Red,Blue"/>
  </properties>
  <tileset firstgid="1" source="tilesets/Terrain.tsx"/>
- <tileset firstgid="145" source="../../res/maps/tilesets/Property.tsx"/>
+ <tileset firstgid="145" source="tilesets/Property.tsx"/>
  <tileset firstgid="229" source="tilesets/Unit.tsx"/>
- <tileset firstgid="359" source="../../res/maps/tilesets/Unit.tsx"/>
  <layer name="Terrain_1" width="30" height="20">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,55,55,55,1,1,1,1,1,1,55,55,1,1,1,1,1,1,22,1,1,1,1,
