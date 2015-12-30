@@ -364,6 +364,21 @@ void GENGINE_W::moveUnit(Unit p_unit, std::pair<unsigned int, unsigned int> p_wh
 
 }
 
+
+bool GENGINE_W::capture(Unit p_unit, std::pair<int,int> p_toCapture)
+{
+	int currHp = getTerrain(p_toCapture)->getHp();
+	getTerrain(p_toCapture)->setHp(max(currHp-p_unit().getHp(),0));
+
+	if(getTerrain(p_toCapture)->getHp() == 0)
+	{
+		getTerrain(p_toCapture)->setOwner(m_player);
+		return getTerrain(p_toCapture)->getType() == HQ;
+	}
+
+	return false;
+}
+
 float GENGINE_W::getDamage(Unit p_attack, Unit p_defend, bool p_moy)
 {
 	float B = float(p_attack.getBaseDamage(p_defend));

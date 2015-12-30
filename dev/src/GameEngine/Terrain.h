@@ -45,6 +45,7 @@ namespace nsGameEngine
 
 			bool isNoneTerrain();
 			int getHp();
+			void setHp(int p_hp);
 			int getDefense();
 
 		private:

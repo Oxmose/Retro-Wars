@@ -132,6 +132,12 @@ int GENGINE_TER::getHp()
 {
 	return m_hp;
 }
+
+void GENGINE_TER::setHp(int p_hp)
+{
+	m_hp = p_hp;
+}
+
 int GENGINE_TER::getDefense()
 {
     return m_defense;

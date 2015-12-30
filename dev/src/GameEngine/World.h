@@ -41,6 +41,7 @@ namespace nsGameEngine
 			float getDamage(Unit p_attack, Unit p_defend, bool p_moy=false);
 			unsigned int rand_interval(unsigned int min, unsigned int max);
 
+			bool capture(Unit p_unit, std::pair<int,int> p_toCapture);
 
 		private:
 
