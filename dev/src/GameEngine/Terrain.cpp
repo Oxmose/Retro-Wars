@@ -110,7 +110,7 @@ bool GENGINE_TER::isProperty()
 
 bool GENGINE_TER::isNoneTerrain()
 {
-	return m_type == OTHER && m_x == 999  && m_y == 999;
+	return m_type == OTHER && m_x == -1  && m_y == -1;
 }
 
 PLAYER_TYPE GENGINE_TER::getOwner() const
