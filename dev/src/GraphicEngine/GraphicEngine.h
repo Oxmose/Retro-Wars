@@ -49,7 +49,7 @@ namespace nsGraphicEngine
             void notifyAttack(int p_attackStep, const std::pair<int, int> &p_where);
 
 			// Display capture flags
-			void captureFlags(const std::vector<std::pair<int, int>> &p_flags);
+			void captureFlags(const std::vector<std::pair<int, int>> &p_flags, nsGameEngine::World *p_world);
 
             void checkProperties(nsGameEngine::World* p_world);
 

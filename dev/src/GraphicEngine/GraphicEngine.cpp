@@ -1153,20 +1153,25 @@ void GxENGINE::notifyAttack(int p_attackStep, const pair<int, int> &p_where)
     m_mainWindow->draw(m_explosionSprite);
 } // notifyAttack()
 
-void GxENGINE::captureFlags(const vector<pair<int, int>> &p_flags)
+void GxENGINE::captureFlags(const vector<pair<int, int>> &p_flags, World *p_world)
 {
 	for(pair<int, int> coord : p_flags)
 	{
-		sf::Text text("Capture" , m_font, 14);
-        text.setPosition(coord.first * 16 - text.getGlobalBounds().width / 2 + 8, coord.second * 16 - text.getGlobalBounds().height - 5);
-        text.setColor(sf::Color(255, 255, 255, 255));
+		float xPosition = coord.first * 16 - 40 / 2 + 8;
+		float yPosition = coord.second * 16 - 12;
 
-        sf::RectangleShape rect(sf::Vector2f(text.getGlobalBounds().width + 10, text.getGlobalBounds().height + 8));
+		float remainingLife = 100 - p_world->getTerrain(coord).getHp() * 5;
+	
+        sf::RectangleShape rect(sf::Vector2f(40, 10));	
         rect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(33), sf::Uint8(33), sf::Uint8(150)));
-        rect.setPosition(coord.first * 16 - text.getGlobalBounds().width / 2 + 3, coord.second * 16 - text.getGlobalBounds().height - 5);
+        rect.setPosition(xPosition, yPosition);
+
+		sf::RectangleShape remainingRect(sf::Vector2f((36.0 / 100.0) * remainingLife, 6));
+		remainingRect.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(255), sf::Uint8(100), sf::Uint8(150)));
+        remainingRect.setPosition(xPosition + 2, yPosition + 2);
 
         m_mainWindow->draw(rect);
-        m_mainWindow->draw(text);
+        m_mainWindow->draw(remainingRect);
 
 	}
 } // captureFlags()
