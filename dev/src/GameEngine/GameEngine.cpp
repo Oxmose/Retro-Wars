@@ -348,6 +348,9 @@ void GENGINE::frame()
     np.message = "205";
     m_netEngine->send(np);
 
+	// Capture management
+	bool capturedThisTurn = false;
+
     sf::Clock clock;
     while(m_window->isOpen())
     {	
@@ -716,11 +719,54 @@ void GENGINE::frame()
                             displayMessage = true;
                         }
                     }
+					else if(event.key.code == sf::Keyboard::C && selectedUnitBool && (selectedUnit.getType() == MECH || selectedUnit.getType() == INFANTRY))
+					{
+						
+						Terrain currentTerrain = m_world->getTerrain(selectedUnit.getCoord());
+
+						if(currentTerrain.getOwner() != m_player->getType())
+						{
+							bool foundBuilding = false;
+							for(pair<unsigned int, unsigned int> buildPos : m_capturingBuilding)
+								if(buildPos == currentTerrain.getCoord())
+									foundBuilding = true;
+			
+							if(!foundBuilding)
+								m_capturingBuilding.push_back(currentTerrain.getCoord());
+						}
+					}
                 }
             }
             if(event.type == sf::Event::Closed)
                 m_window->close();
         }
+
+		// Capture management
+		if(m_turn && !capturedThisTurn)
+		{
+			vector<vector<unsigned int>::iterator> captured;
+
+			/*for(vector<unsigned int>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
+			{
+				/*Terrain currentTerrain = m_world->getTerrain(*iter);
+				currentTerrain.setHp(currentTerrain.getHp() - 1);
+				if(currentTerrain.getHp() == 0)
+				{
+					captured.push_back(iter);
+				}
+			}*/
+		
+			/*for(vector<unsigned int>::iterator iter : captured)
+			{
+								// TO DO RESETLIFE
+				Terrain currentTerrain = m_world->getTerrain(*iter);
+				currentTerrain.setHp(10);
+				cout << "CAPTURED!" << endl;
+				//m_capturingBuilding.erase(iter);
+
+			}*/
+
+		}
 
         m_graphicEngine->reload();
         m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
