@@ -129,6 +129,7 @@ namespace nsGameEngine
 			
 
 	        std::atomic<bool> m_win;
+			std::atomic<bool> m_loose;
     };
 }
 

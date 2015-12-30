@@ -65,6 +65,7 @@ GENGINE::GameEngine(const int & p_width, const int & p_height, const string & p_
     m_waitingForPlayers = true;
 	m_moveUnit = false;
     m_win = false;
+	m_loose = false;
 
 } // GameEngine();
 
@@ -397,7 +398,7 @@ void GENGINE::frame()
         sf::Event event;
         while(m_window->pollEvent(event))
         {
-            if(!m_win && !m_moveUnit)
+            if(!m_win && !m_loose && !m_moveUnit)
             {
                 // Key event
                 if(event.type == sf::Event::KeyPressed && !m_waitingForPlayers)
@@ -805,7 +806,16 @@ void GENGINE::frame()
             displayMessage = true;
             messageTimer = m_fps / 25;
             message = "You  win!";
-        }	    
+        }	
+		else if(m_loose)
+		{
+			m_graphicEngine->drawMap(m_world);
+            m_graphicEngine->drawUnits(m_world);
+            displayMessage = true;
+            messageTimer = m_fps / 25;
+            message = "You  loose!";
+		}
+    
         if (view == 0)
         {
             m_graphicEngine->drawMap(m_world);
@@ -953,13 +963,19 @@ void GENGINE::notify(const Action &p_action)
         m_world->refreshVisibleMyProperty(m_world->getTerrain(p_action.coord[0]),true);
 		winCondition();
     }
+	else if(p_action.type == WIN)
+	{
+		m_win = true;
+	}
 } // notify()
 
 void GENGINE::winCondition()
 {
-	cout << m_world->getHQCount() << endl;
 	if(m_world->getHQCount() == 0)
 	{
-		cout << "PERDU!" << endl;
+		m_loose = true;
+		NetPackage np;
+		np.message = "7::" + to_string(m_player->getType());
+		m_netEngine->send(np);	
 	}
 } // winCondition()
