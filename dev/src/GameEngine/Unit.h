@@ -81,9 +81,13 @@ namespace nsGameEngine
 
             bool operator == (Unit p_a) const
             {
-            	return m_x == p_a.getCoord().first && m_y == p_a.getCoord().second;
+            	return m_x == p_a.getCoord().first && m_y == p_a.getCoord().second && m_gid == p_a.getGid() && m_ammo == p_a.getAmmo() && m_fuel == p_a.getFuel();
             }
-			
+			bool operator != (Unit p_a) const
+			{
+				return (!operator==(p_a));
+			}
+						
 
 		private:
 			UnitType m_type;
