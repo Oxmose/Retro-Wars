@@ -257,7 +257,7 @@ void NETENGINE::parseMessage(const std::string &p_message)
             m_gameEngine->notify(action);
             break;
 		case '5':
-			action.type = NEW_UNIT;
+			action.type = NEW_UNIT; 
 			action.coord.push_back(stringToCooord(split[1]));
 			action.data.push_back(stoi(split[2]));
 			action.data.push_back(stoi(split[3]));

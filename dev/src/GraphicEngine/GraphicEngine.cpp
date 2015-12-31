@@ -1161,6 +1161,26 @@ void GxENGINE::captureFlags(const vector<pair<int, int>> &p_flags, World *p_worl
 		float yPosition = coord.second * 16 - 12;
 
 		float remainingLife = 100 - p_world->getTerrain(coord).getHp() * 5;
+
+		//Test if overflow on left / right
+		if(xPosition <= 0)
+		{
+			for(;xPosition <= 0;++xPosition);
+		}
+		else if(xPosition + 40 >= m_relativeMapWidth)
+		{
+			for(;xPosition + 40 >= m_relativeMapWidth; --xPosition);
+		}
+
+		// Test if overflow on top/bottom
+		if(yPosition <= 0)
+		{
+			for(;yPosition <= 0; ++yPosition);
+		}
+		else if(yPosition + 10 >= m_relativeMapHeight)
+		{
+			for(;yPosition + 10 >= m_relativeMapHeight; --yPosition);
+		}
 	
         sf::RectangleShape rect(sf::Vector2f(40, 10));	
         rect.setFillColor(sf::Color(sf::Uint8(33), sf::Uint8(33), sf::Uint8(33), sf::Uint8(150)));

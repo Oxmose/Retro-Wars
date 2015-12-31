@@ -353,6 +353,8 @@ void GENGINE::frame()
 	// Resources management
 	bool isPaid = false;
 
+	vector<pair<int, int>> prevCaptureFlags;
+
     sf::Clock clock;
     while(m_window->isOpen())
     {	
@@ -761,7 +763,7 @@ void GENGINE::frame()
 			for(vector<tuple<pair<int, int>, Unit, bool>>::iterator iter = m_capturingBuilding.begin(); iter != m_capturingBuilding.end(); ++iter)
 			{
 				// Test if unit still here
-				if(m_world->getUnit(get<0>(*iter)) == m_world->getNoneUnit())
+				if(m_world->getUnit(get<0>(*iter)) == m_world->getNoneUnit() || m_world->getUnit(get<0>(*iter)).getOwner() != m_player->getType())
 				{
 					gone.push_back(iter);
 					get<2>(*iter) = true;	
@@ -823,7 +825,11 @@ void GENGINE::frame()
             m_graphicEngine->refreshUserInterface(m_player, m_world, m_turn);
 
 			// Capture flags
+			if(!m_turn)
+				captureFlags = prevCaptureFlags;
+
 			m_graphicEngine->captureFlags(captureFlags, m_world);
+				
         }
         else if (view == 1)
         {
@@ -835,6 +841,10 @@ void GENGINE::frame()
             m_graphicEngine->drawUnits(m_world);
             m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world, displayPorte);
 			// Capture flags
+
+			if(!m_turn)
+				captureFlags = prevCaptureFlags;
+
 			m_graphicEngine->captureFlags(captureFlags, m_world);
 
         }
@@ -845,7 +855,9 @@ void GENGINE::frame()
             messageTimer = m_fps / 25;
             message = "Waiting  for  " + to_string(m_playerLeft) + "  more  player.";
         }
-		
+	
+		if(m_turn)	
+			prevCaptureFlags = captureFlags;
 		captureFlags.clear();		
 
 
