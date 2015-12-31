@@ -53,6 +53,10 @@ namespace nsNetEngine
             bool isServer();
 
             std::pair<int,int> stringToCooord(const std::string &p_s);
+
+			// Return map name if not host
+			std::string getMapName();
+			std::string getMapHash();
         
         private:
 
@@ -66,6 +70,8 @@ namespace nsNetEngine
             std::string     m_ipAddress;
             unsigned int    m_port;
             bool            m_isServer;
+			std::string 	m_mapName;
+			std::string 	m_mapHash;
         
             // Player settings
             PLAYER_TYPE     m_playerType;

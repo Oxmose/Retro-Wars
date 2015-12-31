@@ -34,7 +34,7 @@ namespace nsNetEngine
             ~Server();
 
             // Launch server
-            bool launch();
+            bool launch(const std::string &p_mapName, const std::string &p_mapHash);
             
             // Disconect client
             void disconnectClient(const unsigned int &p_id, const bool &p_notErase = true);
@@ -69,6 +69,9 @@ namespace nsNetEngine
             unsigned int                            m_port;
             unsigned int                            m_maxPlayer;
             std::array<bool, 5>                     m_availablePositions;
+		
+			std::string 							m_mapName;
+			std::string 							m_mapHash;
 
             // Clients management
             std::map<unsigned int, Client>          m_clients;

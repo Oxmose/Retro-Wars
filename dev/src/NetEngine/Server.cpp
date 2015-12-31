@@ -30,7 +30,7 @@ NETSERVER::Server(const std::string &p_ipAddress, const unsigned int &p_port, Ne
     m_netEngine = p_netEngine; 
     m_maxPlayer = p_allowedPlayers.size();
     m_lastId    = 0;
-    
+
     // Init and load available player tokens for the current map
     for(unsigned int i = 0 ; i < 5; ++i)
         m_availablePositions[i] = false;
@@ -68,8 +68,10 @@ NETSERVER::~Server()
 	}
 } // ~Server()
 
-bool NETSERVER::launch()
+bool NETSERVER::launch(const string &p_mapName, const string &p_mapHash)
 {    
+	m_mapName = p_mapName;
+	m_mapHash = p_mapHash;
     // Bind the socket to the port
     if(m_listener.listen(m_port) != sf::Socket::Done)
     {
@@ -201,6 +203,11 @@ void NETSERVER::connectClient()
 
                 // Send accepting message
                 send(package, m_lastId, false);
+				
+				this_thread::sleep_for(0.5s);
+
+				package.message = m_mapName + "::" + m_mapHash;
+				send(package, m_lastId, false);
                 
                 // Add one to the clientID
                 m_lastId++;

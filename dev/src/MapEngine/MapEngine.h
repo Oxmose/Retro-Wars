@@ -9,6 +9,7 @@
 
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
+#include "../MD5Engine/md5wrapper.h"
 
 #define MAP_FOLDER "./maps/"
 #define TILESETS_FOLDER "./maps/tilesets/"
@@ -39,10 +40,15 @@ namespace nsMapEngine
             const Tmx::Layer*           getLayer(const unsigned int &p_layerId)       const;
             std::vector<int>            getLayerTiles(const unsigned int &p_layerId)  const;
 
-        private:
+			// Misc
+			std::string 				getHash() const;
+			std::string 				getName() const;
 
-            Tmx::Map             *m_map;
-            Tmx::PropertySet     m_properties;
+        private:
+			
+			std::string			m_mapName;
+            Tmx::Map            *m_map;
+            Tmx::PropertySet    m_properties;
 
     }; // MapEngine
 } // nsMapEngine

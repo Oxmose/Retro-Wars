@@ -85,36 +85,71 @@ int main(int argc, char** argv)
 		{
 			cerr << "\x1b[32;1mWrong command, use \"" << argv[0] << " -help\" to get help.\x1b[0m" << endl;
 			return 1;
-		}
-
-		// Load MAP
-        MapEngine mapEngine("first-map.tmx");
-        cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
+		}	
 
 		// Load NETENGINE
         NetEngine netEngine(serverAddress, serverPort);            
         netEngine.setIsServer(isServer);
 
-		// Launch NETENGINE
-        if (netEngine.launch("PLAYER" + to_string(playerType), playerType, &mapEngine))
-        {
-            if(isServer)
-                cout << "Loaded server on 127.0.0.1:" << serverPort << endl;
+		// If is server, load map first
+		if(isServer)
+		{
+			// Load MAP
+        	MapEngine mapEngine("first-map.tmx");
+        	cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
+
+			// Launch NETENGINE
+        	if (netEngine.launch("PLAYER" + to_string(playerType), playerType, &mapEngine))
+        	{
+            	cout << "Loaded server on 127.0.0.1:" << serverPort << endl;
           
-			// Load GAMEENGINE
-            GameEngine gameEngine(30*16, 20*16 + 90, "Retro Wars", &mapEngine, playerType, &netEngine);
-            netEngine.setNotifier(&gameEngine);
-            gameEngine.frame();
-        }
-		// ON ERROR
-        else
-        {
-			cout << "\x1b[32;1mPlease make sure that : " << endl << "\t -The server is launched." <<
+				// Load GAMEENGINE
+            	GameEngine gameEngine(30*16, 20*16 + 90, "Retro Wars", &mapEngine, playerType, &netEngine);
+            	netEngine.setNotifier(&gameEngine);
+            	gameEngine.frame();
+				// ON ERROR
+			}
+        	else
+        	{
+				cout << "\x1b[32;1mPlease make sure that : " << endl << "\t -The server is launched." <<
 												  endl << "\t -If hosting, your router/NAT is correctly configured." <<
 												  endl << "\t -If hosting, your system is not blocking used port." <<
 												  endl << "\t -You have access to the network." <<
 												  endl << "Then restart the game." << endl << "\x1b[0m";    
-        }       
+        	}
+		}
+		else
+		{
+			// Launch NETENGINE
+        	if (netEngine.launch("PLAYER" + to_string(playerType), playerType))
+        	{
+            	// Load MAP
+        		MapEngine mapEngine(netEngine.getMapName());
+			
+				if(mapEngine.getHash() != netEngine.getMapHash())
+				{
+					cout << "Map file is corrupted or not corresponding." << endl;
+					return 0;
+				}				
+
+        		cout << "Loaded map : " << mapEngine.getPlayers().size() << " players." <<endl;
+          
+				// Load GAMEENGINE
+            	GameEngine gameEngine(30*16, 20*16 + 90, "Retro Wars", &mapEngine, playerType, &netEngine);
+            	netEngine.setNotifier(&gameEngine);
+            	gameEngine.frame();
+				// ON ERROR
+			}
+        	else
+        	{
+				cout << "\x1b[32;1mPlease make sure that : " << endl << "\t -The server is launched." <<
+												  endl << "\t -If hosting, your router/NAT is correctly configured." <<
+												  endl << "\t -If hosting, your system is not blocking used port." <<
+												  endl << "\t -You have access to the network." <<
+												  endl << "Then restart the game." << endl << "\x1b[0m";    
+        	}
+
+		}       
     }
     catch(exception &e)
     {
@@ -123,6 +158,8 @@ int main(int argc, char** argv)
 	catch(...)
 	{
 		cerr << "UNKNOW ERROR, please contact developers (and do not expect replay from them)." << endl;
-	}	
+	}
+
+	return 0;	
 } // main()
 

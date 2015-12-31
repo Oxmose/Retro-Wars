@@ -52,9 +52,14 @@ bool NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_pla
     // The game instance is a player that hosts a game
     if(m_isServer)
     {
+		m_mapName = p_map->getName();
+		m_mapHash = p_map->getHash();
         m_map = p_map;
+
+		cout << m_mapName << " AND " << m_mapHash << endl;
+		
         m_server = new Server(m_ipAddress, m_port, this, m_map->getPlayers());
-        launched = m_server->launch();
+        launched = m_server->launch(m_mapName, m_mapHash);
     }  
     
     // Basic settings
@@ -97,6 +102,15 @@ bool NETENGINE::joinServer()
         manageError(cleanMessage(string(data, 3)));
     }
 
+	// Getting map name and checksum
+	char map[256];
+	m_socket.receive(map, 256, received);
+	
+	vector<string> mapSettings = splitString(cleanMessage(string(map)), "::");
+	m_mapName = mapSettings[0];
+	m_mapHash = mapSettings[1];
+
+	cout << " MAP : " << m_mapName << endl;	
     // Sending player information to be accepted
     NetPackage package;
     char typeStr[2];
@@ -113,7 +127,7 @@ bool NETENGINE::joinServer()
     {
         manageError(string(data, 3));
         return false;
-    }  
+    }
         
     // Start listener thread
 	m_connected = true;
@@ -128,7 +142,7 @@ void NETENGINE::listen()
     size_t received = 0;
     string message("");
     
-    // While we have tolisten the server
+    // While we have to listen the server
     while(m_listenServer)
     {
         sf::Socket::Status status;
@@ -144,6 +158,7 @@ void NETENGINE::listen()
         // Clean the message and get code if exists
         string strData = cleanMessage(string(data));
         string strCode = strData.substr(strData.size() - 3);
+
         // If end of message
         if(strCode == "|||")
         {
@@ -277,3 +292,13 @@ void NETENGINE::parseMessage(const std::string &p_message)
     }
         
 } // parseMessage()
+
+string NETENGINE::getMapName()
+{
+	return m_mapName;
+} // getMapName()
+
+string NETENGINE::getMapHash()
+{
+	return m_mapHash;
+}
