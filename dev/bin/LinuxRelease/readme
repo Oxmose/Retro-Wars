@@ -1,3 +1,4 @@
-To play the game :
-	1- Launch ". prelauch.sh" (not "./prelauch.sh")
-	2- Launch Retrowars
+run ". prelaunch.sh" (not ./prelaunch.sh)
+run ./Retrowars <port> to be host
+OR
+run ./Retrowars <ip> <port> to join a server

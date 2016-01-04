@@ -1,13 +1,13 @@
 project(RetroWars)
 
-include_directories(lib/Linux)
-include_directories(lib/Linux/tinyxml2-master)
-include_directories(lib/Linux/tmx)
-include_directories(lib/Linux/SFML_LINUX/include)
+include_directories(../lib/Linux)
+include_directories(../lib/Linux/tinyxml2-master)
+include_directories(../lib/Linux/tmxparser/src)
+include_directories(../lib/Linux/SFML_LINUX/include)
 
-link_directories(lib/Linux/tinyxml2-master)
-link_directories(lib/Linux/tmxparser-master)
-link_directories(lib/Linux/SFML_LINUX/lib)
+link_directories(../lib/Linux/tinyxml2-master)
+link_directories(../lib/Linux/tmxparser)
+link_directories(../lib/Linux/SFML_LINUX/lib)
 
 
 SET(GCC_COVERAGE_COMPILE_FLAGS "-std=c++14 -Wall")
@@ -20,13 +20,13 @@ file(
 
         source_files
 
-        src/*
+        ../src/*
 )
 
 
 add_executable(
 
-    bin/LinuxRelease/RetroWars
+    ../bin/LinuxRelease/RetroWars
 
     ${source_files}
 )
