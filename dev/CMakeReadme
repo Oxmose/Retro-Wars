@@ -1,0 +1,1 @@
+To run CMake on your architecture, just copy the CMakeList.txt from the right folder to the dev folder and run cmake .
