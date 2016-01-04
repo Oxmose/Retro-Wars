@@ -1,14 +1,14 @@
 project(RetroWars)
 
 include_directories(/usr/local/include)
-include_directories(lib/OSX/tinyxml2-master)
-include_directories(lib/OSX/tmxparser-master)
-include_directories(lib/OSX/SFML-2.3.2-osx-clang-universal/include)
+include_directories(../lib/OSX/tinyxml2-master)
+include_directories(../lib/OSX/tmxparser-master)
+include_directories(../lib/OSX/SFML-2.3.2-osx-clang-universal/include)
 
 link_directories(/usr/local/lib)
-link_directories(lib/OSX/tinyxml2-master)
-link_directories(lib/OSX/tmxparser-master)
-link_directories(lib/OSX/SFML-2.3.2-osx-clang-universal/lib)
+link_directories(../lib/OSX/tinyxml2-master)
+link_directories(../lib/OSX/tmxparser-master)
+link_directories(../lib/OSX/SFML-2.3.2-osx-clang-universal/lib)
 
 
 SET(GCC_COVERAGE_COMPILE_FLAGS "-std=c++14 -Wall")
@@ -22,13 +22,13 @@ file(
 
         source_files
 
-        src/*
+        ../src/*
 )
 
 
 add_executable(
 
-    bin/OSXRelease/RetroWars
+    ../bin/OSXRelease/RetroWars
 
     ${source_files}
 )
