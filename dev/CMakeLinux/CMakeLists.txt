@@ -1,5 +1,6 @@
 project(RetroWars)
 
+include_directories(lib/Linux)
 include_directories(lib/Linux/tinyxml2-master)
 include_directories(lib/Linux/tmx)
 include_directories(lib/Linux/SFML_LINUX/include)
