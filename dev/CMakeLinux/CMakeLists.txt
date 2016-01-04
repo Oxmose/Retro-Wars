@@ -1,8 +1,8 @@
 project(RetroWars)
 
 include_directories(lib/Linux/tinyxml2-master)
-include_directories(lib/Linux/tmxparser-master)
-include_directories(lib/Linux/SFML_LINUX/include/SFML)
+include_directories(lib/Linux/tmx)
+include_directories(lib/Linux/SFML_LINUX/include)
 
 link_directories(lib/Linux/tinyxml2-master)
 link_directories(lib/Linux/tmxparser-master)
