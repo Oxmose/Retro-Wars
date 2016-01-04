@@ -9,8 +9,6 @@
 // SFML LIB
 #include <SFML/Graphics.hpp>
 
-// MAPLOADER TMX LIB
-#include <tmx/MapLoader.h>
 
 // INCLUDE FROM PROJECT
 #include "../MapEngine/MapEngine.h"

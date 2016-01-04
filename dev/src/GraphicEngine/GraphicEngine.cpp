@@ -3,7 +3,6 @@
 #include <utility>
 
 #include <SFML/Graphics.hpp>
-#include <tmx/MapLoader.h>
 
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/Terrain.h"
