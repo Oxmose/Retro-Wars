@@ -124,7 +124,7 @@ std::list<Unit>& GENGINE_W::getUnits()
 
 Terrain& GENGINE_W::getTerrain(int p_x, int p_y)
 {
-	for(int i = 0 ; i < m_terrain.size() ; i++)
+	for(unsigned int i = 0 ; i < m_terrain.size() ; i++)
 		if(m_terrain[i].getCoord().first == p_x && m_terrain[i].getCoord().second == p_y)
 			return m_terrain[i];
 	return m_noneTerrain;

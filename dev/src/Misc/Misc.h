@@ -1,6 +1,7 @@
 #ifndef DEF_MISC_H
 #define DEF_MISC_H
 
+// STD LIBS
 #include <string>
 
 // The type de player can have. It's kind of a token.
@@ -32,6 +33,6 @@ inline std::string getPlayerName(PLAYER_TYPE p_playerType)
         case 5:
             return "Black";
     }
-} // inline getPlayerName();
+} // inline getPlayerName()
 
 #endif

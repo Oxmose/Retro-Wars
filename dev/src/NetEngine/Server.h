@@ -1,6 +1,7 @@
 #ifndef DEF_SERVER_H
 #define DEF_SERVER_H
 
+// STD LIBS
 #include <string>
 #include <vector>
 #include <array>
@@ -11,13 +12,16 @@
 #include <map>
 #include <utility>
 
+// SFML
 #include <SFML/Network.hpp>
 
+// INCLUDE FROM PACKAGE
+#include "NetEngine.h"
+#include "Structures.h"
+
+// OTHER INCLUDES FROM PROJECT
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
-
-#include "Structures.h"
-#include "NetEngine.h"
 
 namespace nsNetEngine
 {
@@ -57,9 +61,9 @@ namespace nsNetEngine
             // Thread listening to clients
             void listenClients(unsigned int p_id);
 
-			// Allow to timeout (non blocking forever the thread)
-			sf::Socket::Status receiveTime(sf::TcpSocket &p_socket, char* p_buffer, const unsigned int p_limit, size_t &p_received);
-			sf::Socket::Status acceptTime(sf::TcpListener &p_listener, sf::TcpSocket &p_client);
+            // Allow to timeout (non blocking forever the thread)
+            sf::Socket::Status receiveTime(sf::TcpSocket &p_socket, char* p_buffer, const unsigned int p_limit, size_t &p_received);
+            sf::Socket::Status acceptTime(sf::TcpListener &p_listener, sf::TcpSocket &p_client);
 
             // Parse net messages
             void parseMessage(const unsigned int &p_id, const std::string &p_message);
@@ -69,9 +73,9 @@ namespace nsNetEngine
             unsigned int                            m_port;
             unsigned int                            m_maxPlayer;
             std::array<bool, 5>                     m_availablePositions;
-		
-			std::string 							m_mapName;
-			std::string 							m_mapHash;
+        
+            std::string                             m_mapName;
+            std::string                             m_mapHash;
 
             // Clients management
             std::map<unsigned int, Client>          m_clients;
@@ -95,6 +99,5 @@ namespace nsNetEngine
     }; // Server
 
 } // nsNetEngine
-
 
 #endif

@@ -1,9 +1,13 @@
 #ifndef DEF_STRUCTURES_H
 #define DEF_STRUCTURES_H
 
-#include <SFML/Network.hpp>
+// STD LIBS
 #include <vector>
 
+// SFML
+#include <SFML/Network.hpp>
+
+// OTHER INCLUDES FROM PROJECT
 #include "../Misc/Misc.h"
 
 namespace nsNetEngine
@@ -33,18 +37,18 @@ namespace nsNetEngine
         sf::TcpSocket   *socket;        
     }; // Client
 
-	
+    
     enum ACTION_TYPE
     {
         MOVE = 0,
         ATTACK,
-		CH_TURN,
-		NEW_PLAYER,
-		DISCONNECTED,
-		NEW_UNIT,
+        CH_TURN,
+        NEW_PLAYER,
+        DISCONNECTED,
+        NEW_UNIT,
         CAPTURE,
-		WIN
-    };
+        WIN
+    }; // ACTION_TYPE
 
     typedef struct Action Action;
     struct Action
@@ -52,7 +56,7 @@ namespace nsNetEngine
         ACTION_TYPE type;
         std::vector<std::pair<int, int>> coord;
         std::vector<int> data;
-    };
+    }; // Action
 } // nsNetEngine
 
 #endif

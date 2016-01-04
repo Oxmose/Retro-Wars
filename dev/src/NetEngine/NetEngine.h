@@ -1,16 +1,20 @@
 #ifndef DEF_NETENGINE_H
 #define DEF_NETENGINE_H
 
+// STD LIBS
 #include <iostream>
 #include <string>
 #include <atomic>
 #include <thread>
 
+// SFML
 #include <SFML/Network.hpp>
 
-#include "Server.h"
+// INCLUDE FROM PACKAGE
+#include "NetEngine.h"
 #include "Structures.h"
 
+// OTHER INCLUDE FROM PROJECT
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/GameEngine.h"
 #include "../Misc/Misc.h"
@@ -54,9 +58,9 @@ namespace nsNetEngine
 
             std::pair<int,int> stringToCooord(const std::string &p_s);
 
-			// Return map name if not host
-			std::string getMapName();
-			std::string getMapHash();
+            // Return map name if not host
+            std::string getMapName();
+            std::string getMapHash();
         
         private:
 
@@ -70,8 +74,8 @@ namespace nsNetEngine
             std::string     m_ipAddress;
             unsigned int    m_port;
             bool            m_isServer;
-			std::string 	m_mapName;
-			std::string 	m_mapHash;
+            std::string     m_mapName;
+            std::string     m_mapHash;
         
             // Player settings
             PLAYER_TYPE     m_playerType;
@@ -81,7 +85,7 @@ namespace nsNetEngine
             std::atomic<bool>               m_listenServer;
             sf::TcpSocket                   m_socket;        
             std::thread                     *m_listenerThread;
-			std::atomic<bool>				m_connected;
+            std::atomic<bool>                m_connected;
 
             // Server management
             Server                          *m_server;        

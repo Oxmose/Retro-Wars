@@ -509,7 +509,7 @@ void GxENGINE::displayUnitInfo(Player *p_player, Unit &p_unit, const pair<int, i
                 break;
             }
         }  
-        if (!acces && p_mvtCursor.first == p_player->getCoord().first && p_mvtCursor.second == p_player->getCoord().second)
+        if (!acces && (unsigned int)p_mvtCursor.first == p_player->getCoord().first && (unsigned int)p_mvtCursor.second == p_player->getCoord().second)
             mvtCursor.setFillColor(sf::Color(sf::Uint8(0), sf::Uint8(0), sf::Uint8(0), sf::Uint8(50)));
         else if (!acces)
             mvtCursor.setFillColor(sf::Color(sf::Uint8(255), sf::Uint8(100), sf::Uint8(100), sf::Uint8(200)));            

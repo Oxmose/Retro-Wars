@@ -1,13 +1,18 @@
 #ifndef DEF_GRAPHICENGINE_H
 #define DEF_GRAPHICENGINE_H
 
+// STD LIBS
 #include <iostream>
 #include <string>
 #include <utility>
 
+// SFML LIB
 #include <SFML/Graphics.hpp>
+
+// MAPLOADER TMX LIB
 #include <tmx/MapLoader.h>
 
+// INCLUDE FROM PROJECT
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/Terrain.h"
 #include "../GameEngine/World.h"
@@ -43,14 +48,15 @@ namespace nsGraphicEngine
 
             // Display message
             void displayMessage(const std::string &p_message);
-	   		void manageTurn(bool p_turn);
+               void manageTurn(bool p_turn);
 
             // Display attack notification
             void notifyAttack(int p_attackStep, const std::pair<int, int> &p_where);
 
-			// Display capture flags
-			void captureFlags(const std::vector<std::pair<int, int>> &p_flags, nsGameEngine::World *p_world);
+            // Display capture flags
+            void captureFlags(const std::vector<std::pair<int, int>> &p_flags, nsGameEngine::World *p_world);
 
+            // Check map properties
             void checkProperties(nsGameEngine::World* p_world);
 
         private:
@@ -84,12 +90,13 @@ namespace nsGraphicEngine
             sf::IntRect unit_gidToRect(int p_gid);
             sf::IntRect propertyToRect(nsGameEngine::Terrain p_property);
 
+            // Sprites
             std::vector<sf::Sprite> m_map[4]; 
 
             // Other graphicResources
             sf::Texture m_explosionTexture;
             sf::Sprite  m_explosionSprite;
-	        sf::Texture m_miscTextures;
+            sf::Texture m_miscTextures;
             sf::Texture m_backgroundTexture;
             sf::Texture m_baseBgTexture;
 

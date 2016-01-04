@@ -1,14 +1,20 @@
+// STD LIBS
 #include <iostream>
 #include <string>
 #include <atomic>
 #include <thread>
 
+// SFML
 #include <SFML/Network.hpp>
 
-#include "NetEngine.h"
+// HEADER FILE
 #include "Server.h"
+
+// INCLUDE FROM PACKAGE
+#include "NetEngine.h"
 #include "Structures.h"
 
+// OTHER INCLUDE FROM PROJECT
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/GameEngine.h"
 #include "../Misc/Misc.h"
@@ -26,14 +32,14 @@ NETENGINE::NetEngine(const std::string &p_ipAddress, const unsigned int &p_port)
     m_port = p_port;
     m_listenServer = true;
     m_isServer = false;
-	m_connected = false;
+    m_connected = false;
 } // NetEngine()
 
 NETENGINE::~NetEngine()
 {
     // Disconnecting from server
-	if(m_connected)
-    	disconnect();
+    if(m_connected)
+        disconnect();
 
     // If is host, disconnect server
     if(m_isServer && m_server != nullptr)
@@ -52,12 +58,12 @@ bool NETENGINE::launch(const std::string &p_playerName, const PLAYER_TYPE &p_pla
     // The game instance is a player that hosts a game
     if(m_isServer)
     {
-		m_mapName = p_map->getName();
-		m_mapHash = p_map->getHash();
+        m_mapName = p_map->getName();
+        m_mapHash = p_map->getHash();
         m_map = p_map;
 
-		cout << m_mapName << " AND " << m_mapHash << endl;
-		
+        cout << m_mapName << " AND " << m_mapHash << endl;
+        
         m_server = new Server(m_ipAddress, m_port, this, m_map->getPlayers());
         launched = m_server->launch(m_mapName, m_mapHash);
     }  
@@ -102,15 +108,15 @@ bool NETENGINE::joinServer()
         manageError(cleanMessage(string(data, 3)));
     }
 
-	// Getting map name and checksum
-	char map[256];
-	m_socket.receive(map, 256, received);
-	
-	vector<string> mapSettings = splitString(cleanMessage(string(map)), "::");
-	m_mapName = mapSettings[0];
-	m_mapHash = mapSettings[1];
+    // Getting map name and checksum
+    char map[256];
+    m_socket.receive(map, 256, received);
+    
+    vector<string> mapSettings = splitString(cleanMessage(string(map)), "::");
+    m_mapName = mapSettings[0];
+    m_mapHash = mapSettings[1];
 
-	cout << " MAP : " << m_mapName << endl;	
+    cout << " MAP : " << m_mapName << endl;    
     // Sending player information to be accepted
     NetPackage package;
     char typeStr[2];
@@ -130,7 +136,7 @@ bool NETENGINE::joinServer()
     }
         
     // Start listener thread
-	m_connected = true;
+    m_connected = true;
     m_listenerThread = new thread(&NetEngine::listen, this);   
 
     return true;
@@ -149,7 +155,7 @@ void NETENGINE::listen()
         if((status = m_socket.receive(data, 256, received)) != sf::Socket::Done)
         {
             cout << "Error receiving message for server " << status << endl;         
-         	parseMessage("4::4");
+             parseMessage("4::4");
    
             if(status == sf::Socket::Disconnected)
                 return;  
@@ -233,7 +239,7 @@ std::pair<int,int> NETENGINE::stringToCooord(const std::string &p_s)
 {
     int i = p_s.find(",");
     return make_pair(std::stoi(p_s.substr(1,i-1)),std::stoi(p_s.substr(i+1, p_s.size()-i-2)));
-}
+} // stringToCooord()
 
 void NETENGINE::parseMessage(const std::string &p_message)
 {   
@@ -267,38 +273,38 @@ void NETENGINE::parseMessage(const std::string &p_message)
             action.data.push_back(stoi(split[1]));
             m_gameEngine->notify(action);
             break;
-	    case '4':
-	        action.type = DISCONNECTED;
+        case '4':
+            action.type = DISCONNECTED;
             m_gameEngine->notify(action);
             break;
-		case '5':
-			action.type = NEW_UNIT; 
-			action.coord.push_back(stringToCooord(split[1]));
-			action.data.push_back(stoi(split[2]));
-			action.data.push_back(stoi(split[3]));
-			m_gameEngine->notify(action);
-			break;   
+        case '5':
+            action.type = NEW_UNIT; 
+            action.coord.push_back(stringToCooord(split[1]));
+            action.data.push_back(stoi(split[2]));
+            action.data.push_back(stoi(split[3]));
+            m_gameEngine->notify(action);
+            break;   
         case '6':
             action.type = CAPTURE;
             action.coord.push_back(stringToCooord(split[1]));
             action.data.push_back(stoi(split[2]));
             m_gameEngine->notify(action);
             break;
-		case '7':
-			action.type = WIN;
-			action.data.push_back(stoi(split[1]));
-			m_gameEngine->notify(action);
-			break;  
+        case '7':
+            action.type = WIN;
+            action.data.push_back(stoi(split[1]));
+            m_gameEngine->notify(action);
+            break;  
     }
         
 } // parseMessage()
 
 string NETENGINE::getMapName()
 {
-	return m_mapName;
+    return m_mapName;
 } // getMapName()
 
 string NETENGINE::getMapHash()
 {
-	return m_mapHash;
-}
+    return m_mapHash;
+} // getMapHash()

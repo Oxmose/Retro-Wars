@@ -1,15 +1,20 @@
 #ifndef DEF_MAPENGINE_H
 #define DEF_MAPENGINE_H
 
+// STD LIBS
 #include <string>
 #include <vector>
 #include <algorithm>
 
+// TMX PARSER LIB
 #include <tmxparser/Tmx.h>
 
+// MD5 LIB
+#include "../MD5Engine/md5wrapper.h"
+
+// OTHER INCLUDES FROM PROJECT
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
-#include "../MD5Engine/md5wrapper.h"
 
 #define MAP_FOLDER "./maps/"
 #define TILESETS_FOLDER "./maps/tilesets/"
@@ -40,13 +45,13 @@ namespace nsMapEngine
             const Tmx::Layer*           getLayer(const unsigned int &p_layerId)       const;
             std::vector<int>            getLayerTiles(const unsigned int &p_layerId)  const;
 
-			// Misc
-			std::string 				getHash() const;
-			std::string 				getName() const;
+            // Misc
+            std::string                 getHash() const;
+            std::string                 getName() const;
 
         private:
-			
-			std::string			m_mapName;
+            
+            std::string            m_mapName;
             Tmx::Map            *m_map;
             Tmx::PropertySet    m_properties;
 

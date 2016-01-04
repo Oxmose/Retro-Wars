@@ -1,15 +1,20 @@
+// STD LIBS
 #include <string>
 #include <vector>
 #include <algorithm>
 
-#include <iostream>
-
+// TMX PARSER LIB
 #include <tmxparser/Tmx.h>
 
+// MD5 LIB
+#include "../MD5Engine/md5wrapper.h"
+
+// HEADER FILE
 #include "MapEngine.h"
+
+// OTHER INCLUDES FROM PROJECT
 #include "../Misc/Misc.h"
 #include "../Misc/Tools.h"
-#include "../MD5Engine/md5wrapper.h"
 
 using namespace std;
 using namespace nsTools;
@@ -23,7 +28,7 @@ MAPENGINE::MapEngine(const string &p_mapName)
     m_map->ParseFile(MAP_FOLDER + p_mapName);
     m_properties = m_map->GetProperties();
 
-	m_mapName = p_mapName;
+    m_mapName = p_mapName;
 } // MapEngine()
 
 MAPENGINE::~MapEngine()
@@ -123,11 +128,11 @@ vector<int> MAPENGINE::getLayerTiles(const unsigned int &p_layerId) const
 
 string MAPENGINE::getHash() const
 {
-	md5wrapper md5;
-	return md5.getHashFromFile(MAP_FOLDER + m_mapName);
+    md5wrapper md5;
+    return md5.getHashFromFile(MAP_FOLDER + m_mapName);
 } // getHash()
 
 string MAPENGINE::getName() const
 {
-	return m_mapName;
+    return m_mapName;
 } // getName()
