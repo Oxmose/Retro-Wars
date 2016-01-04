@@ -2,3 +2,5 @@ run ". prelaunch.sh" (not ./prelaunch.sh)
 run ./Retrowars <port> to be host
 OR
 run ./Retrowars <ip> <port> to join a server
+
+if errors occur during launch, please recompile libs (sources present in dev/lib/Linux).
