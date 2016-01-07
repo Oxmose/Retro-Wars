@@ -1,4 +1,4 @@
-# Install script for directory: /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX
+# Install script for directory: /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,24 +33,24 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "devel")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/include" FILES_MATCHING REGEX "/[^/]*\\.hpp$" REGEX "/[^/]*\\.inl$")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/include" FILES_MATCHING REGEX "/[^/]*\\.hpp$" REGEX "/[^/]*\\.inl$")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SFML" TYPE FILE FILES "/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/license.txt")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SFML" TYPE FILE FILES "/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/license.txt")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SFML" TYPE FILE FILES "/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/readme.txt")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SFML" TYPE FILE FILES "/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/readme.txt")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SFML/cmake/Modules" TYPE FILE FILES "/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/cmake/Modules/FindSFML.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SFML/cmake/Modules" TYPE FILE FILES "/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/cmake/Modules/FindSFML.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/cmake_install.cmake")
+  include("/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/cmake_install.cmake")
 
 endif()
 
@@ -62,5 +62,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

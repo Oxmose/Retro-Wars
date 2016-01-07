@@ -6,27 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/BlendMode.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/BlendMode.cpp
 SFML/Graphics/BlendMode.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/CircleShape.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/CircleShape.cpp
 SFML/Graphics/CircleShape.hpp
 -
 cmath
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Color.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Color.cpp
 SFML/Graphics/Color.hpp
 -
 algorithm
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/ConvexShape.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/ConvexShape.cpp
 SFML/Graphics/ConvexShape.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Font.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Font.cpp
 SFML/Graphics/Font.hpp
 -
 SFML/Graphics/GLCheck.hpp
@@ -44,7 +44,7 @@ cstdlib
 cstring
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/GLCheck.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/GLCheck.cpp
 SFML/Graphics/GLCheck.hpp
 -
 SFML/System/Err.hpp
@@ -52,13 +52,13 @@ SFML/System/Err.hpp
 string
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/GLExtensions.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/GLExtensions.cpp
 SFML/Graphics/GLExtensions.hpp
 -
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/GLLoader.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/GLLoader.cpp
 SFML/Graphics/GLLoader.hpp
 -
 SFML/Graphics/GLCheck.hpp
@@ -72,7 +72,7 @@ cstring
 cstddef
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Image.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Image.cpp
 SFML/Graphics/Image.hpp
 -
 SFML/Graphics/ImageLoader.hpp
@@ -86,7 +86,7 @@ algorithm
 cstring
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/ImageLoader.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/ImageLoader.cpp
 SFML/Graphics/ImageLoader.hpp
 -
 SFML/System/InputStream.hpp
@@ -104,19 +104,19 @@ jerror.h
 cctype
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RectangleShape.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RectangleShape.cpp
 SFML/Graphics/RectangleShape.hpp
 -
 cmath
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderStates.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderStates.cpp
 SFML/Graphics/RenderStates.hpp
 -
 cstddef
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTarget.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTarget.cpp
 SFML/Graphics/RenderTarget.hpp
 -
 SFML/Graphics/Drawable.hpp
@@ -136,7 +136,7 @@ cassert
 iostream
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTexture.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTexture.cpp
 SFML/Graphics/RenderTexture.hpp
 -
 SFML/Graphics/RenderTextureImplFBO.hpp
@@ -146,11 +146,11 @@ SFML/Graphics/RenderTextureImplDefault.hpp
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTextureImpl.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTextureImpl.cpp
 SFML/Graphics/RenderTextureImpl.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTextureImplDefault.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTextureImplDefault.cpp
 SFML/Graphics/RenderTextureImplDefault.hpp
 -
 SFML/Graphics/GLCheck.hpp
@@ -162,7 +162,7 @@ SFML/Window/Context.hpp
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTextureImplFBO.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderTextureImplFBO.cpp
 SFML/Graphics/RenderTextureImplFBO.hpp
 -
 SFML/Graphics/Texture.hpp
@@ -172,13 +172,13 @@ SFML/Graphics/GLCheck.hpp
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderWindow.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/RenderWindow.cpp
 SFML/Graphics/RenderWindow.hpp
 -
 SFML/Graphics/GLCheck.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Shader.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Shader.cpp
 SFML/Graphics/Shader.hpp
 -
 SFML/Graphics/Texture.hpp
@@ -200,7 +200,7 @@ fstream
 vector
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Shape.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Shape.cpp
 SFML/Graphics/Shape.hpp
 -
 SFML/Graphics/RenderTarget.hpp
@@ -212,7 +212,7 @@ SFML/System/Err.hpp
 cmath
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Sprite.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Sprite.cpp
 SFML/Graphics/Sprite.hpp
 -
 SFML/Graphics/Texture.hpp
@@ -222,7 +222,7 @@ SFML/Graphics/RenderTarget.hpp
 cstdlib
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Text.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Text.cpp
 SFML/Graphics/Text.hpp
 -
 SFML/Graphics/Texture.hpp
@@ -232,7 +232,7 @@ SFML/Graphics/RenderTarget.hpp
 cmath
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Texture.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Texture.cpp
 SFML/Graphics/Texture.hpp
 -
 SFML/Graphics/Image.hpp
@@ -256,33 +256,33 @@ cassert
 cstring
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/TextureSaver.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/TextureSaver.cpp
 SFML/Graphics/TextureSaver.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Transform.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Transform.cpp
 SFML/Graphics/Transform.hpp
 -
 cmath
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Transformable.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Transformable.cpp
 SFML/Graphics/Transformable.hpp
 -
 cmath
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Vertex.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/Vertex.cpp
 SFML/Graphics/Vertex.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/VertexArray.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/VertexArray.cpp
 SFML/Graphics/VertexArray.hpp
 -
 SFML/Graphics/RenderTarget.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/View.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Graphics/View.cpp
 SFML/Graphics/View.hpp
 -
 cmath

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX
+CMAKE_SOURCE_DIR = /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX
+CMAKE_BINARY_DIR = /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,14 +124,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -E cmake_progress_start /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/CMakeFiles/progress.marks
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles 0
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -E cmake_progress_start /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/CMakeFiles/progress.marks
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/clean
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,22 +141,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/preinstall
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/preinstall
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/SFML/Window/CMakeFiles/sfml-window.dir/rule:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/CMakeFiles/sfml-window.dir/rule
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f CMakeFiles/Makefile2 src/SFML/Window/CMakeFiles/sfml-window.dir/rule
 .PHONY : src/SFML/Window/CMakeFiles/sfml-window.dir/rule
 
 # Convenience name for target.
@@ -166,7 +166,7 @@ sfml-window: src/SFML/Window/CMakeFiles/sfml-window.dir/rule
 
 # fast build rule for target.
 sfml-window/fast:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/build
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/build
 .PHONY : sfml-window/fast
 
 Context.o: Context.cpp.o
@@ -175,7 +175,7 @@ Context.o: Context.cpp.o
 
 # target to build an object file
 Context.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o
 .PHONY : Context.cpp.o
 
 Context.i: Context.cpp.i
@@ -184,7 +184,7 @@ Context.i: Context.cpp.i
 
 # target to preprocess a source file
 Context.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.i
 .PHONY : Context.cpp.i
 
 Context.s: Context.cpp.s
@@ -193,7 +193,7 @@ Context.s: Context.cpp.s
 
 # target to generate assembly for a file
 Context.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.s
 .PHONY : Context.cpp.s
 
 GlContext.o: GlContext.cpp.o
@@ -202,7 +202,7 @@ GlContext.o: GlContext.cpp.o
 
 # target to build an object file
 GlContext.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o
 .PHONY : GlContext.cpp.o
 
 GlContext.i: GlContext.cpp.i
@@ -211,7 +211,7 @@ GlContext.i: GlContext.cpp.i
 
 # target to preprocess a source file
 GlContext.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.i
 .PHONY : GlContext.cpp.i
 
 GlContext.s: GlContext.cpp.s
@@ -220,7 +220,7 @@ GlContext.s: GlContext.cpp.s
 
 # target to generate assembly for a file
 GlContext.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.s
 .PHONY : GlContext.cpp.s
 
 GlResource.o: GlResource.cpp.o
@@ -229,7 +229,7 @@ GlResource.o: GlResource.cpp.o
 
 # target to build an object file
 GlResource.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o
 .PHONY : GlResource.cpp.o
 
 GlResource.i: GlResource.cpp.i
@@ -238,7 +238,7 @@ GlResource.i: GlResource.cpp.i
 
 # target to preprocess a source file
 GlResource.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.i
 .PHONY : GlResource.cpp.i
 
 GlResource.s: GlResource.cpp.s
@@ -247,7 +247,7 @@ GlResource.s: GlResource.cpp.s
 
 # target to generate assembly for a file
 GlResource.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.s
 .PHONY : GlResource.cpp.s
 
 Joystick.o: Joystick.cpp.o
@@ -256,7 +256,7 @@ Joystick.o: Joystick.cpp.o
 
 # target to build an object file
 Joystick.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o
 .PHONY : Joystick.cpp.o
 
 Joystick.i: Joystick.cpp.i
@@ -265,7 +265,7 @@ Joystick.i: Joystick.cpp.i
 
 # target to preprocess a source file
 Joystick.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.i
 .PHONY : Joystick.cpp.i
 
 Joystick.s: Joystick.cpp.s
@@ -274,7 +274,7 @@ Joystick.s: Joystick.cpp.s
 
 # target to generate assembly for a file
 Joystick.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.s
 .PHONY : Joystick.cpp.s
 
 JoystickManager.o: JoystickManager.cpp.o
@@ -283,7 +283,7 @@ JoystickManager.o: JoystickManager.cpp.o
 
 # target to build an object file
 JoystickManager.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o
 .PHONY : JoystickManager.cpp.o
 
 JoystickManager.i: JoystickManager.cpp.i
@@ -292,7 +292,7 @@ JoystickManager.i: JoystickManager.cpp.i
 
 # target to preprocess a source file
 JoystickManager.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.i
 .PHONY : JoystickManager.cpp.i
 
 JoystickManager.s: JoystickManager.cpp.s
@@ -301,7 +301,7 @@ JoystickManager.s: JoystickManager.cpp.s
 
 # target to generate assembly for a file
 JoystickManager.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.s
 .PHONY : JoystickManager.cpp.s
 
 Keyboard.o: Keyboard.cpp.o
@@ -310,7 +310,7 @@ Keyboard.o: Keyboard.cpp.o
 
 # target to build an object file
 Keyboard.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o
 .PHONY : Keyboard.cpp.o
 
 Keyboard.i: Keyboard.cpp.i
@@ -319,7 +319,7 @@ Keyboard.i: Keyboard.cpp.i
 
 # target to preprocess a source file
 Keyboard.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.i
 .PHONY : Keyboard.cpp.i
 
 Keyboard.s: Keyboard.cpp.s
@@ -328,7 +328,7 @@ Keyboard.s: Keyboard.cpp.s
 
 # target to generate assembly for a file
 Keyboard.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.s
 .PHONY : Keyboard.cpp.s
 
 Mouse.o: Mouse.cpp.o
@@ -337,7 +337,7 @@ Mouse.o: Mouse.cpp.o
 
 # target to build an object file
 Mouse.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o
 .PHONY : Mouse.cpp.o
 
 Mouse.i: Mouse.cpp.i
@@ -346,7 +346,7 @@ Mouse.i: Mouse.cpp.i
 
 # target to preprocess a source file
 Mouse.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.i
 .PHONY : Mouse.cpp.i
 
 Mouse.s: Mouse.cpp.s
@@ -355,7 +355,7 @@ Mouse.s: Mouse.cpp.s
 
 # target to generate assembly for a file
 Mouse.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.s
 .PHONY : Mouse.cpp.s
 
 Sensor.o: Sensor.cpp.o
@@ -364,7 +364,7 @@ Sensor.o: Sensor.cpp.o
 
 # target to build an object file
 Sensor.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o
 .PHONY : Sensor.cpp.o
 
 Sensor.i: Sensor.cpp.i
@@ -373,7 +373,7 @@ Sensor.i: Sensor.cpp.i
 
 # target to preprocess a source file
 Sensor.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.i
 .PHONY : Sensor.cpp.i
 
 Sensor.s: Sensor.cpp.s
@@ -382,7 +382,7 @@ Sensor.s: Sensor.cpp.s
 
 # target to generate assembly for a file
 Sensor.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.s
 .PHONY : Sensor.cpp.s
 
 SensorManager.o: SensorManager.cpp.o
@@ -391,7 +391,7 @@ SensorManager.o: SensorManager.cpp.o
 
 # target to build an object file
 SensorManager.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o
 .PHONY : SensorManager.cpp.o
 
 SensorManager.i: SensorManager.cpp.i
@@ -400,7 +400,7 @@ SensorManager.i: SensorManager.cpp.i
 
 # target to preprocess a source file
 SensorManager.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.i
 .PHONY : SensorManager.cpp.i
 
 SensorManager.s: SensorManager.cpp.s
@@ -409,7 +409,7 @@ SensorManager.s: SensorManager.cpp.s
 
 # target to generate assembly for a file
 SensorManager.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.s
 .PHONY : SensorManager.cpp.s
 
 Touch.o: Touch.cpp.o
@@ -418,7 +418,7 @@ Touch.o: Touch.cpp.o
 
 # target to build an object file
 Touch.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o
 .PHONY : Touch.cpp.o
 
 Touch.i: Touch.cpp.i
@@ -427,7 +427,7 @@ Touch.i: Touch.cpp.i
 
 # target to preprocess a source file
 Touch.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.i
 .PHONY : Touch.cpp.i
 
 Touch.s: Touch.cpp.s
@@ -436,7 +436,7 @@ Touch.s: Touch.cpp.s
 
 # target to generate assembly for a file
 Touch.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.s
 .PHONY : Touch.cpp.s
 
 Unix/Display.o: Unix/Display.cpp.o
@@ -445,7 +445,7 @@ Unix/Display.o: Unix/Display.cpp.o
 
 # target to build an object file
 Unix/Display.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o
 .PHONY : Unix/Display.cpp.o
 
 Unix/Display.i: Unix/Display.cpp.i
@@ -454,7 +454,7 @@ Unix/Display.i: Unix/Display.cpp.i
 
 # target to preprocess a source file
 Unix/Display.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.i
 .PHONY : Unix/Display.cpp.i
 
 Unix/Display.s: Unix/Display.cpp.s
@@ -463,7 +463,7 @@ Unix/Display.s: Unix/Display.cpp.s
 
 # target to generate assembly for a file
 Unix/Display.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.s
 .PHONY : Unix/Display.cpp.s
 
 Unix/GlxContext.o: Unix/GlxContext.cpp.o
@@ -472,7 +472,7 @@ Unix/GlxContext.o: Unix/GlxContext.cpp.o
 
 # target to build an object file
 Unix/GlxContext.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o
 .PHONY : Unix/GlxContext.cpp.o
 
 Unix/GlxContext.i: Unix/GlxContext.cpp.i
@@ -481,7 +481,7 @@ Unix/GlxContext.i: Unix/GlxContext.cpp.i
 
 # target to preprocess a source file
 Unix/GlxContext.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.i
 .PHONY : Unix/GlxContext.cpp.i
 
 Unix/GlxContext.s: Unix/GlxContext.cpp.s
@@ -490,7 +490,7 @@ Unix/GlxContext.s: Unix/GlxContext.cpp.s
 
 # target to generate assembly for a file
 Unix/GlxContext.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.s
 .PHONY : Unix/GlxContext.cpp.s
 
 Unix/GlxExtensions.o: Unix/GlxExtensions.cpp.o
@@ -499,7 +499,7 @@ Unix/GlxExtensions.o: Unix/GlxExtensions.cpp.o
 
 # target to build an object file
 Unix/GlxExtensions.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o
 .PHONY : Unix/GlxExtensions.cpp.o
 
 Unix/GlxExtensions.i: Unix/GlxExtensions.cpp.i
@@ -508,7 +508,7 @@ Unix/GlxExtensions.i: Unix/GlxExtensions.cpp.i
 
 # target to preprocess a source file
 Unix/GlxExtensions.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.i
 .PHONY : Unix/GlxExtensions.cpp.i
 
 Unix/GlxExtensions.s: Unix/GlxExtensions.cpp.s
@@ -517,7 +517,7 @@ Unix/GlxExtensions.s: Unix/GlxExtensions.cpp.s
 
 # target to generate assembly for a file
 Unix/GlxExtensions.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.s
 .PHONY : Unix/GlxExtensions.cpp.s
 
 Unix/InputImpl.o: Unix/InputImpl.cpp.o
@@ -526,7 +526,7 @@ Unix/InputImpl.o: Unix/InputImpl.cpp.o
 
 # target to build an object file
 Unix/InputImpl.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o
 .PHONY : Unix/InputImpl.cpp.o
 
 Unix/InputImpl.i: Unix/InputImpl.cpp.i
@@ -535,7 +535,7 @@ Unix/InputImpl.i: Unix/InputImpl.cpp.i
 
 # target to preprocess a source file
 Unix/InputImpl.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.i
 .PHONY : Unix/InputImpl.cpp.i
 
 Unix/InputImpl.s: Unix/InputImpl.cpp.s
@@ -544,7 +544,7 @@ Unix/InputImpl.s: Unix/InputImpl.cpp.s
 
 # target to generate assembly for a file
 Unix/InputImpl.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.s
 .PHONY : Unix/InputImpl.cpp.s
 
 Unix/JoystickImpl.o: Unix/JoystickImpl.cpp.o
@@ -553,7 +553,7 @@ Unix/JoystickImpl.o: Unix/JoystickImpl.cpp.o
 
 # target to build an object file
 Unix/JoystickImpl.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o
 .PHONY : Unix/JoystickImpl.cpp.o
 
 Unix/JoystickImpl.i: Unix/JoystickImpl.cpp.i
@@ -562,7 +562,7 @@ Unix/JoystickImpl.i: Unix/JoystickImpl.cpp.i
 
 # target to preprocess a source file
 Unix/JoystickImpl.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.i
 .PHONY : Unix/JoystickImpl.cpp.i
 
 Unix/JoystickImpl.s: Unix/JoystickImpl.cpp.s
@@ -571,7 +571,7 @@ Unix/JoystickImpl.s: Unix/JoystickImpl.cpp.s
 
 # target to generate assembly for a file
 Unix/JoystickImpl.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.s
 .PHONY : Unix/JoystickImpl.cpp.s
 
 Unix/SensorImpl.o: Unix/SensorImpl.cpp.o
@@ -580,7 +580,7 @@ Unix/SensorImpl.o: Unix/SensorImpl.cpp.o
 
 # target to build an object file
 Unix/SensorImpl.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o
 .PHONY : Unix/SensorImpl.cpp.o
 
 Unix/SensorImpl.i: Unix/SensorImpl.cpp.i
@@ -589,7 +589,7 @@ Unix/SensorImpl.i: Unix/SensorImpl.cpp.i
 
 # target to preprocess a source file
 Unix/SensorImpl.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.i
 .PHONY : Unix/SensorImpl.cpp.i
 
 Unix/SensorImpl.s: Unix/SensorImpl.cpp.s
@@ -598,7 +598,7 @@ Unix/SensorImpl.s: Unix/SensorImpl.cpp.s
 
 # target to generate assembly for a file
 Unix/SensorImpl.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.s
 .PHONY : Unix/SensorImpl.cpp.s
 
 Unix/VideoModeImpl.o: Unix/VideoModeImpl.cpp.o
@@ -607,7 +607,7 @@ Unix/VideoModeImpl.o: Unix/VideoModeImpl.cpp.o
 
 # target to build an object file
 Unix/VideoModeImpl.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o
 .PHONY : Unix/VideoModeImpl.cpp.o
 
 Unix/VideoModeImpl.i: Unix/VideoModeImpl.cpp.i
@@ -616,7 +616,7 @@ Unix/VideoModeImpl.i: Unix/VideoModeImpl.cpp.i
 
 # target to preprocess a source file
 Unix/VideoModeImpl.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.i
 .PHONY : Unix/VideoModeImpl.cpp.i
 
 Unix/VideoModeImpl.s: Unix/VideoModeImpl.cpp.s
@@ -625,7 +625,7 @@ Unix/VideoModeImpl.s: Unix/VideoModeImpl.cpp.s
 
 # target to generate assembly for a file
 Unix/VideoModeImpl.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.s
 .PHONY : Unix/VideoModeImpl.cpp.s
 
 Unix/WindowImplX11.o: Unix/WindowImplX11.cpp.o
@@ -634,7 +634,7 @@ Unix/WindowImplX11.o: Unix/WindowImplX11.cpp.o
 
 # target to build an object file
 Unix/WindowImplX11.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o
 .PHONY : Unix/WindowImplX11.cpp.o
 
 Unix/WindowImplX11.i: Unix/WindowImplX11.cpp.i
@@ -643,7 +643,7 @@ Unix/WindowImplX11.i: Unix/WindowImplX11.cpp.i
 
 # target to preprocess a source file
 Unix/WindowImplX11.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.i
 .PHONY : Unix/WindowImplX11.cpp.i
 
 Unix/WindowImplX11.s: Unix/WindowImplX11.cpp.s
@@ -652,7 +652,7 @@ Unix/WindowImplX11.s: Unix/WindowImplX11.cpp.s
 
 # target to generate assembly for a file
 Unix/WindowImplX11.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.s
 .PHONY : Unix/WindowImplX11.cpp.s
 
 VideoMode.o: VideoMode.cpp.o
@@ -661,7 +661,7 @@ VideoMode.o: VideoMode.cpp.o
 
 # target to build an object file
 VideoMode.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o
 .PHONY : VideoMode.cpp.o
 
 VideoMode.i: VideoMode.cpp.i
@@ -670,7 +670,7 @@ VideoMode.i: VideoMode.cpp.i
 
 # target to preprocess a source file
 VideoMode.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.i
 .PHONY : VideoMode.cpp.i
 
 VideoMode.s: VideoMode.cpp.s
@@ -679,7 +679,7 @@ VideoMode.s: VideoMode.cpp.s
 
 # target to generate assembly for a file
 VideoMode.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.s
 .PHONY : VideoMode.cpp.s
 
 Window.o: Window.cpp.o
@@ -688,7 +688,7 @@ Window.o: Window.cpp.o
 
 # target to build an object file
 Window.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o
 .PHONY : Window.cpp.o
 
 Window.i: Window.cpp.i
@@ -697,7 +697,7 @@ Window.i: Window.cpp.i
 
 # target to preprocess a source file
 Window.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.i
 .PHONY : Window.cpp.i
 
 Window.s: Window.cpp.s
@@ -706,7 +706,7 @@ Window.s: Window.cpp.s
 
 # target to generate assembly for a file
 Window.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.s
 .PHONY : Window.cpp.s
 
 WindowImpl.o: WindowImpl.cpp.o
@@ -715,7 +715,7 @@ WindowImpl.o: WindowImpl.cpp.o
 
 # target to build an object file
 WindowImpl.cpp.o:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o
 .PHONY : WindowImpl.cpp.o
 
 WindowImpl.i: WindowImpl.cpp.i
@@ -724,7 +724,7 @@ WindowImpl.i: WindowImpl.cpp.i
 
 # target to preprocess a source file
 WindowImpl.cpp.i:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.i
 .PHONY : WindowImpl.cpp.i
 
 WindowImpl.s: WindowImpl.cpp.s
@@ -733,7 +733,7 @@ WindowImpl.s: WindowImpl.cpp.s
 
 # target to generate assembly for a file
 WindowImpl.cpp.s:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(MAKE) -f src/SFML/Window/CMakeFiles/sfml-window.dir/build.make src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.s
 .PHONY : WindowImpl.cpp.s
 
 # Help Target
@@ -823,6 +823,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

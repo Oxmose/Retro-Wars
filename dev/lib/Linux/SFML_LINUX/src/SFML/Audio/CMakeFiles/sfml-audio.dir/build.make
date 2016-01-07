@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX
+CMAKE_SOURCE_DIR = /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX
+CMAKE_BINARY_DIR = /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX
 
 # Include any dependencies generated for this target.
 include src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend.make
@@ -59,16 +59,16 @@ include src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.o: src/SFML/Audio/ALCheck.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/ALCheck.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/ALCheck.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/ALCheck.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/ALCheck.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/ALCheck.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/ALCheck.cpp > CMakeFiles/sfml-audio.dir/ALCheck.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/ALCheck.cpp > CMakeFiles/sfml-audio.dir/ALCheck.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/ALCheck.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/ALCheck.cpp -o CMakeFiles/sfml-audio.dir/ALCheck.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/ALCheck.cpp -o CMakeFiles/sfml-audio.dir/ALCheck.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.o.requires:
 
@@ -83,16 +83,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/ALCheck.cpp.o.provides.build: src/SFML/
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.o: src/SFML/Audio/AlResource.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/AlResource.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AlResource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/AlResource.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AlResource.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/AlResource.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AlResource.cpp > CMakeFiles/sfml-audio.dir/AlResource.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AlResource.cpp > CMakeFiles/sfml-audio.dir/AlResource.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/AlResource.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AlResource.cpp -o CMakeFiles/sfml-audio.dir/AlResource.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AlResource.cpp -o CMakeFiles/sfml-audio.dir/AlResource.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.o.requires:
 
@@ -107,16 +107,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/AlResource.cpp.o.provides.build: src/SF
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o: src/SFML/Audio/AudioDevice.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AudioDevice.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AudioDevice.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AudioDevice.cpp > CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AudioDevice.cpp > CMakeFiles/sfml-audio.dir/AudioDevice.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AudioDevice.cpp -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/AudioDevice.cpp -o CMakeFiles/sfml-audio.dir/AudioDevice.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o.requires:
 
@@ -131,16 +131,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/AudioDevice.cpp.o.provides.build: src/S
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o: src/SFML/Audio/Listener.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/Listener.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Listener.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/Listener.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Listener.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/Listener.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Listener.cpp > CMakeFiles/sfml-audio.dir/Listener.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Listener.cpp > CMakeFiles/sfml-audio.dir/Listener.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/Listener.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Listener.cpp -o CMakeFiles/sfml-audio.dir/Listener.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Listener.cpp -o CMakeFiles/sfml-audio.dir/Listener.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o.requires:
 
@@ -155,16 +155,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/Listener.cpp.o.provides.build: src/SFML
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o: src/SFML/Audio/Music.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/Music.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Music.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/Music.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Music.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/Music.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Music.cpp > CMakeFiles/sfml-audio.dir/Music.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Music.cpp > CMakeFiles/sfml-audio.dir/Music.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/Music.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Music.cpp -o CMakeFiles/sfml-audio.dir/Music.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Music.cpp -o CMakeFiles/sfml-audio.dir/Music.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o.requires:
 
@@ -179,16 +179,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/Music.cpp.o.provides.build: src/SFML/Au
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o: src/SFML/Audio/Sound.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/Sound.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Sound.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/Sound.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Sound.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/Sound.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Sound.cpp > CMakeFiles/sfml-audio.dir/Sound.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Sound.cpp > CMakeFiles/sfml-audio.dir/Sound.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/Sound.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Sound.cpp -o CMakeFiles/sfml-audio.dir/Sound.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/Sound.cpp -o CMakeFiles/sfml-audio.dir/Sound.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o.requires:
 
@@ -203,16 +203,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/Sound.cpp.o.provides.build: src/SFML/Au
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o: src/SFML/Audio/SoundBuffer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBuffer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBuffer.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBuffer.cpp > CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBuffer.cpp > CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBuffer.cpp -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBuffer.cpp -o CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o.requires:
 
@@ -227,16 +227,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBuffer.cpp.o.provides.build: src/S
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o: src/SFML/Audio/SoundBufferRecorder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBufferRecorder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBufferRecorder.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBufferRecorder.cpp > CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBufferRecorder.cpp > CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBufferRecorder.cpp -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundBufferRecorder.cpp -o CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o.requires:
 
@@ -251,16 +251,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundBufferRecorder.cpp.o.provides.buil
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o: src/SFML/Audio/InputSoundFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/InputSoundFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/InputSoundFile.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/InputSoundFile.cpp > CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/InputSoundFile.cpp > CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/InputSoundFile.cpp -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/InputSoundFile.cpp -o CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o.requires:
 
@@ -275,16 +275,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/InputSoundFile.cpp.o.provides.build: sr
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o: src/SFML/Audio/OutputSoundFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/OutputSoundFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/OutputSoundFile.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/OutputSoundFile.cpp > CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/OutputSoundFile.cpp > CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/OutputSoundFile.cpp -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/OutputSoundFile.cpp -o CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o.requires:
 
@@ -299,16 +299,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/OutputSoundFile.cpp.o.provides.build: s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o: src/SFML/Audio/SoundRecorder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundRecorder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundRecorder.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundRecorder.cpp > CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundRecorder.cpp > CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundRecorder.cpp -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundRecorder.cpp -o CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o.requires:
 
@@ -323,16 +323,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundRecorder.cpp.o.provides.build: src
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o: src/SFML/Audio/SoundSource.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundSource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundSource.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundSource.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundSource.cpp > CMakeFiles/sfml-audio.dir/SoundSource.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundSource.cpp > CMakeFiles/sfml-audio.dir/SoundSource.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundSource.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundSource.cpp -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundSource.cpp -o CMakeFiles/sfml-audio.dir/SoundSource.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o.requires:
 
@@ -347,16 +347,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundSource.cpp.o.provides.build: src/S
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o: src/SFML/Audio/SoundStream.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundStream.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundStream.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundStream.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundStream.cpp > CMakeFiles/sfml-audio.dir/SoundStream.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundStream.cpp > CMakeFiles/sfml-audio.dir/SoundStream.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundStream.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundStream.cpp -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundStream.cpp -o CMakeFiles/sfml-audio.dir/SoundStream.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o.requires:
 
@@ -371,16 +371,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundStream.cpp.o.provides.build: src/S
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o: src/SFML/Audio/SoundFileFactory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileFactory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileFactory.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileFactory.cpp > CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileFactory.cpp > CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileFactory.cpp -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileFactory.cpp -o CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o.requires:
 
@@ -395,16 +395,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileFactory.cpp.o.provides.build: 
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o: src/SFML/Audio/SoundFileReaderFlac.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderFlac.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderFlac.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderFlac.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderFlac.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderFlac.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderFlac.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o.requires:
 
@@ -419,16 +419,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.o.provides.buil
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o: src/SFML/Audio/SoundFileReaderOgg.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderOgg.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderOgg.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderOgg.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderOgg.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderOgg.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderOgg.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o.requires:
 
@@ -443,16 +443,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderOgg.cpp.o.provides.build
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o: src/SFML/Audio/SoundFileReaderWav.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderWav.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderWav.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderWav.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderWav.cpp > CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderWav.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileReaderWav.cpp -o CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o.requires:
 
@@ -467,16 +467,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderWav.cpp.o.provides.build
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o: src/SFML/Audio/SoundFileWriterFlac.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterFlac.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterFlac.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterFlac.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterFlac.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterFlac.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterFlac.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o.requires:
 
@@ -491,16 +491,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterFlac.cpp.o.provides.buil
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o: src/SFML/Audio/SoundFileWriterOgg.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterOgg.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterOgg.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterOgg.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterOgg.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterOgg.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterOgg.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o.requires:
 
@@ -515,16 +515,16 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterOgg.cpp.o.provides.build
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o: src/SFML/Audio/CMakeFiles/sfml-audio.dir/flags.make
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o: src/SFML/Audio/SoundFileWriterWav.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterWav.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterWav.cpp
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterWav.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterWav.cpp > CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.i
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterWav.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/SoundFileWriterWav.cpp -o CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.s
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileWriterWav.cpp.o.requires:
 
@@ -592,9 +592,9 @@ lib/libsfml-audio.so.2.3.2: /usr/lib/x86_64-linux-gnu/libvorbis.so
 lib/libsfml-audio.so.2.3.2: /usr/lib/x86_64-linux-gnu/libogg.so
 lib/libsfml-audio.so.2.3.2: /usr/lib/x86_64-linux-gnu/libFLAC.so
 lib/libsfml-audio.so.2.3.2: src/SFML/Audio/CMakeFiles/sfml-audio.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX shared library ../../../lib/libsfml-audio.so"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-audio.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && $(CMAKE_COMMAND) -E cmake_symlink_library ../../../lib/libsfml-audio.so.2.3.2 ../../../lib/libsfml-audio.so.2.3 ../../../lib/libsfml-audio.so
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX shared library ../../../lib/libsfml-audio.so"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-audio.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && $(CMAKE_COMMAND) -E cmake_symlink_library ../../../lib/libsfml-audio.so.2.3.2 ../../../lib/libsfml-audio.so.2.3 ../../../lib/libsfml-audio.so
 
 lib/libsfml-audio.so.2.3: lib/libsfml-audio.so.2.3.2
 	@$(CMAKE_COMMAND) -E touch_nocreate lib/libsfml-audio.so.2.3
@@ -631,10 +631,10 @@ src/SFML/Audio/CMakeFiles/sfml-audio.dir/requires: src/SFML/Audio/CMakeFiles/sfm
 .PHONY : src/SFML/Audio/CMakeFiles/sfml-audio.dir/requires
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/clean:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && $(CMAKE_COMMAND) -P CMakeFiles/sfml-audio.dir/cmake_clean.cmake
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio && $(CMAKE_COMMAND) -P CMakeFiles/sfml-audio.dir/cmake_clean.cmake
 .PHONY : src/SFML/Audio/CMakeFiles/sfml-audio.dir/clean
 
 src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/CMakeFiles/sfml-audio.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Audio/CMakeFiles/sfml-audio.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/SFML/Audio/CMakeFiles/sfml-audio.dir/depend
 
