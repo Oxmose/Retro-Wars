@@ -63,7 +63,7 @@ namespace nsGameEngine
 
 			int m_width, m_height;
 			PLAYER_TYPE m_player;
-	};
-}
+	}; // World
+} // nsGameEngine
 
-#endif
+#endif // DEF_WORLD_H

@@ -98,4 +98,4 @@ namespace nsTools
     
 } // nsTools
 
-#endif
+#endif // DEF_TOOLS_H

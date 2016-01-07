@@ -98,4 +98,4 @@ namespace nsNetEngine
 } // nsNetEngine
 
 
-#endif
+#endif // DEF_NETENGINE_H

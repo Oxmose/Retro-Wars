@@ -1,88 +1,57 @@
-/**
- *
- * @file GameEngine.h
- *
- * @authors : T. Stérin, A. Torres
- *
- * @date : 10/11/2015
- *
- * @version : 1.0
- *
- * @brief Game engine header file
- *
- * @see GameEngine.cpp
- *
- **/
-
 #ifndef DEF_GAMEENGINE_H
 #define DEF_GAMEENGINE_H
 
-#include <SFML/Graphics.hpp>    // sf::RenderWindow, sf::VideoMode
-#include <string>                // std::string
+// STD LIB INCLUDES
+#include <string>
 #include <utility>
 #include <atomic>
 #include <tuple>
 
-#include "GameEngine.h"            // nsGameEngine::GameEngine
-#include "../GraphicEngine/GraphicEngine.h"        // nsGraphicEngine::GraphicEngine
-#include "../MapEngine/MapEngine.h"
-#include "../NetEngine/NetEngine.h"
+// SFML LIB INCLUDES
+#include <SFML/Graphics.hpp> 
+
+// INCLUDES FROM PACKAGE
 #include "World.h"
 #include "Player.h"
+
+// OTHER INCLUDES FOM PROJECT
+#include "../GraphicEngine/GraphicEngine.h"
+#include "../MapEngine/MapEngine.h"
+#include "../NetEngine/NetEngine.h"
 #include "../Misc/Misc.h"
 
+// Forward declaration
 namespace nsNetEngine
 {
     class NetEngine;
 }
 
-/// @namespace nsGameEngine
-/// @brief The GameEngine namespace.
-/// @details The GameEngine namespace gather all the classes that are related to the game engine.
 namespace nsGameEngine
 {
-    /// @class GameEngine GameEngine.h
-    /// @brief The main class of the game
-    /// @details This is the game engine. This class manages the whole lifecycle of the game.
-    /// It manages the links between the diferent modules such as the graphic engine, the audio angine, etc...
-    /// The class also process all the computing part of the game.
     class GameEngine
     {
         public:
-            /// @fn GameEngine(const int & p_width, const int & p_height, const std::string & p_title) noexcept;
-            /// @param p_width The width of the window.
-            /// @param p_height The height of the window.
-            /// @param p_title The title of the window.
-            /// @brief The detailed constructor of the GameEngine class.
-            /// @details It creates a new instance of the game, load some basics parameters and initialize the window context.
-            /// It will also initialize the graphic engine.
-            GameEngine(const int & p_width, const int & p_height, const std::string & p_title, 
-                       nsMapEngine::MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, nsNetEngine::NetEngine* p_netEngine) noexcept;
-
-            /// @fn ~GameEngine();
-            /// @brief The destructor.
-            /// @details It will get rid of the window context pointer and the other module's pointers.
+            // Constructor / Destructor
+            GameEngine(const int & p_width, const int & p_height, const std::string & p_title,nsMapEngine::MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, nsNetEngine::NetEngine* p_netEngine);
             ~GameEngine();
 
+            // Load world from map file
             void loadWorld();
 
+            // Tools functions
             Terrain gidToTerrain(int p_gid, int p_x, int p_y);
             Unit gidToUnit(int p_gid, int p_x, int p_y);
-			int unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType);
-
-            /// @fn void frame();
-            /// @brief The main loop.
-            /// @details The frame function is the main loop of the game, where all the game management will take place.
-            void frame() ;
-
-			// Notify the game engine on new message
-            void notify(const nsNetEngine::Action &p_action);
-
-			// Win condition validation
-			void winCondition();
-
+            int unitNPlayerTypeToGid(UNITTYPE p_UNITTYPE, PLAYER_TYPE p_playerType);
             std::string coordToString(std::pair<int,int> p_coord);
 
+            // Gameloop
+            void frame() ;
+
+            // Notify the game engine on new message
+            void notify(const nsNetEngine::Action &p_action);
+
+            // Win condition validation
+            void winCondition();
             
         private:
             /// @brief The window dimension variable.
@@ -107,30 +76,30 @@ namespace nsGameEngine
             nsNetEngine::NetEngine *m_netEngine;
 
             // Attack notification
-            std::atomic<bool> m_attackNotify;
-            std::atomic<int> m_attackNotifyStep;
+            std::atomic<bool>   m_attackNotify;
+            std::atomic<int>    m_attackNotifyStep;
             std::pair<int, int> m_attackPos;
             std::pair<int, int> m_attackFrom;
 
-			// Movement notification
-			std::atomic<bool> m_moveUnit;
-			std::vector<std::pair<int, int>> m_interMove;
-			std::atomic<int> m_counter;
-			std::atomic<int> m_interPos;
-			Unit m_movingUnit;
+            // Movement notification
+            std::atomic<bool>                m_moveUnit;
+            std::vector<std::pair<int, int>> m_interMove;
+            std::atomic<int>                 m_counter;
+            std::atomic<int>                 m_interPos;
+            Unit                             m_movingUnit;
 
             // Turn management
             std::atomic<bool> m_turn;
             std::atomic<bool> m_waitingForPlayers;
             std::atomic<int>  m_playerLeft;
 
-			// Capture management
-			std::vector<std::tuple<std::pair<int, int>, Unit, bool>> m_capturingBuilding;
-			
+            // Capture management
+            std::vector<std::tuple<std::pair<int, int>, Unit, bool>> m_capturingBuilding;
+            
+            // Win management
+            std::atomic<bool> m_win;
+            std::atomic<bool> m_loose;
+    }; // GameEngine
+} // nsGameEngine
 
-	        std::atomic<bool> m_win;
-			std::atomic<bool> m_loose;
-    };
-}
-
-#endif /* DEF_GAMEENGINE_H */
+#endif // DEF_GAMEENGINE_H
