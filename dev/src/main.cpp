@@ -68,6 +68,7 @@ int main(int argc, char** argv)
         else if(argc == 3)
         {
             
+        // In this case not server
             isServer = false;
             playerType = BLUE;
 
