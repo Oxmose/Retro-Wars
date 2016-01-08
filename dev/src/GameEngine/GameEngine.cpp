@@ -429,19 +429,23 @@ void GENGINE::frame()
         sf::Event event;
         while(m_window->pollEvent(event))
         {
+            // While nobody has won or lost
             if(!m_win && !m_loose && !m_moveUnit)
             {
-                // Key event
+                //If a key is pressed and everybody is in the game
                 if(event.type == sf::Event::KeyPressed && !m_waitingForPlayers)
                 {
+                    // UPKEY
                     if (event.key.code == sf::Keyboard::Up)
                     {
+                        // If unit is selected, then move movment cursor
                         if(selectedUnitBool)
                         {
                             mvtCursor.second--;
                             if (mvtCursor.second < 0)
                                 mvtCursor.second = 0;
                         }
+                        // Else move player cursor
                         else
                         {
                             unsigned int newY = m_player->getCoord().second - 1;
@@ -453,6 +457,7 @@ void GENGINE::frame()
                             mvtCursor = m_player->getCoord();
                         }
                     }
+                    // DOWNKEY
                     else if (event.key.code == sf::Keyboard::Down)
                     {
                         if (selectedUnitBool)
@@ -472,8 +477,10 @@ void GENGINE::frame()
                             mvtCursor = m_player->getCoord();
                         }
                     }
+                    // LEFTKEY
                     else if (event.key.code == sf::Keyboard::Left)
                     {
+                        // If in the base menu, then move the unit selector
                         if(view == 1)
                         {
                             selectedUnitBase--;
@@ -481,6 +488,7 @@ void GENGINE::frame()
                                 selectedUnitBase = 0;
                             validateBuy = true; 
                         }
+                        // Else...
                         else if (selectedUnitBool)
                         {
                             mvtCursor.first--;
@@ -498,8 +506,10 @@ void GENGINE::frame()
                             mvtCursor = m_player->getCoord();
                         }
                     }
+                    // RIGHTKEY
                     else if (event.key.code == sf::Keyboard::Right)
                     {
+                        // If in the base menu, then move the unit selector
                         if(view == 1)
                         {
                             selectedUnitBase++;
@@ -532,6 +542,7 @@ void GENGINE::frame()
                             int cost = Unit::getUnitInfo((UNITTYPE)selectedUnitBase).cost;
                             if(m_player->getMoney() >= cost)
                             {
+                                // Ask user if he is sure to buy the unie
                                 if(validateBuy)
                                 {
                                     messageTimer = m_fps * 100;
@@ -542,16 +553,20 @@ void GENGINE::frame()
                                 }
                                 else
                                 {
+                                    // Pay unit
                                     m_player->setMoney(m_player->getMoney() - cost);
                                     validateBuy = true;
+
+                                    // Close message box
                                     messageTimer = m_fps * 4;
                                     displayMessage = false;
+
+                                    // Create unit and close view
                                     pair<int, int> availableCoord = selectedTerrain.getCoord();
                                     Unit unit ((UNITTYPE)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), unitNPlayerTypeToGid((UNITTYPE)selectedUnitBase, m_player->getType()));
                                     m_world->addUnit(unit);
                                     movedUnits.push_back(unit.getId());
                                     selectedUnitBase = 0;
-                                    validateBuy = true;
                                     view = 0;
 
                                     // Send message
@@ -593,22 +608,29 @@ void GENGINE::frame()
                                     }
                                     if(move)
                                     {
+                                        // Move unit and notify network
                                         NetPackage np;
                                         
-                                        np.message = "0::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
-
+                                        
+                                        // Prepare movment animation
                                         m_interMove = m_world->getIntermediaire(selectedUnit, mvtCursor);
-                                        m_moveUnit = true;
+
                                         m_counter = 0;
                                         m_interPos = -1;
                                         m_movingUnit = selectedUnit;
-                                    
+                                        
+                                        np.message = "0::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
                                         m_netEngine->send(np);
+
+                                        // Move cursor and set moved unit
                                         m_player->setCoord(mvtCursor);
                                         movedUnits.push_back(selectedUnit.getId());
+
                                         cleared = false;
                                         selectedUnitBool = false;
                                         displayPorte = false;
+                                        m_moveUnit = true;
+
                                         view = 0;
                                     }
                                     else
@@ -626,12 +648,14 @@ void GENGINE::frame()
                                         }
                                         if(attack)
                                         {
+                                            // Send message to server
                                             NetPackage np;
-                                            np.message = "1::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
-                                            
+                                            np.message = "1::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);                                            
                                             m_world->combatUnit(selectedUnit, m_world->getUnit(mvtCursor));
                                             np.message += "::"+std::to_string(m_world->getUnit(selectedUnit.getCoord()).getHp())+"::"+std::to_string(m_world->getUnit(mvtCursor).getHp());
                                             m_netEngine->send(np);
+
+                                            // Move cursor
                                             m_player->setCoord(mvtCursor);
                                             movedUnits.push_back(selectedUnit.getId());
                                             cleared = false;
@@ -723,9 +747,12 @@ void GENGINE::frame()
                     else if(event.key.code == sf::Keyboard::T && m_turn && view != 1)
                     {
 
+                        // Validate turn change
                         if(validateEndTurn)
                         {
                                 m_turn = false;
+
+                                // Search for next player
                                 vector<PLAYER_TYPE> players = m_mapEngine->getPlayers();
                                 unsigned int index;
                                 for(unsigned int i = 0; i < players.size(); ++i)
@@ -737,6 +764,8 @@ void GENGINE::frame()
                                     }
                                 }        
                                 int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
+
+                                // Send message to network
                                 NetPackage np;
                                 np.message = "2::" + to_string(nextPlayer);
                                 m_netEngine->send(np);
@@ -750,6 +779,7 @@ void GENGINE::frame()
                         }
                         else
                         {
+                            // Ask vo validation on turn change
                             validateEndTurn = true;
                             message = "Are  you  sure  to  end  the  turn?\n(t to validate / escape to cancel)";
                             displayMessage = true;
@@ -757,7 +787,7 @@ void GENGINE::frame()
                     }
                     else if(event.key.code == sf::Keyboard::C && selectedUnitBool && (selectedUnit.getType() == MECH || selectedUnit.getType() == INFANTRY))
                     {
-                    
+                        // Selected unit can capture property
                         Terrain currentTerrain = m_world->getTerrain(selectedUnit.getCoord());
                         if(currentTerrain.getOwner() != m_player->getType() && (currentTerrain.getType() == BASE || currentTerrain.getType() == HQ || currentTerrain.getType() == CITY))
                         {
