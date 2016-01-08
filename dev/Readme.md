@@ -1,19 +1,16 @@
-To compile :
+#To compile:
 run "./compile.sh"
 	-Don't forget to use chmod +x compile.sh
 
-To run :
+#To run:
 go to : bin/[Linux][OSX]Release/
 run ". prelaunch.sh" (not ./prelaunch.sh)
 run ./Retrowars <port> to be host
 OR
 run ./Retrowars <ip> <port> to join a server
 
-In case of error at while linking (compilation)
-Compile all the the lib in the lib folder with your compiler
-(All the lib where compiled with g++4.9)
+#Dependencies: (tested on debian Jessie)
 
-Dependencies: (tested on debian Jessie)
 freetype (libfreetype6-dev for linux)
 jpeg (libjpeg-dev and libjpeg8-dev fot linux)
 x11 (x11-common for linux)
@@ -32,8 +29,16 @@ openal (libopenal-dev for linux)
 pthread
 tinyxml2 (libtinyxml2-dev for linux)
 
-ERRORS :
+#ERRORS:
+##In case of error at while linking (compilation)
+Compile all the the lib in the lib folder with your compiler
+(All the lib where compiled with g++4.9)
+
 
 *** Error in `./RetroWars': corrupted double-linked list: 0x0000000001fbe2f0 ***
 In this case, please recompile all the libs and be sure to copy all *.so and *.a in the bin/[Linux][OSX]/lib/[correspondinglib] folder.
 
+
+#INFORMATION:
+
+All code in src/ was writtent by Tristan Stérin and Alexy Torres except the code contained in MD5Engine folder.

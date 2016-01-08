@@ -72,8 +72,14 @@ int main(int argc, char** argv)
             isServer = false;
             playerType = BLUE;
 
-            if(validateIP(argv[1]))
+            if(string(argv[1]).compare("localhost") == 0)
+            {
+                serverAddress = "127.0.0.1";
+            }
+            else if(validateIP(argv[1]))
+            {
                 serverAddress = argv[1];
+            }
             else
             {
                 cerr << "\x1b[31;1mWrong ip address, use \"" << argv[0] << " -help\" to get help.\x1b[0m" << endl;
@@ -163,7 +169,7 @@ int main(int argc, char** argv)
     }
     catch(...)
     {
-        cerr << "UNKNOW ERROR, please contact developers (and do not expect replay from them)." << endl;
+        cerr << "UNKNOW ERROR, please contact developers (and do not expect reply from them)." << endl;
     }
 
     return 0;    
