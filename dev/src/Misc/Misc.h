@@ -35,4 +35,4 @@ inline std::string getPlayerName(PLAYER_TYPE p_playerType)
     }
 } // inline getPlayerName()
 
-#endif
+#endif // DEF_MISC_H

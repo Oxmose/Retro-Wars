@@ -1,14 +1,25 @@
-#include <SFML/Graphics.hpp>    // sf::RenderWindow, sf::VideoMode
-#include <string>                // std::string
+// STD LIB INCLUDES
+#include <string>
+#include <utility>
+#include <atomic>
 #include <tuple>
 
-#include "GameEngine.h"            // nsGameEngine::GameEngine
-#include "../GraphicEngine/GraphicEngine.h"        // nsGraphicEngine::GraphicEngine
-#include "../MapEngine/MapEngine.h"
-#include "../NetEngine/NetEngine.h"
+// SFML LIB INCLUDES
+#include <SFML/Graphics.hpp> 
+
+// INCLUDES FROM PACKAGE
 #include "World.h"
 #include "Player.h"
+
+// OTHER INCLUDES FOM PROJECT
+#include "../GraphicEngine/GraphicEngine.h"
+#include "../MapEngine/MapEngine.h"
+#include "../NetEngine/NetEngine.h"
 #include "../Misc/Misc.h"
+
+// HEADER FILE INCLUDE
+#include "GameEngine.h"
+
 
 #define GENGINE nsGameEngine::GameEngine
 
@@ -19,7 +30,7 @@ using namespace nsNetEngine;
 using namespace std;
 
 GENGINE::GameEngine(const int & p_width, const int & p_height, const string & p_title, 
-                    MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, NetEngine *p_netEngine) noexcept
+                    MapEngine* p_mapEngine, PLAYER_TYPE p_playerType, NetEngine *p_netEngine)
 {
     // Init basic settings
     m_windowDim = sf::VideoMode(p_width, p_height);
@@ -37,11 +48,11 @@ GENGINE::GameEngine(const int & p_width, const int & p_height, const string & p_
     // INIT UNIT ID
     Unit::m_lastId = 0;
 
+    // Load world
     m_world = new World(p_playerType, m_mapEngine->getWidth(), m_mapEngine->getHeight());
-
-
     loadWorld();
 
+    // Search for HQ and set cursor's position
     bool found = false;
     for (unsigned int i = 0; i < m_mapEngine->getWidth() && !found; ++i)
     {
@@ -55,13 +66,17 @@ GENGINE::GameEngine(const int & p_width, const int & p_height, const string & p_
             }
         }
     }
+    
+    // Create graphic engine
     m_graphicEngine = new GraphicEngine(m_window, m_mapEngine);
 
+    // Test is server
     if(m_netEngine->isServer())
         m_turn = true;
     else
         m_turn = false;
 
+    // Init members
     m_waitingForPlayers = true;
     m_moveUnit = false;
     m_win = false;
@@ -156,7 +171,7 @@ Terrain GENGINE::gidToTerrain(int gid, int p_x, int p_y)
         default:
             return Terrain(OTHER,p_x,p_y);
     }
-}
+} // gidToTerrain()
 
 Unit GENGINE::gidToUnit(int gid, int p_x, int p_y)
 {
@@ -205,14 +220,14 @@ Unit GENGINE::gidToUnit(int gid, int p_x, int p_y)
         default:
             return Unit(INFANTRY,-1,-1,NEUTRAL,0);
     }
-}
+} // gidToUnit()
 
-int GENGINE::unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType)
+int GENGINE::unitNPlayerTypeToGid(UNITTYPE p_UNITTYPE, PLAYER_TYPE p_playerType)
 {
     switch(p_playerType)
     {
         case BLUE:
-            switch(p_unitType)
+            switch(p_UNITTYPE)
             {
                 case INFANTRY:
                     return 255;
@@ -235,7 +250,7 @@ int GENGINE::unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType)
             }
             break;
         case RED:
-            switch(p_unitType)
+            switch(p_UNITTYPE)
             {
                 case INFANTRY:
                     return 229;
@@ -262,13 +277,14 @@ int GENGINE::unitNPlayerTypeToGid(UnitType p_unitType, PLAYER_TYPE p_playerType)
             return 0;
     }
     return 0;
-}
+} // unitNPlayerTypeToGid()
 
 void GENGINE::loadWorld()
 {
     unsigned int x = 0;
     unsigned int y = 0;
     
+    // Load layer0 terrains
     for(int gid: m_mapEngine->getLayerTiles(2))
     {
         if(gid != 0)
@@ -281,7 +297,7 @@ void GENGINE::loadWorld()
         }
     }
 
-
+    // Load layer1 terrains
     x=0,y=0;
     for(int gid: m_mapEngine->getLayerTiles(0))
     {
@@ -297,7 +313,7 @@ void GENGINE::loadWorld()
         }
     }
 
-
+    // Load Units
     x=0,y=0;
     for(int gid: m_mapEngine->getLayerTiles(4))
     {
@@ -310,53 +326,62 @@ void GENGINE::loadWorld()
             y += 1;
         }
     }
-}
+} // loadWorld()
 
 std::string GENGINE::coordToString(std::pair<int,int> p_coord)
 {
     return string("("+std::to_string(p_coord.first)+","+std::to_string(p_coord.second)+")");
-}
+} // coordToString()
 
 void GENGINE::frame()
 {
+    // Init settings
     int view = 0;
 
+    bool selectedUnitBool   = false;
+    bool displayPorte       = false;
+    bool validateEndTurn    = false;
+    m_attackNotify          = false;
+    bool displayMessage     = false;    
+    bool validateBuy        = true;
+    bool cleared            = false;
+
+    // Resources management
+    bool isPaid             = false;
+    
+    // Selection management
     Terrain selectedTerrain;
     Unit selectedUnit;
-    bool selectedUnitBool = false;
-    bool displayPorte = false;
-
-    bool validateEndTurn = false;
-
-    sf::Time framerate = sf::milliseconds(1000 / m_fps);
     
+    // Set cursor for movment
     pair<int, int> mvtCursor = make_pair(0, 0);
-    vector<int> movedUnits;
-    bool cleared;
 
+    // Moved unit this turn
+    vector<int> movedUnits;
+    
+    // Set seelcted base id
     int selectedUnitBase = 0;
 
-    bool validateBuy = true;
-
-    // Timer for 5s
-    int messageTimer = m_fps * 4;
-    bool displayMessage = false;
+    // Massage Management
+    int messageTimer = m_fps * 4;    
     string message; 
     
+    // Set move animation
     m_attackNotifyStep = m_fps * 2.88;
-    m_attackNotify = false;
 
-    // Ask for player already connected 
+    // Ask for already connected players
     NetPackage np;
     np.message = "205";
     m_netEngine->send(np);
-
-    // Resources management
-    bool isPaid = false;
-
+    
+    // Captured flags
     vector<pair<int, int>> prevCaptureFlags;
 
+    // Set framerate
+    sf::Time framerate = sf::milliseconds(1000 / m_fps);
     sf::Clock clock;
+
+    // While game is open : GAMELOOP
     while(m_window->isOpen())
     {    
         if(displayMessage)
@@ -369,6 +394,7 @@ void GENGINE::frame()
             }
         }
 
+        // Manage movment animation
         if(m_attackNotify)
         {
             --m_attackNotifyStep;
@@ -379,6 +405,7 @@ void GENGINE::frame()
             }
         }
 
+        // Give money to player that turn
         if(!isPaid && m_turn)
         {
             m_player->setMoney(m_player->getMoney() + 1000 * m_world->getNumberProperties());
@@ -398,22 +425,27 @@ void GENGINE::frame()
             }
         }
     
+        // Test for events
         sf::Event event;
         while(m_window->pollEvent(event))
         {
+            // While nobody has won or lost
             if(!m_win && !m_loose && !m_moveUnit)
             {
-                // Key event
+                //If a key is pressed and everybody is in the game
                 if(event.type == sf::Event::KeyPressed && !m_waitingForPlayers)
                 {
+                    // UPKEY
                     if (event.key.code == sf::Keyboard::Up)
                     {
+                        // If unit is selected, then move movment cursor
                         if(selectedUnitBool)
                         {
                             mvtCursor.second--;
                             if (mvtCursor.second < 0)
                                 mvtCursor.second = 0;
                         }
+                        // Else move player cursor
                         else
                         {
                             unsigned int newY = m_player->getCoord().second - 1;
@@ -425,6 +457,7 @@ void GENGINE::frame()
                             mvtCursor = m_player->getCoord();
                         }
                     }
+                    // DOWNKEY
                     else if (event.key.code == sf::Keyboard::Down)
                     {
                         if (selectedUnitBool)
@@ -444,8 +477,10 @@ void GENGINE::frame()
                             mvtCursor = m_player->getCoord();
                         }
                     }
+                    // LEFTKEY
                     else if (event.key.code == sf::Keyboard::Left)
                     {
+                        // If in the base menu, then move the unit selector
                         if(view == 1)
                         {
                             selectedUnitBase--;
@@ -453,6 +488,7 @@ void GENGINE::frame()
                                 selectedUnitBase = 0;
                             validateBuy = true; 
                         }
+                        // Else...
                         else if (selectedUnitBool)
                         {
                             mvtCursor.first--;
@@ -470,8 +506,10 @@ void GENGINE::frame()
                             mvtCursor = m_player->getCoord();
                         }
                     }
+                    // RIGHTKEY
                     else if (event.key.code == sf::Keyboard::Right)
                     {
+                        // If in the base menu, then move the unit selector
                         if(view == 1)
                         {
                             selectedUnitBase++;
@@ -501,9 +539,10 @@ void GENGINE::frame()
                         if(view == 1)
                         {
                             // BASE VIEW
-                            int cost = Unit::getUnitInfo((UnitType)selectedUnitBase).cost;
+                            int cost = Unit::getUnitInfo((UNITTYPE)selectedUnitBase).cost;
                             if(m_player->getMoney() >= cost)
                             {
+                                // Ask user if he is sure to buy the unie
                                 if(validateBuy)
                                 {
                                     messageTimer = m_fps * 100;
@@ -514,16 +553,20 @@ void GENGINE::frame()
                                 }
                                 else
                                 {
+                                    // Pay unit
                                     m_player->setMoney(m_player->getMoney() - cost);
                                     validateBuy = true;
+
+                                    // Close message box
                                     messageTimer = m_fps * 4;
                                     displayMessage = false;
+
+                                    // Create unit and close view
                                     pair<int, int> availableCoord = selectedTerrain.getCoord();
-                                    Unit unit ((UnitType)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), unitNPlayerTypeToGid((UnitType)selectedUnitBase, m_player->getType()));
+                                    Unit unit ((UNITTYPE)selectedUnitBase, availableCoord.first, availableCoord.second, m_player->getType(), unitNPlayerTypeToGid((UNITTYPE)selectedUnitBase, m_player->getType()));
                                     m_world->addUnit(unit);
                                     movedUnits.push_back(unit.getId());
                                     selectedUnitBase = 0;
-                                    validateBuy = true;
                                     view = 0;
 
                                     // Send message
@@ -565,22 +608,29 @@ void GENGINE::frame()
                                     }
                                     if(move)
                                     {
+                                        // Move unit and notify network
                                         NetPackage np;
                                         
-                                        np.message = "0::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
-
+                                        
+                                        // Prepare movment animation
                                         m_interMove = m_world->getIntermediaire(selectedUnit, mvtCursor);
-                                        m_moveUnit = true;
+
                                         m_counter = 0;
                                         m_interPos = -1;
                                         m_movingUnit = selectedUnit;
-                                    
+                                        
+                                        np.message = "0::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
                                         m_netEngine->send(np);
+
+                                        // Move cursor and set moved unit
                                         m_player->setCoord(mvtCursor);
                                         movedUnits.push_back(selectedUnit.getId());
+
                                         cleared = false;
                                         selectedUnitBool = false;
                                         displayPorte = false;
+                                        m_moveUnit = true;
+
                                         view = 0;
                                     }
                                     else
@@ -598,12 +648,14 @@ void GENGINE::frame()
                                         }
                                         if(attack)
                                         {
+                                            // Send message to server
                                             NetPackage np;
-                                            np.message = "1::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);
-                                            
+                                            np.message = "1::"+coordToString(selectedUnit.getCoord())+"::"+coordToString(mvtCursor);                                            
                                             m_world->combatUnit(selectedUnit, m_world->getUnit(mvtCursor));
                                             np.message += "::"+std::to_string(m_world->getUnit(selectedUnit.getCoord()).getHp())+"::"+std::to_string(m_world->getUnit(mvtCursor).getHp());
                                             m_netEngine->send(np);
+
+                                            // Move cursor
                                             m_player->setCoord(mvtCursor);
                                             movedUnits.push_back(selectedUnit.getId());
                                             cleared = false;
@@ -695,9 +747,12 @@ void GENGINE::frame()
                     else if(event.key.code == sf::Keyboard::T && m_turn && view != 1)
                     {
 
+                        // Validate turn change
                         if(validateEndTurn)
                         {
                                 m_turn = false;
+
+                                // Search for next player
                                 vector<PLAYER_TYPE> players = m_mapEngine->getPlayers();
                                 unsigned int index;
                                 for(unsigned int i = 0; i < players.size(); ++i)
@@ -709,6 +764,8 @@ void GENGINE::frame()
                                     }
                                 }        
                                 int nextPlayer = ((index + 1) == players.size() ? players[0] : players[index + 1]);
+
+                                // Send message to network
                                 NetPackage np;
                                 np.message = "2::" + to_string(nextPlayer);
                                 m_netEngine->send(np);
@@ -722,6 +779,7 @@ void GENGINE::frame()
                         }
                         else
                         {
+                            // Ask vo validation on turn change
                             validateEndTurn = true;
                             message = "Are  you  sure  to  end  the  turn?\n(t to validate / escape to cancel)";
                             displayMessage = true;
@@ -729,7 +787,7 @@ void GENGINE::frame()
                     }
                     else if(event.key.code == sf::Keyboard::C && selectedUnitBool && (selectedUnit.getType() == MECH || selectedUnit.getType() == INFANTRY))
                     {
-                    
+                        // Selected unit can capture property
                         Terrain currentTerrain = m_world->getTerrain(selectedUnit.getCoord());
                         if(currentTerrain.getOwner() != m_player->getType() && (currentTerrain.getType() == BASE || currentTerrain.getType() == HQ || currentTerrain.getType() == CITY))
                         {
@@ -751,9 +809,10 @@ void GENGINE::frame()
                 m_window->close();
         }
 
-        vector<pair<int, int>> captureFlags;
+        
 
         // Capture management
+        vector<pair<int, int>> captureFlags;
         if(m_turn)
         {
             cleared = false;
@@ -798,10 +857,14 @@ void GENGINE::frame()
             }
             captured.clear();
         }
-
+        
+        // Clear screen
         m_graphicEngine->reload();
-        m_graphicEngine->checkProperties(m_world);//mise à jour des buildings
 
+        // Update buildings
+        m_graphicEngine->checkProperties(m_world);
+
+        // Win managment
         if(m_win)
         {
             m_graphicEngine->drawMap(m_world);
@@ -821,6 +884,7 @@ void GENGINE::frame()
     
         if (view == 0)
         {
+            // Display map and normal downbar
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
             m_graphicEngine->refreshUserInterface(m_player, m_world, m_turn);
@@ -834,22 +898,24 @@ void GENGINE::frame()
         }
         else if (view == 1)
         {
+            // Display base menu
             m_graphicEngine->displayBaseInfo(m_player, selectedTerrain, selectedUnitBase);
         }
         else if (view == 2)
         {
+            // Display unit downbar and map
             m_graphicEngine->drawMap(m_world);
             m_graphicEngine->drawUnits(m_world);
             m_graphicEngine->displayUnitInfo(m_player, selectedUnit, mvtCursor, m_world, displayPorte);
-            // Capture flags
 
+            // Capture flags
             if(!m_turn)
                 captureFlags = prevCaptureFlags;
 
             m_graphicEngine->captureFlags(captureFlags, m_world);
-
         }
 
+        // If waiting for players
         if(m_waitingForPlayers)
         {
             displayMessage = true;
@@ -857,15 +923,16 @@ void GENGINE::frame()
             message = "Waiting  for  " + to_string(m_playerLeft) + "  more  player.";
         }
     
+        // If our turn
         if(m_turn)    
             prevCaptureFlags = captureFlags;
         captureFlags.clear();        
 
-
+        // If message is to be displayed
         if(displayMessage)
             m_graphicEngine->displayMessage(message);
 
-        // Animation
+        // Animation movment
         if(m_moveUnit)
         {                    
             if((m_counter % 10) == 0)
@@ -877,12 +944,10 @@ void GENGINE::frame()
                 while(newmovingUnit != m_world->getNoneUnit())
                 {
                     newmovingUnit = m_world->getUnit(m_interMove[++m_interPos]);
-                }
-                
+                }                
             
                 m_world->moveUnit(m_movingUnit, m_interMove[m_interPos]);
                 m_movingUnit = m_world->getUnit(m_interMove[m_interPos]);
-
             }
 
             if((unsigned int) m_interPos == m_interMove.size() - 1)
@@ -891,13 +956,17 @@ void GENGINE::frame()
             ++m_counter;
         }
 
+        // If being atacked
         if(m_attackNotify)
         {
             m_graphicEngine->notifyAttack(m_attackNotifyStep, m_attackPos);
             m_graphicEngine->notifyAttack(m_attackNotifyStep, m_attackFrom);
         }
+
+        // Display changed screen
         m_window->display();
     
+        // Framerate management
         sf::Time elapsed = clock.getElapsedTime();
         if (elapsed < framerate)
             sf::sleep(framerate - elapsed);
@@ -918,6 +987,7 @@ void GENGINE::notify(const Action &p_action)
 {
     if(p_action.type == MOVE)
     {
+        // Notify a moving unit
         m_interMove = m_world->getIntermediaire(m_world->getUnit(p_action.coord[0]), p_action.coord[1]);
         m_moveUnit = true;
         m_counter = 0;
@@ -926,6 +996,7 @@ void GENGINE::notify(const Action &p_action)
     }
     else if(p_action.type == ATTACK)
     {
+        // Notify an attacking unit
         m_attackPos = p_action.coord[1];
         m_attackFrom = p_action.coord[0];
         m_attackNotifyStep = m_fps * 2.88;
@@ -933,6 +1004,7 @@ void GENGINE::notify(const Action &p_action)
 
         for(int i = 0 ; i < 2 ; i++)
         {
+            // If attacked is dead
             if(p_action.data[i] == -1)
                 m_world->removeUnit(m_world->getUnit(p_action.coord[i]));
             else
@@ -941,6 +1013,7 @@ void GENGINE::notify(const Action &p_action)
     }
     else if(p_action.type == CH_TURN)
     {
+        // Notify a turn move
         if(p_action.data[0] == m_player->getType())
             m_turn = true;
         else
@@ -948,6 +1021,7 @@ void GENGINE::notify(const Action &p_action)
     }
     else if(p_action.type == NEW_PLAYER)
     {
+        // Notify a new player
         if((unsigned int)p_action.data[0] == m_mapEngine->getPlayers().size())
         {
             m_waitingForPlayers = false;
@@ -959,29 +1033,34 @@ void GENGINE::notify(const Action &p_action)
     }
     else if(p_action.type == DISCONNECTED)
     {
+        // Notify Win on diconnect
         m_win = true;
     }
     else if(p_action.type == NEW_UNIT)
     {
-        UnitType type = (UnitType)p_action.data[0];
+        // Notify newly created unit
+        UNITTYPE type = (UNITTYPE)p_action.data[0];
         PLAYER_TYPE playerType = (PLAYER_TYPE)p_action.data[1];
         Unit unit (type, p_action.coord[0].first, p_action.coord[0].second, playerType, unitNPlayerTypeToGid(type, playerType));
         m_world->addUnit(unit);
     }
     else if(p_action.type == CAPTURE)
     {
+        // Notify a captured building
         m_world->getTerrain(p_action.coord[0]).setOwner((PLAYER_TYPE)p_action.data[0]);
         m_world->refreshVisibleMyProperty(m_world->getTerrain(p_action.coord[0]),true);
         winCondition();
     }
     else if(p_action.type == WIN)
     {
+        // Notify win
         m_win = true;
     }
 } // notify()
 
 void GENGINE::winCondition()
 {
+    // Test if all HQ were lost
     if(m_world->getHQCount() == 0)
     {
         m_loose = true;

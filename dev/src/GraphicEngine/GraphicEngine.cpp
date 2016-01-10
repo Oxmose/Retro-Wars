@@ -1,19 +1,24 @@
+// STD LIBS
 #include <iostream>
 #include <string>
 #include <utility>
 
+// SFML LIB
 #include <SFML/Graphics.hpp>
 
+
+// INCLUDE FROM PROJECT
 #include "../MapEngine/MapEngine.h"
 #include "../GameEngine/Terrain.h"
 #include "../GameEngine/World.h"
 #include "../GameEngine/Player.h"
 #include "../GameEngine/Unit.h"
 
+// HEADER INCLUDE
 #include "GraphicEngine.h"
 
+// Avoid to write the namespace each time
 #define GxENGINE nsGraphicEngine::GraphicEngine
-
 
 using namespace std;
 using namespace nsMapEngine;
@@ -378,7 +383,7 @@ void GxENGINE::refreshUserInterface(Player *p_player, World *p_world, bool p_tur
     {
         // Get terrain
         Terrain ter = p_world->getTerrain(playerX, playerY);
-        TerrainType terType = ter.getType();
+        TERRAINTYPE terType = ter.getType();
 
         // Display terrain name
         sf::Text terrainName(getName(terType), m_font, 20);
@@ -1033,7 +1038,7 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
 } // displayBaseInfo()
 
 
-string GxENGINE::getName(TerrainType terrain) 
+string GxENGINE::getName(TERRAINTYPE terrain) 
 {
     switch(terrain)
     {

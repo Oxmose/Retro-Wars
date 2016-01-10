@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Ftp.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Ftp.cpp
 SFML/Network/Ftp.hpp
 -
 SFML/Network/IpAddress.hpp
@@ -26,7 +26,7 @@ sstream
 cstdio
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Http.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Http.cpp
 SFML/Network/Http.hpp
 -
 SFML/System/Err.hpp
@@ -42,7 +42,7 @@ sstream
 limits
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/IpAddress.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/IpAddress.cpp
 SFML/Network/IpAddress.hpp
 -
 SFML/Network/Http.hpp
@@ -52,7 +52,7 @@ SFML/Network/SocketImpl.hpp
 cstring
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Packet.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Packet.cpp
 SFML/Network/Packet.hpp
 -
 SFML/Network/SocketImpl.hpp
@@ -64,7 +64,7 @@ cstring
 cwchar
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Socket.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Socket.cpp
 SFML/Network/Socket.hpp
 -
 SFML/Network/SocketImpl.hpp
@@ -72,7 +72,7 @@ SFML/Network/SocketImpl.hpp
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/SocketSelector.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/SocketSelector.cpp
 SFML/Network/SocketSelector.hpp
 -
 SFML/Network/Socket.hpp
@@ -86,7 +86,7 @@ algorithm
 utility
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/TcpListener.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/TcpListener.cpp
 SFML/Network/TcpListener.hpp
 -
 SFML/Network/TcpSocket.hpp
@@ -96,7 +96,7 @@ SFML/Network/SocketImpl.hpp
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/TcpSocket.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/TcpSocket.cpp
 SFML/Network/TcpSocket.hpp
 -
 SFML/Network/IpAddress.hpp
@@ -112,7 +112,7 @@ algorithm
 cstring
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/UdpSocket.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/UdpSocket.cpp
 SFML/Network/UdpSocket.hpp
 -
 SFML/Network/IpAddress.hpp
@@ -126,7 +126,7 @@ SFML/System/Err.hpp
 algorithm
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Unix/SocketImpl.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Network/Unix/SocketImpl.cpp
 SFML/Network/Unix/SocketImpl.hpp
 -
 errno.h

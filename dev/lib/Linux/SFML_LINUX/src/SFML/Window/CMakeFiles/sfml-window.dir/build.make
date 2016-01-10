@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX
+CMAKE_SOURCE_DIR = /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX
+CMAKE_BINARY_DIR = /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX
 
 # Include any dependencies generated for this target.
 include src/SFML/Window/CMakeFiles/sfml-window.dir/depend.make
@@ -59,16 +59,16 @@ include src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o: src/SFML/Window/Context.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Context.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Context.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Context.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp > CMakeFiles/sfml-window.dir/Context.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp > CMakeFiles/sfml-window.dir/Context.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Context.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp -o CMakeFiles/sfml-window.dir/Context.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp -o CMakeFiles/sfml-window.dir/Context.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o.requires:
 
@@ -83,16 +83,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Context.cpp.o.provides.build: src/SFM
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o: src/SFML/Window/GlContext.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/GlContext.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/GlContext.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/GlContext.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp > CMakeFiles/sfml-window.dir/GlContext.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp > CMakeFiles/sfml-window.dir/GlContext.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/GlContext.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp -o CMakeFiles/sfml-window.dir/GlContext.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp -o CMakeFiles/sfml-window.dir/GlContext.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o.requires:
 
@@ -107,16 +107,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/GlContext.cpp.o.provides.build: src/S
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o: src/SFML/Window/GlResource.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/GlResource.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/GlResource.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/GlResource.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp > CMakeFiles/sfml-window.dir/GlResource.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp > CMakeFiles/sfml-window.dir/GlResource.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/GlResource.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp -o CMakeFiles/sfml-window.dir/GlResource.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp -o CMakeFiles/sfml-window.dir/GlResource.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o.requires:
 
@@ -131,16 +131,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/GlResource.cpp.o.provides.build: src/
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o: src/SFML/Window/Joystick.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Joystick.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Joystick.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Joystick.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp > CMakeFiles/sfml-window.dir/Joystick.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp > CMakeFiles/sfml-window.dir/Joystick.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Joystick.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp -o CMakeFiles/sfml-window.dir/Joystick.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp -o CMakeFiles/sfml-window.dir/Joystick.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o.requires:
 
@@ -155,16 +155,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Joystick.cpp.o.provides.build: src/SF
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o: src/SFML/Window/JoystickManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/JoystickManager.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/JoystickManager.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/JoystickManager.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp > CMakeFiles/sfml-window.dir/JoystickManager.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp > CMakeFiles/sfml-window.dir/JoystickManager.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/JoystickManager.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp -o CMakeFiles/sfml-window.dir/JoystickManager.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp -o CMakeFiles/sfml-window.dir/JoystickManager.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o.requires:
 
@@ -179,16 +179,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/JoystickManager.cpp.o.provides.build:
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o: src/SFML/Window/Keyboard.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Keyboard.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Keyboard.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Keyboard.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp > CMakeFiles/sfml-window.dir/Keyboard.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp > CMakeFiles/sfml-window.dir/Keyboard.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Keyboard.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp -o CMakeFiles/sfml-window.dir/Keyboard.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp -o CMakeFiles/sfml-window.dir/Keyboard.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o.requires:
 
@@ -203,16 +203,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Keyboard.cpp.o.provides.build: src/SF
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o: src/SFML/Window/Mouse.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Mouse.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Mouse.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Mouse.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp > CMakeFiles/sfml-window.dir/Mouse.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp > CMakeFiles/sfml-window.dir/Mouse.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Mouse.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp -o CMakeFiles/sfml-window.dir/Mouse.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp -o CMakeFiles/sfml-window.dir/Mouse.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o.requires:
 
@@ -227,16 +227,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.o.provides.build: src/SFML/
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o: src/SFML/Window/Touch.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Touch.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Touch.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Touch.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp > CMakeFiles/sfml-window.dir/Touch.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp > CMakeFiles/sfml-window.dir/Touch.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Touch.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp -o CMakeFiles/sfml-window.dir/Touch.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp -o CMakeFiles/sfml-window.dir/Touch.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o.requires:
 
@@ -251,16 +251,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Touch.cpp.o.provides.build: src/SFML/
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o: src/SFML/Window/Sensor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Sensor.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Sensor.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Sensor.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp > CMakeFiles/sfml-window.dir/Sensor.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp > CMakeFiles/sfml-window.dir/Sensor.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Sensor.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp -o CMakeFiles/sfml-window.dir/Sensor.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp -o CMakeFiles/sfml-window.dir/Sensor.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o.requires:
 
@@ -275,16 +275,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Sensor.cpp.o.provides.build: src/SFML
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o: src/SFML/Window/SensorManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/SensorManager.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/SensorManager.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/SensorManager.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp > CMakeFiles/sfml-window.dir/SensorManager.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp > CMakeFiles/sfml-window.dir/SensorManager.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/SensorManager.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp -o CMakeFiles/sfml-window.dir/SensorManager.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp -o CMakeFiles/sfml-window.dir/SensorManager.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o.requires:
 
@@ -299,16 +299,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/SensorManager.cpp.o.provides.build: s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o: src/SFML/Window/VideoMode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/VideoMode.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/VideoMode.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/VideoMode.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp > CMakeFiles/sfml-window.dir/VideoMode.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp > CMakeFiles/sfml-window.dir/VideoMode.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/VideoMode.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp -o CMakeFiles/sfml-window.dir/VideoMode.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp -o CMakeFiles/sfml-window.dir/VideoMode.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o.requires:
 
@@ -323,16 +323,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/VideoMode.cpp.o.provides.build: src/S
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o: src/SFML/Window/Window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Window.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Window.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Window.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp > CMakeFiles/sfml-window.dir/Window.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp > CMakeFiles/sfml-window.dir/Window.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Window.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp -o CMakeFiles/sfml-window.dir/Window.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp -o CMakeFiles/sfml-window.dir/Window.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o.requires:
 
@@ -347,16 +347,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Window.cpp.o.provides.build: src/SFML
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o: src/SFML/Window/WindowImpl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/WindowImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/WindowImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/WindowImpl.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp > CMakeFiles/sfml-window.dir/WindowImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp > CMakeFiles/sfml-window.dir/WindowImpl.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/WindowImpl.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp -o CMakeFiles/sfml-window.dir/WindowImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp -o CMakeFiles/sfml-window.dir/WindowImpl.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o.requires:
 
@@ -371,16 +371,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/WindowImpl.cpp.o.provides.build: src/
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o: src/SFML/Window/Unix/Display.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/Display.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/Display.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/Display.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp > CMakeFiles/sfml-window.dir/Unix/Display.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp > CMakeFiles/sfml-window.dir/Unix/Display.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/Display.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp -o CMakeFiles/sfml-window.dir/Unix/Display.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp -o CMakeFiles/sfml-window.dir/Unix/Display.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o.requires:
 
@@ -395,16 +395,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/Display.cpp.o.provides.build: sr
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o: src/SFML/Window/Unix/InputImpl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp > CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp > CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o.requires:
 
@@ -419,16 +419,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/InputImpl.cpp.o.provides.build: 
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o: src/SFML/Window/Unix/SensorImpl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp > CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp > CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o.requires:
 
@@ -443,16 +443,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/SensorImpl.cpp.o.provides.build:
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o: src/SFML/Window/Unix/VideoModeImpl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp > CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp > CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o.requires:
 
@@ -467,16 +467,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/VideoModeImpl.cpp.o.provides.bui
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o: src/SFML/Window/Unix/WindowImplX11.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp > CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp > CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp -o CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp -o CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o.requires:
 
@@ -491,16 +491,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/WindowImplX11.cpp.o.provides.bui
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o: src/SFML/Window/Unix/GlxContext.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp > CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp > CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp -o CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp -o CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o.requires:
 
@@ -515,16 +515,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxContext.cpp.o.provides.build:
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o: src/SFML/Window/Unix/GlxExtensions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp > CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp > CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp -o CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp -o CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o.requires:
 
@@ -539,16 +539,16 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/GlxExtensions.cpp.o.provides.bui
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o: src/SFML/Window/CMakeFiles/sfml-window.dir/flags.make
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o: src/SFML/Window/Unix/JoystickImpl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o -c /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.i"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp > CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.i
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp > CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.i
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.s"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.s
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && /usr/bin/g++-4.9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp -o CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.s
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/Unix/JoystickImpl.cpp.o.requires:
 
@@ -619,9 +619,9 @@ lib/libsfml-window.so.2.3.2: /usr/lib/x86_64-linux-gnu/libxcb-randr.so
 lib/libsfml-window.so.2.3.2: /usr/lib/x86_64-linux-gnu/libudev.so
 lib/libsfml-window.so.2.3.2: /usr/lib/x86_64-linux-gnu/libGL.so
 lib/libsfml-window.so.2.3.2: src/SFML/Window/CMakeFiles/sfml-window.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX shared library ../../../lib/libsfml-window.so"
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-window.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && $(CMAKE_COMMAND) -E cmake_symlink_library ../../../lib/libsfml-window.so.2.3.2 ../../../lib/libsfml-window.so.2.3 ../../../lib/libsfml-window.so
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX shared library ../../../lib/libsfml-window.so"
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sfml-window.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && $(CMAKE_COMMAND) -E cmake_symlink_library ../../../lib/libsfml-window.so.2.3.2 ../../../lib/libsfml-window.so.2.3 ../../../lib/libsfml-window.so
 
 lib/libsfml-window.so.2.3: lib/libsfml-window.so.2.3.2
 	@$(CMAKE_COMMAND) -E touch_nocreate lib/libsfml-window.so.2.3
@@ -659,10 +659,10 @@ src/SFML/Window/CMakeFiles/sfml-window.dir/requires: src/SFML/Window/CMakeFiles/
 .PHONY : src/SFML/Window/CMakeFiles/sfml-window.dir/requires
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/clean:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && $(CMAKE_COMMAND) -P CMakeFiles/sfml-window.dir/cmake_clean.cmake
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window && $(CMAKE_COMMAND) -P CMakeFiles/sfml-window.dir/cmake_clean.cmake
 .PHONY : src/SFML/Window/CMakeFiles/sfml-window.dir/clean
 
 src/SFML/Window/CMakeFiles/sfml-window.dir/depend:
-	cd /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window /home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/CMakeFiles/sfml-window.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window /home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/CMakeFiles/sfml-window.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/SFML/Window/CMakeFiles/sfml-window.dir/depend
 

@@ -100,4 +100,4 @@ namespace nsNetEngine
 
 } // nsNetEngine
 
-#endif
+#endif // DEF_SERVER_H

@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Context.cpp
 SFML/Window/Context.hpp
 -
 SFML/Window/GlContext.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlContext.cpp
 SFML/Window/GlContext.hpp
 -
 SFML/System/ThreadLocalPtr.hpp
@@ -42,7 +42,7 @@ SFML/Window/iOS/EaglContext.hpp
 SFML/Window/EglContext.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/GlResource.cpp
 SFML/Window/GlResource.hpp
 -
 SFML/Window/GlContext.hpp
@@ -52,23 +52,23 @@ SFML/System/Mutex.hpp
 SFML/System/Lock.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Joystick.cpp
 SFML/Window/Joystick.hpp
 -
 SFML/Window/JoystickManager.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/JoystickManager.cpp
 SFML/Window/JoystickManager.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Keyboard.cpp
 SFML/Window/Keyboard.hpp
 -
 SFML/Window/InputImpl.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Mouse.cpp
 SFML/Window/Mouse.hpp
 -
 SFML/Window/InputImpl.hpp
@@ -76,25 +76,25 @@ SFML/Window/InputImpl.hpp
 SFML/Window/Window.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Sensor.cpp
 SFML/Window/Sensor.hpp
 -
 SFML/Window/SensorManager.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/SensorManager.cpp
 SFML/Window/SensorManager.hpp
 -
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Touch.cpp
 SFML/Window/Touch.hpp
 -
 SFML/Window/InputImpl.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/Display.cpp
 SFML/System/Err.hpp
 -
 SFML/Window/Unix/Display.hpp
@@ -108,7 +108,7 @@ cassert
 map
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxContext.cpp
 SFML/Window/Unix/GlxContext.hpp
 -
 SFML/Window/Unix/WindowImplX11.hpp
@@ -122,7 +122,7 @@ SFML/System/Lock.hpp
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/GlxExtensions.cpp
 SFML/Window/Unix/GlxExtensions.hpp
 -
 SFML/Window/Context.hpp
@@ -134,7 +134,7 @@ cstring
 cstddef
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/InputImpl.cpp
 SFML/Window/Window.hpp
 -
 SFML/Window/Unix/InputImpl.hpp
@@ -150,7 +150,7 @@ xcb/xcb.h
 X11/keysym.h
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/JoystickImpl.cpp
 SFML/Window/JoystickImpl.hpp
 -
 SFML/System/Err.hpp
@@ -172,11 +172,11 @@ string
 cstring
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/SensorImpl.cpp
 SFML/Window/SensorImpl.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/VideoModeImpl.cpp
 SFML/Window/VideoModeImpl.hpp
 -
 SFML/Window/Unix/Display.hpp
@@ -190,7 +190,7 @@ xcb/randr.h
 algorithm
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Unix/WindowImplX11.cpp
 SFML/Window/WindowStyle.hpp
 -
 SFML/Window/Unix/WindowImplX11.hpp
@@ -238,7 +238,7 @@ SFML/Window/EglContext.hpp
 SFML/Window/Unix/GlxContext.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/VideoMode.cpp
 SFML/Window/VideoMode.hpp
 -
 SFML/Window/VideoModeImpl.hpp
@@ -248,7 +248,7 @@ algorithm
 functional
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/Window.cpp
 SFML/Window/Window.hpp
 -
 SFML/Window/GlContext.hpp
@@ -260,7 +260,7 @@ SFML/System/Sleep.hpp
 SFML/System/Err.hpp
 -
 
-/home/alexy/Documents/ENSL/PROJET/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp
+/home/alexy/Documents/ENSL/PROJET1/Retro-Wars/dev/lib/Linux/SFML_LINUX/src/SFML/Window/WindowImpl.cpp
 SFML/Window/WindowImpl.hpp
 -
 SFML/Window/Event.hpp

@@ -19,6 +19,7 @@
 
 namespace nsGraphicEngine
 {
+    // Images resources PATH
     #define GRAPHIC_RES_IMG "./res/images/"
 
     class GraphicEngine
@@ -46,7 +47,9 @@ namespace nsGraphicEngine
 
             // Display message
             void displayMessage(const std::string &p_message);
-               void manageTurn(bool p_turn);
+            
+            // Manage player's turn
+            void manageTurn(bool p_turn);
 
             // Display attack notification
             void notifyAttack(int p_attackStep, const std::pair<int, int> &p_where);
@@ -66,7 +69,7 @@ namespace nsGraphicEngine
             void loadResources();
 
             // Util, get name of a terrain (string)
-            std::string getName(nsGameEngine::TerrainType terrain);
+            std::string getName(nsGameEngine::TERRAINTYPE terrain);
             
             // Display GUI bar            
             void displayBar(nsGameEngine::Player *p_player);
@@ -110,5 +113,4 @@ namespace nsGraphicEngine
 
 } // nsGraphicEngine
 
-
-#endif
+#endif // DEF_GRAPHICENGINE_H

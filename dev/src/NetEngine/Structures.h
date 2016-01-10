@@ -59,4 +59,4 @@ namespace nsNetEngine
     }; // Action
 } // nsNetEngine
 
-#endif
+#endif // DEF_STRUCTURES_H

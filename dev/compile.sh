@@ -11,7 +11,6 @@ fi
 
 cmake .;
 
-make clean;
 make;
 rm CMakeLists.txt;
 

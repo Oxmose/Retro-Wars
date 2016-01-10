@@ -58,4 +58,4 @@ namespace nsMapEngine
     }; // MapEngine
 } // nsMapEngine
 
-#endif
+#endif // DEF_MAPENGINE_H
