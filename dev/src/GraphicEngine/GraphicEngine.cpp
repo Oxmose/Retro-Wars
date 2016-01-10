@@ -641,7 +641,7 @@ void GxENGINE::displayBaseInfo(nsGameEngine::Player *p_player, const nsGameEngin
     m_mainWindow->draw(info);
 
     // ###########################################  Units menu
-    int colorSelector;
+    int colorSelector=0;
     if(p_player->getType() == RED)
     {
         colorSelector = 0;

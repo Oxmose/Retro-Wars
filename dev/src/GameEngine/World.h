@@ -13,7 +13,11 @@
 
 namespace nsGameEngine
 {
+	/* In the dijkstra implementation this type represents the 4-tuple :
+	   (current distance at the origin, movement points in that state, x coordinate, y coordinate) 
+	*/
     typedef std::pair<std::pair<int, int>, std::pair<int, int>> forAcc;
+
     class World
     {
         public:
@@ -23,37 +27,41 @@ namespace nsGameEngine
 
             // Terrain management
             void addTerrain(Terrain p_terrain);
-            void refreshVisibleMyProperty(Terrain p_terrain, bool p_erase = false);
             Terrain& getTerrain(int p_x, int p_y);
             Terrain& getTerrain(std::pair<int, int> p_coord);            
 
             // Unit management
             void addUnit(Unit p_unit);
-            void removeUnit(Unit p_unit);            
-            void refreshVisibleUnit(Unit p_unit, int p_reinit);
+            Unit& getUnit(int p_x, int p_y);
+            Unit& getUnit(std::pair<int, int> p_coord);
+           	std::list<Unit>& getUnits();
+            Unit& getNoneUnit();
+			void removeUnit(Unit p_unit);
+
             void moveUnit(Unit p_unit, std::pair<int, int> p_whereTo);
             void combatUnit(Unit p_attack, Unit p_defend);
+            bool capture(Unit p_unit, std::pair<int,int> p_toCapture);
 
-            Unit& getUnit(int p_x, int p_y);
-            Unit& getNoneUnit();
-            Unit& getUnit(std::pair<int, int> p_coord);
+            //Damage for combats
+            float getDamage(Unit p_attack, Unit p_defend, bool p_moy = false);
 
-            std::list<Unit>& getUnits();
-
-            float getDamage(Unit p_attack, Unit p_defend, bool p_moy=false);
-
-            // Vision manaement
+            // Vision management
             bool isVisible(int p_x, int p_y);
             bool isVisible(std::pair<int, int> p_coord);
+            void refreshVisibleMyProperty(Terrain p_terrain, bool p_erase = false);
+            void refreshVisibleUnit(Unit p_unit, int p_reinit = 1);//BFS to state which tiles are visible from an unit
+
+            //Accessible management
+            //Dijkstra implementations
             std::vector<std::pair<int, int>> getAccessible(Unit p_unit);
             std::vector<std::pair<int, int>> getIntermediaire(Unit p_unit, std::pair<int, int> p_whereTo);
-            std::vector<std::pair<int,int>> getPortee(Unit p_unit);
+
+            //Range management
+            std::vector<std::pair<int,int>> getPortee(Unit p_unit);//BFS
             
-            // Tools
-            int rand_interval(int min, int max);
-            int getNumberProperties();
+            //Tools
             int getHQCount();
-            bool capture(Unit p_unit, std::pair<int,int> p_toCapture);
+            int getNumberProperties();
 
         private:
             
@@ -70,6 +78,8 @@ namespace nsGameEngine
             int getI(int p_x, int p_y);
             int getI(std::pair<int, int> p_coord);
             int man(std::pair<int, int> a, std::pair<int, int> b);
+            int rand_interval(int min, int max);
+            
             
             // Properties
             int m_width, m_height;

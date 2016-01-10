@@ -32,16 +32,147 @@ GENGINE_W::World(PLAYER_TYPE p_player, int p_width, int p_height)
     srand(time(NULL));
 } // World()
 
-int GENGINE_W::getI(int p_x, int p_y)
-{
-    return p_y*m_width+p_x%m_width;
-} // getI()
+/* Terrain management */
 
-int GENGINE_W::getI(std::pair<int, int> p_coord)
+void GENGINE_W::addTerrain(Terrain p_terrain)
 {
-    return getI(p_coord.first, p_coord.second);
-} // getI()
+    m_terrain.push_back(p_terrain);
+    refreshVisibleMyProperty(p_terrain);
+} // addTerrain()
 
+Terrain& GENGINE_W::getTerrain(int p_x, int p_y)
+{
+    for(unsigned int i = 0 ; i < m_terrain.size() ; i++)
+        if(m_terrain[i].getCoord().first == p_x && m_terrain[i].getCoord().second == p_y)
+            return m_terrain[i];
+    return m_noneTerrain;
+} // getTerrain()
+
+
+Terrain& GENGINE_W::getTerrain(std::pair<int, int> p_coord)
+{
+    return getTerrain(p_coord.first, p_coord.second);
+} // getTerrain()
+
+
+/* Unit management */
+
+void GENGINE_W::addUnit(Unit p_unit)
+{
+    m_unit.push_back(p_unit);
+    refreshVisibleUnit(p_unit);
+} // addUnit()
+
+Unit& GENGINE_W::getUnit(int p_x, int p_y)
+{
+    for(Unit& unit : m_unit)
+        if(unit.getCoord().first == p_x && unit.getCoord().second == p_y)
+            return unit;
+    return m_noneUnit;    
+} // getUnit()
+
+
+Unit& GENGINE_W::getUnit(std::pair<int, int> p_coord)
+{
+    return getUnit(p_coord.first, p_coord.second);    
+} // getUnit()
+
+std::list<Unit>& GENGINE_W::getUnits()
+{
+    return m_unit;
+} // getUnits()
+
+//Help to know that smthg is not an unit
+Unit& GENGINE_W::getNoneUnit()
+{
+    return m_noneUnit;    
+} // getNoneUnit()
+
+void GENGINE_W::removeUnit(Unit p_unit)
+{
+
+    if(p_unit.getOwner() == m_player)
+        refreshVisibleUnit(p_unit,-1);
+    m_unit.remove(p_unit);
+} // removeUnit()
+
+void GENGINE_W::moveUnit(Unit p_unit, std::pair<int, int> p_whereTo)
+{
+    refreshVisibleUnit(p_unit,-1);
+    getUnit(p_unit.getCoord()).setCoord(p_whereTo.first,p_whereTo.second);
+    p_unit.setCoord(p_whereTo.first, p_whereTo.second);
+    refreshVisibleUnit(p_unit);
+} // moveUnit()
+
+//Captures a property
+bool GENGINE_W::capture(Unit p_unit, std::pair<int,int> p_toCapture)
+{
+    int currHp = getTerrain(p_toCapture).getHp();
+    getTerrain(p_toCapture).setHp(std::max(currHp-p_unit.getHp(),0));
+
+    if(getTerrain(p_toCapture).getHp() == 0)
+    {
+        getTerrain(p_toCapture).setOwner(m_player);
+        refreshVisibleMyProperty(getTerrain(p_toCapture));
+        return true;
+    }
+
+    return false;
+} // capture()
+
+void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
+{
+    float damage1 = getDamage(p_attack, p_defend)/100;
+    int newHealth1 = p_defend.getHp()-int(damage1*p_defend.getHp())-((damage1 > 0.05) ? 1 : 0);
+    p_defend.setHp(newHealth1);
+    getUnit(p_defend.getCoord()).setHp(newHealth1);
+
+    if(newHealth1 == 0)
+        removeUnit(p_defend);
+    else
+    {
+        if(man(p_attack.getCoord(),p_defend.getCoord()) <= p_defend.getRange())
+        {
+            float damage2 = getDamage(p_defend, p_attack)/100;
+            int newHealth2 = p_attack.getHp()-int(damage2*p_attack.getHp())-((damage2 > 0.05) ? 1 : 0);
+            p_attack.setHp(newHealth2);
+            getUnit(p_attack.getCoord()).setHp(newHealth2);
+            if(newHealth2 == 0)
+                removeUnit(p_attack);
+        }
+    }
+} // combatUnit()
+
+//Damage formula
+float GENGINE_W::getDamage(Unit p_attack, Unit p_defend, bool p_moy)
+{
+    float B = float(p_attack.getBaseDamage(p_defend));
+    float ACO = 1.0;
+    float R = float(rand_interval(0,9));
+    if(p_moy)
+        R = float(5.0);
+    float AHP = float(p_attack.getHp());
+    float DCO = 1.0;
+    float DTR = float(getTerrain(p_defend.getCoord()).getDefense());
+    float DHP = p_defend.getHp();
+    return  std::min(std::max((B*ACO/DCO)*(AHP/10)-R*((200-(DCO+DTR*DHP))/100),float(0)),float(100));
+} // getDamage()
+
+
+
+/* Vision management */
+
+bool GENGINE_W::isVisible(int p_x, int p_y)
+{
+    return m_visible[getI(p_x,p_y)] != 0;
+} // isVisible()
+
+bool GENGINE_W::isVisible(std::pair<int, int> p_coord)
+{
+    return isVisible(p_coord.first, p_coord.second);
+} // isVisible()
+
+//Says that property of the player are visible
 void GENGINE_W::refreshVisibleMyProperty(Terrain p_terrain, bool p_erase)
 {
     int p = (p_erase) ? -1 : 1;
@@ -49,14 +180,12 @@ void GENGINE_W::refreshVisibleMyProperty(Terrain p_terrain, bool p_erase)
         m_visible[getI(p_terrain.getCoord())] += p;
 } // refreshVisibleMyProperty()
 
-int GENGINE_W::man(std::pair<int, int> a, std::pair<int, int> b)
-{
-    return abs(a.first-b.first)+abs(a.second-b.second);
-} // man()
-
-//Unit can't see near position when in woods
-//p_reinit enable to remove visible position
-void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
+//It is a BFS starting from an unit to check which tiles are visible
+//p_reinit enables to remove visible position
+//It implements the special rules for mountains and woods
+//Mountain : you get a vision bonus
+//Woods : you get a vision malus + woods can be seen iff theres an unit at distance 1
+void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit)
 {
     if(p_unit.getOwner() != m_player)
         return;
@@ -75,9 +204,9 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 
     int bonus = 0;
     if(getTerrain(p_unit.getCoord().first, p_unit.getCoord().second).getType() == MOUNTAIN)
-        bonus = 2;
+        bonus = 2;//Bonus on mountains
     if(getTerrain(p_unit.getCoord().first, p_unit.getCoord().second).getType() == WOODS)
-        bonus = -1;
+        bonus = -1;//Bonus on woods
 
     while(!toVisit.empty())
     {
@@ -90,7 +219,7 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
         {
 
             bool unitVoit = 
-                (getTerrain(coord).getType() == WOODS) ? (man(coord,p_unit.getCoord()) <= 1) : true;
+                (getTerrain(coord).getType() == WOODS) ? (man(coord,p_unit.getCoord()) <= 1) : true;//In the woods you have to be near the tile to see it
             if(unitVoit)
                 m_visible[getI(coord)] += p_reinit;
             for(int iDir = 0 ; iDir < 4 ; iDir++)
@@ -108,68 +237,12 @@ void GENGINE_W::refreshVisibleUnit(Unit p_unit, int p_reinit = 1)
 
 } // refreshVisibleUnit()
 
-void GENGINE_W::addTerrain(Terrain p_terrain)
-{
-    m_terrain.push_back(p_terrain);
-    refreshVisibleMyProperty(p_terrain);
-} // addTerrain()
+/* Accessible management */
 
-void GENGINE_W::addUnit(Unit p_unit)
-{
-    m_unit.push_back(p_unit);
-    refreshVisibleUnit(p_unit);
-} // addUnit()
+/* Two dijkstra algorithms that gives to the graphic engine the accessible
+	tiles from an unit and the intermediates tiles in a least distance movement */
 
-void GENGINE_W::removeUnit(Unit p_unit)
-{
-
-    if(p_unit.getOwner() == m_player)
-        refreshVisibleUnit(p_unit,-1);
-    m_unit.remove(p_unit);
-} // removeUnit()
-
-std::list<Unit>& GENGINE_W::getUnits()
-{
-    return m_unit;
-} // getUnits()
-
-Terrain& GENGINE_W::getTerrain(int p_x, int p_y)
-{
-    for(unsigned int i = 0 ; i < m_terrain.size() ; i++)
-        if(m_terrain[i].getCoord().first == p_x && m_terrain[i].getCoord().second == p_y)
-            return m_terrain[i];
-    return m_noneTerrain;
-} // getTerrain()
-
-
-Terrain& GENGINE_W::getTerrain(std::pair<int, int> p_coord)
-{
-    return getTerrain(p_coord.first, p_coord.second);
-} // getTerrain()
-
-Unit& GENGINE_W::getUnit(int p_x, int p_y)
-{
-    for(Unit& unit : m_unit)
-        if(unit.getCoord().first == p_x && unit.getCoord().second == p_y)
-            return unit;
-    return m_noneUnit;    
-} // getUnit()
-
-Unit& GENGINE_W::getUnit(std::pair<int, int> p_coord)
-{
-    return getUnit(p_coord.first, p_coord.second);    
-} // getUnit()
-
-bool GENGINE_W::isVisible(int p_x, int p_y)
-{
-    return m_visible[getI(p_x,p_y)] != 0;
-} // isVisible()
-
-bool GENGINE_W::isVisible(std::pair<int, int> p_coord)
-{
-    return isVisible(p_coord.first, p_coord.second);
-} // isVisible()
-
+/* It relies on this comp function */
 static bool comp(const forAcc& A, const forAcc& B)
 {
     return A.first.first > B.first.first;
@@ -292,6 +365,9 @@ std::vector<std::pair<int, int>> GENGINE_W::getIntermediaire(Unit p_unit, std::p
     return toReturn;
 } // getIntermediaire()
 
+/* Range management */
+
+//A BFS to know which tiles are in range of fire
 std::vector<std::pair<int, int>> GENGINE_W::getPortee(Unit p_unit)
 {
     std::vector<std::pair<int, int>> toReturn;
@@ -335,6 +411,44 @@ std::vector<std::pair<int, int>> GENGINE_W::getPortee(Unit p_unit)
     return toReturn;
 } // getPortee()
 
+/* Tools */
+
+//For victory condition
+int GENGINE_W::getHQCount()
+{
+    int toReturn = 0;
+    for(auto ter : m_terrain)
+        if(ter.isProperty() && ter.getOwner() == m_player && ter.getType() == HQ)
+            toReturn ++;
+    return toReturn;
+} // getHQCount()
+
+//For money management (each turn player earns getNumberProperties()*1000 )
+int GENGINE_W::getNumberProperties()
+{
+    int toReturn = 0;
+    for(auto ter : m_terrain)
+        if(ter.isProperty() && ter.getOwner() == m_player)
+            toReturn ++;
+    return toReturn;
+} // getNumberProperties()
+
+// 2D to 1D coordinates change
+int GENGINE_W::getI(int p_x, int p_y)
+{
+    return p_y*m_width+p_x%m_width;
+} // getI()
+
+int GENGINE_W::getI(std::pair<int, int> p_coord)
+{
+    return getI(p_coord.first, p_coord.second);
+} // getI()
+
+//Man distance
+int GENGINE_W::man(std::pair<int, int> a, std::pair<int, int> b)
+{
+    return abs(a.first-b.first)+abs(a.second-b.second);
+} // man()
 
 int GENGINE_W::rand_interval(int min, int max)
 {
@@ -351,90 +465,6 @@ int GENGINE_W::rand_interval(int min, int max)
     return min + (r / buckets);
 } //rand_interval()
 
-
-void GENGINE_W::moveUnit(Unit p_unit, std::pair<int, int> p_whereTo)
-{
-    refreshVisibleUnit(p_unit,-1);
-    getUnit(p_unit.getCoord()).setCoord(p_whereTo.first,p_whereTo.second);
-    p_unit.setCoord(p_whereTo.first, p_whereTo.second);
-    refreshVisibleUnit(p_unit);
-} // moveUnit()
-
-
-bool GENGINE_W::capture(Unit p_unit, std::pair<int,int> p_toCapture)
-{
-    int currHp = getTerrain(p_toCapture).getHp();
-    getTerrain(p_toCapture).setHp(std::max(currHp-p_unit.getHp(),0));
-
-    if(getTerrain(p_toCapture).getHp() == 0)
-    {
-        getTerrain(p_toCapture).setOwner(m_player);
-        refreshVisibleMyProperty(getTerrain(p_toCapture));
-        return true;
-    }
-
-    return false;
-} // capture(à
-
-float GENGINE_W::getDamage(Unit p_attack, Unit p_defend, bool p_moy)
-{
-    float B = float(p_attack.getBaseDamage(p_defend));
-    float ACO = 1.0;
-    float R = float(rand_interval(0,9));
-    if(p_moy)
-        R = float(5.0);
-    float AHP = float(p_attack.getHp());
-    float DCO = 1.0;
-    float DTR = float(getTerrain(p_defend.getCoord()).getDefense());
-    float DHP = p_defend.getHp();
-    return  std::min(std::max((B*ACO/DCO)*(AHP/10)-R*((200-(DCO+DTR*DHP))/100),float(0)),float(100));
-} // getDamage()
-
-void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
-{
-    float damage1 = getDamage(p_attack, p_defend)/100;
-    int newHealth1 = p_defend.getHp()-int(damage1*p_defend.getHp())-((damage1 > 0.05) ? 1 : 0);
-    p_defend.setHp(newHealth1);
-    getUnit(p_defend.getCoord()).setHp(newHealth1);
-
-    if(newHealth1 == 0)
-        removeUnit(p_defend);
-    else
-    {
-        if(man(p_attack.getCoord(),p_defend.getCoord()) <= p_defend.getRange())
-        {
-            float damage2 = getDamage(p_defend, p_attack)/100;
-            int newHealth2 = p_attack.getHp()-int(damage2*p_attack.getHp())-((damage2 > 0.05) ? 1 : 0);
-            p_attack.setHp(newHealth2);
-            getUnit(p_attack.getCoord()).setHp(newHealth2);
-            if(newHealth2 == 0)
-                removeUnit(p_attack);
-        }
-    }
-} // combatUnit()
-
-int GENGINE_W::getNumberProperties()
-{
-    int toReturn = 0;
-    for(auto ter : m_terrain)
-        if(ter.isProperty() && ter.getOwner() == m_player)
-            toReturn ++;
-    return toReturn;
-} // getNumberProperties()
-
-Unit& GENGINE_W::getNoneUnit()
-{
-    return m_noneUnit;    
-} // getNoneUnit()
-
-int GENGINE_W::getHQCount()
-{
-    int toReturn = 0;
-    for(auto ter : m_terrain)
-        if(ter.isProperty() && ter.getOwner() == m_player && ter.getType() == HQ)
-            toReturn ++;
-    return toReturn;
-} // getHQCount()
 
 GENGINE_W::~World()
 {
