@@ -120,6 +120,7 @@ bool GENGINE_W::capture(Unit p_unit, std::pair<int,int> p_toCapture)
     return false;
 } // capture()
 
+//Simulates the combat between two units
 void GENGINE_W::combatUnit(Unit p_attack, Unit p_defend)
 {
     float damage1 = getDamage(p_attack, p_defend)/100;
